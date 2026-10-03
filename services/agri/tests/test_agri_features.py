@@ -97,7 +97,7 @@ def test_model_row_has_metadata_features(store, model):
 def test_teammate_table_parity_except_delta(store):
     """Trust-but-verify: our recipe reproduces the teammate's agri_training.csv except the fixed ndvi_delta."""
     from pathlib import Path
-    p = Path(__file__).resolve().parents[3] / "agri" / "data" / "agri" / "agri_training.csv"
+    p = Path(__file__).resolve().parents[3] / "_archive" / "agri" / "data" / "agri" / "agri_training.csv"   # moved 2026-10-04
     if not p.is_file():
         pytest.skip("teammate table not present")
     old = pd.read_csv(p, parse_dates=["period_end"])

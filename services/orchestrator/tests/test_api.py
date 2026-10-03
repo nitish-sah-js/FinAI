@@ -66,7 +66,11 @@ def test_portfolio_endpoints_and_upload():
         assert c.get("/portfolio/unknown").status_code == 404
 
 
-def test_scenario_proxy_quota_health_scoreboard():
+def test_scenario_proxy_quota_health_scoreboard(monkeypatch):
+    # point quant at a port nothing listens on, so the "down" check does not depend on a real quant running
+    monkeypatch.setenv("QUANT_URL", "http://127.0.0.1:59999")
+    from copilot_common.settings import reload_settings
+    reload_settings()
     with client() as c:
         tr = c.post("/tools/scenario", json={"shocks": {"crude": 10}}).json()
         assert tr["evidence"][0]["tool"] == "scenario"
