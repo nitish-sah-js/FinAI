@@ -1,7 +1,7 @@
 """All shared Pydantic models. Source of truth: docs/01_CONTRACTS.md §5."""
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
@@ -46,6 +46,29 @@ class Portfolio(BaseModel):
     holdings: list[Holding]
     cash: float = 0.0
     currency: Literal["INR", "USD"] = "INR"
+
+
+# ---------- News -> sentiment (ingestion worker and orchestrator call sentiment /sentiment/score) ----------
+def _utcnow() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+class NewsScoreItem(BaseModel):
+    """One headline to score. published_at defaults to now when the feed has no date."""
+    news_id: str
+    title: str
+    summary: str = ""
+    source: str = ""
+    published_at: datetime = Field(default_factory=_utcnow)
+    tickers: list[str] = []
+
+
+class SentimentScoreRequest(BaseModel):
+    items: list[NewsScoreItem]
+    portfolio: Portfolio | None = None
+    second_opinion: bool = True
+    as_of: date | None = None
+    run_id: str | None = None
 
 
 # ---------- Query ----------

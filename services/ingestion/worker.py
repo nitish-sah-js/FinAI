@@ -7,6 +7,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import httpx
+from copilot_common.models import NewsScoreItem, SentimentScoreRequest
 from copilot_common.settings import get_settings
 from . import store
 from .sources import gdelt, prices_yf, rss
@@ -52,6 +53,21 @@ def _filter_new(items: list[dict]) -> list[dict]:
     return new
 
 
+def sentiment_payload(items: list[dict]) -> dict:
+    """Request body for sentiment /sentiment/score, built with the shared contract model.
+    published_at is the feed date when parseable, else now (the field is required for time decay)."""
+    out = []
+    for i in items:
+        try:
+            pub = parse_dt(i["published_at"]) if i.get("published_at") else None
+        except (TypeError, ValueError):
+            pub = None
+        out.append(NewsScoreItem(news_id=i["news_id"], title=i.get("title") or "", summary=i.get("summary") or "",
+                                 source=i.get("source") or "", tickers=i.get("tickers") or [],
+                                 **({"published_at": pub} if pub else {})))
+    return SentimentScoreRequest(items=out).model_dump(mode="json")
+
+
 async def push_downstream(items: list[dict]) -> None:
     if not items:
         return
@@ -60,8 +76,7 @@ async def push_downstream(items: list[dict]) -> None:
     ok_vec = True
     async with httpx.AsyncClient(timeout=15) as c:
         try:
-            r = await c.post(f"{sent_url}/sentiment/score", json={"items": [
-                {"news_id": i["news_id"], "title": i["title"], "summary": i["summary"], "tickers": i["tickers"]} for i in items]})
+            r = await c.post(f"{sent_url}/sentiment/score", json=sentiment_payload(items))
             r.raise_for_status()
             by_id = {x["news_id"]: x for x in r.json()["evidence"][0]["value"]["items"]}
             for i in items:

@@ -15,7 +15,7 @@ from fastapi import Body
 from pydantic import BaseModel
 
 from copilot_common.ids import counter_for
-from copilot_common.models import Evidence, Portfolio, ToolResult
+from copilot_common.models import Evidence, NewsScoreItem, Portfolio, SentimentScoreRequest, ToolResult
 from copilot_common.service_base import create_service_app, degraded, mock_or, now_utc
 from copilot_common.settings import get_settings
 
@@ -70,21 +70,9 @@ app = create_service_app("sentiment", deps_check=deps_check, models=[finbert_nam
 
 
 # ── request models ────────────────────────────────────────────────────────────
-class NewsIn(BaseModel):
-    news_id:      str
-    title:        str
-    summary:      str        = ""
-    source:       str        = ""
-    published_at: datetime
-    tickers:      list[str]  = []
-
-
-class ScoreReq(BaseModel):
-    items:          list[NewsIn]
-    portfolio:      Portfolio | None = None      # the shared contract model (01 §5)
-    second_opinion: bool             = True
-    as_of:          date | None      = None
-    run_id:         str | None       = None
+# shared contract models (copilot_common.models): ingestion and the orchestrator build the same payload
+NewsIn = NewsScoreItem
+ScoreReq = SentimentScoreRequest
 
 
 class EvalReq(BaseModel):
