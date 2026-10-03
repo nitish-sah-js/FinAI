@@ -1,0 +1,2413 @@
+[
+  {
+    "event_id": "hurricane_katrina_2005",
+    "title": "Hurricane Katrina Landfall Gulf Coast",
+    "event_type": "hurricane",
+    "region": "Gulf of Mexico",
+    "country": "US",
+    "start_date": "2005-08-23T00:00:00Z",
+    "end_date": "2005-08-31T00:00:00Z",
+    "event_date": "2005-08-29T00:00:00Z",
+    "severity_value": 3.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.6,
+    "description": "Category 3 hurricane made landfall near Buras-Triumph Louisiana causing massive storm surge flooding New Orleans and shutting down Gulf offshore oil platforms and coastal refineries.",
+    "mechanism": "Extensive offshore oil and gas production shut-ins and Gulf Coast refinery outages caused sharp spike in crude oil and natural gas prices.",
+    "affected_assets": [
+      "crude",
+      "natgas",
+      "refiners",
+      "energy"
+    ],
+    "tickers": [
+      "CL=F",
+      "NG=F",
+      "RB=F",
+      "XLE",
+      "VLO"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.3584,
+        "ret_1d": 0.01593,
+        "ret_5d": 0.04824,
+        "ret_20d": 0.04912,
+        "abnormal_1d": 0.01446,
+        "abnormal_5d": 0.0474,
+        "abnormal_20d": 0.054
+      },
+      {
+        "asset": "NG=F",
+        "benchmark": "SPY",
+        "beta_used": 0.4281,
+        "ret_1d": 0.00552,
+        "ret_5d": 0.03712,
+        "ret_20d": 0.06664,
+        "abnormal_1d": 0.00447,
+        "abnormal_5d": 0.03466,
+        "abnormal_20d": 0.06503
+      },
+      {
+        "asset": "RB=F",
+        "benchmark": "SPY",
+        "beta_used": 0.5048,
+        "ret_1d": 0.01417,
+        "ret_5d": 0.0206,
+        "ret_20d": 0.03988,
+        "abnormal_1d": 0.01448,
+        "abnormal_5d": 0.02446,
+        "abnormal_20d": 0.03476
+      },
+      {
+        "asset": "XLE",
+        "benchmark": "SPY",
+        "beta_used": 1.0164,
+        "ret_1d": -0.01287,
+        "ret_5d": -0.03689,
+        "ret_20d": -0.06907,
+        "abnormal_1d": -0.00024,
+        "abnormal_5d": -0.04327,
+        "abnormal_20d": -0.06326
+      },
+      {
+        "asset": "VLO",
+        "benchmark": "SPY",
+        "beta_used": 1.095,
+        "ret_1d": 0.00759,
+        "ret_5d": 0.02626,
+        "ret_20d": 0.05589,
+        "abnormal_1d": 0.00748,
+        "abnormal_5d": 0.03589,
+        "abnormal_20d": 0.06985
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3584, \"ret_1d\": 0.01593, \"ret_5d\": 0.04824, \"ret_20d\": 0.04912, \"abnormal_1d\": 0.01446, \"abnormal_5d\": 0.0474, \"abnormal_20d\": 0.054}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.4281, \"ret_1d\": 0.00552, \"ret_5d\": 0.03712, \"ret_20d\": 0.06664, \"abnormal_1d\": 0.00447, \"abnormal_5d\": 0.03466, \"abnormal_20d\": 0.06503}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.5048, \"ret_1d\": 0.01417, \"ret_5d\": 0.0206, \"ret_20d\": 0.03988, \"abnormal_1d\": 0.01448, \"abnormal_5d\": 0.02446, \"abnormal_20d\": 0.03476}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 1.0164, \"ret_1d\": -0.01287, \"ret_5d\": -0.03689, \"ret_20d\": -0.06907, \"abnormal_1d\": -0.00024, \"abnormal_5d\": -0.04327, \"abnormal_20d\": -0.06326}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 1.095, \"ret_1d\": 0.00759, \"ret_5d\": 0.02626, \"ret_20d\": 0.05589, \"abnormal_1d\": 0.00748, \"abnormal_5d\": 0.03589, \"abnormal_20d\": 0.06985}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL122005_Katrina.pdf",
+    "embedding_text": "hurricane Gulf of Mexico severity 3 Saffir-Simpson category. Category 3 hurricane made landfall near Buras-Triumph Louisiana causing massive storm surge flooding New Orleans and shutting down Gulf offshore oil platforms and coastal refineries. Mechanism: Extensive offshore oil and gas production shut-ins and Gulf Coast refinery outages caused sharp spike in crude oil and natural gas prices."
+  },
+  {
+    "event_id": "hurricane_rita_2005",
+    "title": "Hurricane Rita Gulf Coast Landfall",
+    "event_type": "hurricane",
+    "region": "Gulf of Mexico",
+    "country": "US",
+    "start_date": "2005-09-18T00:00:00Z",
+    "end_date": "2005-09-26T00:00:00Z",
+    "event_date": "2005-09-24T00:00:00Z",
+    "severity_value": 3.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.6,
+    "description": "Category 3 hurricane struck near the Texas-Louisiana border shortly after Katrina forcing widespread evacuations and temporary refinery shutdowns along the petrochemical corridor.",
+    "mechanism": "Refinery outages and pipeline disruptions curtailed refined product supplies and supported crack spreads.",
+    "affected_assets": [
+      "crude",
+      "natgas",
+      "refiners",
+      "energy"
+    ],
+    "tickers": [
+      "CL=F",
+      "NG=F",
+      "RB=F",
+      "XLE"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.2707,
+        "ret_1d": 0.01236,
+        "ret_5d": 0.02768,
+        "ret_20d": 0.03908,
+        "abnormal_1d": 0.01444,
+        "abnormal_5d": 0.02297,
+        "abnormal_20d": 0.03739
+      },
+      {
+        "asset": "NG=F",
+        "benchmark": "SPY",
+        "beta_used": 0.2763,
+        "ret_1d": 0.01127,
+        "ret_5d": 0.01925,
+        "ret_20d": 0.04261,
+        "abnormal_1d": 0.01232,
+        "abnormal_5d": 0.02242,
+        "abnormal_20d": 0.04346
+      },
+      {
+        "asset": "RB=F",
+        "benchmark": "SPY",
+        "beta_used": 0.3463,
+        "ret_1d": 0.00627,
+        "ret_5d": 0.00191,
+        "ret_20d": 0.02424,
+        "abnormal_1d": 0.00907,
+        "abnormal_5d": 0.00232,
+        "abnormal_20d": 0.02037
+      },
+      {
+        "asset": "XLE",
+        "benchmark": "SPY",
+        "beta_used": 1.1228,
+        "ret_1d": -0.01374,
+        "ret_5d": -0.02579,
+        "ret_20d": -0.04526,
+        "abnormal_1d": -0.0083,
+        "abnormal_5d": -0.01824,
+        "abnormal_20d": -0.0249
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2707, \"ret_1d\": 0.01236, \"ret_5d\": 0.02768, \"ret_20d\": 0.03908, \"abnormal_1d\": 0.01444, \"abnormal_5d\": 0.02297, \"abnormal_20d\": 0.03739}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2763, \"ret_1d\": 0.01127, \"ret_5d\": 0.01925, \"ret_20d\": 0.04261, \"abnormal_1d\": 0.01232, \"abnormal_5d\": 0.02242, \"abnormal_20d\": 0.04346}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3463, \"ret_1d\": 0.00627, \"ret_5d\": 0.00191, \"ret_20d\": 0.02424, \"abnormal_1d\": 0.00907, \"abnormal_5d\": 0.00232, \"abnormal_20d\": 0.02037}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 1.1228, \"ret_1d\": -0.01374, \"ret_5d\": -0.02579, \"ret_20d\": -0.04526, \"abnormal_1d\": -0.0083, \"abnormal_5d\": -0.01824, \"abnormal_20d\": -0.0249}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL182005_Rita.pdf",
+    "embedding_text": "hurricane Gulf of Mexico severity 3 Saffir-Simpson category. Category 3 hurricane struck near the Texas-Louisiana border shortly after Katrina forcing widespread evacuations and temporary refinery shutdowns along the petrochemical corridor. Mechanism: Refinery outages and pipeline disruptions curtailed refined product supplies and supported crack spreads."
+  },
+  {
+    "event_id": "hurricane_gustav_2008",
+    "title": "Hurricane Gustav Louisiana Landfall",
+    "event_type": "hurricane",
+    "region": "Gulf of Mexico",
+    "country": "US",
+    "start_date": "2008-08-25T00:00:00Z",
+    "end_date": "2008-09-04T00:00:00Z",
+    "event_date": "2008-09-01T00:00:00Z",
+    "severity_value": 2.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.4,
+    "description": "Category 2 hurricane made landfall in Louisiana leading to preemptive shutdown of offshore platforms and pipelines across the central Gulf.",
+    "mechanism": "Precautionary production shut-ins created short-term supply anxiety in domestic energy markets.",
+    "affected_assets": [
+      "crude",
+      "natgas",
+      "energy"
+    ],
+    "tickers": [
+      "CL=F",
+      "NG=F",
+      "XLE"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.2702,
+        "ret_1d": 0.00285,
+        "ret_5d": 0.01462,
+        "ret_20d": 0.01333,
+        "abnormal_1d": 0.00297,
+        "abnormal_5d": 0.01054,
+        "abnormal_20d": 0.00311
+      },
+      {
+        "asset": "NG=F",
+        "benchmark": "SPY",
+        "beta_used": 0.2943,
+        "ret_1d": 0.00589,
+        "ret_5d": -0.00017,
+        "ret_20d": -0.00867,
+        "abnormal_1d": 0.00364,
+        "abnormal_5d": 0.00584,
+        "abnormal_20d": -0.01242
+      },
+      {
+        "asset": "XLE",
+        "benchmark": "SPY",
+        "beta_used": 0.8288,
+        "ret_1d": -0.00507,
+        "ret_5d": -0.01974,
+        "ret_20d": -0.00429,
+        "abnormal_1d": 0.001,
+        "abnormal_5d": -0.0206,
+        "abnormal_20d": -0.00725
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2702, \"ret_1d\": 0.00285, \"ret_5d\": 0.01462, \"ret_20d\": 0.01333, \"abnormal_1d\": 0.00297, \"abnormal_5d\": 0.01054, \"abnormal_20d\": 0.00311}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2943, \"ret_1d\": 0.00589, \"ret_5d\": -0.00017, \"ret_20d\": -0.00867, \"abnormal_1d\": 0.00364, \"abnormal_5d\": 0.00584, \"abnormal_20d\": -0.01242}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 0.8288, \"ret_1d\": -0.00507, \"ret_5d\": -0.01974, \"ret_20d\": -0.00429, \"abnormal_1d\": 0.001, \"abnormal_5d\": -0.0206, \"abnormal_20d\": -0.00725}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL072008_Gustav.pdf",
+    "embedding_text": "hurricane Gulf of Mexico severity 2 Saffir-Simpson category. Category 2 hurricane made landfall in Louisiana leading to preemptive shutdown of offshore platforms and pipelines across the central Gulf. Mechanism: Precautionary production shut-ins created short-term supply anxiety in domestic energy markets."
+  },
+  {
+    "event_id": "hurricane_ike_2008",
+    "title": "Hurricane Ike Texas Coast Landfall",
+    "event_type": "hurricane",
+    "region": "Gulf (Texas)",
+    "country": "US",
+    "start_date": "2008-09-01T00:00:00Z",
+    "end_date": "2008-09-15T00:00:00Z",
+    "event_date": "2008-09-13T00:00:00Z",
+    "severity_value": 2.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.4,
+    "description": "Hurricane Ike made landfall at Galveston Texas bringing severe storm surge and flooding to Houston-area industrial complexes and power grids.",
+    "mechanism": "Damage to Houston refineries and power distribution led to prolonged processing downtime and product inventory draws.",
+    "affected_assets": [
+      "crude",
+      "gasoline",
+      "refiners"
+    ],
+    "tickers": [
+      "CL=F",
+      "RB=F",
+      "VLO"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.2759,
+        "ret_1d": 0.00372,
+        "ret_5d": 0.00238,
+        "ret_20d": 0.02678,
+        "abnormal_1d": 0.00277,
+        "abnormal_5d": 0.00353,
+        "abnormal_20d": 0.02283
+      },
+      {
+        "asset": "RB=F",
+        "benchmark": "SPY",
+        "beta_used": 0.2901,
+        "ret_1d": 0.00249,
+        "ret_5d": 0.01327,
+        "ret_20d": 0.0348,
+        "abnormal_1d": 0.00325,
+        "abnormal_5d": 0.00957,
+        "abnormal_20d": 0.02544
+      },
+      {
+        "asset": "VLO",
+        "benchmark": "SPY",
+        "beta_used": 1.1738,
+        "ret_1d": 0.00896,
+        "ret_5d": 0.01549,
+        "ret_20d": 0.05096,
+        "abnormal_1d": -0.001,
+        "abnormal_5d": 0.02601,
+        "abnormal_20d": 0.03386
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2759, \"ret_1d\": 0.00372, \"ret_5d\": 0.00238, \"ret_20d\": 0.02678, \"abnormal_1d\": 0.00277, \"abnormal_5d\": 0.00353, \"abnormal_20d\": 0.02283}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2901, \"ret_1d\": 0.00249, \"ret_5d\": 0.01327, \"ret_20d\": 0.0348, \"abnormal_1d\": 0.00325, \"abnormal_5d\": 0.00957, \"abnormal_20d\": 0.02544}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 1.1738, \"ret_1d\": 0.00896, \"ret_5d\": 0.01549, \"ret_20d\": 0.05096, \"abnormal_1d\": -0.001, \"abnormal_5d\": 0.02601, \"abnormal_20d\": 0.03386}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092008_Ike.pdf",
+    "embedding_text": "hurricane Gulf (Texas) severity 2 Saffir-Simpson category. Hurricane Ike made landfall at Galveston Texas bringing severe storm surge and flooding to Houston-area industrial complexes and power grids. Mechanism: Damage to Houston refineries and power distribution led to prolonged processing downtime and product inventory draws."
+  },
+  {
+    "event_id": "hurricane_harvey_2017",
+    "title": "Hurricane Harvey Texas Extreme Flooding",
+    "event_type": "hurricane",
+    "region": "Gulf (Texas)",
+    "country": "US",
+    "start_date": "2017-08-17T00:00:00Z",
+    "end_date": "2017-09-01T00:00:00Z",
+    "event_date": "2017-08-25T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.8,
+    "description": "Category 4 hurricane made landfall in Rockport Texas stalled and dumped historic rainfall exceeding 50 inches across the Houston metropolitan area.",
+    "mechanism": "Catastrophic inland flooding shut down 25 percent of US refining capacity sending gasoline crack spreads soaring.",
+    "affected_assets": [
+      "crude",
+      "gasoline",
+      "natgas",
+      "refiners"
+    ],
+    "tickers": [
+      "CL=F",
+      "RB=F",
+      "NG=F",
+      "VLO"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.3436,
+        "ret_1d": 0.02061,
+        "ret_5d": 0.06634,
+        "ret_20d": 0.10502,
+        "abnormal_1d": 0.01939,
+        "abnormal_5d": 0.06102,
+        "abnormal_20d": 0.10336
+      },
+      {
+        "asset": "RB=F",
+        "benchmark": "SPY",
+        "beta_used": 0.5399,
+        "ret_1d": 0.00721,
+        "ret_5d": 0.02248,
+        "ret_20d": 0.03188,
+        "abnormal_1d": 0.01051,
+        "abnormal_5d": 0.03003,
+        "abnormal_20d": 0.03129
+      },
+      {
+        "asset": "NG=F",
+        "benchmark": "SPY",
+        "beta_used": 0.4677,
+        "ret_1d": 0.01141,
+        "ret_5d": 0.04514,
+        "ret_20d": 0.08022,
+        "abnormal_1d": 0.01134,
+        "abnormal_5d": 0.05703,
+        "abnormal_20d": 0.07861
+      },
+      {
+        "asset": "VLO",
+        "benchmark": "SPY",
+        "beta_used": 1.0624,
+        "ret_1d": 0.01564,
+        "ret_5d": 0.04635,
+        "ret_20d": 0.10375,
+        "abnormal_1d": 0.01955,
+        "abnormal_5d": 0.0311,
+        "abnormal_20d": 0.09852
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3436, \"ret_1d\": 0.02061, \"ret_5d\": 0.06634, \"ret_20d\": 0.10502, \"abnormal_1d\": 0.01939, \"abnormal_5d\": 0.06102, \"abnormal_20d\": 0.10336}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.5399, \"ret_1d\": 0.00721, \"ret_5d\": 0.02248, \"ret_20d\": 0.03188, \"abnormal_1d\": 0.01051, \"abnormal_5d\": 0.03003, \"abnormal_20d\": 0.03129}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.4677, \"ret_1d\": 0.01141, \"ret_5d\": 0.04514, \"ret_20d\": 0.08022, \"abnormal_1d\": 0.01134, \"abnormal_5d\": 0.05703, \"abnormal_20d\": 0.07861}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 1.0624, \"ret_1d\": 0.01564, \"ret_5d\": 0.04635, \"ret_20d\": 0.10375, \"abnormal_1d\": 0.01955, \"abnormal_5d\": 0.0311, \"abnormal_20d\": 0.09852}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092017_Harvey.pdf",
+    "embedding_text": "hurricane Gulf (Texas) severity 4 Saffir-Simpson category. Category 4 hurricane made landfall in Rockport Texas stalled and dumped historic rainfall exceeding 50 inches across the Houston metropolitan area. Mechanism: Catastrophic inland flooding shut down 25 percent of US refining capacity sending gasoline crack spreads soaring."
+  },
+  {
+    "event_id": "hurricane_laura_2020",
+    "title": "Hurricane Laura Southwest Louisiana Landfall",
+    "event_type": "hurricane",
+    "region": "Gulf (Louisiana)",
+    "country": "US",
+    "start_date": "2020-08-20T00:00:00Z",
+    "end_date": "2020-08-29T00:00:00Z",
+    "event_date": "2020-08-27T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.8,
+    "description": "Extremely dangerous Category 4 hurricane made landfall near Cameron Louisiana with 150 mph winds causing severe structural damage in Lake Charles.",
+    "mechanism": "Major refinery and LNG export facility shutdowns alongside severe transmission grid destruction halted regional fuel shipments.",
+    "affected_assets": [
+      "crude",
+      "natgas",
+      "energy"
+    ],
+    "tickers": [
+      "CL=F",
+      "NG=F",
+      "XLE"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.4552,
+        "ret_1d": 0.00319,
+        "ret_5d": 0.05222,
+        "ret_20d": 0.0844,
+        "abnormal_1d": 0.00292,
+        "abnormal_5d": 0.05982,
+        "abnormal_20d": 0.09036
+      },
+      {
+        "asset": "NG=F",
+        "benchmark": "SPY",
+        "beta_used": 0.2514,
+        "ret_1d": 0.01879,
+        "ret_5d": 0.06689,
+        "ret_20d": 0.09069,
+        "abnormal_1d": 0.01795,
+        "abnormal_5d": 0.06342,
+        "abnormal_20d": 0.08256
+      },
+      {
+        "asset": "XLE",
+        "benchmark": "SPY",
+        "beta_used": 1.1265,
+        "ret_1d": -0.00882,
+        "ret_5d": -0.01461,
+        "ret_20d": -0.01825,
+        "abnormal_1d": -0.01187,
+        "abnormal_5d": -0.03766,
+        "abnormal_20d": -0.01946
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.4552, \"ret_1d\": 0.00319, \"ret_5d\": 0.05222, \"ret_20d\": 0.0844, \"abnormal_1d\": 0.00292, \"abnormal_5d\": 0.05982, \"abnormal_20d\": 0.09036}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2514, \"ret_1d\": 0.01879, \"ret_5d\": 0.06689, \"ret_20d\": 0.09069, \"abnormal_1d\": 0.01795, \"abnormal_5d\": 0.06342, \"abnormal_20d\": 0.08256}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 1.1265, \"ret_1d\": -0.00882, \"ret_5d\": -0.01461, \"ret_20d\": -0.01825, \"abnormal_1d\": -0.01187, \"abnormal_5d\": -0.03766, \"abnormal_20d\": -0.01946}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL132020_Laura.pdf",
+    "embedding_text": "hurricane Gulf (Louisiana) severity 4 Saffir-Simpson category. Extremely dangerous Category 4 hurricane made landfall near Cameron Louisiana with 150 mph winds causing severe structural damage in Lake Charles. Mechanism: Major refinery and LNG export facility shutdowns alongside severe transmission grid destruction halted regional fuel shipments."
+  },
+  {
+    "event_id": "hurricane_ida_2021",
+    "title": "Hurricane Ida Louisiana Port Fourchon Landfall",
+    "event_type": "hurricane",
+    "region": "Gulf (Louisiana)",
+    "country": "US",
+    "start_date": "2021-08-26T00:00:00Z",
+    "end_date": "2021-09-01T00:00:00Z",
+    "event_date": "2021-08-29T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.8,
+    "description": "Category 4 hurricane struck Port Fourchon Louisiana crippling key offshore support hubs and leaving over a million customers without electricity.",
+    "mechanism": "Deep-water oil production platforms suffered extended shut-ins while coastal refineries halted processing due to grid failure.",
+    "affected_assets": [
+      "crude",
+      "natgas",
+      "gasoline",
+      "refiners"
+    ],
+    "tickers": [
+      "CL=F",
+      "NG=F",
+      "RB=F",
+      "VLO"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.5393,
+        "ret_1d": 0.02156,
+        "ret_5d": 0.07447,
+        "ret_20d": 0.12494,
+        "abnormal_1d": 0.01984,
+        "abnormal_5d": 0.06607,
+        "abnormal_20d": 0.12787
+      },
+      {
+        "asset": "NG=F",
+        "benchmark": "SPY",
+        "beta_used": 0.409,
+        "ret_1d": 0.00938,
+        "ret_5d": 0.00955,
+        "ret_20d": 0.01318,
+        "abnormal_1d": 0.01005,
+        "abnormal_5d": 0.01782,
+        "abnormal_20d": 0.01083
+      },
+      {
+        "asset": "RB=F",
+        "benchmark": "SPY",
+        "beta_used": 0.3031,
+        "ret_1d": 0.01059,
+        "ret_5d": 0.02587,
+        "ret_20d": 0.02841,
+        "abnormal_1d": 0.01117,
+        "abnormal_5d": 0.02793,
+        "abnormal_20d": 0.03866
+      },
+      {
+        "asset": "VLO",
+        "benchmark": "SPY",
+        "beta_used": 1.0354,
+        "ret_1d": 0.0137,
+        "ret_5d": 0.04462,
+        "ret_20d": 0.03515,
+        "abnormal_1d": 0.02914,
+        "abnormal_5d": 0.05867,
+        "abnormal_20d": 0.03855
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.5393, \"ret_1d\": 0.02156, \"ret_5d\": 0.07447, \"ret_20d\": 0.12494, \"abnormal_1d\": 0.01984, \"abnormal_5d\": 0.06607, \"abnormal_20d\": 0.12787}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.409, \"ret_1d\": 0.00938, \"ret_5d\": 0.00955, \"ret_20d\": 0.01318, \"abnormal_1d\": 0.01005, \"abnormal_5d\": 0.01782, \"abnormal_20d\": 0.01083}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3031, \"ret_1d\": 0.01059, \"ret_5d\": 0.02587, \"ret_20d\": 0.02841, \"abnormal_1d\": 0.01117, \"abnormal_5d\": 0.02793, \"abnormal_20d\": 0.03866}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 1.0354, \"ret_1d\": 0.0137, \"ret_5d\": 0.04462, \"ret_20d\": 0.03515, \"abnormal_1d\": 0.02914, \"abnormal_5d\": 0.05867, \"abnormal_20d\": 0.03855}]",
+    "split": "holdout",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092021_Ida.pdf",
+    "embedding_text": "hurricane Gulf (Louisiana) severity 4 Saffir-Simpson category. Category 4 hurricane struck Port Fourchon Louisiana crippling key offshore support hubs and leaving over a million customers without electricity. Mechanism: Deep-water oil production platforms suffered extended shut-ins while coastal refineries halted processing due to grid failure."
+  },
+  {
+    "event_id": "hurricane_ian_2022",
+    "title": "Hurricane Ian Southwest Florida Landfall",
+    "event_type": "hurricane",
+    "region": "Florida",
+    "country": "US",
+    "start_date": "2022-09-23T00:00:00Z",
+    "end_date": "2022-09-30T00:00:00Z",
+    "event_date": "2022-09-28T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.8,
+    "description": "Category 4 hurricane made landfall near Cayo Costa Florida delivering catastrophic storm surge wind damage and freshwater flooding.",
+    "mechanism": "Enormous insured property damages and municipal infrastructure losses triggered severe write-downs in property and casualty insurers.",
+    "affected_assets": [
+      "crude",
+      "insurers",
+      "insurance"
+    ],
+    "tickers": [
+      "CL=F",
+      "ALL",
+      "TRV"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.4932,
+        "ret_1d": 0.01728,
+        "ret_5d": 0.02883,
+        "ret_20d": 0.05109,
+        "abnormal_1d": 0.01625,
+        "abnormal_5d": 0.03066,
+        "abnormal_20d": 0.04291
+      },
+      {
+        "asset": "ALL",
+        "benchmark": "SPY",
+        "beta_used": 0.9105,
+        "ret_1d": -0.01525,
+        "ret_5d": -0.03627,
+        "ret_20d": -0.0306,
+        "abnormal_1d": -0.01752,
+        "abnormal_5d": -0.0454,
+        "abnormal_20d": -0.03853
+      },
+      {
+        "asset": "TRV",
+        "benchmark": "SPY",
+        "beta_used": 1.1203,
+        "ret_1d": -0.00831,
+        "ret_5d": -0.03778,
+        "ret_20d": -0.08174,
+        "abnormal_1d": -0.01152,
+        "abnormal_5d": -0.03913,
+        "abnormal_20d": -0.12692
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.4932, \"ret_1d\": 0.01728, \"ret_5d\": 0.02883, \"ret_20d\": 0.05109, \"abnormal_1d\": 0.01625, \"abnormal_5d\": 0.03066, \"abnormal_20d\": 0.04291}, {\"asset\": \"ALL\", \"benchmark\": \"SPY\", \"beta_used\": 0.9105, \"ret_1d\": -0.01525, \"ret_5d\": -0.03627, \"ret_20d\": -0.0306, \"abnormal_1d\": -0.01752, \"abnormal_5d\": -0.0454, \"abnormal_20d\": -0.03853}, {\"asset\": \"TRV\", \"benchmark\": \"SPY\", \"beta_used\": 1.1203, \"ret_1d\": -0.00831, \"ret_5d\": -0.03778, \"ret_20d\": -0.08174, \"abnormal_1d\": -0.01152, \"abnormal_5d\": -0.03913, \"abnormal_20d\": -0.12692}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092022_Ian.pdf",
+    "embedding_text": "hurricane Florida severity 4 Saffir-Simpson category. Category 4 hurricane made landfall near Cayo Costa Florida delivering catastrophic storm surge wind damage and freshwater flooding. Mechanism: Enormous insured property damages and municipal infrastructure losses triggered severe write-downs in property and casualty insurers."
+  },
+  {
+    "event_id": "hurricane_helene_2024",
+    "title": "Hurricane Helene Florida Big Bend Landfall",
+    "event_type": "hurricane",
+    "region": "Florida Big Bend",
+    "country": "US",
+    "start_date": "2024-09-24T00:00:00Z",
+    "end_date": "2024-09-27T00:00:00Z",
+    "event_date": "2024-09-26T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.8,
+    "description": "Fast-moving Category 4 hurricane struck Florida Big Bend region tracking rapidly inland and unleashing unprecedented flooding across western North Carolina.",
+    "mechanism": "Massive agricultural losses along with devastating inland flash flooding damaged power grids transportation corridors and municipal infrastructure.",
+    "affected_assets": [
+      "crude",
+      "natgas",
+      "insurers"
+    ],
+    "tickers": [
+      "CL=F",
+      "NG=F",
+      "ALL"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.3602,
+        "ret_1d": 0.01219,
+        "ret_5d": 0.03605,
+        "ret_20d": 0.01915,
+        "abnormal_1d": 0.0114,
+        "abnormal_5d": 0.03015,
+        "abnormal_20d": 0.01941
+      },
+      {
+        "asset": "NG=F",
+        "benchmark": "SPY",
+        "beta_used": 0.4043,
+        "ret_1d": 0.01825,
+        "ret_5d": 0.0496,
+        "ret_20d": 0.08999,
+        "abnormal_1d": 0.01926,
+        "abnormal_5d": 0.05509,
+        "abnormal_20d": 0.09814
+      },
+      {
+        "asset": "ALL",
+        "benchmark": "SPY",
+        "beta_used": 0.9164,
+        "ret_1d": -0.01641,
+        "ret_5d": -0.0636,
+        "ret_20d": -0.09459,
+        "abnormal_1d": -0.00707,
+        "abnormal_5d": -0.06265,
+        "abnormal_20d": -0.07318
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3602, \"ret_1d\": 0.01219, \"ret_5d\": 0.03605, \"ret_20d\": 0.01915, \"abnormal_1d\": 0.0114, \"abnormal_5d\": 0.03015, \"abnormal_20d\": 0.01941}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.4043, \"ret_1d\": 0.01825, \"ret_5d\": 0.0496, \"ret_20d\": 0.08999, \"abnormal_1d\": 0.01926, \"abnormal_5d\": 0.05509, \"abnormal_20d\": 0.09814}, {\"asset\": \"ALL\", \"benchmark\": \"SPY\", \"beta_used\": 0.9164, \"ret_1d\": -0.01641, \"ret_5d\": -0.0636, \"ret_20d\": -0.09459, \"abnormal_1d\": -0.00707, \"abnormal_5d\": -0.06265, \"abnormal_20d\": -0.07318}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092024_Helene.pdf",
+    "embedding_text": "hurricane Florida Big Bend severity 4 Saffir-Simpson category. Fast-moving Category 4 hurricane struck Florida Big Bend region tracking rapidly inland and unleashing unprecedented flooding across western North Carolina. Mechanism: Massive agricultural losses along with devastating inland flash flooding damaged power grids transportation corridors and municipal infrastructure."
+  },
+  {
+    "event_id": "hurricane_milton_2024",
+    "title": "Hurricane Milton Florida Siesta Key Landfall",
+    "event_type": "hurricane",
+    "region": "Florida",
+    "country": "US",
+    "start_date": "2024-10-05T00:00:00Z",
+    "end_date": "2024-10-10T00:00:00Z",
+    "event_date": "2024-10-09T00:00:00Z",
+    "severity_value": 3.0,
+    "severity_unit": "Saffir-Simpson category",
+    "severity_norm": 0.6,
+    "description": "Category 3 hurricane struck Siesta Key Florida shortly after Helene spawning multiple tornadoes and producing flash flooding across Central Florida.",
+    "mechanism": "Extensive insured structural losses and localized business disruptions pressured insurance underwriting margins.",
+    "affected_assets": [
+      "crude",
+      "insurers",
+      "insurance"
+    ],
+    "tickers": [
+      "CL=F",
+      "ALL",
+      "TRV"
+    ],
+    "outcomes": [
+      {
+        "asset": "CL=F",
+        "benchmark": "SPY",
+        "beta_used": 0.5104,
+        "ret_1d": 0.007,
+        "ret_5d": 0.01755,
+        "ret_20d": 0.04815,
+        "abnormal_1d": 0.00611,
+        "abnormal_5d": 0.00938,
+        "abnormal_20d": 0.02436
+      },
+      {
+        "asset": "ALL",
+        "benchmark": "SPY",
+        "beta_used": 0.9912,
+        "ret_1d": -0.01738,
+        "ret_5d": -0.0346,
+        "ret_20d": -0.03931,
+        "abnormal_1d": -0.01846,
+        "abnormal_5d": -0.05729,
+        "abnormal_20d": -0.03157
+      },
+      {
+        "asset": "TRV",
+        "benchmark": "SPY",
+        "beta_used": 1.0241,
+        "ret_1d": -0.00911,
+        "ret_5d": -0.03723,
+        "ret_20d": -0.06851,
+        "abnormal_1d": -0.01216,
+        "abnormal_5d": -0.04675,
+        "abnormal_20d": -0.05374
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.5104, \"ret_1d\": 0.007, \"ret_5d\": 0.01755, \"ret_20d\": 0.04815, \"abnormal_1d\": 0.00611, \"abnormal_5d\": 0.00938, \"abnormal_20d\": 0.02436}, {\"asset\": \"ALL\", \"benchmark\": \"SPY\", \"beta_used\": 0.9912, \"ret_1d\": -0.01738, \"ret_5d\": -0.0346, \"ret_20d\": -0.03931, \"abnormal_1d\": -0.01846, \"abnormal_5d\": -0.05729, \"abnormal_20d\": -0.03157}, {\"asset\": \"TRV\", \"benchmark\": \"SPY\", \"beta_used\": 1.0241, \"ret_1d\": -0.00911, \"ret_5d\": -0.03723, \"ret_20d\": -0.06851, \"abnormal_1d\": -0.01216, \"abnormal_5d\": -0.04675, \"abnormal_20d\": -0.05374}]",
+    "split": "train",
+    "source": "NOAA NHC",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf",
+    "embedding_text": "hurricane Florida severity 3 Saffir-Simpson category. Category 3 hurricane struck Siesta Key Florida shortly after Helene spawning multiple tornadoes and producing flash flooding across Central Florida. Mechanism: Extensive insured structural losses and localized business disruptions pressured insurance underwriting margins."
+  },
+  {
+    "event_id": "cyclone_phailin_2013",
+    "title": "Extremely Severe Cyclonic Storm Phailin Odisha",
+    "event_type": "cyclone",
+    "region": "Odisha",
+    "country": "IN",
+    "start_date": "2013-10-08T00:00:00Z",
+    "end_date": "2013-10-14T00:00:00Z",
+    "event_date": "2013-10-12T00:00:00Z",
+    "severity_value": 6.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.8571,
+    "description": "Extremely Severe Cyclonic Storm Phailin crossed the southern Odisha coast near Gopalpur with wind speeds reaching 215 km/h followed by torrential rainfall.",
+    "mechanism": "Widespread destruction of paddy crops paddy field inundation power transmission failure and closure of Paradip and Gopalpur ports.",
+    "affected_assets": [
+      "equities",
+      "fmcg",
+      "currency"
+    ],
+    "tickers": [
+      "^NSEI",
+      "^CNXFMCG",
+      "INR=X"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9145,
+        "ret_1d": -0.02176,
+        "ret_5d": -0.05393,
+        "ret_20d": -0.10917,
+        "abnormal_1d": -0.0135,
+        "abnormal_5d": -0.02369,
+        "abnormal_20d": -0.10569
+      },
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 0.747,
+        "ret_1d": -0.00845,
+        "ret_5d": -0.0142,
+        "ret_20d": -0.02821,
+        "abnormal_1d": -0.0069,
+        "abnormal_5d": -0.00645,
+        "abnormal_20d": -0.01498
+      },
+      {
+        "asset": "INR=X",
+        "benchmark": "^NSEI",
+        "beta_used": -0.0938,
+        "ret_1d": 0.00759,
+        "ret_5d": 0.02973,
+        "ret_20d": 0.04633,
+        "abnormal_1d": 0.00736,
+        "abnormal_5d": 0.02745,
+        "abnormal_20d": 0.04784
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9145, \"ret_1d\": -0.02176, \"ret_5d\": -0.05393, \"ret_20d\": -0.10917, \"abnormal_1d\": -0.0135, \"abnormal_5d\": -0.02369, \"abnormal_20d\": -0.10569}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.747, \"ret_1d\": -0.00845, \"ret_5d\": -0.0142, \"ret_20d\": -0.02821, \"abnormal_1d\": -0.0069, \"abnormal_5d\": -0.00645, \"abnormal_20d\": -0.01498}, {\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.0938, \"ret_1d\": 0.00759, \"ret_5d\": 0.02973, \"ret_20d\": 0.04633, \"abnormal_1d\": 0.00736, \"abnormal_5d\": 0.02745, \"abnormal_20d\": 0.04784}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Odisha severity 6 IMD class (1-7). Extremely Severe Cyclonic Storm Phailin crossed the southern Odisha coast near Gopalpur with wind speeds reaching 215 km/h followed by torrential rainfall. Mechanism: Widespread destruction of paddy crops paddy field inundation power transmission failure and closure of Paradip and Gopalpur ports."
+  },
+  {
+    "event_id": "cyclone_hudhud_2014",
+    "title": "Extremely Severe Cyclonic Storm Hudhud Visakhapatnam",
+    "event_type": "cyclone",
+    "region": "Andhra (Vizag)",
+    "country": "IN",
+    "start_date": "2014-10-07T00:00:00Z",
+    "end_date": "2014-10-14T00:00:00Z",
+    "event_date": "2014-10-12T00:00:00Z",
+    "severity_value": 6.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.8571,
+    "description": "Cyclone Hudhud made landfall over Visakhapatnam Andhra Pradesh battering the industrial port city with 185 km/h gale winds and severe storm surges.",
+    "mechanism": "Visakhapatnam port shut cargo operations HPCL refinery sustained damage and regional industrial production was paused.",
+    "affected_assets": [
+      "equities",
+      "energy"
+    ],
+    "tickers": [
+      "^NSEI",
+      "^CNXENERGY"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9495,
+        "ret_1d": -0.01349,
+        "ret_5d": -0.0538,
+        "ret_20d": -0.08805,
+        "abnormal_1d": -0.00768,
+        "abnormal_5d": -0.04006,
+        "abnormal_20d": -0.09664
+      },
+      {
+        "asset": "^CNXENERGY",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1371,
+        "ret_1d": -0.01654,
+        "ret_5d": -0.04784,
+        "ret_20d": -0.10338,
+        "abnormal_1d": 0.00124,
+        "abnormal_5d": -0.03945,
+        "abnormal_20d": -0.06684
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9495, \"ret_1d\": -0.01349, \"ret_5d\": -0.0538, \"ret_20d\": -0.08805, \"abnormal_1d\": -0.00768, \"abnormal_5d\": -0.04006, \"abnormal_20d\": -0.09664}, {\"asset\": \"^CNXENERGY\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1371, \"ret_1d\": -0.01654, \"ret_5d\": -0.04784, \"ret_20d\": -0.10338, \"abnormal_1d\": 0.00124, \"abnormal_5d\": -0.03945, \"abnormal_20d\": -0.06684}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Andhra (Vizag) severity 6 IMD class (1-7). Cyclone Hudhud made landfall over Visakhapatnam Andhra Pradesh battering the industrial port city with 185 km/h gale winds and severe storm surges. Mechanism: Visakhapatnam port shut cargo operations HPCL refinery sustained damage and regional industrial production was paused."
+  },
+  {
+    "event_id": "cyclone_vardah_2016",
+    "title": "Very Severe Cyclonic Storm Vardah Chennai",
+    "event_type": "cyclone",
+    "region": "Tamil Nadu (Chennai)",
+    "country": "IN",
+    "start_date": "2016-12-06T00:00:00Z",
+    "end_date": "2016-12-13T00:00:00Z",
+    "event_date": "2016-12-12T00:00:00Z",
+    "severity_value": 5.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.7143,
+    "description": "Very Severe Cyclonic Storm Vardah crossed north Tamil Nadu coast near Chennai uprooting thousands of trees and flattening power lines and telecom towers.",
+    "mechanism": "Industrial manufacturing clusters auto assembly plants and IT corridors halted operations due to power and communication outages.",
+    "affected_assets": [
+      "equities",
+      "auto"
+    ],
+    "tickers": [
+      "^NSEI",
+      "^CNXAUTO"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9882,
+        "ret_1d": -0.01662,
+        "ret_5d": -0.05002,
+        "ret_20d": -0.07373,
+        "abnormal_1d": -0.02412,
+        "abnormal_5d": -0.05111,
+        "abnormal_20d": -0.03274
+      },
+      {
+        "asset": "^CNXAUTO",
+        "benchmark": "^NSEI",
+        "beta_used": 0.7746,
+        "ret_1d": -0.00641,
+        "ret_5d": -0.00762,
+        "ret_20d": -0.01248,
+        "abnormal_1d": 0.00498,
+        "abnormal_5d": -0.0168,
+        "abnormal_20d": 0.01229
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9882, \"ret_1d\": -0.01662, \"ret_5d\": -0.05002, \"ret_20d\": -0.07373, \"abnormal_1d\": -0.02412, \"abnormal_5d\": -0.05111, \"abnormal_20d\": -0.03274}, {\"asset\": \"^CNXAUTO\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7746, \"ret_1d\": -0.00641, \"ret_5d\": -0.00762, \"ret_20d\": -0.01248, \"abnormal_1d\": 0.00498, \"abnormal_5d\": -0.0168, \"abnormal_20d\": 0.01229}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Tamil Nadu (Chennai) severity 5 IMD class (1-7). Very Severe Cyclonic Storm Vardah crossed north Tamil Nadu coast near Chennai uprooting thousands of trees and flattening power lines and telecom towers. Mechanism: Industrial manufacturing clusters auto assembly plants and IT corridors halted operations due to power and communication outages."
+  },
+  {
+    "event_id": "cyclone_ockhi_2017",
+    "title": "Very Severe Cyclonic Storm Ockhi Kerala and Tamil Nadu",
+    "event_type": "cyclone",
+    "region": "Kerala/TN",
+    "country": "IN",
+    "start_date": "2017-11-29T00:00:00Z",
+    "end_date": "2017-12-06T00:00:00Z",
+    "event_date": "2017-11-30T00:00:00Z",
+    "severity_value": 5.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.7143,
+    "description": "Cyclone Ockhi intensified rapidly over the Arabian Sea near Kanyakumari bringing extreme squalls and torrential rain across coastal Kerala and Tamil Nadu.",
+    "mechanism": "Severe damage to marine fisheries coastal agriculture plantation crops and local transportation disrupted southern economic activity.",
+    "affected_assets": [
+      "equities"
+    ],
+    "tickers": [
+      "^NSEI"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1424,
+        "ret_1d": -0.0075,
+        "ret_5d": -0.05295,
+        "ret_20d": -0.11673,
+        "abnormal_1d": -0.00103,
+        "abnormal_5d": -0.02895,
+        "abnormal_20d": -0.07247
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1424, \"ret_1d\": -0.0075, \"ret_5d\": -0.05295, \"ret_20d\": -0.11673, \"abnormal_1d\": -0.00103, \"abnormal_5d\": -0.02895, \"abnormal_20d\": -0.07247}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Kerala/TN severity 5 IMD class (1-7). Cyclone Ockhi intensified rapidly over the Arabian Sea near Kanyakumari bringing extreme squalls and torrential rain across coastal Kerala and Tamil Nadu. Mechanism: Severe damage to marine fisheries coastal agriculture plantation crops and local transportation disrupted southern economic activity."
+  },
+  {
+    "event_id": "cyclone_fani_2019",
+    "title": "Extremely Severe Cyclonic Storm Fani Puri Odisha",
+    "event_type": "cyclone",
+    "region": "Odisha",
+    "country": "IN",
+    "start_date": "2019-04-26T00:00:00Z",
+    "end_date": "2019-05-04T00:00:00Z",
+    "event_date": "2019-05-03T00:00:00Z",
+    "severity_value": 6.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.8571,
+    "description": "Extremely Severe Cyclonic Storm Fani made landfall near Puri Odisha with sustained winds of 215 km/h devastating coastal infrastructure and coastal districts.",
+    "mechanism": "Demolition of power transmission grids telecommunications shutdown agricultural damage and temporary closure of Paradip port.",
+    "affected_assets": [
+      "equities",
+      "energy",
+      "fmcg"
+    ],
+    "tickers": [
+      "^NSEI",
+      "ONGC.NS",
+      "^CNXFMCG"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0625,
+        "ret_1d": -0.01803,
+        "ret_5d": -0.0519,
+        "ret_20d": -0.09977,
+        "abnormal_1d": -0.00924,
+        "abnormal_5d": -0.0538,
+        "abnormal_20d": -0.15471
+      },
+      {
+        "asset": "ONGC.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0084,
+        "ret_1d": 0.01519,
+        "ret_5d": 0.04029,
+        "ret_20d": 0.03647,
+        "abnormal_1d": 0.01103,
+        "abnormal_5d": 0.04188,
+        "abnormal_20d": 0.01734
+      },
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1998,
+        "ret_1d": -0.01053,
+        "ret_5d": -0.02976,
+        "ret_20d": -0.04924,
+        "abnormal_1d": -0.01258,
+        "abnormal_5d": -0.03969,
+        "abnormal_20d": -0.07396
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0625, \"ret_1d\": -0.01803, \"ret_5d\": -0.0519, \"ret_20d\": -0.09977, \"abnormal_1d\": -0.00924, \"abnormal_5d\": -0.0538, \"abnormal_20d\": -0.15471}, {\"asset\": \"ONGC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0084, \"ret_1d\": 0.01519, \"ret_5d\": 0.04029, \"ret_20d\": 0.03647, \"abnormal_1d\": 0.01103, \"abnormal_5d\": 0.04188, \"abnormal_20d\": 0.01734}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1998, \"ret_1d\": -0.01053, \"ret_5d\": -0.02976, \"ret_20d\": -0.04924, \"abnormal_1d\": -0.01258, \"abnormal_5d\": -0.03969, \"abnormal_20d\": -0.07396}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Odisha severity 6 IMD class (1-7). Extremely Severe Cyclonic Storm Fani made landfall near Puri Odisha with sustained winds of 215 km/h devastating coastal infrastructure and coastal districts. Mechanism: Demolition of power transmission grids telecommunications shutdown agricultural damage and temporary closure of Paradip port."
+  },
+  {
+    "event_id": "cyclone_amphan_2020",
+    "title": "Super Cyclonic Storm Amphan West Bengal",
+    "event_type": "cyclone",
+    "region": "West Bengal",
+    "country": "IN",
+    "start_date": "2020-05-16T00:00:00Z",
+    "end_date": "2020-05-21T00:00:00Z",
+    "event_date": "2020-05-20T00:00:00Z",
+    "severity_value": 7.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 1.0,
+    "description": "Super Cyclonic Storm Amphan struck West Bengal near the Sundarbans bringing catastrophic storm surges and hurricane-force winds into Kolkata.",
+    "mechanism": "Catastrophic damage to urban infrastructure rural agriculture jute and rice crops and long-duration power outages dampened consumption.",
+    "affected_assets": [
+      "equities",
+      "fmcg",
+      "tobacco"
+    ],
+    "tickers": [
+      "^NSEI",
+      "ITC.NS",
+      "^CNXFMCG"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8041,
+        "ret_1d": -0.0184,
+        "ret_5d": -0.04481,
+        "ret_20d": -0.01696,
+        "abnormal_1d": -0.00775,
+        "abnormal_5d": -0.04059,
+        "abnormal_20d": -0.04971
+      },
+      {
+        "asset": "ITC.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9913,
+        "ret_1d": 0.01396,
+        "ret_5d": 0.05634,
+        "ret_20d": 0.0879,
+        "abnormal_1d": 0.01852,
+        "abnormal_5d": 0.07256,
+        "abnormal_20d": 0.05112
+      },
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 0.7029,
+        "ret_1d": -0.01235,
+        "ret_5d": -0.04145,
+        "ret_20d": -0.05921,
+        "abnormal_1d": -0.01506,
+        "abnormal_5d": -0.04522,
+        "abnormal_20d": -0.05081
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8041, \"ret_1d\": -0.0184, \"ret_5d\": -0.04481, \"ret_20d\": -0.01696, \"abnormal_1d\": -0.00775, \"abnormal_5d\": -0.04059, \"abnormal_20d\": -0.04971}, {\"asset\": \"ITC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9913, \"ret_1d\": 0.01396, \"ret_5d\": 0.05634, \"ret_20d\": 0.0879, \"abnormal_1d\": 0.01852, \"abnormal_5d\": 0.07256, \"abnormal_20d\": 0.05112}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7029, \"ret_1d\": -0.01235, \"ret_5d\": -0.04145, \"ret_20d\": -0.05921, \"abnormal_1d\": -0.01506, \"abnormal_5d\": -0.04522, \"abnormal_20d\": -0.05081}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone West Bengal severity 7 IMD class (1-7). Super Cyclonic Storm Amphan struck West Bengal near the Sundarbans bringing catastrophic storm surges and hurricane-force winds into Kolkata. Mechanism: Catastrophic damage to urban infrastructure rural agriculture jute and rice crops and long-duration power outages dampened consumption."
+  },
+  {
+    "event_id": "cyclone_nisarga_2020",
+    "title": "Severe Cyclonic Storm Nisarga Maharashtra",
+    "event_type": "cyclone",
+    "region": "Maharashtra",
+    "country": "IN",
+    "start_date": "2020-06-01T00:00:00Z",
+    "end_date": "2020-06-04T00:00:00Z",
+    "event_date": "2020-06-03T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.5714,
+    "description": "Severe Cyclonic Storm Nisarga struck coastal Raigad district south of Mumbai causing heavy rains and localized power and communication disruptions.",
+    "mechanism": "Precautionary shutdowns across chemical manufacturing hubs and coastal logistics corridors slowed regional supply chains.",
+    "affected_assets": [
+      "equities",
+      "energy"
+    ],
+    "tickers": [
+      "^NSEI",
+      "RELIANCE.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9661,
+        "ret_1d": -0.00982,
+        "ret_5d": -0.02417,
+        "ret_20d": -0.06058,
+        "abnormal_1d": -0.00355,
+        "abnormal_5d": -0.02384,
+        "abnormal_20d": -0.04645
+      },
+      {
+        "asset": "RELIANCE.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9917,
+        "ret_1d": 0.00468,
+        "ret_5d": 0.01608,
+        "ret_20d": 0.02458,
+        "abnormal_1d": -0.01001,
+        "abnormal_5d": 0.02835,
+        "abnormal_20d": 0.04826
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9661, \"ret_1d\": -0.00982, \"ret_5d\": -0.02417, \"ret_20d\": -0.06058, \"abnormal_1d\": -0.00355, \"abnormal_5d\": -0.02384, \"abnormal_20d\": -0.04645}, {\"asset\": \"RELIANCE.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9917, \"ret_1d\": 0.00468, \"ret_5d\": 0.01608, \"ret_20d\": 0.02458, \"abnormal_1d\": -0.01001, \"abnormal_5d\": 0.02835, \"abnormal_20d\": 0.04826}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Maharashtra severity 4 IMD class (1-7). Severe Cyclonic Storm Nisarga struck coastal Raigad district south of Mumbai causing heavy rains and localized power and communication disruptions. Mechanism: Precautionary shutdowns across chemical manufacturing hubs and coastal logistics corridors slowed regional supply chains."
+  },
+  {
+    "event_id": "cyclone_tauktae_2021",
+    "title": "Extremely Severe Cyclonic Storm Tauktae Gujarat Coast",
+    "event_type": "cyclone",
+    "region": "Gujarat / Bombay High",
+    "country": "IN",
+    "start_date": "2021-05-14T00:00:00Z",
+    "end_date": "2021-05-19T00:00:00Z",
+    "event_date": "2021-05-17T00:00:00Z",
+    "severity_value": 6.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.8571,
+    "description": "Cyclone Tauktae moved parallel to the west coast and struck southern Gujarat near Saurashtra after damaging offshore oil facilities at Bombay High.",
+    "mechanism": "Offshore oil production barges broke moorings western ports halted vessel movements and horticultural crops suffered heavy damage.",
+    "affected_assets": [
+      "energy",
+      "ports",
+      "refiners"
+    ],
+    "tickers": [
+      "ONGC.NS",
+      "RELIANCE.NS",
+      "ADANIPORTS.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "ONGC.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1169,
+        "ret_1d": 0.00824,
+        "ret_5d": 0.02326,
+        "ret_20d": 0.0357,
+        "abnormal_1d": 0.02236,
+        "abnormal_5d": 0.01584,
+        "abnormal_20d": 0.04685
+      },
+      {
+        "asset": "RELIANCE.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9375,
+        "ret_1d": 0.0084,
+        "ret_5d": 0.00717,
+        "ret_20d": 0.03085,
+        "abnormal_1d": 0.0133,
+        "abnormal_5d": 0.00146,
+        "abnormal_20d": 0.07088
+      },
+      {
+        "asset": "ADANIPORTS.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9429,
+        "ret_1d": -0.01126,
+        "ret_5d": -0.02581,
+        "ret_20d": -0.04423,
+        "abnormal_1d": -0.00638,
+        "abnormal_5d": -0.00087,
+        "abnormal_20d": -0.08421
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"ONGC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1169, \"ret_1d\": 0.00824, \"ret_5d\": 0.02326, \"ret_20d\": 0.0357, \"abnormal_1d\": 0.02236, \"abnormal_5d\": 0.01584, \"abnormal_20d\": 0.04685}, {\"asset\": \"RELIANCE.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9375, \"ret_1d\": 0.0084, \"ret_5d\": 0.00717, \"ret_20d\": 0.03085, \"abnormal_1d\": 0.0133, \"abnormal_5d\": 0.00146, \"abnormal_20d\": 0.07088}, {\"asset\": \"ADANIPORTS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9429, \"ret_1d\": -0.01126, \"ret_5d\": -0.02581, \"ret_20d\": -0.04423, \"abnormal_1d\": -0.00638, \"abnormal_5d\": -0.00087, \"abnormal_20d\": -0.08421}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Gujarat / Bombay High severity 6 IMD class (1-7). Cyclone Tauktae moved parallel to the west coast and struck southern Gujarat near Saurashtra after damaging offshore oil facilities at Bombay High. Mechanism: Offshore oil production barges broke moorings western ports halted vessel movements and horticultural crops suffered heavy damage."
+  },
+  {
+    "event_id": "cyclone_yaas_2021",
+    "title": "Very Severe Cyclonic Storm Yaas Odisha West Bengal",
+    "event_type": "cyclone",
+    "region": "Odisha/WB",
+    "country": "IN",
+    "start_date": "2021-05-23T00:00:00Z",
+    "end_date": "2021-05-28T00:00:00Z",
+    "event_date": "2021-05-26T00:00:00Z",
+    "severity_value": 5.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.7143,
+    "description": "Cyclone Yaas made landfall south of Balasore Odisha generating severe tidal inundation along coastal Odisha and West Bengal.",
+    "mechanism": "Inundation of low-lying agricultural land with saline water port operations suspension and disrupted rural supply networks.",
+    "affected_assets": [
+      "equities",
+      "fmcg"
+    ],
+    "tickers": [
+      "^NSEI",
+      "^CNXFMCG"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1708,
+        "ret_1d": -0.01364,
+        "ret_5d": -0.04059,
+        "ret_20d": -0.07687,
+        "abnormal_1d": -0.01505,
+        "abnormal_5d": -0.02944,
+        "abnormal_20d": -0.09424
+      },
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8684,
+        "ret_1d": -0.0102,
+        "ret_5d": -0.03883,
+        "ret_20d": -0.09283,
+        "abnormal_1d": -0.00933,
+        "abnormal_5d": -0.03947,
+        "abnormal_20d": -0.08322
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1708, \"ret_1d\": -0.01364, \"ret_5d\": -0.04059, \"ret_20d\": -0.07687, \"abnormal_1d\": -0.01505, \"abnormal_5d\": -0.02944, \"abnormal_20d\": -0.09424}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8684, \"ret_1d\": -0.0102, \"ret_5d\": -0.03883, \"ret_20d\": -0.09283, \"abnormal_1d\": -0.00933, \"abnormal_5d\": -0.03947, \"abnormal_20d\": -0.08322}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Odisha/WB severity 5 IMD class (1-7). Cyclone Yaas made landfall south of Balasore Odisha generating severe tidal inundation along coastal Odisha and West Bengal. Mechanism: Inundation of low-lying agricultural land with saline water port operations suspension and disrupted rural supply networks."
+  },
+  {
+    "event_id": "cyclone_biparjoy_2023",
+    "title": "Very Severe Cyclonic Storm Biparjoy Gujarat Landfall",
+    "event_type": "cyclone",
+    "region": "Gujarat (Kutch)",
+    "country": "IN",
+    "start_date": "2023-06-06T00:00:00Z",
+    "end_date": "2023-06-19T00:00:00Z",
+    "event_date": "2023-06-15T00:00:00Z",
+    "severity_value": 5.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.7143,
+    "description": "Cyclone Biparjoy crossed Saurashtra and Kutch coasts near Jakhau Port Gujarat with heavy gales uprooting trees and damaging electrical infrastructure.",
+    "mechanism": "Port operations at Mundra and Kandla were suspended while coastal oil transport and logistics lines were frozen.",
+    "affected_assets": [
+      "ports",
+      "energy",
+      "equities"
+    ],
+    "tickers": [
+      "ADANIPORTS.NS",
+      "RELIANCE.NS",
+      "^NSEI"
+    ],
+    "outcomes": [
+      {
+        "asset": "ADANIPORTS.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0309,
+        "ret_1d": -0.01107,
+        "ret_5d": -0.03957,
+        "ret_20d": -0.04818,
+        "abnormal_1d": -0.00356,
+        "abnormal_5d": -0.0376,
+        "abnormal_20d": -0.01046
+      },
+      {
+        "asset": "RELIANCE.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.7835,
+        "ret_1d": 0.01122,
+        "ret_5d": 0.01294,
+        "ret_20d": -0.00996,
+        "abnormal_1d": 0.01174,
+        "abnormal_5d": 0.01554,
+        "abnormal_20d": 0.01092
+      },
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0503,
+        "ret_1d": -0.01163,
+        "ret_5d": -0.04093,
+        "ret_20d": -0.06941,
+        "abnormal_1d": -0.00879,
+        "abnormal_5d": -0.04561,
+        "abnormal_20d": -0.11452
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"ADANIPORTS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0309, \"ret_1d\": -0.01107, \"ret_5d\": -0.03957, \"ret_20d\": -0.04818, \"abnormal_1d\": -0.00356, \"abnormal_5d\": -0.0376, \"abnormal_20d\": -0.01046}, {\"asset\": \"RELIANCE.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7835, \"ret_1d\": 0.01122, \"ret_5d\": 0.01294, \"ret_20d\": -0.00996, \"abnormal_1d\": 0.01174, \"abnormal_5d\": 0.01554, \"abnormal_20d\": 0.01092}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0503, \"ret_1d\": -0.01163, \"ret_5d\": -0.04093, \"ret_20d\": -0.06941, \"abnormal_1d\": -0.00879, \"abnormal_5d\": -0.04561, \"abnormal_20d\": -0.11452}]",
+    "split": "holdout",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Gujarat (Kutch) severity 5 IMD class (1-7). Cyclone Biparjoy crossed Saurashtra and Kutch coasts near Jakhau Port Gujarat with heavy gales uprooting trees and damaging electrical infrastructure. Mechanism: Port operations at Mundra and Kandla were suspended while coastal oil transport and logistics lines were frozen."
+  },
+  {
+    "event_id": "cyclone_michaung_2023",
+    "title": "Severe Cyclonic Storm Michaung Chennai and Andhra",
+    "event_type": "cyclone",
+    "region": "TN/Andhra (Chennai)",
+    "country": "IN",
+    "start_date": "2023-12-01T00:00:00Z",
+    "end_date": "2023-12-06T00:00:00Z",
+    "event_date": "2023-12-05T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.5714,
+    "description": "Severe Cyclonic Storm Michaung tracked close to Chennai before making landfall near Bapatla Andhra Pradesh causing extreme urban inundation.",
+    "mechanism": "Chennai automotive manufacturing clusters and electronics fabrication plants suffered severe flooding and assembly suspensions.",
+    "affected_assets": [
+      "auto",
+      "manufacturing",
+      "equities"
+    ],
+    "tickers": [
+      "^CNXAUTO",
+      "ASHOKLEY.NS",
+      "TVSMOTOR.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "^CNXAUTO",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9935,
+        "ret_1d": -0.00353,
+        "ret_5d": -0.01341,
+        "ret_20d": -0.03172,
+        "abnormal_1d": -0.00782,
+        "abnormal_5d": -0.01107,
+        "abnormal_20d": -0.02448
+      },
+      {
+        "asset": "ASHOKLEY.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0768,
+        "ret_1d": 0.00778,
+        "ret_5d": 0.01903,
+        "ret_20d": -0.00696,
+        "abnormal_1d": -0.00082,
+        "abnormal_5d": 0.01856,
+        "abnormal_20d": -0.00394
+      },
+      {
+        "asset": "TVSMOTOR.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1138,
+        "ret_1d": 0.00639,
+        "ret_5d": 0.03039,
+        "ret_20d": 0.01659,
+        "abnormal_1d": 0.00421,
+        "abnormal_5d": 0.04172,
+        "abnormal_20d": 0.00548
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^CNXAUTO\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9935, \"ret_1d\": -0.00353, \"ret_5d\": -0.01341, \"ret_20d\": -0.03172, \"abnormal_1d\": -0.00782, \"abnormal_5d\": -0.01107, \"abnormal_20d\": -0.02448}, {\"asset\": \"ASHOKLEY.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0768, \"ret_1d\": 0.00778, \"ret_5d\": 0.01903, \"ret_20d\": -0.00696, \"abnormal_1d\": -0.00082, \"abnormal_5d\": 0.01856, \"abnormal_20d\": -0.00394}, {\"asset\": \"TVSMOTOR.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1138, \"ret_1d\": 0.00639, \"ret_5d\": 0.03039, \"ret_20d\": 0.01659, \"abnormal_1d\": 0.00421, \"abnormal_5d\": 0.04172, \"abnormal_20d\": 0.00548}]",
+    "split": "holdout",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone TN/Andhra (Chennai) severity 4 IMD class (1-7). Severe Cyclonic Storm Michaung tracked close to Chennai before making landfall near Bapatla Andhra Pradesh causing extreme urban inundation. Mechanism: Chennai automotive manufacturing clusters and electronics fabrication plants suffered severe flooding and assembly suspensions."
+  },
+  {
+    "event_id": "cyclone_dana_2024",
+    "title": "Severe Cyclonic Storm Dana Odisha Coast",
+    "event_type": "cyclone",
+    "region": "Odisha",
+    "country": "IN",
+    "start_date": "2024-10-22T00:00:00Z",
+    "end_date": "2024-10-26T00:00:00Z",
+    "event_date": "2024-10-25T00:00:00Z",
+    "severity_value": 4.0,
+    "severity_unit": "IMD class (1-7)",
+    "severity_norm": 0.5714,
+    "description": "Severe Cyclonic Storm Dana struck the northern Odisha coast between Dhamra and Habalikhati Nature Camp bringing heavy rain and coastal winds.",
+    "mechanism": "Evacuations of coastal districts suspension of flights and train services alongside preemptive port mooring protocols.",
+    "affected_assets": [
+      "equities",
+      "fmcg"
+    ],
+    "tickers": [
+      "^NSEI",
+      "^CNXFMCG"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1576,
+        "ret_1d": -0.00214,
+        "ret_5d": -0.01977,
+        "ret_20d": -0.01882,
+        "abnormal_1d": -0.0081,
+        "abnormal_5d": -0.03244,
+        "abnormal_20d": -0.05537
+      },
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9575,
+        "ret_1d": -0.01077,
+        "ret_5d": -0.02536,
+        "ret_20d": -0.03288,
+        "abnormal_1d": -0.00996,
+        "abnormal_5d": -0.02694,
+        "abnormal_20d": -0.0464
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1576, \"ret_1d\": -0.00214, \"ret_5d\": -0.01977, \"ret_20d\": -0.01882, \"abnormal_1d\": -0.0081, \"abnormal_5d\": -0.03244, \"abnormal_20d\": -0.05537}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9575, \"ret_1d\": -0.01077, \"ret_5d\": -0.02536, \"ret_20d\": -0.03288, \"abnormal_1d\": -0.00996, \"abnormal_5d\": -0.02694, \"abnormal_20d\": -0.0464}]",
+    "split": "train",
+    "source": "IMD RSMC",
+    "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+    "embedding_text": "cyclone Odisha severity 4 IMD class (1-7). Severe Cyclonic Storm Dana struck the northern Odisha coast between Dhamra and Habalikhati Nature Camp bringing heavy rain and coastal winds. Mechanism: Evacuations of coastal districts suspension of flights and train services alongside preemptive port mooring protocols."
+  },
+  {
+    "event_id": "monsoon_deficit_2009",
+    "title": "Historic Indian Monsoon Deficit 2009",
+    "event_type": "monsoon_deficit",
+    "region": "All-India",
+    "country": "IN",
+    "start_date": "2009-06-01T00:00:00Z",
+    "end_date": "2009-09-30T00:00:00Z",
+    "event_date": "2009-08-01T00:00:00Z",
+    "severity_value": -22.0,
+    "severity_unit": "rain deficit %",
+    "severity_norm": 0.7333,
+    "description": "India suffered its worst drought in nearly four decades as southwest monsoon rains ended 22 percent below normal across the country.",
+    "mechanism": "Severe kharif crop failure lowered rural incomes triggered food price inflation and pressured commercial tractor and auto sales.",
+    "affected_assets": [
+      "equities",
+      "fmcg",
+      "auto",
+      "currency"
+    ],
+    "tickers": [
+      "^NSEI",
+      "^CNXFMCG",
+      "M&M.NS",
+      "INR=X"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0242,
+        "ret_1d": -0.00193,
+        "ret_5d": -0.01581,
+        "ret_20d": -0.04743,
+        "abnormal_1d": 0.00261,
+        "abnormal_5d": -0.00976,
+        "abnormal_20d": -0.05385
+      },
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8697,
+        "ret_1d": -0.01144,
+        "ret_5d": -0.04756,
+        "ret_20d": -0.06422,
+        "abnormal_1d": -0.00175,
+        "abnormal_5d": -0.04233,
+        "abnormal_20d": -0.07627
+      },
+      {
+        "asset": "M&M.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0649,
+        "ret_1d": -0.01199,
+        "ret_5d": -0.03929,
+        "ret_20d": -0.11263,
+        "abnormal_1d": -0.0128,
+        "abnormal_5d": -0.02207,
+        "abnormal_20d": -0.09583
+      },
+      {
+        "asset": "INR=X",
+        "benchmark": "^NSEI",
+        "beta_used": -0.2228,
+        "ret_1d": -0.00548,
+        "ret_5d": -0.01826,
+        "ret_20d": -0.01897,
+        "abnormal_1d": -0.00555,
+        "abnormal_5d": -0.01818,
+        "abnormal_20d": -0.01892
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0242, \"ret_1d\": -0.00193, \"ret_5d\": -0.01581, \"ret_20d\": -0.04743, \"abnormal_1d\": 0.00261, \"abnormal_5d\": -0.00976, \"abnormal_20d\": -0.05385}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8697, \"ret_1d\": -0.01144, \"ret_5d\": -0.04756, \"ret_20d\": -0.06422, \"abnormal_1d\": -0.00175, \"abnormal_5d\": -0.04233, \"abnormal_20d\": -0.07627}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0649, \"ret_1d\": -0.01199, \"ret_5d\": -0.03929, \"ret_20d\": -0.11263, \"abnormal_1d\": -0.0128, \"abnormal_5d\": -0.02207, \"abnormal_20d\": -0.09583}, {\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.2228, \"ret_1d\": -0.00548, \"ret_5d\": -0.01826, \"ret_20d\": -0.01897, \"abnormal_1d\": -0.00555, \"abnormal_5d\": -0.01818, \"abnormal_20d\": -0.01892}]",
+    "split": "train",
+    "source": "IMD Monsoon Report",
+    "source_url": "https://mausam.imd.gov.in/",
+    "embedding_text": "monsoon_deficit All-India severity -22 rain deficit %. India suffered its worst drought in nearly four decades as southwest monsoon rains ended 22 percent below normal across the country. Mechanism: Severe kharif crop failure lowered rural incomes triggered food price inflation and pressured commercial tractor and auto sales."
+  },
+  {
+    "event_id": "monsoon_deficit_2014",
+    "title": "El Nino Induced Monsoon Deficit 2014",
+    "event_type": "monsoon_deficit",
+    "region": "All-India",
+    "country": "IN",
+    "start_date": "2014-06-01T00:00:00Z",
+    "end_date": "2014-09-30T00:00:00Z",
+    "event_date": "2014-08-01T00:00:00Z",
+    "severity_value": -12.0,
+    "severity_unit": "rain deficit %",
+    "severity_norm": 0.4,
+    "description": "Monsoon rains were impacted by developing El Nino conditions leading to a 12 percent seasonal deficit and spatial unevenness across northwest India.",
+    "mechanism": "Stagnant rural wages lowered agricultural output and reduced demand for crop protection chemicals and farm machinery.",
+    "affected_assets": [
+      "fmcg",
+      "auto",
+      "agri"
+    ],
+    "tickers": [
+      "^CNXFMCG",
+      "M&M.NS",
+      "UPL.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8837,
+        "ret_1d": -0.0063,
+        "ret_5d": -0.00693,
+        "ret_20d": -0.0059,
+        "abnormal_1d": -0.00893,
+        "abnormal_5d": -0.02891,
+        "abnormal_20d": -0.0013
+      },
+      {
+        "asset": "M&M.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9676,
+        "ret_1d": -0.0122,
+        "ret_5d": -0.02937,
+        "ret_20d": -0.07819,
+        "abnormal_1d": -0.00854,
+        "abnormal_5d": -0.02228,
+        "abnormal_20d": -0.06735
+      },
+      {
+        "asset": "UPL.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1756,
+        "ret_1d": -0.00686,
+        "ret_5d": -0.0241,
+        "ret_20d": -0.01944,
+        "abnormal_1d": -0.0121,
+        "abnormal_5d": -0.03007,
+        "abnormal_20d": 0.01738
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8837, \"ret_1d\": -0.0063, \"ret_5d\": -0.00693, \"ret_20d\": -0.0059, \"abnormal_1d\": -0.00893, \"abnormal_5d\": -0.02891, \"abnormal_20d\": -0.0013}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9676, \"ret_1d\": -0.0122, \"ret_5d\": -0.02937, \"ret_20d\": -0.07819, \"abnormal_1d\": -0.00854, \"abnormal_5d\": -0.02228, \"abnormal_20d\": -0.06735}, {\"asset\": \"UPL.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1756, \"ret_1d\": -0.00686, \"ret_5d\": -0.0241, \"ret_20d\": -0.01944, \"abnormal_1d\": -0.0121, \"abnormal_5d\": -0.03007, \"abnormal_20d\": 0.01738}]",
+    "split": "train",
+    "source": "IMD Monsoon Report",
+    "source_url": "https://mausam.imd.gov.in/",
+    "embedding_text": "monsoon_deficit All-India severity -12 rain deficit %. Monsoon rains were impacted by developing El Nino conditions leading to a 12 percent seasonal deficit and spatial unevenness across northwest India. Mechanism: Stagnant rural wages lowered agricultural output and reduced demand for crop protection chemicals and farm machinery."
+  },
+  {
+    "event_id": "monsoon_deficit_2015",
+    "title": "Consecutive Drought Year Monsoon Deficit 2015",
+    "event_type": "monsoon_deficit",
+    "region": "All-India",
+    "country": "IN",
+    "start_date": "2015-06-01T00:00:00Z",
+    "end_date": "2015-09-30T00:00:00Z",
+    "event_date": "2015-08-01T00:00:00Z",
+    "severity_value": -14.0,
+    "severity_unit": "rain deficit %",
+    "severity_norm": 0.4667,
+    "description": "Second consecutive year of nationwide drought caused by strong El Nino resulted in a 14 percent cumulative monsoon deficit.",
+    "mechanism": "Reservoir levels dropped sharply dampening fertilizer consumption tractor sales and rural fast-moving consumer goods volume growth.",
+    "affected_assets": [
+      "fmcg",
+      "auto",
+      "fertilizers"
+    ],
+    "tickers": [
+      "^CNXFMCG",
+      "M&M.NS",
+      "CHAMBLFERT.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 1.2418,
+        "ret_1d": -0.00481,
+        "ret_5d": -0.00574,
+        "ret_20d": -0.00862,
+        "abnormal_1d": 0.00976,
+        "abnormal_5d": 0.00881,
+        "abnormal_20d": -0.0317
+      },
+      {
+        "asset": "M&M.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.2013,
+        "ret_1d": -0.00998,
+        "ret_5d": -0.04643,
+        "ret_20d": -0.08629,
+        "abnormal_1d": -0.01528,
+        "abnormal_5d": -0.05882,
+        "abnormal_20d": -0.09014
+      },
+      {
+        "asset": "CHAMBLFERT.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1867,
+        "ret_1d": 0.00925,
+        "ret_5d": 0.01966,
+        "ret_20d": 0.02914,
+        "abnormal_1d": 0.00191,
+        "abnormal_5d": 0.02812,
+        "abnormal_20d": 0.02443
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.2418, \"ret_1d\": -0.00481, \"ret_5d\": -0.00574, \"ret_20d\": -0.00862, \"abnormal_1d\": 0.00976, \"abnormal_5d\": 0.00881, \"abnormal_20d\": -0.0317}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.2013, \"ret_1d\": -0.00998, \"ret_5d\": -0.04643, \"ret_20d\": -0.08629, \"abnormal_1d\": -0.01528, \"abnormal_5d\": -0.05882, \"abnormal_20d\": -0.09014}, {\"asset\": \"CHAMBLFERT.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1867, \"ret_1d\": 0.00925, \"ret_5d\": 0.01966, \"ret_20d\": 0.02914, \"abnormal_1d\": 0.00191, \"abnormal_5d\": 0.02812, \"abnormal_20d\": 0.02443}]",
+    "split": "holdout",
+    "source": "IMD Monsoon Report",
+    "source_url": "https://mausam.imd.gov.in/",
+    "embedding_text": "monsoon_deficit All-India severity -14 rain deficit %. Second consecutive year of nationwide drought caused by strong El Nino resulted in a 14 percent cumulative monsoon deficit. Mechanism: Reservoir levels dropped sharply dampening fertilizer consumption tractor sales and rural fast-moving consumer goods volume growth."
+  },
+  {
+    "event_id": "monsoon_aug_dry_2023",
+    "title": "Record Dry August Monsoon Deficit 2023",
+    "event_type": "monsoon_deficit",
+    "region": "All-India (Aug -36%)",
+    "country": "IN",
+    "start_date": "2023-08-01T00:00:00Z",
+    "end_date": "2023-09-15T00:00:00Z",
+    "event_date": "2023-09-01T00:00:00Z",
+    "severity_value": -36.0,
+    "severity_unit": "rain deficit %",
+    "severity_norm": 1.0,
+    "description": "India experienced its driest August since 1901 with nationwide rainfall falling 36 percent below long-period average due to El Nino intensification.",
+    "mechanism": "Water stress on soybean sugarcane and pulse crops raised food inflation expectations and restrained discretionary rural consumer spending.",
+    "affected_assets": [
+      "fmcg",
+      "auto",
+      "consumer"
+    ],
+    "tickers": [
+      "^CNXFMCG",
+      "M&M.NS",
+      "HINDUNILVR.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "^CNXFMCG",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1648,
+        "ret_1d": -0.02512,
+        "ret_5d": -0.0934,
+        "ret_20d": -0.14512,
+        "abnormal_1d": -0.03556,
+        "abnormal_5d": -0.07927,
+        "abnormal_20d": -0.12298
+      },
+      {
+        "asset": "M&M.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0428,
+        "ret_1d": -0.02158,
+        "ret_5d": -0.06129,
+        "ret_20d": -0.10934,
+        "abnormal_1d": -0.03105,
+        "abnormal_5d": -0.06129,
+        "abnormal_20d": -0.10328
+      },
+      {
+        "asset": "HINDUNILVR.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.2021,
+        "ret_1d": -0.0153,
+        "ret_5d": -0.0624,
+        "ret_20d": -0.11013,
+        "abnormal_1d": -0.0078,
+        "abnormal_5d": -0.07791,
+        "abnormal_20d": -0.08779
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1648, \"ret_1d\": -0.02512, \"ret_5d\": -0.0934, \"ret_20d\": -0.14512, \"abnormal_1d\": -0.03556, \"abnormal_5d\": -0.07927, \"abnormal_20d\": -0.12298}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0428, \"ret_1d\": -0.02158, \"ret_5d\": -0.06129, \"ret_20d\": -0.10934, \"abnormal_1d\": -0.03105, \"abnormal_5d\": -0.06129, \"abnormal_20d\": -0.10328}, {\"asset\": \"HINDUNILVR.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.2021, \"ret_1d\": -0.0153, \"ret_5d\": -0.0624, \"ret_20d\": -0.11013, \"abnormal_1d\": -0.0078, \"abnormal_5d\": -0.07791, \"abnormal_20d\": -0.08779}]",
+    "split": "train",
+    "source": "IMD Press Release",
+    "source_url": "https://mausam.imd.gov.in/",
+    "embedding_text": "monsoon_deficit All-India (Aug -36%) severity -36 rain deficit %. India experienced its driest August since 1901 with nationwide rainfall falling 36 percent below long-period average due to El Nino intensification. Mechanism: Water stress on soybean sugarcane and pulse crops raised food inflation expectations and restrained discretionary rural consumer spending."
+  },
+  {
+    "event_id": "heatwave_2022",
+    "title": "Early Severe Spring Heatwave 2022",
+    "event_type": "heatwave",
+    "region": "North/Central India",
+    "country": "IN",
+    "start_date": "2022-03-15T00:00:00Z",
+    "end_date": "2022-05-15T00:00:00Z",
+    "event_date": "2022-04-28T00:00:00Z",
+    "severity_value": 4.5,
+    "severity_unit": "anomaly deg C",
+    "severity_norm": 0.75,
+    "description": "Unprecedented early spring heatwave across northern and central India drove temperatures 4.5 degrees above seasonal normals and broke century-old records.",
+    "mechanism": "Shriveled terminal wheat yields pushed electricity demand to all-time highs creating domestic coal stock shortages and power cuts.",
+    "affected_assets": [
+      "equities",
+      "power",
+      "coal"
+    ],
+    "tickers": [
+      "^NSEI",
+      "NTPC.NS",
+      "COALINDIA.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1705,
+        "ret_1d": -0.00819,
+        "ret_5d": -0.01764,
+        "ret_20d": 0.02628,
+        "abnormal_1d": -0.00906,
+        "abnormal_5d": 0.00438,
+        "abnormal_20d": 0.03208
+      },
+      {
+        "asset": "NTPC.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.7389,
+        "ret_1d": 0.01567,
+        "ret_5d": 0.07046,
+        "ret_20d": 0.12101,
+        "abnormal_1d": 0.01785,
+        "abnormal_5d": 0.07578,
+        "abnormal_20d": 0.12695
+      },
+      {
+        "asset": "COALINDIA.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8849,
+        "ret_1d": -0.0011,
+        "ret_5d": -0.02002,
+        "ret_20d": -0.02974,
+        "abnormal_1d": -0.0002,
+        "abnormal_5d": -0.00295,
+        "abnormal_20d": -0.03625
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1705, \"ret_1d\": -0.00819, \"ret_5d\": -0.01764, \"ret_20d\": 0.02628, \"abnormal_1d\": -0.00906, \"abnormal_5d\": 0.00438, \"abnormal_20d\": 0.03208}, {\"asset\": \"NTPC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7389, \"ret_1d\": 0.01567, \"ret_5d\": 0.07046, \"ret_20d\": 0.12101, \"abnormal_1d\": 0.01785, \"abnormal_5d\": 0.07578, \"abnormal_20d\": 0.12695}, {\"asset\": \"COALINDIA.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8849, \"ret_1d\": -0.0011, \"ret_5d\": -0.02002, \"ret_20d\": -0.02974, \"abnormal_1d\": -0.0002, \"abnormal_5d\": -0.00295, \"abnormal_20d\": -0.03625}]",
+    "split": "holdout",
+    "source": "IMD Climate Bulletin",
+    "source_url": "https://mausam.imd.gov.in/",
+    "embedding_text": "heatwave North/Central India severity 4.5 anomaly deg C. Unprecedented early spring heatwave across northern and central India drove temperatures 4.5 degrees above seasonal normals and broke century-old records. Mechanism: Shriveled terminal wheat yields pushed electricity demand to all-time highs creating domestic coal stock shortages and power cuts."
+  },
+  {
+    "event_id": "heatwave_2024",
+    "title": "Severe Extended Summer Heatwave 2024",
+    "event_type": "heatwave",
+    "region": "North India",
+    "country": "IN",
+    "start_date": "2024-05-01T00:00:00Z",
+    "end_date": "2024-06-15T00:00:00Z",
+    "event_date": "2024-05-29T00:00:00Z",
+    "severity_value": 5.0,
+    "severity_unit": "anomaly deg C",
+    "severity_norm": 0.8333,
+    "description": "Prolonged intense heatwave gripped northern and western India with temperatures crossing 49 degrees Celsius in Delhi and Rajasthan.",
+    "mechanism": "Surging peak air conditioning loads drove record power transmission demand and depleted regional water reservoirs.",
+    "affected_assets": [
+      "power",
+      "utilities",
+      "cooling"
+    ],
+    "tickers": [
+      "NTPC.NS",
+      "TATAPOWER.NS",
+      "VOLTAS.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "NTPC.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8782,
+        "ret_1d": 0.00826,
+        "ret_5d": 0.03909,
+        "ret_20d": 0.06703,
+        "abnormal_1d": 0.01243,
+        "abnormal_5d": 0.05711,
+        "abnormal_20d": 0.09572
+      },
+      {
+        "asset": "TATAPOWER.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1438,
+        "ret_1d": 0.01367,
+        "ret_5d": 0.02909,
+        "ret_20d": 0.02037,
+        "abnormal_1d": 0.01215,
+        "abnormal_5d": 0.04325,
+        "abnormal_20d": 0.04684
+      },
+      {
+        "asset": "VOLTAS.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8191,
+        "ret_1d": 0.01792,
+        "ret_5d": 0.05406,
+        "ret_20d": 0.08658,
+        "abnormal_1d": 0.01097,
+        "abnormal_5d": 0.0642,
+        "abnormal_20d": 0.08283
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"NTPC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8782, \"ret_1d\": 0.00826, \"ret_5d\": 0.03909, \"ret_20d\": 0.06703, \"abnormal_1d\": 0.01243, \"abnormal_5d\": 0.05711, \"abnormal_20d\": 0.09572}, {\"asset\": \"TATAPOWER.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1438, \"ret_1d\": 0.01367, \"ret_5d\": 0.02909, \"ret_20d\": 0.02037, \"abnormal_1d\": 0.01215, \"abnormal_5d\": 0.04325, \"abnormal_20d\": 0.04684}, {\"asset\": \"VOLTAS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8191, \"ret_1d\": 0.01792, \"ret_5d\": 0.05406, \"ret_20d\": 0.08658, \"abnormal_1d\": 0.01097, \"abnormal_5d\": 0.0642, \"abnormal_20d\": 0.08283}]",
+    "split": "train",
+    "source": "IMD Climate Bulletin",
+    "source_url": "https://mausam.imd.gov.in/",
+    "embedding_text": "heatwave North India severity 5 anomaly deg C. Prolonged intense heatwave gripped northern and western India with temperatures crossing 49 degrees Celsius in Delhi and Rajasthan. Mechanism: Surging peak air conditioning loads drove record power transmission demand and depleted regional water reservoirs."
+  },
+  {
+    "event_id": "taper_tantrum_2013",
+    "title": "US Fed Taper Tantrum Currency and Bond Shock",
+    "event_type": "rate_shock",
+    "region": "Global/US",
+    "country": "US",
+    "start_date": "2013-05-20T00:00:00Z",
+    "end_date": "2013-06-30T00:00:00Z",
+    "event_date": "2013-05-22T00:00:00Z",
+    "severity_value": 100.0,
+    "severity_unit": "bps",
+    "severity_norm": 1.0,
+    "description": "Federal Reserve Chairman Ben Bernanke indicated the central bank might taper asset purchases sparking global bond selloffs and emerging market capital flight.",
+    "mechanism": "Sharp surge in US Treasury yields prompted severe depreciation of the Indian Rupee and aggressive domestic liquidity tightening.",
+    "affected_assets": [
+      "currency",
+      "banking",
+      "equities"
+    ],
+    "tickers": [
+      "INR=X",
+      "^NSEBANK",
+      "^NSEI"
+    ],
+    "outcomes": [
+      {
+        "asset": "INR=X",
+        "benchmark": "^NSEI",
+        "beta_used": -0.0753,
+        "ret_1d": -0.01722,
+        "ret_5d": -0.03212,
+        "ret_20d": -0.04851,
+        "abnormal_1d": -0.01711,
+        "abnormal_5d": -0.0337,
+        "abnormal_20d": -0.04759
+      },
+      {
+        "asset": "^NSEBANK",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9359,
+        "ret_1d": -0.0167,
+        "ret_5d": -0.04669,
+        "ret_20d": -0.07339,
+        "abnormal_1d": -0.01437,
+        "abnormal_5d": -0.0303,
+        "abnormal_20d": -0.0782
+      },
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.147,
+        "ret_1d": -0.01319,
+        "ret_5d": -0.0403,
+        "ret_20d": -0.04453,
+        "abnormal_1d": -0.02186,
+        "abnormal_5d": -0.0361,
+        "abnormal_20d": -0.06709
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.0753, \"ret_1d\": -0.01722, \"ret_5d\": -0.03212, \"ret_20d\": -0.04851, \"abnormal_1d\": -0.01711, \"abnormal_5d\": -0.0337, \"abnormal_20d\": -0.04759}, {\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9359, \"ret_1d\": -0.0167, \"ret_5d\": -0.04669, \"ret_20d\": -0.07339, \"abnormal_1d\": -0.01437, \"abnormal_5d\": -0.0303, \"abnormal_20d\": -0.0782}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.147, \"ret_1d\": -0.01319, \"ret_5d\": -0.0403, \"ret_20d\": -0.04453, \"abnormal_1d\": -0.02186, \"abnormal_5d\": -0.0361, \"abnormal_20d\": -0.06709}]",
+    "split": "train",
+    "source": "Federal Reserve Testimony",
+    "source_url": "https://www.federalreserve.gov/",
+    "embedding_text": "rate_shock Global/US severity 100 bps. Federal Reserve Chairman Ben Bernanke indicated the central bank might taper asset purchases sparking global bond selloffs and emerging market capital flight. Mechanism: Sharp surge in US Treasury yields prompted severe depreciation of the Indian Rupee and aggressive domestic liquidity tightening."
+  },
+  {
+    "event_id": "rbi_emergency_cut_2020",
+    "title": "RBI Emergency COVID-19 Rate Cut",
+    "event_type": "rate_shock",
+    "region": "India",
+    "country": "IN",
+    "start_date": "2020-03-27T00:00:00Z",
+    "end_date": "2020-04-05T00:00:00Z",
+    "event_date": "2020-03-27T00:00:00Z",
+    "severity_value": -75.0,
+    "severity_unit": "bps",
+    "severity_norm": 0.75,
+    "description": "Reserve Bank of India MPC held an emergency meeting cutting repo rate by 75 bps and announcing massive liquidity measures to counter lockdown shocks.",
+    "mechanism": "Monetary easing lowered short-term funding costs and provided emergency credit moratorium to banking and non-banking financial companies.",
+    "affected_assets": [
+      "banking",
+      "equities"
+    ],
+    "tickers": [
+      "^NSEBANK",
+      "^NSEI"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEBANK",
+        "benchmark": "^NSEI",
+        "beta_used": 0.8416,
+        "ret_1d": -0.01998,
+        "ret_5d": -0.05093,
+        "ret_20d": -0.07096,
+        "abnormal_1d": -0.01962,
+        "abnormal_5d": -0.04831,
+        "abnormal_20d": -0.07291
+      },
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.1388,
+        "ret_1d": -0.01011,
+        "ret_5d": -0.04816,
+        "ret_20d": -0.06994,
+        "abnormal_1d": -0.01009,
+        "abnormal_5d": -0.05853,
+        "abnormal_20d": -0.05825
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8416, \"ret_1d\": -0.01998, \"ret_5d\": -0.05093, \"ret_20d\": -0.07096, \"abnormal_1d\": -0.01962, \"abnormal_5d\": -0.04831, \"abnormal_20d\": -0.07291}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1388, \"ret_1d\": -0.01011, \"ret_5d\": -0.04816, \"ret_20d\": -0.06994, \"abnormal_1d\": -0.01009, \"abnormal_5d\": -0.05853, \"abnormal_20d\": -0.05825}]",
+    "split": "train",
+    "source": "RBI Press Release",
+    "source_url": "https://www.rbi.org.in/",
+    "embedding_text": "rate_shock India severity -75 bps. Reserve Bank of India MPC held an emergency meeting cutting repo rate by 75 bps and announcing massive liquidity measures to counter lockdown shocks. Mechanism: Monetary easing lowered short-term funding costs and provided emergency credit moratorium to banking and non-banking financial companies."
+  },
+  {
+    "event_id": "rbi_offcycle_hike_2022",
+    "title": "RBI Surprise Off-Cycle Repo Rate Hike",
+    "event_type": "rate_shock",
+    "region": "India",
+    "country": "IN",
+    "start_date": "2022-05-04T00:00:00Z",
+    "end_date": "2022-05-10T00:00:00Z",
+    "event_date": "2022-05-04T00:00:00Z",
+    "severity_value": 40.0,
+    "severity_unit": "bps",
+    "severity_norm": 0.4,
+    "description": "RBI Governor announced an unscheduled 40 bps repo rate hike and 50 bps CRR increase to curb soaring headline consumer inflation.",
+    "mechanism": "Sudden tightening raised bond yields",
+    "affected_assets": [
+      "increased bank deposit and lending rates"
+    ],
+    "tickers": [
+      "and triggered equity market profit-taking."
+    ],
+    "outcomes": [
+      {
+        "asset": "and triggered equity market profit-taking.",
+        "benchmark": "SPY",
+        "beta_used": 1.1351,
+        "ret_1d": -0.00543,
+        "ret_5d": -0.00124,
+        "ret_20d": 0.03329,
+        "abnormal_1d": -0.00416,
+        "abnormal_5d": -0.00423,
+        "abnormal_20d": 0.09203
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"and triggered equity market profit-taking.\", \"benchmark\": \"SPY\", \"beta_used\": 1.1351, \"ret_1d\": -0.00543, \"ret_5d\": -0.00124, \"ret_20d\": 0.03329, \"abnormal_1d\": -0.00416, \"abnormal_5d\": -0.00423, \"abnormal_20d\": 0.09203}]",
+    "split": "banking|equities",
+    "source": "^NSEBANK|HDFCBANK.NS|^NSEI",
+    "source_url": "holdout",
+    "embedding_text": "rate_shock India severity 40 bps. RBI Governor announced an unscheduled 40 bps repo rate hike and 50 bps CRR increase to curb soaring headline consumer inflation. Mechanism: Sudden tightening raised bond yields"
+  },
+  {
+    "event_id": "abqaiq_attack_2019",
+    "title": "Drone Attack on Saudi Aramco Abqaiq and Khurais",
+    "event_type": "oil_shock",
+    "region": "Saudi Arabia",
+    "country": "Global",
+    "start_date": "2019-09-14T00:00:00Z",
+    "end_date": "2019-09-25T00:00:00Z",
+    "event_date": "2019-09-16T00:00:00Z",
+    "severity_value": 15.0,
+    "severity_unit": "oil move %",
+    "severity_norm": 0.75,
+    "description": "Coordinated drone and missile strikes hit Saudi Aramco processing facilities knocking out 5.7 million barrels per day or roughly half of Saudi output.",
+    "mechanism": "Brent crude oil jumped 15 percent on market open",
+    "affected_assets": [
+      "boosting upstream producer realization while squeezing Indian refiner margins and currency."
+    ],
+    "tickers": [
+      "crude",
+      "energy",
+      "oil_marketing",
+      "currency"
+    ],
+    "outcomes": [
+      {
+        "asset": "crude",
+        "benchmark": "SPY",
+        "beta_used": 1.1384,
+        "ret_1d": -0.01633,
+        "ret_5d": -0.04292,
+        "ret_20d": -0.05034,
+        "abnormal_1d": -0.02556,
+        "abnormal_5d": -0.03182,
+        "abnormal_20d": -0.06758
+      },
+      {
+        "asset": "energy",
+        "benchmark": "SPY",
+        "beta_used": 0.8483,
+        "ret_1d": -0.00731,
+        "ret_5d": -0.0295,
+        "ret_20d": -0.04447,
+        "abnormal_1d": -0.01071,
+        "abnormal_5d": -0.00775,
+        "abnormal_20d": -0.0387
+      },
+      {
+        "asset": "oil_marketing",
+        "benchmark": "SPY",
+        "beta_used": 0.9562,
+        "ret_1d": -0.01665,
+        "ret_5d": -0.0357,
+        "ret_20d": -0.05574,
+        "abnormal_1d": -0.02461,
+        "abnormal_5d": -0.04107,
+        "abnormal_20d": -0.03253
+      },
+      {
+        "asset": "currency",
+        "benchmark": "SPY",
+        "beta_used": 1.198,
+        "ret_1d": -0.01778,
+        "ret_5d": -0.06163,
+        "ret_20d": -0.09124,
+        "abnormal_1d": -0.03005,
+        "abnormal_5d": -0.04895,
+        "abnormal_20d": -0.06262
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"crude\", \"benchmark\": \"SPY\", \"beta_used\": 1.1384, \"ret_1d\": -0.01633, \"ret_5d\": -0.04292, \"ret_20d\": -0.05034, \"abnormal_1d\": -0.02556, \"abnormal_5d\": -0.03182, \"abnormal_20d\": -0.06758}, {\"asset\": \"energy\", \"benchmark\": \"SPY\", \"beta_used\": 0.8483, \"ret_1d\": -0.00731, \"ret_5d\": -0.0295, \"ret_20d\": -0.04447, \"abnormal_1d\": -0.01071, \"abnormal_5d\": -0.00775, \"abnormal_20d\": -0.0387}, {\"asset\": \"oil_marketing\", \"benchmark\": \"SPY\", \"beta_used\": 0.9562, \"ret_1d\": -0.01665, \"ret_5d\": -0.0357, \"ret_20d\": -0.05574, \"abnormal_1d\": -0.02461, \"abnormal_5d\": -0.04107, \"abnormal_20d\": -0.03253}, {\"asset\": \"currency\", \"benchmark\": \"SPY\", \"beta_used\": 1.198, \"ret_1d\": -0.01778, \"ret_5d\": -0.06163, \"ret_20d\": -0.09124, \"abnormal_1d\": -0.03005, \"abnormal_5d\": -0.04895, \"abnormal_20d\": -0.06262}]",
+    "split": "BZ=F|ONGC.NS|BPCL.NS|INR=X",
+    "source": "holdout",
+    "source_url": "Reuters / Bloomberg",
+    "embedding_text": "oil_shock Saudi Arabia severity 15 oil move %. Coordinated drone and missile strikes hit Saudi Aramco processing facilities knocking out 5.7 million barrels per day or roughly half of Saudi output. Mechanism: Brent crude oil jumped 15 percent on market open"
+  },
+  {
+    "event_id": "wti_negative_2020",
+    "title": "WTI May Crude Futures Collapse Below Zero",
+    "event_type": "oil_shock",
+    "region": "US",
+    "country": "US",
+    "start_date": "2020-04-18T00:00:00Z",
+    "end_date": "2020-04-25T00:00:00Z",
+    "event_date": "2020-04-20T00:00:00Z",
+    "severity_value": -300.0,
+    "severity_unit": "oil move %",
+    "severity_norm": 1.0,
+    "description": "Pandemic lockdowns caused unprecedented global oil demand destruction",
+    "mechanism": "filling Cushing storage and plunging the expiring May WTI contract to negative 37 dollars.",
+    "affected_assets": [
+      "Extreme physical inventory congestion caused historic distress for oil producers"
+    ],
+    "tickers": [
+      "service providers"
+    ],
+    "outcomes": [
+      {
+        "asset": "service providers",
+        "benchmark": "SPY",
+        "beta_used": 0.8294,
+        "ret_1d": -0.02272,
+        "ret_5d": -0.05788,
+        "ret_20d": -0.05644,
+        "abnormal_1d": -0.02116,
+        "abnormal_5d": -0.06127,
+        "abnormal_20d": -0.04883
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"service providers\", \"benchmark\": \"SPY\", \"beta_used\": 0.8294, \"ret_1d\": -0.02272, \"ret_5d\": -0.05788, \"ret_20d\": -0.05644, \"abnormal_1d\": -0.02116, \"abnormal_5d\": -0.06127, \"abnormal_20d\": -0.04883}]",
+    "split": "and energy funds.",
+    "source": "crude|energy",
+    "source_url": "CL=F|ONGC.NS",
+    "embedding_text": "oil_shock US severity -300 oil move %. Pandemic lockdowns caused unprecedented global oil demand destruction Mechanism: filling Cushing storage and plunging the expiring May WTI contract to negative 37 dollars."
+  },
+  {
+    "event_id": "ukraine_invasion_2022",
+    "title": "Russian Invasion of Ukraine Commodity Price Shock",
+    "event_type": "oil_shock",
+    "region": "Europe",
+    "country": "Global",
+    "start_date": "2022-02-24T00:00:00Z",
+    "end_date": "2022-03-15T00:00:00Z",
+    "event_date": "2022-02-24T00:00:00Z",
+    "severity_value": 8.0,
+    "severity_unit": "oil move %",
+    "severity_norm": 0.4,
+    "description": "Russia launched a full-scale military invasion of Ukraine triggering sweeping Western sanctions and severe panic in global energy and agriculture markets.",
+    "mechanism": "Brent surged past 105 dollars",
+    "affected_assets": [
+      "gold rallied on safe-haven flows"
+    ],
+    "tickers": [
+      "and Indian equity indices slumped on import inflation fears."
+    ],
+    "outcomes": [
+      {
+        "asset": "and Indian equity indices slumped on import inflation fears.",
+        "benchmark": "SPY",
+        "beta_used": 1.0134,
+        "ret_1d": -0.01478,
+        "ret_5d": -0.0297,
+        "ret_20d": -0.07036,
+        "abnormal_1d": -0.00433,
+        "abnormal_5d": -0.04136,
+        "abnormal_20d": -0.06969
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"and Indian equity indices slumped on import inflation fears.\", \"benchmark\": \"SPY\", \"beta_used\": 1.0134, \"ret_1d\": -0.01478, \"ret_5d\": -0.0297, \"ret_20d\": -0.07036, \"abnormal_1d\": -0.00433, \"abnormal_5d\": -0.04136, \"abnormal_20d\": -0.06969}]",
+    "split": "crude|equities|currency|gold",
+    "source": "BZ=F|^NSEI|INR=X|GC=F",
+    "source_url": "train",
+    "embedding_text": "oil_shock Europe severity 8 oil move %. Russia launched a full-scale military invasion of Ukraine triggering sweeping Western sanctions and severe panic in global energy and agriculture markets. Mechanism: Brent surged past 105 dollars"
+  },
+  {
+    "event_id": "opec_surprise_cut_2023",
+    "title": "OPEC+ Surprise Voluntary Crude Production Cut",
+    "event_type": "oil_shock",
+    "region": "Global",
+    "country": "Global",
+    "start_date": "2023-04-02T00:00:00Z",
+    "end_date": "2023-04-10T00:00:00Z",
+    "event_date": "2023-04-03T00:00:00Z",
+    "severity_value": 6.0,
+    "severity_unit": "oil move %",
+    "severity_norm": 0.3,
+    "description": "Saudi Arabia and OPEC+ allies announced unexpected voluntary oil output cuts exceeding 1.1 million barrels per day to support market stability.",
+    "mechanism": "Brent oil jumped 6 percent overnight",
+    "affected_assets": [
+      "boosting oil exploration earnings while creating input cost headwinds for refiners and petrochemical firms."
+    ],
+    "tickers": [
+      "crude",
+      "upstream",
+      "oil_marketing"
+    ],
+    "outcomes": [
+      {
+        "asset": "crude",
+        "benchmark": "SPY",
+        "beta_used": 0.8398,
+        "ret_1d": -0.00213,
+        "ret_5d": -0.00902,
+        "ret_20d": -0.04432,
+        "abnormal_1d": -0.01361,
+        "abnormal_5d": -0.01879,
+        "abnormal_20d": -0.01746
+      },
+      {
+        "asset": "upstream",
+        "benchmark": "SPY",
+        "beta_used": 1.1139,
+        "ret_1d": -0.00129,
+        "ret_5d": 0.00505,
+        "ret_20d": 0.02538,
+        "abnormal_1d": 0.0043,
+        "abnormal_5d": -0.00025,
+        "abnormal_20d": 0.04441
+      },
+      {
+        "asset": "oil_marketing",
+        "benchmark": "SPY",
+        "beta_used": 1.0258,
+        "ret_1d": 0.00193,
+        "ret_5d": -0.01245,
+        "ret_20d": 0.00245,
+        "abnormal_1d": 0.00408,
+        "abnormal_5d": -0.01037,
+        "abnormal_20d": -0.03907
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"crude\", \"benchmark\": \"SPY\", \"beta_used\": 0.8398, \"ret_1d\": -0.00213, \"ret_5d\": -0.00902, \"ret_20d\": -0.04432, \"abnormal_1d\": -0.01361, \"abnormal_5d\": -0.01879, \"abnormal_20d\": -0.01746}, {\"asset\": \"upstream\", \"benchmark\": \"SPY\", \"beta_used\": 1.1139, \"ret_1d\": -0.00129, \"ret_5d\": 0.00505, \"ret_20d\": 0.02538, \"abnormal_1d\": 0.0043, \"abnormal_5d\": -0.00025, \"abnormal_20d\": 0.04441}, {\"asset\": \"oil_marketing\", \"benchmark\": \"SPY\", \"beta_used\": 1.0258, \"ret_1d\": 0.00193, \"ret_5d\": -0.01245, \"ret_20d\": 0.00245, \"abnormal_1d\": 0.00408, \"abnormal_5d\": -0.01037, \"abnormal_20d\": -0.03907}]",
+    "split": "BZ=F|ONGC.NS|BPCL.NS",
+    "source": "train",
+    "source_url": "OPEC Press Statement",
+    "embedding_text": "oil_shock Global severity 6 oil move %. Saudi Arabia and OPEC+ allies announced unexpected voluntary oil output cuts exceeding 1.1 million barrels per day to support market stability. Mechanism: Brent oil jumped 6 percent overnight"
+  },
+  {
+    "event_id": "demonetisation_2016",
+    "title": "Indian Currency Demonetisation Shock",
+    "event_type": "policy",
+    "region": "India",
+    "country": "IN",
+    "start_date": "2016-11-08T00:00:00Z",
+    "end_date": "2016-11-20T00:00:00Z",
+    "event_date": "2016-11-09T00:00:00Z",
+    "severity_value": 0.9,
+    "severity_unit": "index scale 0-1",
+    "severity_norm": 0.9,
+    "description": "Prime Minister Narendra Modi announced the sudden demonetisation of all 500 and 1000 rupee banknotes",
+    "mechanism": "wiping out 86 percent of circulating cash.",
+    "affected_assets": [
+      "Acute liquidity crunch paralyzed cash-dependent retail consumption"
+    ],
+    "tickers": [
+      "real estate transactions"
+    ],
+    "outcomes": [
+      {
+        "asset": "real estate transactions",
+        "benchmark": "SPY",
+        "beta_used": 0.8835,
+        "ret_1d": -0.00873,
+        "ret_5d": -0.04653,
+        "ret_20d": -0.07568,
+        "abnormal_1d": -0.01712,
+        "abnormal_5d": -0.03331,
+        "abnormal_20d": -0.08732
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"real estate transactions\", \"benchmark\": \"SPY\", \"beta_used\": 0.8835, \"ret_1d\": -0.00873, \"ret_5d\": -0.04653, \"ret_20d\": -0.07568, \"abnormal_1d\": -0.01712, \"abnormal_5d\": -0.03331, \"abnormal_20d\": -0.08732}]",
+    "split": "and vehicle purchases",
+    "source": "while surging bank deposits.",
+    "source_url": "equities|auto|banking",
+    "embedding_text": "policy India severity 0.9 index scale 0-1. Prime Minister Narendra Modi announced the sudden demonetisation of all 500 and 1000 rupee banknotes Mechanism: wiping out 86 percent of circulating cash."
+  },
+  {
+    "event_id": "corp_tax_cut_2019",
+    "title": "Historic Corporate Income Tax Rate Reduction",
+    "event_type": "policy",
+    "region": "India",
+    "country": "IN",
+    "start_date": "2019-09-20T00:00:00Z",
+    "end_date": "2019-09-30T00:00:00Z",
+    "event_date": "2019-09-20T00:00:00Z",
+    "severity_value": 0.7,
+    "severity_unit": "index scale 0-1",
+    "severity_norm": 0.7,
+    "description": "Finance Minister slashed base corporate tax rates for domestic companies from 30 percent to 22 percent to boost private capital investment.",
+    "mechanism": "Massive immediate boost to corporate earnings after tax sparked the biggest single-day Indian equity rally in a decade.",
+    "affected_assets": [
+      "equities",
+      "banking"
+    ],
+    "tickers": [
+      "^NSEI",
+      "^NSEBANK"
+    ],
+    "outcomes": [
+      {
+        "asset": "^NSEI",
+        "benchmark": "^NSEI",
+        "beta_used": 1.0173,
+        "ret_1d": -0.01381,
+        "ret_5d": -0.03948,
+        "ret_20d": -0.06243,
+        "abnormal_1d": -0.0237,
+        "abnormal_5d": -0.0476,
+        "abnormal_20d": -0.11543
+      },
+      {
+        "asset": "^NSEBANK",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9015,
+        "ret_1d": -0.01163,
+        "ret_5d": -0.03991,
+        "ret_20d": -0.06798,
+        "abnormal_1d": -0.0135,
+        "abnormal_5d": -0.04544,
+        "abnormal_20d": -0.05635
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0173, \"ret_1d\": -0.01381, \"ret_5d\": -0.03948, \"ret_20d\": -0.06243, \"abnormal_1d\": -0.0237, \"abnormal_5d\": -0.0476, \"abnormal_20d\": -0.11543}, {\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9015, \"ret_1d\": -0.01163, \"ret_5d\": -0.03991, \"ret_20d\": -0.06798, \"abnormal_1d\": -0.0135, \"abnormal_5d\": -0.04544, \"abnormal_20d\": -0.05635}]",
+    "split": "train",
+    "source": "Ministry of Finance Ordinance",
+    "source_url": "https://www.pib.gov.in/",
+    "embedding_text": "policy India severity 0.7 index scale 0-1. Finance Minister slashed base corporate tax rates for domestic companies from 30 percent to 22 percent to boost private capital investment. Mechanism: Massive immediate boost to corporate earnings after tax sparked the biggest single-day Indian equity rally in a decade."
+  },
+  {
+    "event_id": "covid_lockdown_2020",
+    "title": "Nationwide COVID-19 Lockdown Announcement",
+    "event_type": "policy",
+    "region": "India",
+    "country": "IN",
+    "start_date": "2020-03-24T00:00:00Z",
+    "end_date": "2020-04-15T00:00:00Z",
+    "event_date": "2020-03-24T00:00:00Z",
+    "severity_value": 1.0,
+    "severity_unit": "index scale 0-1",
+    "severity_norm": 1.0,
+    "description": "Government announced a comprehensive 21-day nationwide lockdown shutting non-essential manufacturing",
+    "mechanism": "commercial travel",
+    "affected_assets": [
+      "and retail activity."
+    ],
+    "tickers": [
+      "Unprecedented cessation of economic activity prompted broad-based selloffs in equities"
+    ],
+    "outcomes": [
+      {
+        "asset": "Unprecedented cessation of economic activity prompted broad-based selloffs in equities",
+        "benchmark": "SPY",
+        "beta_used": 0.844,
+        "ret_1d": -0.01082,
+        "ret_5d": -0.04315,
+        "ret_20d": -0.07965,
+        "abnormal_1d": -0.01181,
+        "abnormal_5d": -0.05506,
+        "abnormal_20d": -0.09207
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"Unprecedented cessation of economic activity prompted broad-based selloffs in equities\", \"benchmark\": \"SPY\", \"beta_used\": 0.844, \"ret_1d\": -0.01082, \"ret_5d\": -0.04315, \"ret_20d\": -0.07965, \"abnormal_1d\": -0.01181, \"abnormal_5d\": -0.05506, \"abnormal_20d\": -0.09207}]",
+    "split": "credit spreads widening",
+    "source": "and currency pressure.",
+    "source_url": "equities|banking|currency",
+    "embedding_text": "policy India severity 1 index scale 0-1. Government announced a comprehensive 21-day nationwide lockdown shutting non-essential manufacturing Mechanism: commercial travel"
+  },
+  {
+    "event_id": "wheat_export_ban_2022",
+    "title": "India Imposes Ban on Wheat Exports",
+    "event_type": "policy",
+    "region": "India",
+    "country": "IN",
+    "start_date": "2022-05-13T00:00:00Z",
+    "end_date": "2022-05-25T00:00:00Z",
+    "event_date": "2022-05-13T00:00:00Z",
+    "severity_value": 0.5,
+    "severity_unit": "index scale 0-1",
+    "severity_norm": 0.5,
+    "description": "Directorate General of Foreign Trade prohibited wheat exports with immediate effect following spring heatwave damage to safeguard domestic food security.",
+    "mechanism": "Export curbs stabilized domestic flour prices",
+    "affected_assets": [
+      "limiting export margin upside for agribusiness exporters and commodity trading firms."
+    ],
+    "tickers": [
+      "agribusiness",
+      "fmcg"
+    ],
+    "outcomes": [
+      {
+        "asset": "agribusiness",
+        "benchmark": "SPY",
+        "beta_used": 0.8694,
+        "ret_1d": -0.00535,
+        "ret_5d": -0.02888,
+        "ret_20d": -0.02031,
+        "abnormal_1d": -0.00859,
+        "abnormal_5d": -0.02921,
+        "abnormal_20d": -0.0271
+      },
+      {
+        "asset": "fmcg",
+        "benchmark": "SPY",
+        "beta_used": 1.121,
+        "ret_1d": -0.00844,
+        "ret_5d": -0.0137,
+        "ret_20d": -0.06786,
+        "abnormal_1d": 0.0018,
+        "abnormal_5d": -0.00525,
+        "abnormal_20d": -0.0744
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"agribusiness\", \"benchmark\": \"SPY\", \"beta_used\": 0.8694, \"ret_1d\": -0.00535, \"ret_5d\": -0.02888, \"ret_20d\": -0.02031, \"abnormal_1d\": -0.00859, \"abnormal_5d\": -0.02921, \"abnormal_20d\": -0.0271}, {\"asset\": \"fmcg\", \"benchmark\": \"SPY\", \"beta_used\": 1.121, \"ret_1d\": -0.00844, \"ret_5d\": -0.0137, \"ret_20d\": -0.06786, \"abnormal_1d\": 0.0018, \"abnormal_5d\": -0.00525, \"abnormal_20d\": -0.0744}]",
+    "split": "ITC.NS|^CNXFMCG",
+    "source": "train",
+    "source_url": "DGFT Notification",
+    "embedding_text": "policy India severity 0.5 index scale 0-1. Directorate General of Foreign Trade prohibited wheat exports with immediate effect following spring heatwave damage to safeguard domestic food security. Mechanism: Export curbs stabilized domestic flour prices"
+  },
+  {
+    "event_id": "rice_export_ban_2023",
+    "title": "India Prohibits Non-Basmati White Rice Exports",
+    "event_type": "policy",
+    "region": "India",
+    "country": "IN",
+    "start_date": "2023-07-20T00:00:00Z",
+    "end_date": "2023-08-05T00:00:00Z",
+    "event_date": "2023-07-20T00:00:00Z",
+    "severity_value": 0.6,
+    "severity_unit": "index scale 0-1",
+    "severity_norm": 0.6,
+    "description": "Government prohibited exports of non-basmati white rice to check domestic retail price rises and ensure adequate food supply after erratic monsoon start.",
+    "mechanism": "International rice prices climbed to multi-year highs while domestic rice processing and exporting companies faced export volume contractions.",
+    "affected_assets": [
+      "rice_exporters",
+      "agri"
+    ],
+    "tickers": [
+      "KRBL.NS",
+      "LTFOODS.NS"
+    ],
+    "outcomes": [
+      {
+        "asset": "KRBL.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9311,
+        "ret_1d": -0.00682,
+        "ret_5d": -0.03584,
+        "ret_20d": -0.02624,
+        "abnormal_1d": 0.00533,
+        "abnormal_5d": -0.0373,
+        "abnormal_20d": -0.01952
+      },
+      {
+        "asset": "LTFOODS.NS",
+        "benchmark": "^NSEI",
+        "beta_used": 0.9651,
+        "ret_1d": -0.01385,
+        "ret_5d": -0.03197,
+        "ret_20d": -0.06502,
+        "abnormal_1d": -0.0081,
+        "abnormal_5d": -0.01197,
+        "abnormal_20d": -0.05519
+      }
+    ],
+    "outcomes_json": "[{\"asset\": \"KRBL.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9311, \"ret_1d\": -0.00682, \"ret_5d\": -0.03584, \"ret_20d\": -0.02624, \"abnormal_1d\": 0.00533, \"abnormal_5d\": -0.0373, \"abnormal_20d\": -0.01952}, {\"asset\": \"LTFOODS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9651, \"ret_1d\": -0.01385, \"ret_5d\": -0.03197, \"ret_20d\": -0.06502, \"abnormal_1d\": -0.0081, \"abnormal_5d\": -0.01197, \"abnormal_20d\": -0.05519}]",
+    "split": "holdout",
+    "source": "DGFT Notification",
+    "source_url": "https://dgft.gov.in/",
+    "embedding_text": "policy India severity 0.6 index scale 0-1. Government prohibited exports of non-basmati white rice to check domestic retail price rises and ensure adequate food supply after erratic monsoon start. Mechanism: International rice prices climbed to multi-year highs while domestic rice processing and exporting companies faced export volume contractions."
+  }
+]

@@ -1,0 +1,4 @@
+RUN LOG (ordered events and evidence): {log_json}
+Explain, in order, which tools ran, what each returned (one line each, with citations), and which
+evidence supported each part of the final recommendation. If a step was degraded or skipped, say so.
+Do not add anything that is not in the log. Use a numbered list.

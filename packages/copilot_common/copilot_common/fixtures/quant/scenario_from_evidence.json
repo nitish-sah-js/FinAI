@@ -1,0 +1,235 @@
+{
+  "evidence": [
+    {
+      "id": "ev_scenario_001",
+      "run_id": null,
+      "tool": "scenario",
+      "value": {
+        "shocks": {
+          "nifty": -1.1,
+          "crude": 2.0,
+          "usd_inr": 0.4,
+          "agri_stress": 4
+        },
+        "pnl_inr": -4683.62,
+        "pnl_pct": -0.01387,
+        "by_ticker": [
+          {
+            "ticker": "RELIANCE.NS",
+            "pnl_inr": -1286.39,
+            "pnl_pct": -0.01102,
+            "betas": {
+              "nifty": 0.9103,
+              "crude": 0.0234,
+              "usd_inr": -0.268,
+              "agri_stress": -0.01
+            },
+            "methods": {
+              "nifty": "ols",
+              "crude": "shrunk",
+              "usd_inr": "shrunk",
+              "agri_stress": "judgment"
+            },
+            "beta_stats": {
+              "nifty": {
+                "beta_ols": 0.9076,
+                "t": 11.63,
+                "n": 250,
+                "weight_ols": 0.971
+              },
+              "crude": {
+                "beta_ols": -0.0421,
+                "t": -1.86,
+                "n": 250,
+                "weight_ols": 0.463
+              },
+              "usd_inr": {
+                "beta_ols": -0.4143,
+                "t": -2.39,
+                "n": 250,
+                "weight_ols": 0.587
+              }
+            },
+            "method": "mixed"
+          },
+          {
+            "ticker": "HDFCBANK.NS",
+            "pnl_inr": -2507.64,
+            "pnl_pct": -0.01739,
+            "betas": {
+              "nifty": 1.2416,
+              "crude": -0.0548,
+              "usd_inr": -0.458,
+              "agri_stress": -0.02
+            },
+            "methods": {
+              "nifty": "ols",
+              "crude": "shrunk",
+              "usd_inr": "shrunk",
+              "agri_stress": "judgment"
+            },
+            "beta_stats": {
+              "nifty": {
+                "beta_ols": 1.2446,
+                "t": 18.12,
+                "n": 250,
+                "weight_ols": 0.988
+              },
+              "crude": {
+                "beta_ols": -0.0701,
+                "t": -3.01,
+                "n": 250,
+                "weight_ols": 0.694
+              },
+              "usd_inr": {
+                "beta_ols": -0.6043,
+                "t": -3.38,
+                "n": 250,
+                "weight_ols": 0.741
+              }
+            },
+            "method": "mixed"
+          },
+          {
+            "ticker": "ITC.NS",
+            "pnl_inr": -889.59,
+            "pnl_pct": -0.01159,
+            "betas": {
+              "nifty": 0.7052,
+              "crude": -0.0258,
+              "usd_inr": -0.1284,
+              "agri_stress": -0.07
+            },
+            "methods": {
+              "nifty": "ols",
+              "crude": "shrunk",
+              "usd_inr": "shrunk",
+              "agri_stress": "judgment"
+            },
+            "beta_stats": {
+              "nifty": {
+                "beta_ols": 0.6834,
+                "t": 7.36,
+                "n": 250,
+                "weight_ols": 0.931
+              },
+              "crude": {
+                "beta_ols": -0.0409,
+                "t": -2.05,
+                "n": 250,
+                "weight_ols": 0.513
+              },
+              "usd_inr": {
+                "beta_ols": -0.2662,
+                "t": -1.77,
+                "n": 250,
+                "weight_ols": 0.44
+              }
+            },
+            "method": "mixed"
+          }
+        ],
+        "judgment_factors": [
+          "agri_stress",
+          "crude",
+          "usd_inr"
+        ],
+        "portfolio_value_inr": 337780.0,
+        "insignificant_betas": {
+          "crude": [
+            "RELIANCE.NS t=-1.9"
+          ],
+          "usd_inr": [
+            "ITC.NS t=-1.8"
+          ]
+        },
+        "cases": {
+          "p10": {
+            "shocks": {
+              "nifty": -4.2,
+              "crude": -3.0,
+              "usd_inr": 0.4,
+              "agri_stress": 12
+            },
+            "pnl_inr": -15605.79,
+            "pnl_pct": -0.0462
+          },
+          "median": {
+            "shocks": {
+              "nifty": -1.1,
+              "crude": 2.0,
+              "usd_inr": 0.4,
+              "agri_stress": 4
+            },
+            "pnl_inr": -4683.62,
+            "pnl_pct": -0.01387
+          },
+          "p90": {
+            "shocks": {
+              "nifty": 1.8,
+              "crude": 8.0,
+              "usd_inr": 0.4,
+              "agri_stress": -3
+            },
+            "pnl_inr": 5393.76,
+            "pnl_pct": 0.01597
+          }
+        },
+        "worst_case": "p10",
+        "shock_provenance": [
+          {
+            "factor": "nifty",
+            "p10": -4.2,
+            "median": -1.1,
+            "p90": 1.8,
+            "source_evidence": "ev_analogs_001",
+            "method": "analog distribution of ^NSEI (7 events)"
+          },
+          {
+            "factor": "crude",
+            "p10": -3.0,
+            "median": 2.0,
+            "p90": 8.0,
+            "source_evidence": "ev_analogs_001",
+            "method": "analog distribution of CL=F (7 events)"
+          },
+          {
+            "factor": "usd_inr",
+            "p10": 0.4,
+            "median": 0.4,
+            "p90": 0.4,
+            "source_evidence": "ev_macro_001",
+            "method": "recent move usd_inr_chg_5d persists (assumption)"
+          },
+          {
+            "factor": "agri_stress",
+            "p10": 12,
+            "median": 4,
+            "p90": -3,
+            "source_evidence": "ev_agri_001",
+            "method": "agri model yield anomaly q10/q50/q90 (stress = −yield)"
+          }
+        ],
+        "horizon": "5d"
+      },
+      "summary": "Evidence-based scenario (agri_stress, crude, nifty, usd_inr): median ₹-4,684, range ₹-15,606 to ₹5,394",
+      "source": "quant factor model on evidence-derived shocks (analog p10/median/p90)",
+      "source_url": null,
+      "as_of": "2026-10-03T10:00:00Z",
+      "timestamp": "2026-10-03T15:32:11.073380Z",
+      "freshness_s": 19931,
+      "confidence": 0.2,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 51,
+      "model_version": "quant_v1",
+      "staleness_factor": null
+    }
+  ],
+  "warnings": [
+    "agri_stress uses a judgment sensitivity or an insignificant measured beta",
+    "crude uses a judgment sensitivity or an insignificant measured beta",
+    "usd_inr uses a judgment sensitivity or an insignificant measured beta",
+    "cases combine every factor at the same quantile (comonotonic simplification, not a joint model)"
+  ]
+}

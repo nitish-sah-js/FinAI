@@ -1,0 +1,12 @@
+{
+  "text": "",
+  "parsed": {
+    "agent": "macro_agent",
+    "signal": "neutral",
+    "summary": "Brent rose 2.1% over 5 days [ev_macro_001] while the repo rate is unchanged at 5.5% [ev_macro_001]. Macro is not the main driver this week.",
+    "evidence_ids": [
+      "ev_macro_001"
+    ],
+    "confidence": 0.85
+  }
+}

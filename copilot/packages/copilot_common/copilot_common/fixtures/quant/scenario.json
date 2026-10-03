@@ -1,0 +1,48 @@
+{
+  "evidence": [
+    {
+      "id": "ev_scenario_009",
+      "run_id": null,
+      "tool": "scenario",
+      "value": {
+        "shocks": {
+          "crude": 10,
+          "monsoon_rain": -20
+        },
+        "pnl_inr": -6120.0,
+        "pnl_pct": -0.0189,
+        "by_ticker": [
+          {
+            "ticker": "RELIANCE.NS",
+            "pnl_inr": 2210.0,
+            "betas": {
+              "crude": 0.08
+            },
+            "method": "ols"
+          },
+          {
+            "ticker": "ITC.NS",
+            "pnl_inr": -8330.0,
+            "betas": {
+              "monsoon_rain": 0.06
+            },
+            "method": "judgment"
+          }
+        ]
+      },
+      "summary": "Crude +10%, monsoon -20% → ₹-6,120 (-1.9%)",
+      "source": "quant factor model (OLS + judgment sensitivities)",
+      "as_of": "2026-10-02T10:00:00Z",
+      "timestamp": "2026-10-03T08:45:06Z",
+      "freshness_s": 81906,
+      "confidence": 0.2,
+      "degraded": true,
+      "degraded_reason": "mock",
+      "latency_ms": 300,
+      "model_version": "quant_v1"
+    }
+  ],
+  "warnings": [
+    "monsoon_rain uses judgment sensitivity, not a measured beta"
+  ]
+}

@@ -1,0 +1,4 @@
+{"evidence":[{"id":"ev_prices_001","tool":"prices","value":{"ticker":"ONGC.NS","interval":"1d","rows":[
+ {"date":"2026-09-30","open":242.1,"high":245.0,"low":240.8,"close":244.2,"volume":11823400},
+ {"date":"2026-10-01","open":244.5,"high":249.9,"low":243.7,"close":249.1,"volume":15322100}]},
+ "source":"yfinance","as_of":"2026-10-01T10:00:00Z","timestamp":"2026-10-03T08:45:02Z","confidence":0.95,"degraded":false}],"warnings":[]}

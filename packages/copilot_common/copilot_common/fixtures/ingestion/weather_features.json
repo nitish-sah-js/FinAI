@@ -1,0 +1,40 @@
+{
+  "evidence": [
+    {
+      "id": "ev_weather_001",
+      "run_id": null,
+      "tool": "weather",
+      "value": {
+        "region": "OD-Puri",
+        "lat": 19.81,
+        "lon": 85.83,
+        "rain_anomaly_pct": 240,
+        "heat_index_c": 31.5,
+        "max_temp_c": 30.2,
+        "soil_moisture_0_7cm": 0.41,
+        "storm": {
+          "name": "Dana",
+          "category": "severe cyclonic storm",
+          "basin": "Bay of Bengal",
+          "track_toward": "Odisha coast"
+        },
+        "alerts": [
+          "IMD red alert: Puri, Kendrapara, Jagatsinghpur"
+        ],
+        "horizon_days": 5
+      },
+      "summary": "Severe cyclonic storm Dana tracking to Odisha; rain +240% vs normal",
+      "source": "Open-Meteo forecast API + IMD bulletin",
+      "source_url": "https://api.open-meteo.com/v1/forecast",
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 22500,
+      "confidence": 0.62,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,5 @@
+Classify this headline for an Indian-market investor. Return JSON only:
+{"sentiment":"positive|neutral|negative","confidence":0-1,"affected_tickers":[".NS tickers"],
+ "materiality":"low|medium|high","horizon":"intraday|days|weeks"}
+Translate Hinglish/Hindi internally. Judge the impact on listed Indian companies, not just the tone.
+Headline: {headline}

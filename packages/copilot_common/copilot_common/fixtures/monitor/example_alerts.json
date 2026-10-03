@@ -1,0 +1,13 @@
+[
+  {"tier": 3, "kind": "weather_threshold", "tickers": ["ADANIPORTS.NS", "ONGC.NS"],
+   "headline": "Very severe cyclone 310 km off Puri threatens Paradip; ports and ONGC exposure is 22% of portfolio; confidence medium.",
+   "reason": "OD-Puri alerts [cyclone, heavy_rain]; rain +184% vs normal; link strength ADANIPORTS 0.8, ONGC 0.5",
+   "impact_score": 0.66, "confidence": 0.75, "evidence_ids": ["ev_weather_001"],
+   "cooldown_key": "weather_threshold:OD-Puri", "acknowledged": false,
+   "suggested_query": "How does the Odisha cyclone affect my portfolio over 5 days?"},
+  {"tier": 1, "kind": "news_burst", "tickers": ["ITC.NS"],
+   "headline": "ITC.NS: 5 headlines in the last hour versus about 1 normally; 6% of portfolio; confidence medium.",
+   "reason": "k=5, lambda=0.9, z=4.3", "impact_score": 0.24, "confidence": 0.6, "evidence_ids": [],
+   "cooldown_key": "news_burst:ITC.NS", "acknowledged": false,
+   "suggested_query": "What is the news on ITC and does it matter?"}
+]

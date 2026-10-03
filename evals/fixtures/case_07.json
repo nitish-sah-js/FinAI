@@ -1,0 +1,324 @@
+{
+ "case_id": 7,
+ "query": "Heatwave in north India — power and cooling stocks?",
+ "lang": "en",
+ "portfolio": {
+  "portfolio_id": "demo",
+  "currency": "INR",
+  "cash": 0.0,
+  "holdings": [
+   {
+    "ticker": "RELIANCE.NS",
+    "qty": 50,
+    "avg_price": 2850,
+    "sector": "Energy"
+   },
+   {
+    "ticker": "ONGC.NS",
+    "qty": 600,
+    "avg_price": 255,
+    "sector": "Oil&Gas"
+   },
+   {
+    "ticker": "COALINDIA.NS",
+    "qty": 700,
+    "avg_price": 410,
+    "sector": "Energy"
+   },
+   {
+    "ticker": "NTPC.NS",
+    "qty": 500,
+    "avg_price": 355,
+    "sector": "Utilities"
+   },
+   {
+    "ticker": "ITC.NS",
+    "qty": 450,
+    "avg_price": 430,
+    "sector": "FMCG"
+   },
+   {
+    "ticker": "HINDUNILVR.NS",
+    "qty": 50,
+    "avg_price": 2450,
+    "sector": "FMCG"
+   },
+   {
+    "ticker": "HDFCBANK.NS",
+    "qty": 120,
+    "avg_price": 1850,
+    "sector": "Banks"
+   },
+   {
+    "ticker": "UPL.NS",
+    "qty": 230,
+    "avg_price": 650,
+    "sector": "Agri"
+   }
+  ]
+ },
+ "evidence": [
+  {
+   "id": "ev_weather_001",
+   "run_id": null,
+   "tool": "weather",
+   "value": {
+    "region": "DL-NewDelhi",
+    "lat": 28.61,
+    "lon": 77.21,
+    "rain_anomaly_pct": -60,
+    "heat_index_c": 49.0,
+    "max_temp_c": 46.5,
+    "soil_moisture_0_7cm": 0.33,
+    "storm": null,
+    "alerts": [
+     "IMD heatwave warning: Delhi, Punjab, Haryana"
+    ],
+    "horizon_days": 5
+   },
+   "summary": "DL-NewDelhi: rain -60% vs normal, max 46.5 °C",
+   "source": "Open-Meteo forecast + IMD/NHC",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 22500,
+   "confidence": 0.72,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_agri_001",
+   "run_id": null,
+   "tool": "agri",
+   "value": {
+    "region_id": "PB-Ludhiana",
+    "crop_season": "kharif",
+    "features": {
+     "ndvi_anomaly_z": -0.8,
+     "vci": 0.34
+    },
+    "stress_class": "watch",
+    "yield_anomaly_pct": {
+     "q10": -7.0,
+     "q50": -2.5,
+     "q90": 1.5
+    },
+    "stress_lead_days": 30,
+    "model_version": "gbm_v1",
+    "data_source": "Sentinel-2 NDVI (district zonal mean)"
+   },
+   "summary": "PB-Ludhiana: watch, NDVI z -0.8",
+   "source": "gbm_v1 on Sentinel-2 NDVI",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 345600,
+   "confidence": 0.58,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_macro_001",
+   "run_id": null,
+   "tool": "macro",
+   "value": {
+    "repo_rate": 5.5,
+    "repo_change_bps": 0,
+    "cpi_yoy": 3.1,
+    "usd_inr": 88.3,
+    "usd_inr_chg_5d": 0.001,
+    "brent": 69.5,
+    "brent_chg_5d": 0.011,
+    "us10y": 4.12,
+    "us10y_chg_5d": -0.03
+   },
+   "summary": "Brent +1.1% 5d; repo +0 bps",
+   "source": "RBI, MoSPI, FRED, EIA",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 86400,
+   "confidence": 0.85,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_analogs_001",
+   "run_id": null,
+   "tool": "analogs",
+   "value": {
+    "analogs": [
+     {
+      "event_id": "heatwave_2022",
+      "title": "North India heatwave 2022",
+      "similarity": 0.85
+     },
+     {
+      "event_id": "heatwave_2019",
+      "title": "Heatwave 2019",
+      "similarity": 0.78
+     },
+     {
+      "event_id": "heatwave_2023",
+      "title": "Heatwave 2023",
+      "similarity": 0.74
+     }
+    ],
+    "distribution": [
+     {
+      "asset": "NTPC.NS",
+      "horizon": "5d",
+      "measure": "abnormal",
+      "n": 3,
+      "median": 0.017,
+      "p10": -0.006,
+      "p90": 0.041
+     },
+     {
+      "asset": "^NSEI",
+      "horizon": "5d",
+      "measure": "raw",
+      "n": 3,
+      "median": 0.001,
+      "p10": -0.012,
+      "p90": 0.013
+     }
+    ],
+    "confidence": "medium"
+   },
+   "summary": "3 analogs",
+   "source": "Weaviate HistoricalEvent",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": null,
+   "confidence": 0.6,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_exposure_001",
+   "run_id": null,
+   "tool": "exposure",
+   "value": {
+    "by_sector": {
+     "Energy": 0.31,
+     "Oil&Gas": 0.11,
+     "Utilities": 0.12,
+     "FMCG": 0.21,
+     "Banks": 0.15,
+     "Agri": 0.1
+    }
+   },
+   "summary": "Energy 31%, FMCG 21%, Banks 15%",
+   "source": "quant engine",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.8,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_sentiment_001",
+   "run_id": null,
+   "tool": "sentiment",
+   "value": {
+    "portfolio_sentiment": -0.18,
+    "by_ticker": {}
+   },
+   "summary": "Portfolio-weighted tone -0.18",
+   "source": "FinBERT-India",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 9000,
+   "confidence": 0.7,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_risk_001",
+   "run_id": null,
+   "tool": "risk",
+   "value": {
+    "method": "monte_carlo",
+    "horizon_days": 5,
+    "confidence_level": 0.95,
+    "var_inr": 46100,
+    "cvar_inr": 61313,
+    "var_pct": 0.031
+   },
+   "summary": "5d 95% VaR ₹46,100",
+   "source": "quant engine (Monte Carlo)",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.8,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_hedge_001",
+   "run_id": null,
+   "tool": "hedge",
+   "value": {
+    "proposals": [
+     {
+      "hedge_id": "h1",
+      "instrument": "NIFTY OCT FUT short",
+      "underlying": "^NSEI",
+      "side": "sell",
+      "quantity": 1,
+      "unit": "lots",
+      "hedge_ratio": 0.33,
+      "est_cost_inr": 1850,
+      "rationale": "beta hedge",
+      "sizing_method": "beta",
+      "evidence_ids": [
+       "ev_hedge_001"
+      ]
+     }
+    ],
+    "pre_var_inr": 46100,
+    "post_var_inr": 34800,
+    "portfolio_beta": 0.82
+   },
+   "summary": "1 lot NIFTY OCT FUT short",
+   "source": "quant engine (beta sizing)",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.75,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  }
+ ]
+}

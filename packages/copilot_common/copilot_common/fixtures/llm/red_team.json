@@ -1,0 +1,12 @@
+{
+  "text": "",
+  "parsed": {
+    "reasons": [
+      "Only 4 analogs, and the p10-p90 range spans zero [ev_analogs_001]",
+      "Weather evidence is several hours old; the track can shift [ev_weather_001]",
+      "The beta hedge assumes beta 0.82 holds in stress; correlations rose in past cyclones [ev_hedge_001]"
+    ],
+    "verdict": "proceed with caution",
+    "verdict_reason": "Direction is plausible but the magnitude is poorly constrained."
+  }
+}

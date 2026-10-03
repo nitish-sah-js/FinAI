@@ -1,0 +1,7 @@
+
+appId: "in.copilot.pet"
+productName: "Copilot Pet"
+win:
+  target:
+    - nsis
+    - portable

@@ -1,0 +1,12 @@
+{
+  "text": "",
+  "parsed": {
+    "sentiment": "negative",
+    "confidence": 0.78,
+    "affected_tickers": [
+      "ADANIPORTS.NS"
+    ],
+    "materiality": "medium",
+    "horizon": "days"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "_meta": "NSE index derivative lot sizes. NIFTY 65 and BANKNIFTY 30 per the NSE revision effective from the Jan-2026 series (circular Oct 2025). Re-VERIFY on nseindia.com before any use; NSE revises these periodically. Paper trading only.",
+  "^NSEI": 65,
+  "^NSEBANK": 30,
+  "^NSMIDCP": 120,
+  "NIFTY_FIN_SERVICE.NS": 60
+}

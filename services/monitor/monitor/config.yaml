@@ -1,0 +1,41 @@
+# All monitor knobs (11 §3–5). Edited live during rehearsal: GET /monitor/state shows what is loaded.
+thresholds:
+  price_z: 3.0
+  volume_z: 3.0
+  news_burst_z: 3.0
+  news_burst_k: 3
+  news_lambda_floor: 0.5
+  sentiment_shift: 0.4
+  sentiment_min_n: 3
+  min_impact: 0.1           # candidates below this are dropped
+  watchlist_factor: 0.3     # relevance multiplier for watchlist (not held) tickers
+
+severity:
+  weather: {cyclone: 0.9, hurricane: 0.9, heavy_rain: 0.6, heatwave: 0.5, rain_deficit: 0.5}
+  agri: {stressed: 0.6, severe: 0.9}
+
+cooldown_minutes:
+  price_z: 30
+  volume_z: 30
+  news_burst: 60
+  sentiment_shift: 120
+  weather_threshold: 360
+  agri_stress: 1440
+merge_window_minutes: 10    # price_z + news_burst on the same ticker → one alert
+
+intervals_s:
+  feed: 15
+  prices: 300               # own 5m-bar refresh (ingestion ticks are used when available)
+  baselines: 3600
+  weather: 1800
+  agri: 21600
+  portfolio: 300
+  mock: 30
+  mock_first: 2             # first MOCK emission after startup (s)
+  heartbeat: 20
+
+writer:
+  max_words: 25
+  timeout_s: 1.5
+
+watchlist: []               # extra tickers to monitor at reduced relevance

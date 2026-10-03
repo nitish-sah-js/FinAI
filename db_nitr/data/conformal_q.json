@@ -1,0 +1,98 @@
+{
+  "1d": {
+    "cyclone": {
+      "q": 0.006701,
+      "n_calib": 14,
+      "coverage_target": 0.8
+    },
+    "hurricane": {
+      "q": 0.011616,
+      "n_calib": 31,
+      "coverage_target": 0.8
+    },
+    "monsoon_deficit": {
+      "q": 0.029642,
+      "n_calib": 7,
+      "coverage_target": 0.8
+    },
+    "policy": {
+      "q": 0.018039,
+      "n_calib": 2,
+      "coverage_target": 0.8
+    },
+    "rate_shock": {
+      "q": 0.010482,
+      "n_calib": 4,
+      "coverage_target": 0.8
+    },
+    "_all": {
+      "q": 0.012305,
+      "n_calib": 58,
+      "coverage_target": 0.8
+    }
+  },
+  "5d": {
+    "cyclone": {
+      "q": 0.024676,
+      "n_calib": 14,
+      "coverage_target": 0.8
+    },
+    "hurricane": {
+      "q": 0.032937,
+      "n_calib": 31,
+      "coverage_target": 0.8
+    },
+    "monsoon_deficit": {
+      "q": 0.043473,
+      "n_calib": 7,
+      "coverage_target": 0.8
+    },
+    "policy": {
+      "q": 0.023651,
+      "n_calib": 2,
+      "coverage_target": 0.8
+    },
+    "rate_shock": {
+      "q": 0.023817,
+      "n_calib": 4,
+      "coverage_target": 0.8
+    },
+    "_all": {
+      "q": 0.031811,
+      "n_calib": 58,
+      "coverage_target": 0.8
+    }
+  },
+  "20d": {
+    "cyclone": {
+      "q": 0.048224,
+      "n_calib": 14,
+      "coverage_target": 0.8
+    },
+    "hurricane": {
+      "q": 0.059997,
+      "n_calib": 31,
+      "coverage_target": 0.8
+    },
+    "monsoon_deficit": {
+      "q": 0.092364,
+      "n_calib": 7,
+      "coverage_target": 0.8
+    },
+    "policy": {
+      "q": 0.058714,
+      "n_calib": 2,
+      "coverage_target": 0.8
+    },
+    "rate_shock": {
+      "q": 0.009064,
+      "n_calib": 4,
+      "coverage_target": 0.8
+    },
+    "_all": {
+      "q": 0.058324,
+      "n_calib": 58,
+      "coverage_target": 0.8
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "text": "",
+  "parsed": {
+    "intent": "event_impact",
+    "event_type": "cyclone",
+    "region": "Odisha",
+    "tickers": [],
+    "asset_classes": [
+      "equity"
+    ],
+    "horizon_days": 5,
+    "references_portfolio": true,
+    "needs_tools": [
+      "weather",
+      "analogs",
+      "exposure",
+      "risk",
+      "sentiment"
+    ]
+  }
+}

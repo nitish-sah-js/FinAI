@@ -1,0 +1,43 @@
+{
+  "evidence": [
+    {
+      "id": "ev_event_study_011",
+      "run_id": null,
+      "tool": "event_study",
+      "value": {
+        "ticker": "ONGC.NS",
+        "event_date": "2019-05-03",
+        "window": [
+          -1,
+          5
+        ],
+        "alpha": 0.0002,
+        "beta": 0.91,
+        "car": -0.034,
+        "car_t": -2.21,
+        "p_value": 0.029,
+        "ar_series": [
+          {
+            "d": -1,
+            "ar": -0.004
+          },
+          {
+            "d": 0,
+            "ar": -0.012
+          }
+        ]
+      },
+      "summary": "ONGC CAR(-1,+5) around 2019-05-03 = -3.4% (p=0.03)",
+      "source": "market model vs ^NSEI",
+      "as_of": "2019-05-10T10:00:00Z",
+      "timestamp": "2026-10-03T08:45:06Z",
+      "freshness_s": 81906,
+      "confidence": 0.4,
+      "degraded": true,
+      "degraded_reason": "mock",
+      "latency_ms": 300,
+      "model_version": "quant_v1"
+    }
+  ],
+  "warnings": []
+}

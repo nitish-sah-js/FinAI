@@ -1,0 +1,83 @@
+{
+  "evidence": [
+    {
+      "id": "ev_analogs_001",
+      "run_id": null,
+      "tool": "analogs",
+      "value": {
+        "analogs": [
+          {
+            "event_id": "cyclone_fani_2019",
+            "title": "Cyclone Fani landfall, Odisha",
+            "event_date": "2019-05-03",
+            "similarity": 0.87,
+            "why_similar": "same coast, extremely severe cyclone, port and power disruption"
+          },
+          {
+            "event_id": "cyclone_amphan_2020",
+            "title": "Cyclone Amphan, West Bengal/Odisha",
+            "event_date": "2020-05-20",
+            "similarity": 0.81,
+            "why_similar": "Bay of Bengal super cyclone, east-coast industrial belt"
+          },
+          {
+            "event_id": "cyclone_phailin_2013",
+            "title": "Cyclone Phailin, Odisha",
+            "event_date": "2013-10-12",
+            "similarity": 0.78,
+            "why_similar": "Odisha landfall near Gopalpur, mass evacuation"
+          },
+          {
+            "event_id": "cyclone_hudhud_2014",
+            "title": "Cyclone Hudhud, Andhra Pradesh",
+            "event_date": "2014-10-12",
+            "similarity": 0.72,
+            "why_similar": "east coast, port city hit (Visakhapatnam)"
+          }
+        ],
+        "distribution": [
+          {
+            "asset": "COALINDIA.NS",
+            "horizon": "5d",
+            "measure": "abnormal",
+            "n": 4,
+            "median": -0.012,
+            "p10": -0.041,
+            "p90": 0.012,
+            "conformal_lo": -0.055,
+            "conformal_hi": 0.02,
+            "coverage_target": 0.8,
+            "n_calib": 20
+          },
+          {
+            "asset": "^NSEI",
+            "horizon": "5d",
+            "measure": "raw",
+            "n": 4,
+            "median": 0.002,
+            "p10": -0.018,
+            "p90": 0.015,
+            "conformal_lo": -0.026,
+            "conformal_hi": 0.022,
+            "coverage_target": 0.8,
+            "n_calib": 20
+          }
+        ],
+        "confidence": "medium",
+        "filters_relaxed": false
+      },
+      "summary": "4 analogs; COALINDIA 5d abnormal p10..p90 -4.1%..+1.2%",
+      "source": "Weaviate HistoricalEvent (bge-small-en-v1.5, hybrid alpha 0.6)",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": null,
+      "confidence": 0.6,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

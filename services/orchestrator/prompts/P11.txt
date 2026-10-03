@@ -1,0 +1,2 @@
+Write ONE sentence under 25 words: what happened, which holding, why it matters, and the confidence.
+FACTS: {alert_facts_json}

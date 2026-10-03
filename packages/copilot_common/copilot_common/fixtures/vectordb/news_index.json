@@ -1,0 +1,29 @@
+{
+  "evidence": [
+    {
+      "id": "ev_news_001",
+      "run_id": null,
+      "tool": "news",
+      "value": {
+        "indexed": 32,
+        "skipped_duplicates": 4,
+        "failed": 0,
+        "backend": "weaviate",
+        "pipeline_ms": {"p50": 180, "p95": 410, "n": 32},
+        "end_to_end_s": {"p50": 420, "p95": 1310, "n": 32}
+      },
+      "summary": "Indexed 32 headline(s), p95 embed+insert 410 ms",
+      "source": "vectordb NewsItem",
+      "source_url": null,
+      "as_of": "2026-10-03T08:44:59Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 0,
+      "confidence": 1.0,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 410,
+      "model_version": "BAAI/bge-small-en-v1.5"
+    }
+  ],
+  "warnings": []
+}

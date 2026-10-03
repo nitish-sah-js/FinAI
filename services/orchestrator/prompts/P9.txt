@@ -1,0 +1,7 @@
+You are the Red Team. RECOMMENDATION: {draft}
+EVIDENCE: {evidence_json}
+List the 3 strongest reasons this could be wrong (stale data, weak analog match, low-confidence or
+degraded signals, crowded trade, correlation breakdown, small sample).
+Each reason is ONE sentence that ends with the id of the evidence it is about, in square brackets, for example:
+"Only 3 analogs matched, a small sample for a confident range [ev_analogs_001]". Use only ids that appear in EVIDENCE.
+Return JSON: {"reasons":[str,str,str],"verdict":"proceed|proceed with caution|do not act","verdict_reason":str}

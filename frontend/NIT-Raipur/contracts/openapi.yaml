@@ -1,0 +1,788 @@
+openapi: 3.1.0
+info:
+  title: Utsava Terminal API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+paths:
+  /health:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+  /portfolio:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+  /market/prices:
+    get:
+      parameters:
+        - name: ticker
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: interval
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketPrices'
+  /market/macro:
+    get:
+      parameters:
+        - name: series
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MacroData'
+  /weather/events:
+    get:
+      parameters:
+        - name: active
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeatherEvents'
+  /sentiment/feed:
+    get:
+      parameters:
+        - name: ticker
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SentimentFeed'
+  /sentiment/aggregate:
+    get:
+      parameters:
+        - name: ticker
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: window
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SentimentAggregate'
+  /risk/summary:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskSummary'
+  /risk/simulate:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shocks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      target: { type: string }
+                      type: { type: string }
+                      magnitudePct: { type: number }
+                horizonDays: { type: integer }
+                paths: { type: integer }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResult'
+  /queries:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text: { type: string }
+                explainLevel: { type: string, enum: ['expert', 'simple'] }
+                context:
+                  type: object
+                  properties:
+                    alertId: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  queryId: { type: string }
+  /queries/{id}:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+  /queries/{id}/audit:
+    get:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAudit'
+  /analogs:
+    get:
+      parameters:
+        - name: queryId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Analogs'
+  /recommendations/{id}/decision:
+    post:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                decision: { type: string, enum: ['approve', 'reject'] }
+                note: { type: string }
+      responses:
+        '200':
+          description: OK
+  /paper-trades:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recommendation'
+  /alerts:
+    get:
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsResponse'
+  /alerts/{id}:
+    patch:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status: { type: string, enum: ['new', 'acknowledged', 'dismissed'] }
+      responses:
+        '200':
+          description: OK
+  /monitor/status:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorStatus'
+  /backtest/summary:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BacktestSummary'
+  /metrics/latency:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LatencyMetrics'
+  /audit/log:
+    get:
+      parameters:
+        - name: from
+          in: query
+          schema: { type: string, format: date-time }
+        - name: to
+          in: query
+          schema: { type: string, format: date-time }
+        - name: q
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /system/chaos:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode: { type: string, enum: ['none', 'weather_down', 'rate_limited', 'stale_data'] }
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        mode: { type: string, enum: ['live', 'replay', 'degraded'] }
+        degradedReasons: { type: array, items: { type: string } }
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              status: { type: string }
+              latencyMs: { type: integer }
+              lastOkAt: { type: string, format: date-time }
+              rateLimit:
+                type: object
+                nullable: true
+                properties:
+                  remaining: { type: integer }
+                  resetAt: { type: string, format: date-time }
+    Portfolio:
+      type: object
+      properties:
+        asOf: { type: string, format: date-time }
+        baseCurrency: { type: string }
+        totalValue: { type: number }
+        holdings:
+          type: array
+          items:
+            type: object
+            properties:
+              ticker: { type: string }
+              name: { type: string }
+              assetClass: { type: string }
+              exchange: { type: string }
+              sector: { type: string }
+              quantity: { type: number }
+              avgCost: { type: number }
+              lastPrice: { type: number }
+              marketValue: { type: number }
+              weightPct: { type: number }
+              dayChangePct: { type: number }
+              exposureTags: { type: array, items: { type: string } }
+    MarketPrices:
+      type: object
+      properties:
+        ticker: { type: string }
+        interval: { type: string }
+        source: { type: string }
+        asOf: { type: string, format: date-time }
+        candles:
+          type: array
+          items:
+            type: object
+            properties:
+              t: { type: string, format: date-time }
+              o: { type: number }
+              h: { type: number }
+              l: { type: number }
+              c: { type: number }
+              v: { type: number }
+    MacroData:
+      type: object
+      properties:
+        series:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              name: { type: string }
+              unit: { type: string }
+              source: { type: string }
+              asOf: { type: string, format: date-time }
+              points:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    t: { type: string, format: date-time }
+                    v: { type: number }
+    WeatherEvents:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              type: { type: string }
+              name: { type: string }
+              severity: { type: string }
+              region: { type: string }
+              startsAt: { type: string, format: date-time }
+              endsAt: { type: string, format: date-time }
+              forecastAsOf: { type: string, format: date-time }
+              source: { type: string }
+              summary: { type: string }
+              affectedTickers: { type: array, items: { type: string } }
+    SentimentFeed:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              headline: { type: string }
+              source: { type: string }
+              url: { type: string }
+              publishedAt: { type: string, format: date-time }
+              tickers: { type: array, items: { type: string } }
+              finbert:
+                type: object
+                properties:
+                  label: { type: string }
+                  score: { type: number }
+              llm:
+                type: object
+                nullable: true
+                properties:
+                  label: { type: string }
+                  score: { type: number }
+                  materiality: { type: number }
+                  horizon: { type: string }
+              combinedScore: { type: number }
+              confidence: { type: number }
+              relevance:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ticker: { type: string }
+                    score: { type: number }
+    SentimentAggregate:
+      type: object
+      properties:
+        ticker: { type: string }
+        window: { type: string }
+        points:
+          type: array
+          items:
+            type: object
+            properties:
+              t: { type: string, format: date-time }
+              score: { type: number }
+              count: { type: integer }
+    RiskSummary:
+      type: object
+      properties:
+        asOf: { type: string, format: date-time }
+        horizonDays: { type: integer }
+        var95: { type: number }
+        var99: { type: number }
+        cvar: { type: number }
+        volatility: { type: number }
+        beta: { type: number }
+        exposureBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              key: { type: string }
+              label: { type: string }
+              weightPct: { type: number }
+              riskContributionPct: { type: number }
+        correlation:
+          type: object
+          properties:
+            tickers: { type: array, items: { type: string } }
+            matrix:
+              type: array
+              items: { type: array, items: { type: number } }
+    SimulationResult:
+      type: object
+      properties:
+        percentiles:
+          type: array
+          items:
+            type: object
+            properties:
+              t: { type: integer }
+              p5: { type: number }
+              p25: { type: number }
+              p50: { type: number }
+              p75: { type: number }
+              p95: { type: number }
+        expectedPnl: { type: number }
+        worstCase: { type: number }
+        asOf: { type: string, format: date-time }
+    Query:
+      type: object
+      properties:
+        id: { type: string }
+        text: { type: string }
+        status: { type: string }
+        parsedIntent:
+          type: object
+          properties:
+            type: { type: string }
+            tickers: { type: array, items: { type: string } }
+            horizon: { type: string }
+            eventRef: { type: string, nullable: true }
+        plan:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              agent: { type: string }
+              task: { type: string }
+        answer:
+          type: object
+          properties:
+            summary: { type: string }
+            sections:
+              type: array
+              items:
+                type: object
+                properties:
+                  title: { type: string }
+                  body: { type: string }
+            range:
+              type: object
+              nullable: true
+              properties:
+                median: { type: number }
+                p10: { type: number }
+                p90: { type: number }
+                unit: { type: string }
+                horizonDays: { type: integer }
+            confidence: { type: number }
+            counterArgument: { type: string }
+            warnings: { type: array, items: { type: string } }
+            degraded: { type: boolean }
+            recommendations: { type: array, items: { $ref: '#/components/schemas/Recommendation' } }
+            ledger: { type: array, items: { $ref: '#/components/schemas/LedgerEntry' } }
+        latency:
+          type: array
+          items:
+            type: object
+            properties:
+              stage: { type: string }
+              ms: { type: integer }
+    QueryAudit:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              stepId: { type: string }
+              agent: { type: string }
+              status: { type: string }
+              startedAt: { type: string, format: date-time }
+              endedAt: { type: string, format: date-time }
+              input: { type: string }
+              output: { type: string }
+              toolCalls:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name: { type: string }
+                    args: { type: object }
+                    resultSummary: { type: string }
+              evidence:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type: { type: string }
+                    ref: { type: string }
+                    detail: { type: string }
+    Analogs:
+      type: object
+      properties:
+        analogs:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              name: { type: string }
+              date: { type: string, format: date-time }
+              similarity: { type: number }
+              whySimilar:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    factor: { type: string }
+                    detail: { type: string }
+              outcomes:
+                type: object
+                properties:
+                  d1: { type: number }
+                  d5: { type: number }
+                  d20:
+                    type: object
+                    properties:
+                      median: { type: number }
+                      p10: { type: number }
+                      p90: { type: number }
+    AlertsResponse:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              tier: { type: integer, enum: [1, 2, 3] }
+              createdAt: { type: string, format: date-time }
+              title: { type: string }
+              reason: { type: string }
+              tickers: { type: array, items: { type: string } }
+              anomalyType: { type: string }
+              materiality: { type: string }
+              confidence: { type: number }
+              evidenceIds: { type: array, items: { type: string } }
+              linkedQueryId: { type: string, nullable: true }
+              status: { type: string, enum: ['new', 'acknowledged', 'dismissed'] }
+              channels:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type: { type: string, enum: ['pet', 'email', 'telegram'] }
+                    status: { type: string }
+    MonitorStatus:
+      type: object
+      properties:
+        running: { type: boolean }
+        lastTickAt: { type: string, format: date-time }
+        watchedTickers: { type: array, items: { type: string } }
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              name: { type: string }
+              threshold: { type: number }
+              enabled: { type: boolean }
+        feeds:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              status: { type: string }
+              lastItemAt: { type: string, format: date-time }
+    BacktestSummary:
+      type: object
+      properties:
+        generatedAt: { type: string, format: date-time }
+        runs:
+          type: array
+          items:
+            type: object
+            properties:
+              eventId: { type: string }
+              name: { type: string }
+              date: { type: string, format: date-time }
+              prediction: { type: number }
+              actual: { type: number }
+              hit: { type: boolean }
+              errorPct: { type: number }
+        metrics:
+          type: array
+          items:
+            type: object
+            properties:
+              system: { type: string, enum: ['multi-source', 'price-only', 'sentiment-only'] }
+              hitRate: { type: number }
+              directionalAccuracy: { type: number }
+              mae: { type: number }
+    LatencyMetrics:
+      type: object
+      properties:
+        latest:
+          type: object
+          properties:
+            ingestionMs: { type: integer }
+            embeddingMs: { type: integer }
+            indexingMs: { type: integer }
+            retrievalMs: { type: integer }
+            agentMs: { type: integer }
+            totalMs: { type: integer }
+        p50: { type: integer }
+        p95: { type: integer }
+        series:
+          type: array
+          items:
+            type: object
+            properties:
+              t: { type: string, format: date-time }
+              totalMs: { type: integer }
+    Recommendation:
+      type: object
+      properties:
+        id: { type: string }
+        action: { type: string, enum: ['hedge', 'reduce', 'increase', 'hold'] }
+        instrument: { type: string }
+        ticker: { type: string }
+        sizePctOfPortfolio: { type: number }
+        rationale: { type: string }
+        expectedImpact:
+          type: object
+          properties:
+            median: { type: number }
+            p10: { type: number }
+            p90: { type: number }
+            unit: { type: string }
+            horizonDays: { type: integer }
+        riskBefore: { type: number }
+        riskAfter: { type: number }
+        confidence: { type: number }
+        status: { type: string, enum: ['proposed', 'approved', 'rejected', 'executed_paper'] }
+        evidenceIds: { type: array, items: { type: string } }
+    LedgerEntry:
+      type: object
+      properties:
+        id: { type: string }
+        label: { type: string }
+        value: { type: number }
+        unit: { type: string }
+        kind: { type: string, enum: ['api', 'computed', 'retrieved'] }
+        source: { type: string }
+        toolCall:
+          type: object
+          properties:
+            name: { type: string }
+            args: { type: object }
+        retrievedAt: { type: string, format: date-time }
+        inputs: { type: array, items: { type: string } }

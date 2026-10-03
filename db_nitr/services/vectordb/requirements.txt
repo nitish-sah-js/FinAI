@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+weaviate-client>=4.9
+sentence-transformers
+yfinance
+pandas
+numpy
+pydantic>=2.6
+pydantic-settings>=2.2
+httpx

@@ -1,0 +1,64 @@
+{
+  "evidence": [
+    {
+      "id": "ev_news_001",
+      "run_id": null,
+      "tool": "news",
+      "value": {
+        "items": [
+          {
+            "news_id": "n1",
+            "title": "IMD issues red alert as Cyclone Dana nears Odisha coast",
+            "summary": "Landfall expected near Puri within 48 hours.",
+            "source": "Economic Times",
+            "url": "https://economictimes.indiatimes.com/",
+            "published_at": "2026-10-03T05:10:00Z",
+            "tickers": [
+              "COALINDIA.NS",
+              "NTPC.NS"
+            ],
+            "category": "news"
+          },
+          {
+            "news_id": "n2",
+            "title": "Paradip port suspends operations ahead of cyclone",
+            "summary": "Coal and crude handling halted.",
+            "source": "Livemint",
+            "url": "https://www.livemint.com/",
+            "published_at": "2026-10-03T06:00:00Z",
+            "tickers": [
+              "COALINDIA.NS",
+              "ADANIPORTS.NS"
+            ],
+            "category": "news"
+          },
+          {
+            "news_id": "n3",
+            "title": "FMCG demand outlook steady despite weather disruptions",
+            "summary": "Rural recovery intact, say analysts.",
+            "source": "Business Standard",
+            "url": "https://www.business-standard.com/",
+            "published_at": "2026-10-03T04:30:00Z",
+            "tickers": [
+              "ITC.NS",
+              "HINDUNILVR.NS"
+            ],
+            "category": "news"
+          }
+        ]
+      },
+      "summary": "3 relevant headlines in the last 24h",
+      "source": "RSS (ET, Mint, BS) + GDELT",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 9900,
+      "confidence": 0.9,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

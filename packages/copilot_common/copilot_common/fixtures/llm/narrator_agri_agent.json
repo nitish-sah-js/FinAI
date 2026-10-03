@@ -1,0 +1,12 @@
+{
+  "text": "",
+  "parsed": {
+    "agent": "agri_agent",
+    "signal": "bearish",
+    "summary": "Cuttack kharif paddy is on 'watch' with NDVI -0.6σ below normal [ev_agri_001]; yield anomaly ranges from -8% to +1% (median -3.5%) [ev_agri_001]. This is a slow signal over weeks, not days.",
+    "evidence_ids": [
+      "ev_agri_001"
+    ],
+    "confidence": 0.55
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "evidence": [
+    {
+      "id": "ev_hedge_validation_001",
+      "run_id": null,
+      "tool": "hedge_validation",
+      "value": {
+        "underlying": "^NSEI",
+        "horizon_days": 5,
+        "lookback_days": 250,
+        "method": "min_variance, fitted out of sample",
+        "events": [
+          {
+            "event_id": "covid",
+            "event_date": "2020-03-09",
+            "n_holdings": 3,
+            "hedge_ratio": 0.9643,
+            "ret_unhedged": -0.08752,
+            "ret_hedged": 0.00323,
+            "dd_unhedged": 0.1262,
+            "dd_hedged": 0.00773,
+            "dd_reduction_pp": 11.847,
+            "improved": true
+          },
+          {
+            "event_id": "demon",
+            "event_date": "2016-11-09",
+            "n_holdings": 3,
+            "hedge_ratio": 0.8668,
+            "ret_unhedged": -0.03078,
+            "ret_hedged": 0.01336,
+            "dd_unhedged": 0.0333,
+            "dd_hedged": 0.00105,
+            "dd_reduction_pp": 3.225,
+            "improved": true
+          },
+          {
+            "event_id": "ukraine",
+            "event_date": "2022-02-24",
+            "n_holdings": 3,
+            "hedge_ratio": 1.0513,
+            "ret_unhedged": -0.03631,
+            "ret_hedged": -0.00813,
+            "dd_unhedged": 0.04925,
+            "dd_hedged": 0.00991,
+            "dd_reduction_pp": 3.935,
+            "improved": true
+          },
+          {
+            "event_id": "il_fs",
+            "event_date": "2018-09-21",
+            "n_holdings": 3,
+            "hedge_ratio": 0.9209,
+            "ret_unhedged": 0.00611,
+            "ret_hedged": 0.02716,
+            "dd_unhedged": 0.0128,
+            "dd_hedged": 0.0,
+            "dd_reduction_pp": 1.28,
+            "improved": true
+          },
+          {
+            "event_id": "elect24",
+            "event_date": "2024-06-04",
+            "n_holdings": 3,
+            "hedge_ratio": 1.0431,
+            "ret_unhedged": -0.00262,
+            "ret_hedged": -0.00241,
+            "dd_unhedged": 0.05255,
+            "dd_hedged": 0.0116,
+            "dd_reduction_pp": 4.095,
+            "improved": true
+          },
+          {
+            "event_id": "taper",
+            "event_date": "2013-05-22",
+            "n_holdings": 3,
+            "hedge_ratio": 0.8674,
+            "ret_unhedged": 0.01861,
+            "ret_hedged": 0.01902,
+            "dd_unhedged": 0.0164,
+            "dd_hedged": 0.00408,
+            "dd_reduction_pp": 1.232,
+            "improved": true
+          }
+        ],
+        "skipped": [],
+        "n": 6,
+        "n_improved": 6,
+        "median_dd_reduction_pp": 3.58,
+        "range_dd_reduction_pp": [
+          1.256,
+          7.971
+        ],
+        "range_kind": "p10–p90",
+        "assumptions": [
+          "futures modelled on the spot index (basis and carry ignored)",
+          "hedge ratio fitted on the lookback window BEFORE each event only",
+          "small n: a sanity check, not proof"
+        ],
+        "optimizer": {
+          "instruments": {
+            "^NSEI": {
+              "name": "NIFTY futures",
+              "venue": "NSE F&O",
+              "cap": 1.5,
+              "proxy": null
+            },
+            "^NSEBANK": {
+              "name": "BANKNIFTY futures",
+              "venue": "NSE F&O",
+              "cap": 1.0,
+              "proxy": null
+            },
+            "INR=X": {
+              "name": "USDINR futures",
+              "venue": "NSE currency derivatives",
+              "cap": 0.5,
+              "proxy": null
+            },
+            "CL=F": {
+              "name": "MCX crude oil",
+              "venue": "MCX",
+              "cap": 0.3,
+              "proxy": "WTI (CL=F) price as proxy: basis risk"
+            },
+            "GC=F": {
+              "name": "MCX gold",
+              "venue": "MCX",
+              "cap": 0.3,
+              "proxy": "COMEX gold (GC=F) price as proxy: basis risk"
+            }
+          },
+          "ridge": 0.5,
+          "events": [
+            {
+              "event_id": "covid",
+              "weights": {
+                "^NSEI": 0.2885,
+                "^NSEBANK": 0.2975,
+                "INR=X": -0.0277,
+                "CL=F": 0.0276,
+                "GC=F": -0.0509
+              },
+              "dd_reduction_pp": 8.211,
+              "improved": true,
+              "ret_hedged": -0.02998
+            },
+            {
+              "event_id": "demon",
+              "weights": {
+                "^NSEI": 0.2358,
+                "^NSEBANK": 0.1956,
+                "INR=X": -0.0072,
+                "CL=F": 0.0133,
+                "GC=F": -0.0832
+              },
+              "dd_reduction_pp": 1.328,
+              "improved": true,
+              "ret_hedged": -0.02002
+            },
+            {
+              "event_id": "ukraine",
+              "weights": {
+                "^NSEI": 0.3355,
+                "^NSEBANK": 0.3145,
+                "INR=X": 0.0026,
+                "CL=F": 0.028,
+                "GC=F": 0.0114
+              },
+              "dd_reduction_pp": 3.319,
+              "improved": true,
+              "ret_hedged": -0.01606
+            },
+            {
+              "event_id": "il_fs",
+              "weights": {
+                "^NSEI": 0.3295,
+                "^NSEBANK": 0.2424,
+                "INR=X": -0.0183,
+                "CL=F": -0.0198,
+                "GC=F": 0.0685
+              },
+              "dd_reduction_pp": 1.118,
+              "improved": true,
+              "ret_hedged": 0.02687
+            },
+            {
+              "event_id": "elect24",
+              "weights": {
+                "^NSEI": 0.3367,
+                "^NSEBANK": 0.2946,
+                "INR=X": 0.0112,
+                "CL=F": -0.0357,
+                "GC=F": 0.0253
+              },
+              "dd_reduction_pp": 4.319,
+              "improved": true,
+              "ret_hedged": 0.00651
+            },
+            {
+              "event_id": "taper",
+              "weights": {
+                "^NSEI": 0.269,
+                "^NSEBANK": 0.2498,
+                "INR=X": 0.0605,
+                "CL=F": 0.0555,
+                "GC=F": -0.027
+              },
+              "dd_reduction_pp": 0.957,
+              "improved": true,
+              "ret_hedged": 0.02115
+            }
+          ],
+          "n": 6,
+          "n_improved": 6,
+          "median_dd_reduction_pp": 2.324,
+          "range_dd_reduction_pp": [
+            1.038,
+            6.265
+          ],
+          "range_kind": "p10–p90",
+          "beats_baseline": false,
+          "adopt": false,
+          "decision": "keep the single-index baseline: optimizer median 2.324 pp vs baseline 3.58 pp drawdown reduction"
+        }
+      },
+      "summary": "Hedge checked on 6 past events: drawdown reduced in 6/6 (median +3.6 pp, p10–p90 +1.3 to +8.0 pp)",
+      "source": "quant hedge validation (out-of-sample, index spot proxy)",
+      "source_url": null,
+      "as_of": "2024-06-28T10:00:00Z",
+      "timestamp": "2026-10-03T15:32:11.159180Z",
+      "freshness_s": 71472731,
+      "confidence": 0.25,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 80,
+      "model_version": "quant_v1",
+      "staleness_factor": null
+    }
+  ],
+  "warnings": []
+}

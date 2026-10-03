@@ -1,0 +1,74 @@
+{
+  "evidence": [
+    {
+      "id": "ev_sentiment_001",
+      "run_id": null,
+      "tool": "sentiment",
+      "value": {
+        "items": [
+          {
+            "news_id": "n1",
+            "label": "negative",
+            "score": -0.71,
+            "confidence": 0.83,
+            "model": "kdave/FineTuned_Finbert",
+            "relevance": 0.9,
+            "hinglish": false,
+            "second_opinion": null,
+            "weight": 0.31
+          },
+          {
+            "news_id": "n2",
+            "label": "negative",
+            "score": -0.64,
+            "confidence": 0.55,
+            "model": "kdave/FineTuned_Finbert",
+            "relevance": 0.8,
+            "hinglish": false,
+            "second_opinion": {
+              "sentiment": "negative",
+              "confidence": 0.74,
+              "affected_tickers": [
+                "COALINDIA.NS"
+              ],
+              "materiality": "medium",
+              "horizon": "days",
+              "model": "gemma3:4b"
+            },
+            "weight": 0.19
+          },
+          {
+            "news_id": "n3",
+            "label": "neutral",
+            "score": 0.05,
+            "confidence": 0.77,
+            "model": "kdave/FineTuned_Finbert",
+            "relevance": 0.5,
+            "hinglish": false,
+            "second_opinion": null,
+            "weight": 0.21
+          }
+        ],
+        "portfolio_sentiment": -0.21,
+        "by_ticker": {
+          "COALINDIA.NS": -0.68,
+          "NTPC.NS": -0.71,
+          "ITC.NS": 0.05,
+          "HINDUNILVR.NS": 0.05
+        }
+      },
+      "summary": "Portfolio-weighted tone -0.21 (negative)",
+      "source": "FinBERT-India (kdave/FineTuned_Finbert) + gemma3:4b second opinion",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 9900,
+      "confidence": 0.74,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": "finbert_india_v1"
+    }
+  ],
+  "warnings": []
+}

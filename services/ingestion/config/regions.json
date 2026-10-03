@@ -1,0 +1,17 @@
+[
+  {"region_id":"OD-Puri","name":"Puri (Odisha coast)","country":"IN","lat":19.81,"lon":85.83,"crops":["paddy"],"coastal":true},
+  {"region_id":"AP-Visakhapatnam","name":"Visakhapatnam","country":"IN","lat":17.69,"lon":83.22,"crops":["paddy"],"coastal":true},
+  {"region_id":"GJ-Kutch","name":"Kutch (Gujarat)","country":"IN","lat":23.25,"lon":69.67,"crops":["cotton","groundnut"],"coastal":true},
+  {"region_id":"MH-Mumbai","name":"Mumbai","country":"IN","lat":19.08,"lon":72.88,"crops":[],"coastal":true},
+  {"region_id":"MH-Yavatmal","name":"Yavatmal (Vidarbha)","country":"IN","lat":20.39,"lon":78.12,"crops":["cotton","soybean"]},
+  {"region_id":"MH-Nagpur","name":"Nagpur (Vidarbha)","country":"IN","lat":21.15,"lon":79.09,"crops":["cotton","orange"]},
+  {"region_id":"MP-Indore","name":"Indore (Malwa)","country":"IN","lat":22.72,"lon":75.86,"crops":["soybean","wheat"]},
+  {"region_id":"PB-Ludhiana","name":"Ludhiana (Punjab)","country":"IN","lat":30.90,"lon":75.85,"crops":["wheat","paddy"]},
+  {"region_id":"AP-Guntur","name":"Guntur","country":"IN","lat":16.31,"lon":80.44,"crops":["chilli","cotton"]},
+  {"region_id":"CG-Raipur","name":"Raipur (Chhattisgarh)","country":"IN","lat":21.25,"lon":81.63,"crops":["paddy"]},
+  {"region_id":"TN-Chennai","name":"Chennai","country":"IN","lat":13.08,"lon":80.27,"crops":[],"coastal":true},
+  {"region_id":"WB-Kolkata","name":"Kolkata","country":"IN","lat":22.57,"lon":88.36,"crops":["jute","paddy"],"coastal":true},
+  {"region_id":"US-LA-PortFourchon","name":"Port Fourchon, Louisiana","country":"US","lat":29.11,"lon":-90.20,"crops":[],"coastal":true},
+  {"region_id":"US-TX-Houston","name":"Houston, Texas","country":"US","lat":29.76,"lon":-95.37,"crops":[],"coastal":true},
+  {"region_id":"GULF-Central","name":"Central Gulf of Mexico (offshore)","country":"US","lat":27.5,"lon":-90.0,"crops":[],"coastal":true}
+]

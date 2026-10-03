@@ -1,0 +1,18 @@
+{
+  "RELIANCE.NS":{"aliases":["Reliance","Reliance Industries","RIL"]},
+  "ITC.NS":{"aliases":["ITC","ITC Ltd"]},
+  "HINDUNILVR.NS":{"aliases":["HUL","Hindustan Unilever"]},
+  "ONGC.NS":{"aliases":["ONGC","Oil and Natural Gas"]},
+  "IOC.NS":{"aliases":["IOC","Indian Oil"]},
+  "BPCL.NS":{"aliases":["BPCL","Bharat Petroleum"]},
+  "UPL.NS":{"aliases":["UPL"]},
+  "TATACONSUM.NS":{"aliases":["Tata Consumer"]},
+  "ADANIPORTS.NS":{"aliases":["Adani Ports","APSEZ"]},
+  "^NSEI":{"aliases":["Nifty","Nifty 50"]},
+  "^NSEBANK":{"aliases":["Bank Nifty"]},
+  "CL=F":{"aliases":[]},
+  "BZ=F":{"aliases":[]},
+  "NG=F":{"aliases":[]},
+  "INR=X":{"aliases":[]},
+  "^TNX":{"aliases":[]}
+}

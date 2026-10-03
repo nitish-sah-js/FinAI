@@ -1,0 +1,41 @@
+{
+  "evidence": [
+    {
+      "id": "ev_event_study_001",
+      "run_id": null,
+      "tool": "event_study",
+      "value": {
+        "ticker": "COALINDIA.NS",
+        "event_date": "2019-05-03",
+        "window": [
+          -1,
+          5
+        ],
+        "car": -0.027,
+        "car_t": -1.9,
+        "p_value": 0.07,
+        "ar_series": [
+          0.001,
+          -0.008,
+          -0.011,
+          -0.004,
+          -0.003,
+          -0.002,
+          0.0
+        ]
+      },
+      "summary": "CAR -2.7% around Fani",
+      "source": "quant engine (market model vs ^NSEI)",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": null,
+      "confidence": 0.7,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

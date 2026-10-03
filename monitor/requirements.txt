@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+httpx
+aiosqlite
+pydantic
+pydantic-settings
+pandas

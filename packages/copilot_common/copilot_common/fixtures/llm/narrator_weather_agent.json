@@ -1,0 +1,12 @@
+{
+  "text": "",
+  "parsed": {
+    "agent": "weather_agent",
+    "signal": "bearish",
+    "summary": "Severe cyclonic storm Dana is tracking toward the Odisha coast with rainfall 240% above normal [ev_weather_001]. Coal and power names on the east coast are exposed. Weather confidence is moderate at 0.62 [ev_weather_001].",
+    "evidence_ids": [
+      "ev_weather_001"
+    ],
+    "confidence": 0.62
+  }
+}

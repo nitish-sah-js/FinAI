@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+httpx
+aiosqlite
+pydantic>=2.6
+pydantic-settings>=2.2
+pandas
+numpy
+pyyaml
+yfinance
+websockets

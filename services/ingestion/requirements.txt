@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+httpx
+pandas
+pyarrow
+yfinance
+feedparser
+python-dateutil
+rapidfuzz
+pytest

@@ -1,0 +1,312 @@
+{
+ "kdave/FineTuned_Finbert|kdave/Indian_Financial_News (Summary column, seed 42)": {
+  "model": "kdave/FineTuned_Finbert",
+  "device": "cuda",
+  "n": 1000,
+  "seconds": 1.37,
+  "headlines_per_s": 727.6,
+  "baseline_majority": {
+   "label": "negative",
+   "accuracy": 0.338,
+   "macro_f1": 0.168
+  },
+  "orders": {
+   "config": {
+    "order": [
+     "neutral",
+     "positive",
+     "negative"
+    ],
+    "accuracy": 0.098,
+    "macro_f1": 0.096,
+    "per_class": {
+     "negative": {
+      "precision": 0.012,
+      "recall": 0.012,
+      "f1": 0.012,
+      "support": 338
+     },
+     "neutral": {
+      "precision": 0.105,
+      "recall": 0.102,
+      "f1": 0.103,
+      "support": 325
+     },
+     "positive": {
+      "precision": 0.167,
+      "recall": 0.181,
+      "f1": 0.174,
+      "support": 337
+     }
+    },
+    "confusion": {
+     "negative": {
+      "negative": 4,
+      "neutral": 270,
+      "positive": 64
+     },
+     "neutral": {
+      "negative": 52,
+      "neutral": 33,
+      "positive": 240
+     },
+     "positive": {
+      "negative": 265,
+      "neutral": 11,
+      "positive": 61
+     }
+    }
+   },
+   "alphabetical": {
+    "order": [
+     "negative",
+     "neutral",
+     "positive"
+    ],
+    "accuracy": 0.775,
+    "macro_f1": 0.776,
+    "per_class": {
+     "negative": {
+      "precision": 0.86,
+      "recall": 0.799,
+      "f1": 0.828,
+      "support": 338
+     },
+     "neutral": {
+      "precision": 0.658,
+      "recall": 0.738,
+      "f1": 0.696,
+      "support": 325
+     },
+     "positive": {
+      "precision": 0.826,
+      "recall": 0.786,
+      "f1": 0.805,
+      "support": 337
+     }
+    },
+    "confusion": {
+     "negative": {
+      "negative": 270,
+      "neutral": 64,
+      "positive": 4
+     },
+     "neutral": {
+      "negative": 33,
+      "neutral": 240,
+      "positive": 52
+     },
+     "positive": {
+      "negative": 11,
+      "neutral": 61,
+      "positive": 265
+     }
+    }
+   },
+   "service": {
+    "order": [
+     "negative",
+     "neutral",
+     "positive"
+    ],
+    "accuracy": 0.775,
+    "macro_f1": 0.776,
+    "per_class": {
+     "negative": {
+      "precision": 0.86,
+      "recall": 0.799,
+      "f1": 0.828,
+      "support": 338
+     },
+     "neutral": {
+      "precision": 0.658,
+      "recall": 0.738,
+      "f1": 0.696,
+      "support": 325
+     },
+     "positive": {
+      "precision": 0.826,
+      "recall": 0.786,
+      "f1": 0.805,
+      "support": 337
+     }
+    },
+    "confusion": {
+     "negative": {
+      "negative": 270,
+      "neutral": 64,
+      "positive": 4
+     },
+     "neutral": {
+      "negative": 33,
+      "neutral": 240,
+      "positive": 52
+     },
+     "positive": {
+      "negative": 11,
+      "neutral": 61,
+      "positive": 265
+     }
+    }
+   }
+  },
+  "best_order": "alphabetical",
+  "beats_baseline": true,
+  "dataset": "kdave/Indian_Financial_News (Summary column, seed 42)"
+ },
+ "kdave/FineTuned_Finbert|../../data/handlabeled_headlines.csv": {
+  "model": "kdave/FineTuned_Finbert",
+  "device": "cuda",
+  "n": 30,
+  "seconds": 0.2,
+  "headlines_per_s": 150.8,
+  "baseline_majority": {
+   "label": "positive",
+   "accuracy": 0.333,
+   "macro_f1": 0.167
+  },
+  "orders": {
+   "config": {
+    "order": [
+     "neutral",
+     "positive",
+     "negative"
+    ],
+    "accuracy": 0.067,
+    "macro_f1": 0.058,
+    "per_class": {
+     "negative": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 10
+     },
+     "neutral": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 10
+     },
+     "positive": {
+      "precision": 0.154,
+      "recall": 0.2,
+      "f1": 0.174,
+      "support": 10
+     }
+    },
+    "confusion": {
+     "negative": {
+      "negative": 0,
+      "neutral": 9,
+      "positive": 1
+     },
+     "neutral": {
+      "negative": 0,
+      "neutral": 0,
+      "positive": 10
+     },
+     "positive": {
+      "negative": 8,
+      "neutral": 0,
+      "positive": 2
+     }
+    }
+   },
+   "alphabetical": {
+    "order": [
+     "negative",
+     "neutral",
+     "positive"
+    ],
+    "accuracy": 0.9,
+    "macro_f1": 0.902,
+    "per_class": {
+     "negative": {
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.947,
+      "support": 10
+     },
+     "neutral": {
+      "precision": 0.769,
+      "recall": 1.0,
+      "f1": 0.87,
+      "support": 10
+     },
+     "positive": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 10
+     }
+    },
+    "confusion": {
+     "negative": {
+      "negative": 9,
+      "neutral": 1,
+      "positive": 0
+     },
+     "neutral": {
+      "negative": 0,
+      "neutral": 10,
+      "positive": 0
+     },
+     "positive": {
+      "negative": 0,
+      "neutral": 2,
+      "positive": 8
+     }
+    }
+   },
+   "service": {
+    "order": [
+     "negative",
+     "neutral",
+     "positive"
+    ],
+    "accuracy": 0.9,
+    "macro_f1": 0.902,
+    "per_class": {
+     "negative": {
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.947,
+      "support": 10
+     },
+     "neutral": {
+      "precision": 0.769,
+      "recall": 1.0,
+      "f1": 0.87,
+      "support": 10
+     },
+     "positive": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.889,
+      "support": 10
+     }
+    },
+    "confusion": {
+     "negative": {
+      "negative": 9,
+      "neutral": 1,
+      "positive": 0
+     },
+     "neutral": {
+      "negative": 0,
+      "neutral": 10,
+      "positive": 0
+     },
+     "positive": {
+      "negative": 0,
+      "neutral": 2,
+      "positive": 8
+     }
+    }
+   }
+  },
+  "best_order": "alphabetical",
+  "beats_baseline": true,
+  "dataset": "../../data/handlabeled_headlines.csv"
+ }
+}

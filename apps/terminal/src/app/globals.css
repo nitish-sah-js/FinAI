@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --ink: #0b0f14;
+    --panel: #121821;
+    --line: #1f2a36;
+    --amber: #ffb000;
+    --saffron: #ff7a1a;
+    --mint: #3ddc97;
+    --rose: #ff4d6d;
+    --muted: #7a8a9c;
+    --text: #e6edf3;
+
+    /* Theme channels used by the t-* Tailwind colours (tailwind.config.js). Dark = the original palette. */
+    --c-ink: 5 5 5;
+    --c-panel: 44 45 45;
+    --c-panel2: 18 24 33;
+    --c-line: 31 42 54;
+    --c-text: 230 237 243;
+    --c-muted: 122 138 156;
+    --c-fg: 255 255 255;
+    --c-shade: 0 0 0;
+    --c-mint: 61 220 151;
+    --c-amber: 255 176 0;
+    --c-rose: 255 77 109;
+    --c-saffron: 255 153 51;
+    --c-edge: 31 42 54;          /* idle agent-graph edges */
+    color-scheme: dark;
+  }
+
+  html.light {
+    --c-ink: 238 240 243;
+    --c-panel: 255 255 255;
+    --c-panel2: 247 248 250;
+    --c-line: 226 231 237;
+    --c-text: 27 36 48;
+    --c-muted: 93 107 124;
+    --c-fg: 15 23 32;
+    --c-shade: 15 23 32;
+    --c-mint: 13 150 92;      /* accents darkened for contrast on white */
+    --c-amber: 196 128 0;
+    --c-rose: 214 40 72;
+    --c-saffron: 211 110 10;
+    --c-edge: 180 190 202;
+    color-scheme: light;
+  }
+}
+
+body {
+  font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  /* figures line up in tables and live numbers */
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  user-select: none; 
+  touch-action: none; 
+  -webkit-app-region: no-drag; 
+}
+
+/* Custom scrollbars for panels */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 32, 0.15);
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 32, 0.3);
+}
+
+input, textarea, .selectable {
+  user-select: text;
+}
+
+.bg-sigma {
+  background-color: #050505;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}

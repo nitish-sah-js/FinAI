@@ -1,0 +1,7 @@
+thresholds:
+  price_z: 3.0
+  volume_z: 3.0
+  news_burst_z: 3.0
+  news_burst_k: 3
+  sentiment_shift: 0.4
+  sentiment_min_n: 3

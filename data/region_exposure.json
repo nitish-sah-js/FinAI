@@ -1,0 +1,60 @@
+{
+  "_note": "Judgment-based mapping of regions to listed equities (09 §9). Not a measured sensitivity. sign = direction of the equity's move when the region is stressed (agri) or hit (weather); strength 0..1 = how directly. Read by agri (linked_equities), monitor (weather/agri relevance) and exposure.",
+  "_verified": "2026-10-03, demo universe = data/portfolio_demo.csv + spec examples",
+  "regions": {
+    "MH-Yavatmal":   {"crops": ["cotton", "soybean"], "equities": [
+        {"ticker": "UPL.NS", "link": "crop protection demand (cotton belt)", "sign": "+", "strength": 0.6},
+        {"ticker": "M&M.NS", "link": "rural tractor demand", "sign": "-", "strength": 0.4},
+        {"ticker": "KPRMILL.NS", "link": "cotton input cost", "sign": "-", "strength": 0.3}]},
+    "MH-Latur":      {"crops": ["soybean", "pulses"], "equities": [
+        {"ticker": "UPL.NS", "link": "crop protection demand", "sign": "+", "strength": 0.3},
+        {"ticker": "ITC.NS", "link": "agri-business sourcing", "sign": "-", "strength": 0.2}]},
+    "MP-Indore":     {"crops": ["soybean", "wheat"], "equities": [
+        {"ticker": "ITC.NS", "link": "agri-business / wheat sourcing", "sign": "-", "strength": 0.3},
+        {"ticker": "PATANJALI.NS", "link": "edible oil (soy) input cost", "sign": "-", "strength": 0.4},
+        {"ticker": "UPL.NS", "link": "crop protection demand", "sign": "+", "strength": 0.2}]},
+    "MP-Ujjain":     {"crops": ["soybean", "wheat"], "equities": [
+        {"ticker": "ITC.NS", "link": "wheat sourcing", "sign": "-", "strength": 0.3},
+        {"ticker": "HINDUNILVR.NS", "link": "rural FMCG demand", "sign": "-", "strength": 0.2}]},
+    "GJ-Rajkot":     {"crops": ["groundnut", "cotton"], "equities": [
+        {"ticker": "AWL.NS", "link": "edible oil input cost", "sign": "-", "strength": 0.3},
+        {"ticker": "UPL.NS", "link": "crop protection demand", "sign": "+", "strength": 0.2}]},
+    "PB-Ludhiana":   {"crops": ["rice", "wheat"], "equities": [
+        {"ticker": "ITC.NS", "link": "wheat sourcing", "sign": "-", "strength": 0.3},
+        {"ticker": "KRBL.NS", "link": "rice supply", "sign": "-", "strength": 0.4},
+        {"ticker": "CHAMBLFERT.NS", "link": "fertiliser demand", "sign": "+", "strength": 0.2}]},
+    "KA-Kalaburagi": {"crops": ["pulses", "cotton"], "equities": [
+        {"ticker": "HINDUNILVR.NS", "link": "rural FMCG demand", "sign": "-", "strength": 0.2}]},
+    "RJ-Jodhpur":    {"crops": ["bajra", "pulses"], "equities": [
+        {"ticker": "HINDUNILVR.NS", "link": "rural FMCG demand", "sign": "-", "strength": 0.2}]},
+
+    "OD-Puri":       {"crops": ["paddy"], "equities": [
+        {"ticker": "ADANIPORTS.NS", "link": "Paradip/Dhamra port disruption", "sign": "-", "strength": 0.8},
+        {"ticker": "COALINDIA.NS", "link": "MCL Talcher/Ib coal dispatch", "sign": "-", "strength": 0.6},
+        {"ticker": "NTPC.NS", "link": "Talcher/Darlipali plants, coal logistics", "sign": "-", "strength": 0.5},
+        {"ticker": "ONGC.NS", "link": "east-coast offshore operations", "sign": "-", "strength": 0.5}]},
+    "OD-Cuttack":    {"crops": ["paddy"], "equities": [
+        {"ticker": "ITC.NS", "link": "agri-business (rice)", "sign": "-", "strength": 0.2},
+        {"ticker": "UPL.NS", "link": "crop protection demand", "sign": "+", "strength": 0.3}]},
+    "AP-Visakhapatnam": {"crops": ["paddy"], "equities": [
+        {"ticker": "NTPC.NS", "link": "Simhadri plant", "sign": "-", "strength": 0.4},
+        {"ticker": "HINDPETRO.NS", "link": "Visakh refinery", "sign": "-", "strength": 0.6}]},
+    "WB-Kolkata":    {"crops": ["paddy", "jute"], "equities": [
+        {"ticker": "COALINDIA.NS", "link": "ECL/BCCL operations", "sign": "-", "strength": 0.4}]},
+    "TN-Chennai":    {"crops": ["paddy"], "equities": [
+        {"ticker": "ASHOKLEY.NS", "link": "Ennore plant", "sign": "-", "strength": 0.4}]},
+    "GJ-Kutch":      {"crops": ["cotton"], "equities": [
+        {"ticker": "ADANIPORTS.NS", "link": "Mundra port", "sign": "-", "strength": 0.8},
+        {"ticker": "RELIANCE.NS", "link": "Jamnagar refinery (nearby coast)", "sign": "-", "strength": 0.5}]},
+    "MH-Mumbai":     {"crops": [], "equities": [
+        {"ticker": "HDFCBANK.NS", "link": "head office / operations", "sign": "-", "strength": 0.2}]},
+    "US-GulfCoast":  {"crops": [], "equities": [
+        {"ticker": "RELIANCE.NS", "link": "crude and refining margins (Gulf refinery outages)", "sign": "+", "strength": 0.3},
+        {"ticker": "ONGC.NS", "link": "crude price", "sign": "+", "strength": 0.3}]},
+    "IN-All":        {"crops": ["kharif"], "equities": [
+        {"ticker": "HINDUNILVR.NS", "link": "rural FMCG demand (monsoon)", "sign": "-", "strength": 0.4},
+        {"ticker": "ITC.NS", "link": "rural demand / agri-business", "sign": "-", "strength": 0.3},
+        {"ticker": "UPL.NS", "link": "crop protection demand", "sign": "+", "strength": 0.4}]}
+  },
+  "sector_defaults": {"FMCG": 0.5, "Agri": 0.8, "Auto": 0.3, "Banks": 0.2, "Energy": 0.1}
+}

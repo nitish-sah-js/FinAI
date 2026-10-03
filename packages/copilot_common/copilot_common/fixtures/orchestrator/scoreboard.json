@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-10-03T06:00:00Z",
+  "_mock": "Illustrative numbers from docs/12 §A8, served only when MOCK=1 and no real scoreboard exists. Not results.",
+  "config": {"llm_mode": "local", "horizon_days": 5, "split": "holdout", "n_events": 8, "n_points": 16},
+  "methods": {
+    "copilot":        {"hit_rate": 0.67, "hit_rate_ci": [0.42, 0.85], "mae": 0.031, "coverage_80": 0.71, "brier": 0.21, "skill_vs_zero": 0.18, "n": 12},
+    "price_only":     {"hit_rate": 0.50, "hit_rate_ci": [0.25, 0.75], "mae": 0.039, "coverage_80": 0.79, "brier": null, "skill_vs_zero": -0.03, "n": 14},
+    "sentiment_only": {"hit_rate": 0.57, "hit_rate_ci": [0.33, 0.79], "mae": 0.037, "coverage_80": 0.79, "brier": null, "skill_vs_zero": 0.02, "n": 14},
+    "zero":           {"hit_rate": null, "mae": 0.038, "coverage_80": 0.79, "n": 14}
+  },
+  "rows": [
+    {"event_id": "hurricane_ida_2021", "asset": "NG=F", "as_of": "2021-08-29", "run_id": "run_mock",
+     "copilot": {"median": 0.048, "p10": -0.012, "p90": 0.10, "direction": 1, "confidence": 0.65},
+     "price_only": {"median": 0.031, "direction": 1}, "sentiment_only": {"median": -0.031, "direction": -1},
+     "realized": 0.071, "hit": true, "in_interval": true}
+  ],
+  "calibration": [
+    {"stated": 0.55, "observed": 0.50, "n": 4},
+    {"stated": 0.65, "observed": 0.71, "n": 7},
+    {"stated": 0.80, "observed": 1.00, "n": 1}
+  ],
+  "misses": [
+    {"event_id": "rbi_offcycle_hike_2022", "asset": "^NSEBANK", "pred_median": 0.012, "realized": -0.018,
+     "why_missed": "Off-cycle hike was a true surprise; analogs were mostly scheduled policy moves.", "run_id": "run_mock"}
+  ],
+  "disclaimer": "MOCK: 8 events, 16 points. Small sample; decision support, not trading signals."
+}

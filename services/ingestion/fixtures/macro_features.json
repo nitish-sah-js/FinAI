@@ -1,0 +1,6 @@
+{"evidence":[{"id":"ev_macro_001","tool":"macro","value":{
+ "repo_rate":5.25,"repo_change_bps":-25,"cpi_yoy":3.1,"usd_inr":88.4,"usd_inr_chg_5d":0.006,"brent":71.2,"brent_chg_5d":0.043,
+ "us10y":4.12,"us10y_chg_5d":-0.0005,
+ "series_dates":{"repo_rate":"2025-12-05","cpi_yoy":"2026-08-31","usd_inr":"2026-10-02"}},
+ "summary":"Brent +4.3% in 5d, INR flat, repo 5.25% after last -25bp","source":"yfinance (INR=X, BZ=F); FRED DGS10; RBI/MoSPI manual files",
+ "as_of":"2026-10-02T15:30:00Z","timestamp":"2026-10-03T08:45:03Z","freshness_s":62100,"confidence":0.8,"degraded":false}],"warnings":[]}

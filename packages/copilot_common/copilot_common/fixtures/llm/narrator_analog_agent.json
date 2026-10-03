@@ -1,0 +1,12 @@
+{
+  "text": "",
+  "parsed": {
+    "agent": "analog_agent",
+    "signal": "bearish",
+    "summary": "Fani is the closest match (similarity 0.87) [ev_analogs_001]: same coast and port disruption, but it struck in May. Across 4 analogs, COALINDIA.NS 5-day abnormal returns ranged from -4.1% to +1.2% [ev_analogs_001]; the sample is small.",
+    "evidence_ids": [
+      "ev_analogs_001"
+    ],
+    "confidence": 0.6
+  }
+}

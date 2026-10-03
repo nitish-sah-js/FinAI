@@ -1,0 +1,8 @@
+EVIDENCE: {evidence_json}
+EXPOSED HOLDINGS: {exposed_holdings}
+Write at most 3 sentences: what moved, which holdings are exposed, and the confidence.
+Link each move (repo rate, CPI, USD/INR, Brent, US 10y) to the holdings' sensitivity: banks to rates,
+OMCs/paints/aviation to crude, IT to USD/INR. Skip factors that did not move.
+Copy numbers exactly as they appear in EVIDENCE; never compute, average or round them. End every sentence with the id
+of the evidence it uses in square brackets, e.g. [ev_weather_001]. Describe confidence in words.
+Return JSON: {"agent":"macro_agent","signal":"bullish|bearish|neutral|mixed","summary":str,"evidence_ids":[str]}

@@ -1,0 +1,9 @@
+
+body { margin: 0; overflow: hidden; background: transparent; font-family: "JetBrains Mono", monospace; }
+#pet { width: 100px; height: 100px; background: #ffb000; border-radius: 50%; margin: 50px auto; transition: all 0.3s; cursor: pointer; }
+#pet.idle { animation: breathe 3s infinite alternate; }
+#pet.thinking { border: 4px dashed #0b0f14; animation: spin 2s linear infinite; }
+#pet.alert-t1 { animation: hop 0.6s; }
+@keyframes breathe { from { transform: scale(1); } to { transform: scale(1.03); } }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }

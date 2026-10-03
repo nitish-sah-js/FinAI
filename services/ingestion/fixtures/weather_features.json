@@ -1,0 +1,10 @@
+{"evidence":[{"id":"ev_weather_001","run_id":"run_20261003141502_a91f","tool":"weather","value":{
+ "region":"OD-Puri","lat":19.81,"lon":85.83,"rain_anomaly_pct":184.0,"heat_index_c":33.1,"max_temp_c":31.4,
+ "soil_moisture_0_7cm":0.41,"soil_moisture_z":1.9,
+ "storm":{"name":"DEMO-ODISHA","category":"VSCS","basin":"NIO","track_toward":["OD-Puri","AP-Visakhapatnam"],"distance_km":310},
+ "alerts":["cyclone","heavy_rain"],"horizon_days":5,
+ "daily":[{"date":"2026-10-03","precip_mm":12.1,"tmax_c":31.4},{"date":"2026-10-04","precip_mm":88.0,"tmax_c":29.9}],
+ "lookahead_risk":false},
+ "summary":"Puri: 5-day rain +184% vs 2001-2025 normal; VSCS 310 km away tracking toward coast",
+ "source":"Open-Meteo forecast + ERA5 climatology; IMD RSMC bulletin (manual)","source_url":"https://api.open-meteo.com/v1/forecast",
+ "as_of":"2026-10-03T08:00:00Z","timestamp":"2026-10-03T08:45:04Z","freshness_s":2704,"confidence":0.75,"degraded":false,"latency_ms":840}],"warnings":[]}

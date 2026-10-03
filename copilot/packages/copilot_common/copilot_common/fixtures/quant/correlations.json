@@ -1,0 +1,40 @@
+{
+  "evidence": [
+    {
+      "id": "ev_correlations_012",
+      "run_id": null,
+      "tool": "correlations",
+      "value": {
+        "pairs": [
+          {
+            "a": "RELIANCE.NS",
+            "b": "CL=F",
+            "lag": 0,
+            "corr": 0.21,
+            "n": 249,
+            "weak": false
+          },
+          {
+            "a": "RELIANCE.NS",
+            "b": "CL=F",
+            "lag": 1,
+            "corr": 0.12,
+            "n": 248,
+            "weak": false
+          }
+        ]
+      },
+      "summary": "RELIANCE vs CL=F: corr 0.21 same-day, 0.12 at 1-day lag",
+      "source": "quant correlations_v1",
+      "as_of": "2026-10-02T10:00:00Z",
+      "timestamp": "2026-10-03T08:45:06Z",
+      "freshness_s": 81906,
+      "confidence": 0.3,
+      "degraded": true,
+      "degraded_reason": "mock",
+      "latency_ms": 300,
+      "model_version": "quant_v1"
+    }
+  ],
+  "warnings": []
+}

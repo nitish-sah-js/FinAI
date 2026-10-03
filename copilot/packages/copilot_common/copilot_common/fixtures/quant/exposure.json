@@ -1,0 +1,87 @@
+{
+  "evidence": [
+    {
+      "id": "ev_exposure_002",
+      "run_id": null,
+      "tool": "exposure",
+      "value": {
+        "by_sector": {
+          "Energy": 0.38,
+          "FMCG": 0.36,
+          "Banks": 0.26
+        },
+        "by_ticker": [
+          {
+            "ticker": "RELIANCE.NS",
+            "weight": 0.38,
+            "beta": 1.05,
+            "weather_sens": 0.6,
+            "agri_sens": 0.1
+          },
+          {
+            "ticker": "ITC.NS",
+            "weight": 0.36,
+            "beta": 0.72,
+            "weather_sens": 0.4,
+            "agri_sens": 0.7
+          },
+          {
+            "ticker": "HDFCBANK.NS",
+            "weight": 0.26,
+            "beta": 0.98,
+            "weather_sens": 0.1,
+            "agri_sens": 0.3
+          }
+        ],
+        "heatmap": {
+          "rows": [
+            "Energy",
+            "FMCG",
+            "Banks"
+          ],
+          "cols": [
+            "weather",
+            "agri",
+            "crude",
+            "rates",
+            "usd_inr"
+          ],
+          "values": [
+            [
+              0.23,
+              0.04,
+              0.3,
+              0.08,
+              0.11
+            ],
+            [
+              0.14,
+              0.25,
+              0.04,
+              0.07,
+              0.04
+            ],
+            [
+              0.03,
+              0.08,
+              0.03,
+              0.18,
+              0.05
+            ]
+          ]
+        }
+      },
+      "summary": "Largest exposures: Energy 38%, FMCG 36%",
+      "source": "quant exposure_v1 + sector_sensitivity.json (judgment)",
+      "as_of": "2026-10-02T10:00:00Z",
+      "timestamp": "2026-10-03T08:45:06Z",
+      "freshness_s": 81906,
+      "confidence": 0.4,
+      "degraded": true,
+      "degraded_reason": "mock",
+      "latency_ms": 300,
+      "model_version": "quant_v1"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,170 @@
+{
+  "model_version": "gbm_v2",
+  "created_at": "2026-10-03T17:30:00Z",
+  "classifier_features": [
+    "stress_class_now_id",
+    "NDVI_mean",
+    "ndvi_anomaly_z",
+    "vci",
+    "ndvi_delta",
+    "rain_anomaly_pct",
+    "rain_30d_mm",
+    "soil_moisture_0_7cm",
+    "soil_moisture_anomaly_z",
+    "doy_bin"
+  ],
+  "class_labels": [
+    "healthy",
+    "watch",
+    "stressed",
+    "severe"
+  ],
+  "target_lead_periods": 1,
+  "period_days": 16,
+  "regions": [
+    "GJ-Rajkot",
+    "KA-Kalaburagi",
+    "MH-Latur",
+    "MH-Yavatmal",
+    "MP-Indore",
+    "MP-Ujjain",
+    "PB-Ludhiana",
+    "RJ-Jodhpur"
+  ],
+  "training_years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "n_training_rows": 1745,
+  "training_table_sha256_16": "d724a4e66164a8be",
+  "hyperparameters": {
+    "preset": "teammate",
+    "objective": "multiclass",
+    "n_estimators": 100,
+    "learning_rate": 0.05,
+    "num_leaves": 7,
+    "max_depth": 4,
+    "min_child_samples": 20,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "missing_ndvi_delta_allowed": false,
+  "data_source": "MODIS MOD13Q1 v061 NDVI/EVI 250m 16-day district zonal statistics (GEE export) + Open-Meteo ERA5 daily weather at the district centroid",
+  "label_source": "Rule-based stress_class (VCI + rainfall deficit, 09 \u00a75); no yield labels",
+  "feature_definitions": {
+    "ndvi_delta": "NDVI_mean - previous composite NDVI_mean; NaN if the previous composite is in another crop_season/season_year or > 24 days earlier (season-safe; fixed vs gbm_v1)",
+    "anomalies": "leave-current-year-out per (region_id, doy_bin) on yearly means (agri/features.py)",
+    "doy_bin": "clip(ceil(doy(period_end)/16), 1, 23)",
+    "stress_class_now_id": "index of the 09 \u00a75 rule label in class_labels"
+  },
+  "regressor_features": [],
+  "regressor_quantiles": [],
+  "cv": {
+    "scheme": "leave-one-year-out",
+    "n_test_rows": 1745,
+    "model_accuracy": 0.6045845272206304,
+    "model_macro_f1": 0.5519197052146518,
+    "model_brier": 0.5104357179086485,
+    "persistence_accuracy": 0.6240687679083095,
+    "persistence_macro_f1": 0.5527737841560593,
+    "always_healthy_accuracy": 0.5318051575931232,
+    "always_healthy_macro_f1": 0.17358772914328469,
+    "beats_persistence": false,
+    "confusion_matrix": [
+      [
+        651,
+        176,
+        81,
+        20
+      ],
+      [
+        95,
+        110,
+        59,
+        18
+      ],
+      [
+        61,
+        80,
+        144,
+        60
+      ],
+      [
+        4,
+        10,
+        26,
+        150
+      ]
+    ],
+    "persistence_confusion_matrix": [
+      [
+        712,
+        126,
+        79,
+        11
+      ],
+      [
+        106,
+        90,
+        74,
+        12
+      ],
+      [
+        72,
+        71,
+        155,
+        47
+      ],
+      [
+        6,
+        10,
+        42,
+        132
+      ]
+    ]
+  },
+  "feature_importance_split": {
+    "ndvi_anomaly_z": 347,
+    "NDVI_mean": 329,
+    "rain_30d_mm": 290,
+    "soil_moisture_anomaly_z": 284,
+    "ndvi_delta": 269,
+    "vci": 258,
+    "rain_anomaly_pct": 216,
+    "soil_moisture_0_7cm": 206,
+    "doy_bin": 145,
+    "stress_class_now_id": 52
+  },
+  "notes": [
+    "Yield data was not supplied, so no yield quantile regressors: yield_anomaly_pct is null.",
+    "LST was not supplied and is excluded from classifier features.",
+    "LOYO folds recompute NDVI, VCI, rainfall and soil-moisture baselines from training years only.",
+    "The classifier does NOT beat the persistence baseline (next class = current class) in LOYO CV; the service lowers confidence accordingly."
+  ],
+  "previous_cv": {
+    "source": "agri/services/agri/models/gbm_v1/cv_report.json",
+    "note": "teammate gbm_v1 (unsafe ndvi_delta in the final model; CV used a row-level season-safe delta)",
+    "model_accuracy": 0.6069397042093287,
+    "model_macro_f1": 0.5528568072693576,
+    "model_brier": 0.5094469040560948,
+    "persistence_accuracy": 0.6217292377701934,
+    "persistence_macro_f1": 0.5505169355430694,
+    "always_healthy_macro_f1": 0.17371937639198218
+  }
+}

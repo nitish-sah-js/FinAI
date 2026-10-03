@@ -1,0 +1,30 @@
+{
+  "_meta": "JUDGMENT-BASED placeholders, not measured. Sector -> sensitivity magnitude (0..1) per heatmap column. Review with a domain expert. Keys starting with '_' are reserved and ignored as sectors.",
+  "_scale": {
+    "_doc": "judgment beta = sens * sign * scale[factor]. Shocks are percent points (repo_bps/us10y in bps); change = beta * shock/100.",
+    "monsoon_rain": 0.1, "heatwave": 0.1, "agri_stress": 0.1, "repo_bps": 0.1, "us10y": 0.1, "crude": 0.1, "usd_inr": 0.2
+  },
+  "_signs": {
+    "_doc": "direction of the effect of a POSITIVE shock on a sector (default used when the sector is not listed)",
+    "monsoon_rain": {"default": 1},
+    "heatwave":     {"default": -1, "Utilities": 1},
+    "agri_stress":  {"default": -1},
+    "repo_bps":     {"default": -1},
+    "us10y":        {"default": -1},
+    "crude":        {"default": -1, "Energy": 1},
+    "usd_inr":      {"default": -1, "IT": 1, "Pharma": 1}
+  },
+  "Energy":     {"weather": 0.6, "agri": 0.1, "crude": 0.8, "rates": 0.2, "usd_inr": 0.3},
+  "FMCG":       {"weather": 0.4, "agri": 0.7, "crude": 0.1, "rates": 0.2, "usd_inr": 0.1},
+  "Banks":      {"weather": 0.1, "agri": 0.3, "crude": 0.1, "rates": 0.7, "usd_inr": 0.2},
+  "IT":         {"weather": 0.05, "agri": 0.0, "crude": 0.05, "rates": 0.2, "usd_inr": 0.7},
+  "Pharma":     {"weather": 0.1, "agri": 0.1, "crude": 0.1, "rates": 0.1, "usd_inr": 0.5},
+  "Auto":       {"weather": 0.2, "agri": 0.5, "crude": 0.5, "rates": 0.5, "usd_inr": 0.3},
+  "Metals":     {"weather": 0.3, "agri": 0.0, "crude": 0.4, "rates": 0.3, "usd_inr": 0.5},
+  "Telecom":    {"weather": 0.2, "agri": 0.1, "crude": 0.1, "rates": 0.4, "usd_inr": 0.3},
+  "Utilities":  {"weather": 0.7, "agri": 0.1, "crude": 0.4, "rates": 0.4, "usd_inr": 0.2},
+  "Infra":      {"weather": 0.5, "agri": 0.1, "crude": 0.4, "rates": 0.6, "usd_inr": 0.2},
+  "RealEstate": {"weather": 0.3, "agri": 0.0, "crude": 0.1, "rates": 0.8, "usd_inr": 0.1},
+  "Agri":       {"weather": 0.8, "agri": 0.9, "crude": 0.2, "rates": 0.2, "usd_inr": 0.2},
+  "Other":      {"weather": 0.2, "agri": 0.2, "crude": 0.2, "rates": 0.3, "usd_inr": 0.2}
+}

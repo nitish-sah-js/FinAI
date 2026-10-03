@@ -1,0 +1,51 @@
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.env
+.env.bak
+
+# generated at runtime (curated inputs in data/ such as ticker_aliases.json, handlabeled_headlines.csv,
+# nse_symbols.json and hindi_words.json ARE committed)
+data/cache/
+data/portfolios/
+data/backtest/
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/quota.json
+evals/results/
+
+# node / Next.js / Electron
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# runtime data (curated inputs in data/ are committed)
+data/logs/
+data/cache/
+data/checkpoints.db*
+data/ledger.db*
+*.db
+*.db-shm
+*.db-wal
+
+# secrets
+**/.env
+!**/.env.example
+!**/.env.local.example
+.env.local
+
+# large model weights (small trained artifacts such as services/agri/models/gbm_v2 ARE committed)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.gguf
+
+# archived nested repo history (kept on disk, not in this repo)
+_archive/**/*.git/

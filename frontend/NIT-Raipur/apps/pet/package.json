@@ -1,0 +1,21 @@
+{
+  "name": "pet",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "tsc && electron .",
+    "build": "tsc",
+    "dist": "electron-builder --win",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "electron-store": "^8.2.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3",
+    "typescript": "^5.0.0",
+    "vitest": "^1.4.0"
+  }
+}

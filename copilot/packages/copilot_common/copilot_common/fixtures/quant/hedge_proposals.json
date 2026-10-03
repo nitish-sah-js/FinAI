@@ -1,0 +1,60 @@
+{
+  "evidence": [
+    {
+      "id": "ev_hedge_010",
+      "run_id": null,
+      "tool": "hedge",
+      "value": {
+        "portfolio_beta": 0.92,
+        "pre_var_inr": 18420.0,
+        "post_var_inr": 7900.0,
+        "proposals": [
+          {
+            "hedge_id": "h1",
+            "instrument": "NIFTY OCT FUT short",
+            "underlying": "^NSEI",
+            "side": "sell",
+            "quantity": 1,
+            "unit": "lots",
+            "hedge_ratio": 0.88,
+            "est_cost_inr": null,
+            "rationale": "min-variance h*=0.88 vs NIFTY over 250d",
+            "sizing_method": "min_variance",
+            "evidence_ids": [
+              "ev_risk_007",
+              "ev_exposure_002"
+            ]
+          },
+          {
+            "hedge_id": "h2",
+            "instrument": "NIFTY OCT 24500 PE",
+            "underlying": "^NSEI",
+            "side": "buy",
+            "quantity": 1,
+            "unit": "lots",
+            "hedge_ratio": 0.45,
+            "est_cost_inr": 7350.0,
+            "rationale": "4% OTM protective put, BS est with RV20×1.1",
+            "sizing_method": "delta",
+            "evidence_ids": [
+              "ev_risk_007"
+            ]
+          }
+        ]
+      },
+      "summary": "Min-variance NIFTY hedge cuts 5d VaR ₹18,420 → ₹7,900",
+      "source": "quant hedges_v1",
+      "as_of": "2026-10-02T10:00:00Z",
+      "timestamp": "2026-10-03T08:45:06Z",
+      "freshness_s": 81906,
+      "confidence": 0.35,
+      "degraded": true,
+      "degraded_reason": "mock",
+      "latency_ms": 300,
+      "model_version": "quant_v1"
+    }
+  ],
+  "warnings": [
+    "Lot sizes from data/lot_sizes.json — verify on NSE before use. Paper trading only."
+  ]
+}

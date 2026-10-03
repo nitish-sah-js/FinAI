@@ -1,0 +1,7 @@
+EVIDENCE: {evidence_json}
+EXPOSED HOLDINGS: {exposed_holdings}
+Write at most 3 sentences in total: (1) the stress class and NDVI anomaly, (2) the yield range q10 to q90 (not just the
+median), or, if yield_anomaly_pct is null, say plainly that there is no yield estimate, (3) that crop stress is a slow signal (weeks to months, not intraday) and which holdings are exposed.
+Copy numbers exactly as they appear in EVIDENCE; never compute, average or round them. End every sentence with the id
+of the evidence it uses in square brackets, e.g. [ev_weather_001]. Describe confidence in words.
+Return JSON: {"agent":"agri_agent","signal":"bullish|bearish|neutral|mixed","summary":str,"evidence_ids":[str]}

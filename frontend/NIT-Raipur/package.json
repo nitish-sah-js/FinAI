@@ -1,0 +1,14 @@
+{
+  "name": "utsava-terminal-workspace",
+  "private": true,
+  "workspaces": [
+    "contracts",
+    "dev-mock-server",
+    "app"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "mock": "npm run start --workspace=dev-mock-server"
+  }
+}

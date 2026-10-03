@@ -1,0 +1,419 @@
+{
+ "_meta": {
+  "built_at": "2026-10-03T17:36:27Z",
+  "corpus": "historical_events.json",
+  "n_train": 32,
+  "k": 5,
+  "min_similarity": 0.5,
+  "embedder": "BAAI/bge-small-en-v1.5",
+  "method": "leave-one-out, service selection rules, as_of = target event_date, np.quantile(method='higher')"
+ },
+ "1d": {
+  "cyclone": {
+   "q": 0.023809,
+   "n_calib": 10,
+   "n_residuals": 20,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.053477,
+     "n_calib": 8,
+     "n_residuals": 10,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.022213,
+     "n_calib": 9,
+     "n_residuals": 10,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "hurricane": {
+   "q": 0.096119,
+   "n_calib": 8,
+   "n_residuals": 23,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.101564,
+     "n_calib": 7,
+     "n_residuals": 16,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.070526,
+     "n_calib": 7,
+     "n_residuals": 7,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "monsoon_deficit": {
+   "q": 0.062397,
+   "n_calib": 2,
+   "n_residuals": 5,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.062397,
+     "n_calib": 2,
+     "n_residuals": 5,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "oil_shock": {
+   "q": 0.049543,
+   "n_calib": 2,
+   "n_residuals": 5,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.045542,
+     "n_calib": 1,
+     "n_residuals": 1,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.049543,
+     "n_calib": 2,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "policy": {
+   "q": 0.061275,
+   "n_calib": 3,
+   "n_residuals": 8,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.055115,
+     "n_calib": 3,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.061275,
+     "n_calib": 3,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "rate_shock": {
+   "q": 0.019371,
+   "n_calib": 2,
+   "n_residuals": 4,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.007156,
+     "n_calib": 1,
+     "n_residuals": 1,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.019371,
+     "n_calib": 2,
+     "n_residuals": 3,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "_all": {
+   "q": 0.053477,
+   "n_calib": 27,
+   "n_residuals": 65,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.058013,
+     "n_calib": 22,
+     "n_residuals": 37,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.057615,
+     "n_calib": 23,
+     "n_residuals": 28,
+     "coverage_target": 0.8
+    }
+   }
+  }
+ },
+ "5d": {
+  "cyclone": {
+   "q": 0.064102,
+   "n_calib": 10,
+   "n_residuals": 20,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.087012,
+     "n_calib": 8,
+     "n_residuals": 10,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.064102,
+     "n_calib": 9,
+     "n_residuals": 10,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "hurricane": {
+   "q": 0.130848,
+   "n_calib": 8,
+   "n_residuals": 23,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.213303,
+     "n_calib": 7,
+     "n_residuals": 16,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.105775,
+     "n_calib": 7,
+     "n_residuals": 7,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "monsoon_deficit": {
+   "q": 0.066573,
+   "n_calib": 2,
+   "n_residuals": 5,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.066573,
+     "n_calib": 2,
+     "n_residuals": 5,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "oil_shock": {
+   "q": 0.144375,
+   "n_calib": 2,
+   "n_residuals": 5,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.142697,
+     "n_calib": 1,
+     "n_residuals": 1,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.144375,
+     "n_calib": 2,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "policy": {
+   "q": 0.120444,
+   "n_calib": 3,
+   "n_residuals": 8,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.092972,
+     "n_calib": 3,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.120444,
+     "n_calib": 3,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "rate_shock": {
+   "q": 0.062125,
+   "n_calib": 2,
+   "n_residuals": 4,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.062125,
+     "n_calib": 1,
+     "n_residuals": 1,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.048109,
+     "n_calib": 2,
+     "n_residuals": 3,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "_all": {
+   "q": 0.092972,
+   "n_calib": 27,
+   "n_residuals": 65,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.105471,
+     "n_calib": 22,
+     "n_residuals": 37,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.105775,
+     "n_calib": 23,
+     "n_residuals": 28,
+     "coverage_target": 0.8
+    }
+   }
+  }
+ },
+ "20d": {
+  "cyclone": {
+   "q": 0.10264,
+   "n_calib": 10,
+   "n_residuals": 20,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.160822,
+     "n_calib": 8,
+     "n_residuals": 10,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.10264,
+     "n_calib": 9,
+     "n_residuals": 10,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "hurricane": {
+   "q": 0.202144,
+   "n_calib": 7,
+   "n_residuals": 19,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.331938,
+     "n_calib": 6,
+     "n_residuals": 13,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.202144,
+     "n_calib": 6,
+     "n_residuals": 6,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "monsoon_deficit": {
+   "q": 0.199292,
+   "n_calib": 2,
+   "n_residuals": 5,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.199292,
+     "n_calib": 2,
+     "n_residuals": 5,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "oil_shock": {
+   "q": 0.260368,
+   "n_calib": 2,
+   "n_residuals": 5,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.032514,
+     "n_calib": 1,
+     "n_residuals": 1,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.260368,
+     "n_calib": 2,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "policy": {
+   "q": 0.209546,
+   "n_calib": 3,
+   "n_residuals": 8,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.076857,
+     "n_calib": 3,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.209546,
+     "n_calib": 3,
+     "n_residuals": 4,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "rate_shock": {
+   "q": 0.123236,
+   "n_calib": 2,
+   "n_residuals": 4,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.049731,
+     "n_calib": 1,
+     "n_residuals": 1,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.123236,
+     "n_calib": 2,
+     "n_residuals": 3,
+     "coverage_target": 0.8
+    }
+   }
+  },
+  "_all": {
+   "q": 0.152806,
+   "n_calib": 26,
+   "n_residuals": 61,
+   "coverage_target": 0.8,
+   "by_measure": {
+    "abnormal": {
+     "q": 0.155041,
+     "n_calib": 21,
+     "n_residuals": 34,
+     "coverage_target": 0.8
+    },
+    "raw": {
+     "q": 0.177266,
+     "n_calib": 22,
+     "n_residuals": 27,
+     "coverage_target": 0.8
+    }
+   }
+  }
+ }
+}

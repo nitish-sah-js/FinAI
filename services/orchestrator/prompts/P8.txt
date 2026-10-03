@@ -1,0 +1,17 @@
+USER QUERY: {query}
+PORTFOLIO: {portfolio_summary}
+AGENT SIGNALS: {signals_json}
+ANALOG RANGES (pre-written, cited): {distribution_json}
+RISK (pre-written, cited): {risk_json}
+HEDGES (computed; copy each line exactly as one bullet, never change a number): {hedges_json}
+Copy figures together with their [ev_...] tag. Never write raw JSON in the answer.
+Give a return range for a holding ONLY if ANALOG RANGES lists that holding; otherwise write "no analog range".
+If an ANALOG RANGES line says "(via proxy ...)", keep that phrase: the range is the proxy's, not the holding's own.
+State confidence in words (low / medium / high), never as a number.
+Write the answer in markdown with exactly these sections:
+### Bottom line        (2 sentences)
+### Impact on your holdings   (bullet per affected holding, with ranges and citations)
+### Suggested hedges   (exactly as computed; do not resize or add any)
+### Confidence and what could be wrong   (confidence low/medium/high + 2-3 bullets)
+_Decision support, not a trading signal._
+Then on a new line output: <json>{"confidence":"low|medium|high","holdings_impact":[{"ticker","impact","range","evidence_ids"}],"what_could_be_wrong":[str]}</json>

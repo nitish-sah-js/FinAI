@@ -1,0 +1,5 @@
+{"evidence":[{"id":"ev_news_001","tool":"news","value":{"items":[
+ {"news_id":"a3f9c01b22de","title":"Cyclone alert: IMD warns of very severe storm off Odisha coast","summary":"...","source":"Economic Times Markets","url":"https://economictimes.indiatimes.com/...","published_at":"2026-10-03T06:10:00Z","tickers":[],"category":"news"},
+ {"news_id":"7bc2e91f0a11","title":"Port operations suspended ahead of cyclone","summary":"...","source":"GDELT:business-standard.com","url":"https://...","published_at":"2026-10-03T07:02:00Z","tickers":["ADANIPORTS.NS"],"category":"news"}]},
+ "summary":"2 items, 48h, query 'cyclone odisha'","source":"RSS (ET, Mint, BS, Moneycontrol) + GDELT DOC 2.0",
+ "as_of":"2026-10-03T07:02:00Z","timestamp":"2026-10-03T08:45:03Z","confidence":null,"degraded":false}],"warnings":[]}

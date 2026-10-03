@@ -1,0 +1,32 @@
+{
+  "evidence": [
+    {
+      "id": "ev_macro_001",
+      "run_id": null,
+      "tool": "macro",
+      "value": {
+        "repo_rate": 5.5,
+        "repo_change_bps": 0,
+        "cpi_yoy": 3.1,
+        "usd_inr": 88.4,
+        "usd_inr_chg_5d": 0.004,
+        "brent": 67.2,
+        "brent_chg_5d": 0.021,
+        "us10y": 4.12,
+        "us10y_chg_5d": -0.03
+      },
+      "summary": "Brent +2.1% in 5d; repo unchanged",
+      "source": "RBI, MoSPI, FRED, EIA (cached)",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 86400,
+      "confidence": 0.85,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

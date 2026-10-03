@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "copilot_common"
+version = "0.1.0"
+description = "Shared contracts for the copilot project (MINIMAL STAND-IN: models, ids, settings, cache, service_base)"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.6", "pydantic-settings", "fastapi", "httpx", "python-dotenv"]
+
+[tool.setuptools.packages.find]
+include = ["copilot_common*"]
+
+[tool.setuptools.package-data]
+copilot_common = ["fixtures/**/*.json"]

@@ -1,0 +1,12 @@
+{
+  "_note": "NSE index F&O lot sizes from the January 2026 series (NIFTY 75→65, BANKNIFTY 35→30, FINNIFTY 65→60, MIDCPNIFTY 140→120). Two key styles on purpose: instrument NAMES (paper trading reads the first word of the instrument, e.g. 'NIFTY OCT FUT short') and Yahoo TICKERS (quant/hedges.py looks up the underlying, e.g. '^NSEI'). Keep each pair equal. NSE revises these periodically: verify on nseindia.com before the demo. Add stock F&O lots before paper-trading stock options.",
+  "_verified": "2026-10-03: scanx.trade report of the NSE circular; matches the quant owner's independent check",
+  "NIFTY": 65,
+  "BANKNIFTY": 30,
+  "FINNIFTY": 60,
+  "MIDCPNIFTY": 120,
+  "^NSEI": 65,
+  "^NSEBANK": 30,
+  "NIFTY_FIN_SERVICE.NS": 60,
+  "^NSMIDCP": 120
+}

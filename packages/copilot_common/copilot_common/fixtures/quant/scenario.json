@@ -1,0 +1,35 @@
+{
+  "evidence": [
+    {
+      "id": "ev_scenario_001",
+      "run_id": null,
+      "tool": "scenario",
+      "value": {
+        "shocks": {
+          "crude": 10
+        },
+        "pnl_inr": -6120.0,
+        "pnl_pct": -0.0041,
+        "by_ticker": {
+          "RELIANCE.NS": -2900.0,
+          "ONGC.NS": 4100.0,
+          "ITC.NS": -1500.0,
+          "HINDUNILVR.NS": -1200.0,
+          "UPL.NS": -4620.0
+        }
+      },
+      "summary": "crude +10% → ₹-6,120",
+      "source": "quant engine (factor shocks)",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 40000,
+      "confidence": 0.7,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

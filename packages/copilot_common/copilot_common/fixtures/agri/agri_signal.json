@@ -1,0 +1,108 @@
+{
+  "evidence": [
+    {
+      "id": "ev_agri_001",
+      "run_id": null,
+      "tool": "agri",
+      "value": {
+        "region_id": "MH-Yavatmal",
+        "district": "Yavatmal",
+        "state": "Maharashtra",
+        "crop_season": "kharif",
+        "season_year": 2026,
+        "main_crops": [
+          "cotton",
+          "soybean"
+        ],
+        "lat": null,
+        "lon": null,
+        "period_start": "2026-08-29",
+        "period_end": "2026-09-13",
+        "features": {
+          "ndvi_mean": 0.41,
+          "ndvi_max": 0.68,
+          "ndvi_std": 0.09,
+          "ndvi_anomaly_z": -1.4,
+          "vci": 0.28,
+          "ndvi_delta": -0.03,
+          "evi_mean": 0.27,
+          "rain_30d_mm": 96.0,
+          "rain_anomaly_pct": -22.0,
+          "soil_moisture_0_7cm": 0.18,
+          "soil_moisture_anomaly_z": -1.1,
+          "lst_anomaly_c": null,
+          "valid_pixel_frac": 0.83,
+          "doy_bin": 16
+        },
+        "stress_class": "stressed",
+        "stress_class_now": "stressed",
+        "class_probs": {
+          "healthy": 0.08,
+          "watch": 0.22,
+          "stressed": 0.55,
+          "severe": 0.15
+        },
+        "stress_lead_days": 16,
+        "yield_anomaly_pct": null,
+        "trend": {
+          "ndvi_anomaly_z_prev": -0.9,
+          "direction": "worsening",
+          "prev_period_end": "2026-08-28",
+          "stress_class_now_prev": "watch"
+        },
+        "linked_equities": [
+          {
+            "ticker": "UPL.NS",
+            "link": "crop protection demand (cotton belt)",
+            "sign": "+",
+            "strength": 0.6
+          },
+          {
+            "ticker": "M&M.NS",
+            "link": "rural tractor demand",
+            "sign": "-",
+            "strength": 0.4
+          },
+          {
+            "ticker": "KPRMILL.NS",
+            "link": "cotton input cost",
+            "sign": "-",
+            "strength": 0.3
+          }
+        ],
+        "baseline_years": "2011-2025",
+        "n_years_baseline": 15,
+        "imagery_age_days": 20,
+        "model_version": "gbm_v2",
+        "data_source": "MODIS MOD13Q1 v061 NDVI/EVI 250m 16-day (district zonal mean, GEE export)",
+        "weather_source": "Open-Meteo ERA5 daily weather at the district centroid",
+        "label_source": "rule-based stress_class (VCI + rain deficit, 09 §5); no yield labels",
+        "model_skill": {
+          "beats_persistence": false,
+          "cv_accuracy": 0.605,
+          "cv_macro_f1": 0.552,
+          "persistence_accuracy": 0.624,
+          "persistence_macro_f1": 0.553,
+          "confidence_factor": 0.8
+        },
+        "degraded": false,
+        "degraded_reasons": [],
+        "note": "MOCK fixture: illustrative values, not a model output"
+      },
+      "summary": "Yavatmal kharif 2026 (MODIS composite to 2026-09-13, 20 d old): NDVI -1.40σ vs 2011-2025, VCI 0.28, season rain -22% -> next ~16 d: stressed (p=0.55); no yield model",
+      "source": "agri gbm_v2 on MODIS MOD13Q1 NDVI + Open-Meteo ERA5 weather (MOCK fixture)",
+      "source_url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
+      "as_of": "2026-09-13T00:00:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 1759500,
+      "confidence": 0.44,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 120,
+      "model_version": "gbm_v2"
+    }
+  ],
+  "warnings": [
+    "yield_anomaly_pct is null: no yield model (no district yield labels were available)"
+  ]
+}

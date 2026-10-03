@@ -1,0 +1,12 @@
+USER QUERY: {query}
+PORTFOLIO: {portfolio_summary}
+AGENT SIGNALS: {signals_json}
+ANALOG RANGES (pre-written, cited): {distribution_json}
+RISK (pre-written, cited): {risk_json}
+HEDGES (computed; copy each line exactly as one bullet, never change a number): {hedges_json}
+Write the answer in {lang_name} (Hindi in Devanagari for "hi"; Roman-script Hinglish for "hinglish").
+Keep tickers, numbers, and [ev_...] citations exactly as in the evidence (do not translate or round them).
+Give a return range for a holding ONLY if ANALOG RANGES lists that holding. State confidence in words, never as a number.
+Section headings: ### Saar (Bottom line) · ### Aapke holdings par asar · ### Hedge sujhav · ### Bharosa aur jokhim
+End with: _Yeh nirnay-sahayata hai, trading signal nahi._
+Then on a new line output: <json>{"confidence":"low|medium|high","holdings_impact":[{"ticker","impact","range","evidence_ids"}],"what_could_be_wrong":[str]}</json>

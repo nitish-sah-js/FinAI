@@ -1,0 +1,15 @@
+# Agri service (L2 :8103), docs/09. Install from the repo root, after requirements.txt (copilot_common):
+#   .venv\Scripts\python -m pip install -r services/agri/requirements.txt
+# No rasterio/geopandas: the service reads the GEE zonal-mean CSV export, not rasters.
+fastapi
+uvicorn
+pydantic
+httpx
+numpy
+pandas
+pyarrow
+lightgbm>=4.0
+scikit-learn
+joblib
+pytest
+requests       # only for training/download_agri_weather.py

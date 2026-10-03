@@ -1,0 +1,7 @@
+EVIDENCE: {evidence_json}
+EXPOSED HOLDINGS: {exposed_holdings}
+Write at most 3 sentences: what is happening, which holdings or sectors are exposed, and the confidence.
+Copy numbers exactly as they appear in EVIDENCE; never compute, average or round them. End every sentence with the id
+of the evidence it uses in square brackets, e.g. [ev_weather_001]. Describe confidence in words
+(low / medium / high), not as a new number.
+Return JSON: {"agent":"weather_agent","signal":"bullish|bearish|neutral|mixed","summary":str,"evidence_ids":[str]}

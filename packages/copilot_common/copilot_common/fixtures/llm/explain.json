@@ -1,0 +1,4 @@
+{
+  "text": "1. parse_intent read the query as an event_impact question about a cyclone in Odisha.\n2. The weather, sentiment, analog and exposure agents ran in parallel [ev_weather_001] [ev_sentiment_001] [ev_analogs_001] [ev_exposure_001].\n3. The quant agent computed VaR and a beta hedge [ev_risk_001] [ev_hedge_001].\n4. The synthesizer combined these; the red team and validator then checked the answer.",
+  "parsed": null
+}

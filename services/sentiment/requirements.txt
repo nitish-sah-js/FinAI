@@ -1,0 +1,11 @@
+# Sentiment service (L2 :8102), docs/07. Install from the repo root, after requirements.txt (copilot_common + copilot_llm):
+#   .venv\Scripts\python -m pip install torch --index-url https://download.pytorch.org/whl/cu130   (GPU; plain `torch` for CPU)
+#   .venv\Scripts\python -m pip install -r services/sentiment/requirements.txt
+fastapi
+uvicorn
+transformers
+torch
+datasets       # only for sentiment/eval.py
+httpx
+pydantic
+langid

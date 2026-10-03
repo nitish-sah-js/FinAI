@@ -1,0 +1,159 @@
+{
+  "evidence": [
+    {
+      "id": "ev_exposure_001",
+      "run_id": null,
+      "tool": "exposure",
+      "value": {
+        "by_sector": {
+          "Energy": 0.31,
+          "Utilities": 0.12,
+          "FMCG": 0.21,
+          "Banks": 0.15,
+          "Agri": 0.1,
+          "Oil&Gas": 0.11
+        },
+        "by_ticker": [
+          {
+            "ticker": "COALINDIA.NS",
+            "weight": 0.19,
+            "beta": 0.71,
+            "weather_sens": 0.6,
+            "agri_sens": 0.0
+          },
+          {
+            "ticker": "NTPC.NS",
+            "weight": 0.12,
+            "beta": 0.78,
+            "weather_sens": 0.5,
+            "agri_sens": 0.0
+          },
+          {
+            "ticker": "ITC.NS",
+            "weight": 0.13,
+            "beta": 0.62,
+            "weather_sens": 0.3,
+            "agri_sens": 0.5
+          },
+          {
+            "ticker": "HINDUNILVR.NS",
+            "weight": 0.08,
+            "beta": 0.55,
+            "weather_sens": 0.2,
+            "agri_sens": 0.4
+          },
+          {
+            "ticker": "HDFCBANK.NS",
+            "weight": 0.15,
+            "beta": 1.02,
+            "weather_sens": 0.0,
+            "agri_sens": 0.1
+          },
+          {
+            "ticker": "UPL.NS",
+            "weight": 0.1,
+            "beta": 0.95,
+            "weather_sens": 0.4,
+            "agri_sens": 0.8
+          },
+          {
+            "ticker": "ONGC.NS",
+            "weight": 0.11,
+            "beta": 0.88,
+            "weather_sens": 0.3,
+            "agri_sens": 0.0
+          },
+          {
+            "ticker": "RELIANCE.NS",
+            "weight": 0.12,
+            "beta": 1.05,
+            "weather_sens": 0.2,
+            "agri_sens": 0.0
+          }
+        ],
+        "east_coast_weight": 0.31,
+        "heatmap": {
+          "rows": [
+            "Energy",
+            "Utilities",
+            "FMCG",
+            "Banks",
+            "Agri",
+            "Oil&Gas"
+          ],
+          "cols": [
+            "weather",
+            "agri",
+            "crude",
+            "rates",
+            "usd_inr"
+          ],
+          "values": [
+            [
+              0.6,
+              0.0,
+              0.3,
+              -0.1,
+              0.1
+            ],
+            [
+              0.5,
+              0.0,
+              0.1,
+              -0.3,
+              0.0
+            ],
+            [
+              0.3,
+              0.5,
+              -0.2,
+              -0.1,
+              -0.1
+            ],
+            [
+              0.0,
+              0.1,
+              -0.1,
+              0.6,
+              -0.2
+            ],
+            [
+              0.4,
+              0.8,
+              -0.1,
+              0.0,
+              0.1
+            ],
+            [
+              0.3,
+              0.0,
+              0.8,
+              -0.1,
+              0.3
+            ]
+          ],
+          "row_weights": {
+            "Energy": 0.31,
+            "Utilities": 0.12,
+            "FMCG": 0.21,
+            "Banks": 0.15,
+            "Agri": 0.1,
+            "Oil&Gas": 0.11
+          }
+        }
+      },
+      "summary": "COALINDIA+NTPC = 31% of portfolio, high weather sensitivity",
+      "source": "quant engine (yfinance 500d, ^NSEI beta)",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 40000,
+      "confidence": 0.8,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

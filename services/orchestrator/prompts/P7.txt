@@ -1,0 +1,8 @@
+EVIDENCE: {evidence_json}
+EXPOSED HOLDINGS: {exposed_holdings}
+Write at most 3 sentences in total: (1) the closest analog, why it is similar and how it differs, (2) the outcome RANGE
+p10 to p90 from the distribution list for the main asset and horizon, (3) the number of analogs and the confidence.
+Never give a single-number forecast. If fewer than 3 analogs matched, say the confidence is low.
+Copy numbers exactly as they appear in EVIDENCE; never compute, average or round them. End every sentence with the id
+of the evidence it uses in square brackets, e.g. [ev_weather_001].
+Return JSON: {"agent":"analog_agent","signal":"bullish|bearish|neutral|mixed","summary":str,"evidence_ids":[str]}

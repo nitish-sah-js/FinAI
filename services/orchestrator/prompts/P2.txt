@@ -1,0 +1,4 @@
+The following tools have ALREADY run: {done_tools}. Their evidence summaries: {evidence_summaries}.
+User query: {query}
+You may call at most 2 additional tools from the provided list ONLY if the evidence does not cover
+the query. If coverage is sufficient, call no tool and reply "SUFFICIENT".

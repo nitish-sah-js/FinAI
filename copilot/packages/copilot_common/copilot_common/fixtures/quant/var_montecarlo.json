@@ -1,0 +1,57 @@
+{
+  "evidence": [
+    {
+      "id": "ev_risk_007",
+      "run_id": null,
+      "tool": "risk",
+      "value": {
+        "method": "montecarlo",
+        "horizon_days": 5,
+        "confidence_level": 0.95,
+        "var_inr": 18420.0,
+        "cvar_inr": 23110.0,
+        "var_pct": 0.0331,
+        "paths": [
+          [
+            1.0,
+            0.996,
+            1.004,
+            0.991,
+            0.987,
+            0.992
+          ],
+          [
+            1.0,
+            1.003,
+            1.006,
+            1.002,
+            1.009,
+            1.011
+          ]
+        ],
+        "pnl_hist": {
+          "bin_edges": [
+            -40000,
+            -37000,
+            -34000
+          ],
+          "counts": [
+            3,
+            5
+          ]
+        }
+      },
+      "summary": "5d 95% MC VaR ₹18,420 (3.3% of portfolio)",
+      "source": "quant MC on adj close, 500d lookback",
+      "as_of": "2026-10-02T10:00:00Z",
+      "timestamp": "2026-10-03T08:45:06Z",
+      "freshness_s": 81906,
+      "confidence": 0.375,
+      "degraded": true,
+      "degraded_reason": "mock",
+      "latency_ms": 300,
+      "model_version": "quant_v1"
+    }
+  ],
+  "warnings": []
+}

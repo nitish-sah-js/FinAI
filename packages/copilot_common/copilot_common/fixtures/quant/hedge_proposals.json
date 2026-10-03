@@ -1,0 +1,43 @@
+{
+  "evidence": [
+    {
+      "id": "ev_hedge_001",
+      "run_id": null,
+      "tool": "hedge",
+      "value": {
+        "proposals": [
+          {
+            "hedge_id": "h1",
+            "instrument": "NIFTY OCT FUT short",
+            "underlying": "^NSEI",
+            "side": "sell",
+            "quantity": 1,
+            "unit": "lots",
+            "hedge_ratio": 0.42,
+            "est_cost_inr": 1850,
+            "rationale": "beta hedge of energy/utility sleeve",
+            "sizing_method": "beta",
+            "evidence_ids": [
+              "ev_hedge_001"
+            ]
+          }
+        ],
+        "pre_var_inr": 48200,
+        "post_var_inr": 29100,
+        "portfolio_beta": 0.82
+      },
+      "summary": "1 lot NIFTY short cuts VaR to ₹29,100",
+      "source": "quant engine (beta sizing, NSE lot sizes)",
+      "source_url": null,
+      "as_of": "2026-10-03T02:30:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 40000,
+      "confidence": 0.75,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 420,
+      "model_version": null
+    }
+  ],
+  "warnings": []
+}

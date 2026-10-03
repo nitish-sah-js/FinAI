@@ -1,0 +1,10 @@
+{"id": 1, "query": "Hurricane in the Gulf heading to Louisiana — impact on my energy stocks this week?", "lang": "en", "expect": {"intent": "event_impact", "event_type": "hurricane", "horizon_days": 5, "tools_include": ["analogs"]}}
+{"id": 2, "query": "Cyclone heading to Odisha — what happens to my portfolio?", "lang": "en", "expect": {"event_type": "cyclone", "region_contains": "odisha", "references_portfolio": true}}
+{"id": 3, "query": "Agar monsoon kamzor raha toh FMCG ka kya hoga next month?", "lang": "hinglish", "expect": {"event_type": "monsoon", "horizon_days": 20, "tools_include": ["agri"]}}
+{"id": 4, "query": "What's my 1-day VaR?", "lang": "en", "expect": {"intent": "portfolio_risk", "horizon_days": 1, "tools_include": ["risk"]}}
+{"id": 5, "query": "Hedge my Reliance and ONGC position against an oil crash", "lang": "en", "expect": {"intent": "hedge_request", "tickers_include": ["RELIANCE.NS", "ONGC.NS"], "event_type": "oil"}}
+{"id": 6, "query": "RBI hiked repo by 50bps, which of my banks get hurt?", "lang": "en", "expect": {"event_type": "rates", "tools_include": ["macro"]}}
+{"id": 7, "query": "Heatwave in north India — power and cooling stocks?", "lang": "en", "expect": {"event_type": "heatwave"}}
+{"id": 8, "query": "Explain your last recommendation", "lang": "en", "expect": {"intent": "explain"}}
+{"id": 9, "query": "Summarise the market today", "lang": "en", "expect": {"intent": "market_summary", "horizon_days": 1}}
+{"id": 10, "query": "ITC ke liye kharif crop stress kitna bura hai?", "lang": "hinglish", "expect": {"tools_include": ["agri"], "tickers_include": ["ITC.NS"]}}

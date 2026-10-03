@@ -1,0 +1,95 @@
+{
+  "evidence": [
+    {
+      "id": "ev_analogs_005",
+      "run_id": "run_20261003141502_a91f",
+      "tool": "analogs",
+      "value": {
+        "analogs": [
+          {
+            "event_id": "cyclone_fani_2019",
+            "title": "Cyclone Fani landfall, Odisha",
+            "event_date": "2019-05-03",
+            "similarity": 0.87,
+            "why_similar": ["same type: cyclone", "same region: Odisha", "severity gap 0.14", "mechanism overlap: power, crop, port"],
+            "outcomes": [
+              {"asset": "^NSEI", "ret_5d": -0.012, "abnormal_5d": null},
+              {"asset": "^CNXFMCG", "ret_5d": -0.018, "abnormal_5d": -0.006}
+            ]
+          },
+          {
+            "event_id": "cyclone_phailin_2013",
+            "title": "Cyclone Phailin landfall, Odisha",
+            "event_date": "2013-10-12",
+            "similarity": 0.84,
+            "why_similar": ["same type: cyclone", "same region: Odisha", "severity gap 0.14"],
+            "outcomes": []
+          },
+          {
+            "event_id": "cyclone_yaas_2021",
+            "title": "Cyclone Yaas landfall, Odisha/WB",
+            "event_date": "2021-05-26",
+            "similarity": 0.81,
+            "why_similar": ["same type: cyclone", "adjacent region: Odisha/WB"],
+            "outcomes": []
+          },
+          {
+            "event_id": "cyclone_amphan_2020",
+            "title": "Cyclone Amphan landfall, West Bengal",
+            "event_date": "2020-05-20",
+            "similarity": 0.74,
+            "why_similar": ["same type: cyclone", "Bay of Bengal", "severity gap 0.29"],
+            "outcomes": []
+          },
+          {
+            "event_id": "cyclone_dana_2024",
+            "title": "Cyclone Dana landfall, Odisha",
+            "event_date": "2024-10-25",
+            "similarity": 0.72,
+            "why_similar": ["same type: cyclone", "same region: Odisha"],
+            "outcomes": []
+          }
+        ],
+        "distribution": [
+          {
+            "asset": "^CNXFMCG",
+            "horizon": "5d",
+            "measure": "abnormal",
+            "n": 5,
+            "median": -0.008,
+            "p10": -0.021,
+            "p90": 0.006,
+            "conformal_lo": -0.031,
+            "conformal_hi": 0.015,
+            "coverage_target": 0.8,
+            "n_calib": 14
+          },
+          {
+            "asset": "^NSEI",
+            "horizon": "5d",
+            "measure": "raw",
+            "n": 5,
+            "median": -0.004,
+            "p10": -0.019,
+            "p90": 0.011,
+            "conformal_lo": -0.024,
+            "conformal_hi": 0.016,
+            "coverage_target": 0.8,
+            "n_calib": 14
+          }
+        ],
+        "confidence": "high",
+        "filters_relaxed": []
+      },
+      "summary": "5 cyclone analogs (mean sim 0.80); FMCG 5d abnormal median -0.8% (p10 -2.1%, p90 +0.6%)",
+      "source": "Weaviate HistoricalEvent (40 events, bge-small-en-v1.5) + yfinance outcomes",
+      "as_of": "2026-10-03T08:45:00Z",
+      "timestamp": "2026-10-03T08:45:05Z",
+      "confidence": 0.8,
+      "degraded": false,
+      "latency_ms": 140,
+      "model_version": "analogs_v1"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,334 @@
+{
+ "case_id": 1,
+ "query": "Hurricane in the Gulf heading to Louisiana — impact on my energy stocks this week?",
+ "lang": "en",
+ "portfolio": {
+  "portfolio_id": "demo",
+  "currency": "INR",
+  "cash": 0.0,
+  "holdings": [
+   {
+    "ticker": "RELIANCE.NS",
+    "qty": 50,
+    "avg_price": 2850,
+    "sector": "Energy"
+   },
+   {
+    "ticker": "ONGC.NS",
+    "qty": 600,
+    "avg_price": 255,
+    "sector": "Oil&Gas"
+   },
+   {
+    "ticker": "COALINDIA.NS",
+    "qty": 700,
+    "avg_price": 410,
+    "sector": "Energy"
+   },
+   {
+    "ticker": "NTPC.NS",
+    "qty": 500,
+    "avg_price": 355,
+    "sector": "Utilities"
+   },
+   {
+    "ticker": "ITC.NS",
+    "qty": 450,
+    "avg_price": 430,
+    "sector": "FMCG"
+   },
+   {
+    "ticker": "HINDUNILVR.NS",
+    "qty": 50,
+    "avg_price": 2450,
+    "sector": "FMCG"
+   },
+   {
+    "ticker": "HDFCBANK.NS",
+    "qty": 120,
+    "avg_price": 1850,
+    "sector": "Banks"
+   },
+   {
+    "ticker": "UPL.NS",
+    "qty": 230,
+    "avg_price": 650,
+    "sector": "Agri"
+   }
+  ]
+ },
+ "evidence": [
+  {
+   "id": "ev_weather_001",
+   "run_id": null,
+   "tool": "weather",
+   "value": {
+    "region": "US-GulfCoast",
+    "lat": 29.95,
+    "lon": -90.07,
+    "rain_anomaly_pct": 310,
+    "heat_index_c": 34.0,
+    "max_temp_c": 31.5,
+    "soil_moisture_0_7cm": 0.33,
+    "storm": {
+     "name": "Delta",
+     "category": "Category 4 hurricane",
+     "basin": "Atlantic",
+     "track_toward": "Louisiana refineries"
+    },
+    "alerts": [
+     "NHC hurricane warning: Louisiana coast"
+    ],
+    "horizon_days": 5
+   },
+   "summary": "US-GulfCoast: rain +310% vs normal, max 31.5 °C",
+   "source": "Open-Meteo forecast + IMD/NHC",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 22500,
+   "confidence": 0.7,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_agri_001",
+   "run_id": null,
+   "tool": "agri",
+   "value": {
+    "region_id": "MH-Yavatmal",
+    "crop_season": "kharif",
+    "features": {
+     "ndvi_anomaly_z": 0.3,
+     "vci": 0.56
+    },
+    "stress_class": "healthy",
+    "yield_anomaly_pct": {
+     "q10": -2.0,
+     "q50": 1.5,
+     "q90": 4.0
+    },
+    "stress_lead_days": 30,
+    "model_version": "gbm_v1",
+    "data_source": "Sentinel-2 NDVI (district zonal mean)"
+   },
+   "summary": "MH-Yavatmal: healthy, NDVI z +0.3",
+   "source": "gbm_v1 on Sentinel-2 NDVI",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 345600,
+   "confidence": 0.6,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_macro_001",
+   "run_id": null,
+   "tool": "macro",
+   "value": {
+    "repo_rate": 5.5,
+    "repo_change_bps": 0,
+    "cpi_yoy": 3.1,
+    "usd_inr": 88.2,
+    "usd_inr_chg_5d": 0.002,
+    "brent": 71.8,
+    "brent_chg_5d": 0.034,
+    "us10y": 4.12,
+    "us10y_chg_5d": -0.03
+   },
+   "summary": "Brent +3.4% 5d; repo +0 bps",
+   "source": "RBI, MoSPI, FRED, EIA",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 86400,
+   "confidence": 0.85,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_analogs_001",
+   "run_id": null,
+   "tool": "analogs",
+   "value": {
+    "analogs": [
+     {
+      "event_id": "hurricane_ida_2021",
+      "title": "Hurricane Ida, Louisiana",
+      "similarity": 0.91
+     },
+     {
+      "event_id": "hurricane_laura_2020",
+      "title": "Hurricane Laura, Louisiana",
+      "similarity": 0.84
+     },
+     {
+      "event_id": "hurricane_harvey_2017",
+      "title": "Hurricane Harvey, Texas",
+      "similarity": 0.79
+     },
+     {
+      "event_id": "hurricane_katrina_2005",
+      "title": "Hurricane Katrina",
+      "similarity": 0.74
+     }
+    ],
+    "distribution": [
+     {
+      "asset": "NG=F",
+      "horizon": "5d",
+      "measure": "raw",
+      "n": 4,
+      "median": 0.052,
+      "p10": -0.01,
+      "p90": 0.11
+     },
+     {
+      "asset": "RELIANCE.NS",
+      "horizon": "5d",
+      "measure": "abnormal",
+      "n": 4,
+      "median": 0.008,
+      "p10": -0.012,
+      "p90": 0.031
+     }
+    ],
+    "confidence": "high"
+   },
+   "summary": "4 analogs",
+   "source": "Weaviate HistoricalEvent",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": null,
+   "confidence": 0.6,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_exposure_001",
+   "run_id": null,
+   "tool": "exposure",
+   "value": {
+    "by_sector": {
+     "Energy": 0.31,
+     "Oil&Gas": 0.11,
+     "Utilities": 0.12,
+     "FMCG": 0.21,
+     "Banks": 0.15,
+     "Agri": 0.1
+    }
+   },
+   "summary": "Energy 31%, FMCG 21%, Banks 15%",
+   "source": "quant engine",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.8,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_sentiment_001",
+   "run_id": null,
+   "tool": "sentiment",
+   "value": {
+    "portfolio_sentiment": -0.18,
+    "by_ticker": {}
+   },
+   "summary": "Portfolio-weighted tone -0.18",
+   "source": "FinBERT-India",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 9000,
+   "confidence": 0.7,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_risk_001",
+   "run_id": null,
+   "tool": "risk",
+   "value": {
+    "method": "monte_carlo",
+    "horizon_days": 5,
+    "confidence_level": 0.95,
+    "var_inr": 51800,
+    "cvar_inr": 68894,
+    "var_pct": 0.034
+   },
+   "summary": "5d 95% VaR ₹51,800",
+   "source": "quant engine (Monte Carlo)",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.8,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_hedge_001",
+   "run_id": null,
+   "tool": "hedge",
+   "value": {
+    "proposals": [
+     {
+      "hedge_id": "h1",
+      "instrument": "NIFTY OCT FUT short",
+      "underlying": "^NSEI",
+      "side": "sell",
+      "quantity": 1,
+      "unit": "lots",
+      "hedge_ratio": 0.38,
+      "est_cost_inr": 1850,
+      "rationale": "beta hedge",
+      "sizing_method": "beta",
+      "evidence_ids": [
+       "ev_hedge_001"
+      ]
+     }
+    ],
+    "pre_var_inr": 51800,
+    "post_var_inr": 33400,
+    "portfolio_beta": 0.82
+   },
+   "summary": "1 lot NIFTY OCT FUT short",
+   "source": "quant engine (beta sizing)",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.75,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  }
+ ]
+}

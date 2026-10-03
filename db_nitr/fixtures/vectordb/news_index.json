@@ -1,0 +1,22 @@
+{
+  "evidence": [
+    {
+      "id": "ev_news_014",
+      "run_id": null,
+      "tool": "news",
+      "value": {
+        "indexed": 32,
+        "skipped_duplicates": 4,
+        "pipeline_ms": {"p50": 180, "p95": 410, "n": 32},
+        "end_to_end_s": {"p50": 420, "p95": 1310}
+      },
+      "summary": "Indexed 32 headlines, p95 embed+insert 410 ms",
+      "source": "vectordb NewsItem",
+      "as_of": "2026-10-03T08:44:59Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "confidence": 1.0,
+      "degraded": false
+    }
+  ],
+  "warnings": []
+}

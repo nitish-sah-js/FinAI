@@ -1,0 +1,5 @@
+# EXAMPLE VALUES - REPLACE with real MoSPI CPI YoY (monthly) before the demo
+date,cpi_yoy
+2026-06-30,3.4
+2026-07-31,3.2
+2026-08-31,3.1

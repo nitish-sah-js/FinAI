@@ -1,0 +1,324 @@
+{
+ "case_id": 3,
+ "query": "Agar monsoon kamzor raha toh FMCG ka kya hoga next month?",
+ "lang": "hinglish",
+ "portfolio": {
+  "portfolio_id": "demo",
+  "currency": "INR",
+  "cash": 0.0,
+  "holdings": [
+   {
+    "ticker": "RELIANCE.NS",
+    "qty": 50,
+    "avg_price": 2850,
+    "sector": "Energy"
+   },
+   {
+    "ticker": "ONGC.NS",
+    "qty": 600,
+    "avg_price": 255,
+    "sector": "Oil&Gas"
+   },
+   {
+    "ticker": "COALINDIA.NS",
+    "qty": 700,
+    "avg_price": 410,
+    "sector": "Energy"
+   },
+   {
+    "ticker": "NTPC.NS",
+    "qty": 500,
+    "avg_price": 355,
+    "sector": "Utilities"
+   },
+   {
+    "ticker": "ITC.NS",
+    "qty": 450,
+    "avg_price": 430,
+    "sector": "FMCG"
+   },
+   {
+    "ticker": "HINDUNILVR.NS",
+    "qty": 50,
+    "avg_price": 2450,
+    "sector": "FMCG"
+   },
+   {
+    "ticker": "HDFCBANK.NS",
+    "qty": 120,
+    "avg_price": 1850,
+    "sector": "Banks"
+   },
+   {
+    "ticker": "UPL.NS",
+    "qty": 230,
+    "avg_price": 650,
+    "sector": "Agri"
+   }
+  ]
+ },
+ "evidence": [
+  {
+   "id": "ev_weather_001",
+   "run_id": null,
+   "tool": "weather",
+   "value": {
+    "region": "IN-All",
+    "lat": 21.0,
+    "lon": 78.0,
+    "rain_anomaly_pct": -24,
+    "heat_index_c": 36.0,
+    "max_temp_c": 35.1,
+    "soil_moisture_0_7cm": 0.33,
+    "storm": null,
+    "alerts": [
+     "IMD: monsoon deficit in central India"
+    ],
+    "horizon_days": 5
+   },
+   "summary": "IN-All: rain -24% vs normal, max 35.1 °C",
+   "source": "Open-Meteo forecast + IMD/NHC",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 22500,
+   "confidence": 0.66,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_agri_001",
+   "run_id": null,
+   "tool": "agri",
+   "value": {
+    "region_id": "MH-Yavatmal",
+    "crop_season": "kharif",
+    "features": {
+     "ndvi_anomaly_z": -1.4,
+     "vci": 0.22
+    },
+    "stress_class": "stressed",
+    "yield_anomaly_pct": {
+     "q10": -18.0,
+     "q50": -9.5,
+     "q90": -1.0
+    },
+    "stress_lead_days": 30,
+    "model_version": "gbm_v1",
+    "data_source": "Sentinel-2 NDVI (district zonal mean)"
+   },
+   "summary": "MH-Yavatmal: stressed, NDVI z -1.4",
+   "source": "gbm_v1 on Sentinel-2 NDVI",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 345600,
+   "confidence": 0.62,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_macro_001",
+   "run_id": null,
+   "tool": "macro",
+   "value": {
+    "repo_rate": 5.5,
+    "repo_change_bps": 0,
+    "cpi_yoy": 3.1,
+    "usd_inr": 88.6,
+    "usd_inr_chg_5d": 0.003,
+    "brent": 69.0,
+    "brent_chg_5d": 0.004,
+    "us10y": 4.12,
+    "us10y_chg_5d": -0.03
+   },
+   "summary": "Brent +0.4% 5d; repo +0 bps",
+   "source": "RBI, MoSPI, FRED, EIA",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 86400,
+   "confidence": 0.85,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_analogs_001",
+   "run_id": null,
+   "tool": "analogs",
+   "value": {
+    "analogs": [
+     {
+      "event_id": "monsoon_deficit_2014",
+      "title": "2014 monsoon deficit",
+      "similarity": 0.86
+     },
+     {
+      "event_id": "monsoon_deficit_2009",
+      "title": "2009 drought",
+      "similarity": 0.82
+     },
+     {
+      "event_id": "monsoon_deficit_2015",
+      "title": "2015 monsoon deficit",
+      "similarity": 0.8
+     }
+    ],
+    "distribution": [
+     {
+      "asset": "^CNXFMCG",
+      "horizon": "20d",
+      "measure": "raw",
+      "n": 3,
+      "median": -0.021,
+      "p10": -0.064,
+      "p90": 0.018
+     },
+     {
+      "asset": "HINDUNILVR.NS",
+      "horizon": "20d",
+      "measure": "abnormal",
+      "n": 3,
+      "median": -0.015,
+      "p10": -0.052,
+      "p90": 0.02
+     }
+    ],
+    "confidence": "medium"
+   },
+   "summary": "3 analogs",
+   "source": "Weaviate HistoricalEvent",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": null,
+   "confidence": 0.6,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_exposure_001",
+   "run_id": null,
+   "tool": "exposure",
+   "value": {
+    "by_sector": {
+     "Energy": 0.31,
+     "Oil&Gas": 0.11,
+     "Utilities": 0.12,
+     "FMCG": 0.21,
+     "Banks": 0.15,
+     "Agri": 0.1
+    }
+   },
+   "summary": "Energy 31%, FMCG 21%, Banks 15%",
+   "source": "quant engine",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.8,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_sentiment_001",
+   "run_id": null,
+   "tool": "sentiment",
+   "value": {
+    "portfolio_sentiment": -0.18,
+    "by_ticker": {}
+   },
+   "summary": "Portfolio-weighted tone -0.18",
+   "source": "FinBERT-India",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 9000,
+   "confidence": 0.7,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_risk_001",
+   "run_id": null,
+   "tool": "risk",
+   "value": {
+    "method": "monte_carlo",
+    "horizon_days": 20,
+    "confidence_level": 0.95,
+    "var_inr": 96500,
+    "cvar_inr": 128345,
+    "var_pct": 0.064
+   },
+   "summary": "20d 95% VaR ₹96,500",
+   "source": "quant engine (Monte Carlo)",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.8,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  },
+  {
+   "id": "ev_hedge_001",
+   "run_id": null,
+   "tool": "hedge",
+   "value": {
+    "proposals": [
+     {
+      "hedge_id": "h1",
+      "instrument": "NIFTY OCT 24500 PE buy",
+      "underlying": "^NSEI",
+      "side": "buy",
+      "quantity": 2,
+      "unit": "lots",
+      "hedge_ratio": 0.3,
+      "est_cost_inr": 7400,
+      "rationale": "beta hedge",
+      "sizing_method": "beta",
+      "evidence_ids": [
+       "ev_hedge_001"
+      ]
+     }
+    ],
+    "pre_var_inr": 96500,
+    "post_var_inr": 71200,
+    "portfolio_beta": 0.82
+   },
+   "summary": "2 lot NIFTY OCT 24500 PE buy",
+   "source": "quant engine (beta sizing)",
+   "source_url": null,
+   "as_of": "2026-10-03T02:30:00Z",
+   "timestamp": "2026-10-03T08:45:00Z",
+   "freshness_s": 40000,
+   "confidence": 0.75,
+   "degraded": false,
+   "degraded_reason": null,
+   "latency_ms": 400,
+   "model_version": null,
+   "staleness_factor": null
+  }
+ ]
+}

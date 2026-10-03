@@ -1,0 +1,7 @@
+{"news_id": "mock_itc_1", "title": "ITC demerger record date announced", "tickers": ["ITC.NS"], "minutes_ago": 50, "sentiment_label": "positive", "sentiment_score": 0.71, "sentiment_confidence": 0.71}
+{"news_id": "mock_itc_2", "title": "ITC hotels listing: brokerages split on valuation", "tickers": ["ITC.NS"], "minutes_ago": 41, "sentiment_label": "neutral", "sentiment_score": 0.0, "sentiment_confidence": 0.66}
+{"news_id": "mock_itc_3", "title": "ITC cigarette volumes seen flat in Q2", "tickers": ["ITC.NS"], "minutes_ago": 30, "sentiment_label": "negative", "sentiment_score": -0.58, "sentiment_confidence": 0.58}
+{"news_id": "mock_itc_4", "title": "ITC shares active in morning trade", "tickers": ["ITC.NS"], "minutes_ago": 18, "sentiment_label": "neutral", "sentiment_score": 0.0, "sentiment_confidence": 0.61}
+{"news_id": "mock_itc_5", "title": "ITC FMCG margins under pressure from input costs", "tickers": ["ITC.NS"], "minutes_ago": 6, "sentiment_label": "negative", "sentiment_score": -0.64, "sentiment_confidence": 0.64}
+{"news_id": "mock_itc_0", "title": "ITC AGM: chairman on growth plans", "tickers": ["ITC.NS"], "minutes_ago": 4000, "sentiment_label": "positive", "sentiment_score": 0.6, "sentiment_confidence": 0.6}
+{"news_id": "mock_ongc_1", "title": "ONGC output steady in September", "tickers": ["ONGC.NS"], "minutes_ago": 200, "sentiment_label": "neutral", "sentiment_score": 0.0, "sentiment_confidence": 0.7}

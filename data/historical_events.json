@@ -1,0 +1,4040 @@
+[
+ {
+  "event_id": "hurricane_katrina_2005",
+  "title": "Hurricane Katrina Landfall Gulf Coast",
+  "event_type": "hurricane",
+  "region": "Gulf of Mexico",
+  "country": "US",
+  "start_date": "2005-08-23",
+  "end_date": "2005-08-31",
+  "event_date": "2005-08-29",
+  "severity_value": 3.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.6,
+  "description": "Category 3 hurricane made landfall near Buras-Triumph Louisiana causing massive storm surge flooding New Orleans and shutting down Gulf offshore oil platforms and coastal refineries.",
+  "mechanism": "Extensive offshore oil and gas production shut-ins and Gulf Coast refinery outages caused sharp spike in crude oil and natural gas prices.",
+  "affected_assets": [
+   "crude",
+   "natgas",
+   "refiners",
+   "energy"
+  ],
+  "tickers": [
+   "CL=F",
+   "NG=F",
+   "RB=F",
+   "XLE",
+   "VLO"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL122005_Katrina.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Gulf of Mexico severity 3 Saffir-Simpson category. Category 3 hurricane made landfall near Buras-Triumph Louisiana causing massive storm surge flooding New Orleans and shutting down Gulf offshore oil platforms and coastal refineries. Mechanism: Extensive offshore oil and gas production shut-ins and Gulf Coast refinery outages caused sharp spike in crude oil and natural gas prices.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": -0.1244,
+    "t0_date": "2005-08-26",
+    "realized_dates": {
+     "1d": "2005-08-29",
+     "5d": "2005-09-02",
+     "20d": "2005-09-26"
+    },
+    "ret_1d": 0.01618,
+    "abnormal_1d": 0.017138,
+    "ret_5d": 0.021775,
+    "abnormal_5d": 0.023331,
+    "ret_20d": -0.004688,
+    "abnormal_20d": -0.00331,
+    "est_window": [
+     "2005-02-22",
+     "2005-08-12"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "NG=F",
+    "benchmark": "SPY",
+    "beta_used": 0.2776,
+    "t0_date": "2005-08-26",
+    "realized_dates": {
+     "1d": "2005-08-29",
+     "5d": "2005-09-02",
+     "20d": "2005-09-26"
+    },
+    "ret_1d": 0.107741,
+    "abnormal_1d": 0.105603,
+    "ret_5d": 0.193934,
+    "abnormal_5d": 0.190462,
+    "ret_20d": 0.270425,
+    "abnormal_20d": 0.26735,
+    "est_window": [
+     "2005-02-22",
+     "2005-08-12"
+    ],
+    "price_symbol": "NG=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RB=F",
+    "benchmark": "SPY",
+    "beta_used": -0.0839,
+    "t0_date": "2005-08-26",
+    "realized_dates": {
+     "1d": "2005-08-29",
+     "5d": "2005-09-02",
+     "20d": "2005-09-26"
+    },
+    "ret_1d": 0.069553,
+    "abnormal_1d": 0.070199,
+    "ret_5d": 0.133448,
+    "abnormal_5d": 0.134497,
+    "ret_20d": 0.105159,
+    "abnormal_20d": 0.106089,
+    "est_window": [
+     "2005-02-22",
+     "2005-08-12"
+    ],
+    "price_symbol": "RB=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "XLE",
+    "benchmark": "SPY",
+    "beta_used": 1.2441,
+    "t0_date": "2005-08-26",
+    "realized_dates": {
+     "1d": "2005-08-29",
+     "5d": "2005-09-02",
+     "20d": "2005-09-26"
+    },
+    "ret_1d": 0.008127,
+    "abnormal_1d": -0.001455,
+    "ret_5d": 0.061679,
+    "abnormal_5d": 0.046122,
+    "ret_20d": 0.118421,
+    "abnormal_20d": 0.104641,
+    "est_window": [
+     "2005-02-22",
+     "2005-08-12"
+    ],
+    "price_symbol": "XLE",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "VLO",
+    "benchmark": "SPY",
+    "beta_used": 1.3743,
+    "t0_date": "2005-08-26",
+    "realized_dates": {
+     "1d": "2005-08-29",
+     "5d": "2005-09-02",
+     "20d": "2005-09-26"
+    },
+    "ret_1d": 0.028201,
+    "abnormal_1d": 0.017616,
+    "ret_5d": 0.213407,
+    "abnormal_5d": 0.196222,
+    "ret_20d": 0.264996,
+    "abnormal_20d": 0.249773,
+    "est_window": [
+     "2005-02-22",
+     "2005-08-12"
+    ],
+    "price_symbol": "VLO",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.1244, \"t0_date\": \"2005-08-26\", \"realized_dates\": {\"1d\": \"2005-08-29\", \"5d\": \"2005-09-02\", \"20d\": \"2005-09-26\"}, \"ret_1d\": 0.01618, \"abnormal_1d\": 0.017138, \"ret_5d\": 0.021775, \"abnormal_5d\": 0.023331, \"ret_20d\": -0.004688, \"abnormal_20d\": -0.00331, \"est_window\": [\"2005-02-22\", \"2005-08-12\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.2776, \"t0_date\": \"2005-08-26\", \"realized_dates\": {\"1d\": \"2005-08-29\", \"5d\": \"2005-09-02\", \"20d\": \"2005-09-26\"}, \"ret_1d\": 0.107741, \"abnormal_1d\": 0.105603, \"ret_5d\": 0.193934, \"abnormal_5d\": 0.190462, \"ret_20d\": 0.270425, \"abnormal_20d\": 0.26735, \"est_window\": [\"2005-02-22\", \"2005-08-12\"], \"price_symbol\": \"NG=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.0839, \"t0_date\": \"2005-08-26\", \"realized_dates\": {\"1d\": \"2005-08-29\", \"5d\": \"2005-09-02\", \"20d\": \"2005-09-26\"}, \"ret_1d\": 0.069553, \"abnormal_1d\": 0.070199, \"ret_5d\": 0.133448, \"abnormal_5d\": 0.134497, \"ret_20d\": 0.105159, \"abnormal_20d\": 0.106089, \"est_window\": [\"2005-02-22\", \"2005-08-12\"], \"price_symbol\": \"RB=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 1.2441, \"t0_date\": \"2005-08-26\", \"realized_dates\": {\"1d\": \"2005-08-29\", \"5d\": \"2005-09-02\", \"20d\": \"2005-09-26\"}, \"ret_1d\": 0.008127, \"abnormal_1d\": -0.001455, \"ret_5d\": 0.061679, \"abnormal_5d\": 0.046122, \"ret_20d\": 0.118421, \"abnormal_20d\": 0.104641, \"est_window\": [\"2005-02-22\", \"2005-08-12\"], \"price_symbol\": \"XLE\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 1.3743, \"t0_date\": \"2005-08-26\", \"realized_dates\": {\"1d\": \"2005-08-29\", \"5d\": \"2005-09-02\", \"20d\": \"2005-09-26\"}, \"ret_1d\": 0.028201, \"abnormal_1d\": 0.017616, \"ret_5d\": 0.213407, \"abnormal_5d\": 0.196222, \"ret_20d\": 0.264996, \"abnormal_20d\": 0.249773, \"est_window\": [\"2005-02-22\", \"2005-08-12\"], \"price_symbol\": \"VLO\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_rita_2005",
+  "title": "Hurricane Rita Gulf Coast Landfall",
+  "event_type": "hurricane",
+  "region": "Gulf of Mexico",
+  "country": "US",
+  "start_date": "2005-09-18",
+  "end_date": "2005-09-26",
+  "event_date": "2005-09-24",
+  "severity_value": 3.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.6,
+  "description": "Category 3 hurricane struck near the Texas-Louisiana border shortly after Katrina forcing widespread evacuations and temporary refinery shutdowns along the petrochemical corridor.",
+  "mechanism": "Refinery outages and pipeline disruptions curtailed refined product supplies and supported crack spreads.",
+  "affected_assets": [
+   "crude",
+   "natgas",
+   "refiners",
+   "energy"
+  ],
+  "tickers": [
+   "CL=F",
+   "NG=F",
+   "RB=F",
+   "XLE"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL182005_Rita.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Gulf of Mexico severity 3 Saffir-Simpson category. Category 3 hurricane struck near the Texas-Louisiana border shortly after Katrina forcing widespread evacuations and temporary refinery shutdowns along the petrochemical corridor. Mechanism: Refinery outages and pipeline disruptions curtailed refined product supplies and supported crack spreads.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": -0.1565,
+    "t0_date": "2005-09-23",
+    "realized_dates": {
+     "1d": "2005-09-26",
+     "5d": "2005-09-30",
+     "20d": "2005-10-21"
+    },
+    "ret_1d": 0.025393,
+    "abnormal_1d": 0.025574,
+    "ret_5d": 0.031936,
+    "abnormal_5d": 0.033999,
+    "ret_20d": -0.05546,
+    "abnormal_20d": -0.059727,
+    "est_window": [
+     "2005-03-21",
+     "2005-09-09"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "NG=F",
+    "benchmark": "SPY",
+    "beta_used": -0.0617,
+    "t0_date": "2005-09-23",
+    "realized_dates": {
+     "1d": "2005-09-26",
+     "5d": "2005-09-30",
+     "20d": "2005-10-21"
+    },
+    "ret_1d": 0.009412,
+    "abnormal_1d": 0.009484,
+    "ret_5d": 0.129584,
+    "abnormal_5d": 0.130397,
+    "ret_20d": 0.044466,
+    "abnormal_20d": 0.042786,
+    "est_window": [
+     "2005-03-21",
+     "2005-09-09"
+    ],
+    "price_symbol": "NG=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RB=F",
+    "benchmark": "SPY",
+    "beta_used": -0.2028,
+    "t0_date": "2005-09-23",
+    "realized_dates": {
+     "1d": "2005-09-26",
+     "5d": "2005-09-30",
+     "20d": "2005-10-21"
+    },
+    "ret_1d": 0.020905,
+    "abnormal_1d": 0.021139,
+    "ret_5d": 0.025173,
+    "abnormal_5d": 0.027844,
+    "ret_20d": -0.213703,
+    "abnormal_20d": -0.219231,
+    "est_window": [
+     "2005-03-21",
+     "2005-09-09"
+    ],
+    "price_symbol": "RB=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "XLE",
+    "benchmark": "SPY",
+    "beta_used": 1.2275,
+    "t0_date": "2005-09-23",
+    "realized_dates": {
+     "1d": "2005-09-26",
+     "5d": "2005-09-30",
+     "20d": "2005-10-21"
+    },
+    "ret_1d": 0.018265,
+    "abnormal_1d": 0.01685,
+    "ret_5d": 0.021118,
+    "abnormal_5d": 0.004946,
+    "ret_20d": -0.124429,
+    "abnormal_20d": -0.090973,
+    "est_window": [
+     "2005-03-21",
+     "2005-09-09"
+    ],
+    "price_symbol": "XLE",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.1565, \"t0_date\": \"2005-09-23\", \"realized_dates\": {\"1d\": \"2005-09-26\", \"5d\": \"2005-09-30\", \"20d\": \"2005-10-21\"}, \"ret_1d\": 0.025393, \"abnormal_1d\": 0.025574, \"ret_5d\": 0.031936, \"abnormal_5d\": 0.033999, \"ret_20d\": -0.05546, \"abnormal_20d\": -0.059727, \"est_window\": [\"2005-03-21\", \"2005-09-09\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.0617, \"t0_date\": \"2005-09-23\", \"realized_dates\": {\"1d\": \"2005-09-26\", \"5d\": \"2005-09-30\", \"20d\": \"2005-10-21\"}, \"ret_1d\": 0.009412, \"abnormal_1d\": 0.009484, \"ret_5d\": 0.129584, \"abnormal_5d\": 0.130397, \"ret_20d\": 0.044466, \"abnormal_20d\": 0.042786, \"est_window\": [\"2005-03-21\", \"2005-09-09\"], \"price_symbol\": \"NG=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.2028, \"t0_date\": \"2005-09-23\", \"realized_dates\": {\"1d\": \"2005-09-26\", \"5d\": \"2005-09-30\", \"20d\": \"2005-10-21\"}, \"ret_1d\": 0.020905, \"abnormal_1d\": 0.021139, \"ret_5d\": 0.025173, \"abnormal_5d\": 0.027844, \"ret_20d\": -0.213703, \"abnormal_20d\": -0.219231, \"est_window\": [\"2005-03-21\", \"2005-09-09\"], \"price_symbol\": \"RB=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 1.2275, \"t0_date\": \"2005-09-23\", \"realized_dates\": {\"1d\": \"2005-09-26\", \"5d\": \"2005-09-30\", \"20d\": \"2005-10-21\"}, \"ret_1d\": 0.018265, \"abnormal_1d\": 0.01685, \"ret_5d\": 0.021118, \"abnormal_5d\": 0.004946, \"ret_20d\": -0.124429, \"abnormal_20d\": -0.090973, \"est_window\": [\"2005-03-21\", \"2005-09-09\"], \"price_symbol\": \"XLE\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_gustav_2008",
+  "title": "Hurricane Gustav Louisiana Landfall",
+  "event_type": "hurricane",
+  "region": "Gulf of Mexico",
+  "country": "US",
+  "start_date": "2008-08-25",
+  "end_date": "2008-09-04",
+  "event_date": "2008-09-01",
+  "severity_value": 2.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.4,
+  "description": "Category 2 hurricane made landfall in Louisiana leading to preemptive shutdown of offshore platforms and pipelines across the central Gulf.",
+  "mechanism": "Precautionary production shut-ins created short-term supply anxiety in domestic energy markets.",
+  "affected_assets": [
+   "crude",
+   "natgas",
+   "energy"
+  ],
+  "tickers": [
+   "CL=F",
+   "NG=F",
+   "XLE"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL072008_Gustav.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Gulf of Mexico severity 2 Saffir-Simpson category. Category 2 hurricane made landfall in Louisiana leading to preemptive shutdown of offshore platforms and pipelines across the central Gulf. Mechanism: Precautionary production shut-ins created short-term supply anxiety in domestic energy markets.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": -0.3269,
+    "t0_date": "2008-08-29",
+    "realized_dates": {
+     "1d": "2008-09-02",
+     "5d": "2008-09-08",
+     "20d": "2008-09-29"
+    },
+    "ret_1d": -0.049801,
+    "abnormal_1d": -0.051832,
+    "ret_5d": -0.078988,
+    "abnormal_5d": -0.083558,
+    "ret_20d": -0.165339,
+    "abnormal_20d": -0.207899,
+    "est_window": [
+     "2008-02-26",
+     "2008-08-15"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "NG=F",
+    "benchmark": "SPY",
+    "beta_used": -0.007,
+    "t0_date": "2008-08-29",
+    "realized_dates": {
+     "1d": "2008-09-02",
+     "5d": "2008-09-08",
+     "20d": "2008-09-29"
+    },
+    "ret_1d": -0.085862,
+    "abnormal_1d": -0.085905,
+    "ret_5d": -0.052373,
+    "abnormal_5d": -0.052471,
+    "ret_20d": -0.090898,
+    "abnormal_20d": -0.091812,
+    "est_window": [
+     "2008-02-26",
+     "2008-08-15"
+    ],
+    "price_symbol": "NG=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "XLE",
+    "benchmark": "SPY",
+    "beta_used": 0.722,
+    "t0_date": "2008-08-29",
+    "realized_dates": {
+     "1d": "2008-09-02",
+     "5d": "2008-09-08",
+     "20d": "2008-09-29"
+    },
+    "ret_1d": -0.054923,
+    "abnormal_1d": -0.050438,
+    "ret_5d": -0.089752,
+    "abnormal_5d": -0.079661,
+    "ret_20d": -0.198361,
+    "abnormal_20d": -0.104371,
+    "est_window": [
+     "2008-02-26",
+     "2008-08-15"
+    ],
+    "price_symbol": "XLE",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.3269, \"t0_date\": \"2008-08-29\", \"realized_dates\": {\"1d\": \"2008-09-02\", \"5d\": \"2008-09-08\", \"20d\": \"2008-09-29\"}, \"ret_1d\": -0.049801, \"abnormal_1d\": -0.051832, \"ret_5d\": -0.078988, \"abnormal_5d\": -0.083558, \"ret_20d\": -0.165339, \"abnormal_20d\": -0.207899, \"est_window\": [\"2008-02-26\", \"2008-08-15\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.007, \"t0_date\": \"2008-08-29\", \"realized_dates\": {\"1d\": \"2008-09-02\", \"5d\": \"2008-09-08\", \"20d\": \"2008-09-29\"}, \"ret_1d\": -0.085862, \"abnormal_1d\": -0.085905, \"ret_5d\": -0.052373, \"abnormal_5d\": -0.052471, \"ret_20d\": -0.090898, \"abnormal_20d\": -0.091812, \"est_window\": [\"2008-02-26\", \"2008-08-15\"], \"price_symbol\": \"NG=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 0.722, \"t0_date\": \"2008-08-29\", \"realized_dates\": {\"1d\": \"2008-09-02\", \"5d\": \"2008-09-08\", \"20d\": \"2008-09-29\"}, \"ret_1d\": -0.054923, \"abnormal_1d\": -0.050438, \"ret_5d\": -0.089752, \"abnormal_5d\": -0.079661, \"ret_20d\": -0.198361, \"abnormal_20d\": -0.104371, \"est_window\": [\"2008-02-26\", \"2008-08-15\"], \"price_symbol\": \"XLE\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_ike_2008",
+  "title": "Hurricane Ike Texas Coast Landfall",
+  "event_type": "hurricane",
+  "region": "Gulf (Texas)",
+  "country": "US",
+  "start_date": "2008-09-01",
+  "end_date": "2008-09-15",
+  "event_date": "2008-09-13",
+  "severity_value": 2.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.4,
+  "description": "Hurricane Ike made landfall at Galveston Texas bringing severe storm surge and flooding to Houston-area industrial complexes and power grids.",
+  "mechanism": "Damage to Houston refineries and power distribution led to prolonged processing downtime and product inventory draws.",
+  "affected_assets": [
+   "crude",
+   "gasoline",
+   "refiners"
+  ],
+  "tickers": [
+   "CL=F",
+   "RB=F",
+   "VLO"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092008_Ike.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Gulf (Texas) severity 2 Saffir-Simpson category. Hurricane Ike made landfall at Galveston Texas bringing severe storm surge and flooding to Houston-area industrial complexes and power grids. Mechanism: Damage to Houston refineries and power distribution led to prolonged processing downtime and product inventory draws.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": -0.3689,
+    "t0_date": "2008-09-12",
+    "realized_dates": {
+     "1d": "2008-09-15",
+     "5d": "2008-09-19",
+     "20d": "2008-10-10"
+    },
+    "ret_1d": -0.054062,
+    "abnormal_1d": -0.071617,
+    "ret_5d": 0.033307,
+    "abnormal_5d": 0.029645,
+    "ret_20d": -0.232062,
+    "abnormal_20d": -0.340542,
+    "est_window": [
+     "2008-03-10",
+     "2008-08-28"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RB=F",
+    "benchmark": "SPY",
+    "beta_used": -0.1359,
+    "t0_date": "2008-09-12",
+    "realized_dates": {
+     "1d": "2008-09-15",
+     "5d": "2008-09-19",
+     "20d": "2008-10-10"
+    },
+    "ret_1d": -0.075173,
+    "abnormal_1d": -0.081638,
+    "ret_5d": -0.061345,
+    "abnormal_5d": -0.062693,
+    "ret_20d": -0.347559,
+    "abnormal_20d": -0.38751,
+    "est_window": [
+     "2008-03-10",
+     "2008-08-28"
+    ],
+    "price_symbol": "RB=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "VLO",
+    "benchmark": "SPY",
+    "beta_used": 1.4736,
+    "t0_date": "2008-09-12",
+    "realized_dates": {
+     "1d": "2008-09-15",
+     "5d": "2008-09-19",
+     "20d": "2008-10-10"
+    },
+    "ret_1d": -0.130471,
+    "abnormal_1d": -0.06035,
+    "ret_5d": -0.047115,
+    "abnormal_5d": -0.032488,
+    "ret_20d": -0.489824,
+    "abnormal_20d": -0.056506,
+    "est_window": [
+     "2008-03-10",
+     "2008-08-28"
+    ],
+    "price_symbol": "VLO",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.3689, \"t0_date\": \"2008-09-12\", \"realized_dates\": {\"1d\": \"2008-09-15\", \"5d\": \"2008-09-19\", \"20d\": \"2008-10-10\"}, \"ret_1d\": -0.054062, \"abnormal_1d\": -0.071617, \"ret_5d\": 0.033307, \"abnormal_5d\": 0.029645, \"ret_20d\": -0.232062, \"abnormal_20d\": -0.340542, \"est_window\": [\"2008-03-10\", \"2008-08-28\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.1359, \"t0_date\": \"2008-09-12\", \"realized_dates\": {\"1d\": \"2008-09-15\", \"5d\": \"2008-09-19\", \"20d\": \"2008-10-10\"}, \"ret_1d\": -0.075173, \"abnormal_1d\": -0.081638, \"ret_5d\": -0.061345, \"abnormal_5d\": -0.062693, \"ret_20d\": -0.347559, \"abnormal_20d\": -0.38751, \"est_window\": [\"2008-03-10\", \"2008-08-28\"], \"price_symbol\": \"RB=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 1.4736, \"t0_date\": \"2008-09-12\", \"realized_dates\": {\"1d\": \"2008-09-15\", \"5d\": \"2008-09-19\", \"20d\": \"2008-10-10\"}, \"ret_1d\": -0.130471, \"abnormal_1d\": -0.06035, \"ret_5d\": -0.047115, \"abnormal_5d\": -0.032488, \"ret_20d\": -0.489824, \"abnormal_20d\": -0.056506, \"est_window\": [\"2008-03-10\", \"2008-08-28\"], \"price_symbol\": \"VLO\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_harvey_2017",
+  "title": "Hurricane Harvey Texas Extreme Flooding",
+  "event_type": "hurricane",
+  "region": "Gulf (Texas)",
+  "country": "US",
+  "start_date": "2017-08-17",
+  "end_date": "2017-09-01",
+  "event_date": "2017-08-25",
+  "severity_value": 4.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.8,
+  "description": "Category 4 hurricane made landfall in Rockport Texas stalled and dumped historic rainfall exceeding 50 inches across the Houston metropolitan area.",
+  "mechanism": "Catastrophic inland flooding shut down 25 percent of US refining capacity sending gasoline crack spreads soaring.",
+  "affected_assets": [
+   "crude",
+   "gasoline",
+   "natgas",
+   "refiners"
+  ],
+  "tickers": [
+   "CL=F",
+   "RB=F",
+   "NG=F",
+   "VLO"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092017_Harvey.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Gulf (Texas) severity 4 Saffir-Simpson category. Category 4 hurricane made landfall in Rockport Texas stalled and dumped historic rainfall exceeding 50 inches across the Houston metropolitan area. Mechanism: Catastrophic inland flooding shut down 25 percent of US refining capacity sending gasoline crack spreads soaring.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": 0.4424,
+    "t0_date": "2017-08-24",
+    "realized_dates": {
+     "1d": "2017-08-25",
+     "5d": "2017-08-31",
+     "20d": "2017-09-22"
+    },
+    "ret_1d": 0.009277,
+    "abnormal_1d": 0.008243,
+    "ret_5d": -0.004217,
+    "abnormal_5d": -0.010563,
+    "ret_20d": 0.0681,
+    "abnormal_20d": 0.055975,
+    "est_window": [
+     "2017-02-17",
+     "2017-08-10"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RB=F",
+    "benchmark": "SPY",
+    "beta_used": 0.7735,
+    "t0_date": "2017-08-24",
+    "realized_dates": {
+     "1d": "2017-08-25",
+     "5d": "2017-08-31",
+     "20d": "2017-09-22"
+    },
+    "ret_1d": 0.001502,
+    "abnormal_1d": -0.000305,
+    "ret_5d": 0.28592,
+    "abnormal_5d": 0.274824,
+    "ret_20d": 0.002584,
+    "abnormal_20d": -0.018619,
+    "est_window": [
+     "2017-02-17",
+     "2017-08-10"
+    ],
+    "price_symbol": "RB=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "NG=F",
+    "benchmark": "SPY",
+    "beta_used": -0.8157,
+    "t0_date": "2017-08-24",
+    "realized_dates": {
+     "1d": "2017-08-25",
+     "5d": "2017-08-31",
+     "20d": "2017-09-22"
+    },
+    "ret_1d": -0.019329,
+    "abnormal_1d": -0.017423,
+    "ret_5d": 0.030858,
+    "abnormal_5d": 0.04256,
+    "ret_20d": 0.003391,
+    "abnormal_20d": 0.025751,
+    "est_window": [
+     "2017-02-17",
+     "2017-08-10"
+    ],
+    "price_symbol": "NG=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "VLO",
+    "benchmark": "SPY",
+    "beta_used": 0.9392,
+    "t0_date": "2017-08-24",
+    "realized_dates": {
+     "1d": "2017-08-25",
+     "5d": "2017-08-31",
+     "20d": "2017-09-22"
+    },
+    "ret_1d": 0.00341,
+    "abnormal_1d": 0.001216,
+    "ret_5d": 0.009786,
+    "abnormal_5d": -0.003686,
+    "ret_20d": 0.101571,
+    "abnormal_20d": 0.075829,
+    "est_window": [
+     "2017-02-17",
+     "2017-08-10"
+    ],
+    "price_symbol": "VLO",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.4424, \"t0_date\": \"2017-08-24\", \"realized_dates\": {\"1d\": \"2017-08-25\", \"5d\": \"2017-08-31\", \"20d\": \"2017-09-22\"}, \"ret_1d\": 0.009277, \"abnormal_1d\": 0.008243, \"ret_5d\": -0.004217, \"abnormal_5d\": -0.010563, \"ret_20d\": 0.0681, \"abnormal_20d\": 0.055975, \"est_window\": [\"2017-02-17\", \"2017-08-10\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.7735, \"t0_date\": \"2017-08-24\", \"realized_dates\": {\"1d\": \"2017-08-25\", \"5d\": \"2017-08-31\", \"20d\": \"2017-09-22\"}, \"ret_1d\": 0.001502, \"abnormal_1d\": -0.000305, \"ret_5d\": 0.28592, \"abnormal_5d\": 0.274824, \"ret_20d\": 0.002584, \"abnormal_20d\": -0.018619, \"est_window\": [\"2017-02-17\", \"2017-08-10\"], \"price_symbol\": \"RB=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.8157, \"t0_date\": \"2017-08-24\", \"realized_dates\": {\"1d\": \"2017-08-25\", \"5d\": \"2017-08-31\", \"20d\": \"2017-09-22\"}, \"ret_1d\": -0.019329, \"abnormal_1d\": -0.017423, \"ret_5d\": 0.030858, \"abnormal_5d\": 0.04256, \"ret_20d\": 0.003391, \"abnormal_20d\": 0.025751, \"est_window\": [\"2017-02-17\", \"2017-08-10\"], \"price_symbol\": \"NG=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 0.9392, \"t0_date\": \"2017-08-24\", \"realized_dates\": {\"1d\": \"2017-08-25\", \"5d\": \"2017-08-31\", \"20d\": \"2017-09-22\"}, \"ret_1d\": 0.00341, \"abnormal_1d\": 0.001216, \"ret_5d\": 0.009786, \"abnormal_5d\": -0.003686, \"ret_20d\": 0.101571, \"abnormal_20d\": 0.075829, \"est_window\": [\"2017-02-17\", \"2017-08-10\"], \"price_symbol\": \"VLO\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_laura_2020",
+  "title": "Hurricane Laura Southwest Louisiana Landfall",
+  "event_type": "hurricane",
+  "region": "Gulf (Louisiana)",
+  "country": "US",
+  "start_date": "2020-08-20",
+  "end_date": "2020-08-29",
+  "event_date": "2020-08-27",
+  "severity_value": 4.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.8,
+  "description": "Extremely dangerous Category 4 hurricane made landfall near Cameron Louisiana with 150 mph winds causing severe structural damage in Lake Charles.",
+  "mechanism": "Major refinery and LNG export facility shutdowns alongside severe transmission grid destruction halted regional fuel shipments.",
+  "affected_assets": [
+   "crude",
+   "natgas",
+   "energy"
+  ],
+  "tickers": [
+   "CL=F",
+   "NG=F",
+   "XLE"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL132020_Laura.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Gulf (Louisiana) severity 4 Saffir-Simpson category. Extremely dangerous Category 4 hurricane made landfall near Cameron Louisiana with 150 mph winds causing severe structural damage in Lake Charles. Mechanism: Major refinery and LNG export facility shutdowns alongside severe transmission grid destruction halted regional fuel shipments.",
+  "outcomes": [
+   {
+    "asset": "NG=F",
+    "benchmark": "SPY",
+    "beta_used": 0.3395,
+    "t0_date": "2020-08-26",
+    "realized_dates": {
+     "1d": "2020-08-27",
+     "5d": "2020-09-02",
+     "20d": "2020-09-24"
+    },
+    "ret_1d": 0.047948,
+    "abnormal_1d": 0.047206,
+    "ret_5d": 0.010159,
+    "abnormal_5d": 0.000264,
+    "ret_20d": -0.08655,
+    "abnormal_20d": -0.064303,
+    "est_window": [
+     "2020-02-21",
+     "2020-08-12"
+    ],
+    "price_symbol": "NG=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "XLE",
+    "benchmark": "SPY",
+    "beta_used": 1.4144,
+    "t0_date": "2020-08-26",
+    "realized_dates": {
+     "1d": "2020-08-27",
+     "5d": "2020-09-02",
+     "20d": "2020-09-24"
+    },
+    "ret_1d": 0.001959,
+    "abnormal_1d": -0.001133,
+    "ret_5d": -0.013714,
+    "abnormal_5d": -0.054938,
+    "ret_20d": -0.140866,
+    "abnormal_20d": -0.048182,
+    "est_window": [
+     "2020-02-21",
+     "2020-08-12"
+    ],
+    "price_symbol": "XLE",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [
+   {
+    "asset": "CL=F",
+    "price_symbol": "CL=F",
+    "reason": "non-positive price in window (percent returns undefined, e.g. WTI 2020-04-20)"
+   }
+  ],
+  "outcomes_json": "[{\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3395, \"t0_date\": \"2020-08-26\", \"realized_dates\": {\"1d\": \"2020-08-27\", \"5d\": \"2020-09-02\", \"20d\": \"2020-09-24\"}, \"ret_1d\": 0.047948, \"abnormal_1d\": 0.047206, \"ret_5d\": 0.010159, \"abnormal_5d\": 0.000264, \"ret_20d\": -0.08655, \"abnormal_20d\": -0.064303, \"est_window\": [\"2020-02-21\", \"2020-08-12\"], \"price_symbol\": \"NG=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"XLE\", \"benchmark\": \"SPY\", \"beta_used\": 1.4144, \"t0_date\": \"2020-08-26\", \"realized_dates\": {\"1d\": \"2020-08-27\", \"5d\": \"2020-09-02\", \"20d\": \"2020-09-24\"}, \"ret_1d\": 0.001959, \"abnormal_1d\": -0.001133, \"ret_5d\": -0.013714, \"abnormal_5d\": -0.054938, \"ret_20d\": -0.140866, \"abnormal_20d\": -0.048182, \"est_window\": [\"2020-02-21\", \"2020-08-12\"], \"price_symbol\": \"XLE\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_ida_2021",
+  "title": "Hurricane Ida Louisiana Port Fourchon Landfall",
+  "event_type": "hurricane",
+  "region": "Gulf (Louisiana)",
+  "country": "US",
+  "start_date": "2021-08-26",
+  "end_date": "2021-09-01",
+  "event_date": "2021-08-29",
+  "severity_value": 4.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.8,
+  "description": "Category 4 hurricane struck Port Fourchon Louisiana crippling key offshore support hubs and leaving over a million customers without electricity.",
+  "mechanism": "Deep-water oil production platforms suffered extended shut-ins while coastal refineries halted processing due to grid failure.",
+  "affected_assets": [
+   "crude",
+   "natgas",
+   "gasoline",
+   "refiners"
+  ],
+  "tickers": [
+   "CL=F",
+   "NG=F",
+   "RB=F",
+   "VLO"
+  ],
+  "split": "holdout",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092021_Ida.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Gulf (Louisiana) severity 4 Saffir-Simpson category. Category 4 hurricane struck Port Fourchon Louisiana crippling key offshore support hubs and leaving over a million customers without electricity. Mechanism: Deep-water oil production platforms suffered extended shut-ins while coastal refineries halted processing due to grid failure.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": 0.5167,
+    "t0_date": "2021-08-27",
+    "realized_dates": {
+     "1d": "2021-08-30",
+     "5d": "2021-09-03",
+     "20d": "2021-09-27"
+    },
+    "ret_1d": 0.006837,
+    "abnormal_1d": 0.004565,
+    "ret_5d": 0.008001,
+    "abnormal_5d": 0.004754,
+    "ret_20d": 0.097614,
+    "abnormal_20d": 0.10472,
+    "est_window": [
+     "2021-02-23",
+     "2021-08-13"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "NG=F",
+    "benchmark": "SPY",
+    "beta_used": 0.1031,
+    "t0_date": "2021-08-27",
+    "realized_dates": {
+     "1d": "2021-08-30",
+     "5d": "2021-09-03",
+     "20d": "2021-09-27"
+    },
+    "ret_1d": -0.014874,
+    "abnormal_1d": -0.015328,
+    "ret_5d": 0.078261,
+    "abnormal_5d": 0.077613,
+    "ret_20d": 0.305721,
+    "abnormal_20d": 0.307139,
+    "est_window": [
+     "2021-02-23",
+     "2021-08-13"
+    ],
+    "price_symbol": "NG=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RB=F",
+    "benchmark": "SPY",
+    "beta_used": 0.5297,
+    "t0_date": "2021-08-27",
+    "realized_dates": {
+     "1d": "2021-08-30",
+     "5d": "2021-09-03",
+     "20d": "2021-09-27"
+    },
+    "ret_1d": 0.016929,
+    "abnormal_1d": 0.0146,
+    "ret_5d": -0.052854,
+    "abnormal_5d": -0.056183,
+    "ret_20d": -0.022206,
+    "abnormal_20d": -0.014921,
+    "est_window": [
+     "2021-02-23",
+     "2021-08-13"
+    ],
+    "price_symbol": "RB=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "VLO",
+    "benchmark": "SPY",
+    "beta_used": 1.185,
+    "t0_date": "2021-08-27",
+    "realized_dates": {
+     "1d": "2021-08-30",
+     "5d": "2021-09-03",
+     "20d": "2021-09-27"
+    },
+    "ret_1d": -0.016242,
+    "abnormal_1d": -0.021453,
+    "ret_5d": -0.035911,
+    "abnormal_5d": -0.04336,
+    "ret_20d": 0.054686,
+    "abnormal_20d": 0.070983,
+    "est_window": [
+     "2021-02-23",
+     "2021-08-13"
+    ],
+    "price_symbol": "VLO",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.5167, \"t0_date\": \"2021-08-27\", \"realized_dates\": {\"1d\": \"2021-08-30\", \"5d\": \"2021-09-03\", \"20d\": \"2021-09-27\"}, \"ret_1d\": 0.006837, \"abnormal_1d\": 0.004565, \"ret_5d\": 0.008001, \"abnormal_5d\": 0.004754, \"ret_20d\": 0.097614, \"abnormal_20d\": 0.10472, \"est_window\": [\"2021-02-23\", \"2021-08-13\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.1031, \"t0_date\": \"2021-08-27\", \"realized_dates\": {\"1d\": \"2021-08-30\", \"5d\": \"2021-09-03\", \"20d\": \"2021-09-27\"}, \"ret_1d\": -0.014874, \"abnormal_1d\": -0.015328, \"ret_5d\": 0.078261, \"abnormal_5d\": 0.077613, \"ret_20d\": 0.305721, \"abnormal_20d\": 0.307139, \"est_window\": [\"2021-02-23\", \"2021-08-13\"], \"price_symbol\": \"NG=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RB=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.5297, \"t0_date\": \"2021-08-27\", \"realized_dates\": {\"1d\": \"2021-08-30\", \"5d\": \"2021-09-03\", \"20d\": \"2021-09-27\"}, \"ret_1d\": 0.016929, \"abnormal_1d\": 0.0146, \"ret_5d\": -0.052854, \"abnormal_5d\": -0.056183, \"ret_20d\": -0.022206, \"abnormal_20d\": -0.014921, \"est_window\": [\"2021-02-23\", \"2021-08-13\"], \"price_symbol\": \"RB=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"VLO\", \"benchmark\": \"SPY\", \"beta_used\": 1.185, \"t0_date\": \"2021-08-27\", \"realized_dates\": {\"1d\": \"2021-08-30\", \"5d\": \"2021-09-03\", \"20d\": \"2021-09-27\"}, \"ret_1d\": -0.016242, \"abnormal_1d\": -0.021453, \"ret_5d\": -0.035911, \"abnormal_5d\": -0.04336, \"ret_20d\": 0.054686, \"abnormal_20d\": 0.070983, \"est_window\": [\"2021-02-23\", \"2021-08-13\"], \"price_symbol\": \"VLO\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_ian_2022",
+  "title": "Hurricane Ian Southwest Florida Landfall",
+  "event_type": "hurricane",
+  "region": "Florida",
+  "country": "US",
+  "start_date": "2022-09-23",
+  "end_date": "2022-09-30",
+  "event_date": "2022-09-28",
+  "severity_value": 4.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.8,
+  "description": "Category 4 hurricane made landfall near Cayo Costa Florida delivering catastrophic storm surge wind damage and freshwater flooding.",
+  "mechanism": "Enormous insured property damages and municipal infrastructure losses triggered severe write-downs in property and casualty insurers.",
+  "affected_assets": [
+   "crude",
+   "insurers",
+   "insurance"
+  ],
+  "tickers": [
+   "CL=F",
+   "ALL",
+   "TRV"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092022_Ian.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Florida severity 4 Saffir-Simpson category. Category 4 hurricane made landfall near Cayo Costa Florida delivering catastrophic storm surge wind damage and freshwater flooding. Mechanism: Enormous insured property damages and municipal infrastructure losses triggered severe write-downs in property and casualty insurers.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": 0.1859,
+    "t0_date": "2022-09-27",
+    "realized_dates": {
+     "1d": "2022-09-28",
+     "5d": "2022-10-04",
+     "20d": "2022-10-25"
+    },
+    "ret_1d": 0.046497,
+    "abnormal_1d": 0.042838,
+    "ret_5d": 0.102166,
+    "abnormal_5d": 0.0947,
+    "ret_20d": 0.086879,
+    "abnormal_20d": 0.075858,
+    "est_window": [
+     "2022-03-22",
+     "2022-09-13"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ALL",
+    "benchmark": "SPY",
+    "beta_used": 0.6743,
+    "t0_date": "2022-09-27",
+    "realized_dates": {
+     "1d": "2022-09-28",
+     "5d": "2022-10-04",
+     "20d": "2022-10-25"
+    },
+    "ret_1d": 0.020917,
+    "abnormal_1d": 0.00765,
+    "ret_5d": 0.072605,
+    "abnormal_5d": 0.045532,
+    "ret_20d": 0.006703,
+    "abnormal_20d": -0.033266,
+    "est_window": [
+     "2022-03-22",
+     "2022-09-13"
+    ],
+    "price_symbol": "ALL",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "TRV",
+    "benchmark": "SPY",
+    "beta_used": 0.408,
+    "t0_date": "2022-09-27",
+    "realized_dates": {
+     "1d": "2022-09-28",
+     "5d": "2022-10-04",
+     "20d": "2022-10-25"
+    },
+    "ret_1d": 0.011108,
+    "abnormal_1d": 0.003081,
+    "ret_5d": 0.067641,
+    "abnormal_5d": 0.051261,
+    "ret_20d": 0.164309,
+    "abnormal_20d": 0.140125,
+    "est_window": [
+     "2022-03-22",
+     "2022-09-13"
+    ],
+    "price_symbol": "TRV",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.1859, \"t0_date\": \"2022-09-27\", \"realized_dates\": {\"1d\": \"2022-09-28\", \"5d\": \"2022-10-04\", \"20d\": \"2022-10-25\"}, \"ret_1d\": 0.046497, \"abnormal_1d\": 0.042838, \"ret_5d\": 0.102166, \"abnormal_5d\": 0.0947, \"ret_20d\": 0.086879, \"abnormal_20d\": 0.075858, \"est_window\": [\"2022-03-22\", \"2022-09-13\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ALL\", \"benchmark\": \"SPY\", \"beta_used\": 0.6743, \"t0_date\": \"2022-09-27\", \"realized_dates\": {\"1d\": \"2022-09-28\", \"5d\": \"2022-10-04\", \"20d\": \"2022-10-25\"}, \"ret_1d\": 0.020917, \"abnormal_1d\": 0.00765, \"ret_5d\": 0.072605, \"abnormal_5d\": 0.045532, \"ret_20d\": 0.006703, \"abnormal_20d\": -0.033266, \"est_window\": [\"2022-03-22\", \"2022-09-13\"], \"price_symbol\": \"ALL\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"TRV\", \"benchmark\": \"SPY\", \"beta_used\": 0.408, \"t0_date\": \"2022-09-27\", \"realized_dates\": {\"1d\": \"2022-09-28\", \"5d\": \"2022-10-04\", \"20d\": \"2022-10-25\"}, \"ret_1d\": 0.011108, \"abnormal_1d\": 0.003081, \"ret_5d\": 0.067641, \"abnormal_5d\": 0.051261, \"ret_20d\": 0.164309, \"abnormal_20d\": 0.140125, \"est_window\": [\"2022-03-22\", \"2022-09-13\"], \"price_symbol\": \"TRV\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_helene_2024",
+  "title": "Hurricane Helene Florida Big Bend Landfall",
+  "event_type": "hurricane",
+  "region": "Florida Big Bend",
+  "country": "US",
+  "start_date": "2024-09-24",
+  "end_date": "2024-09-27",
+  "event_date": "2024-09-26",
+  "severity_value": 4.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.8,
+  "description": "Fast-moving Category 4 hurricane struck Florida Big Bend region tracking rapidly inland and unleashing unprecedented flooding across western North Carolina.",
+  "mechanism": "Massive agricultural losses along with devastating inland flash flooding damaged power grids transportation corridors and municipal infrastructure.",
+  "affected_assets": [
+   "crude",
+   "natgas",
+   "insurers"
+  ],
+  "tickers": [
+   "CL=F",
+   "NG=F",
+   "ALL"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL092024_Helene.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Florida Big Bend severity 4 Saffir-Simpson category. Fast-moving Category 4 hurricane struck Florida Big Bend region tracking rapidly inland and unleashing unprecedented flooding across western North Carolina. Mechanism: Massive agricultural losses along with devastating inland flash flooding damaged power grids transportation corridors and municipal infrastructure.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": 0.3252,
+    "t0_date": "2024-09-25",
+    "realized_dates": {
+     "1d": "2024-09-26",
+     "5d": "2024-10-02",
+     "20d": "2024-10-23"
+    },
+    "ret_1d": -0.028986,
+    "abnormal_1d": -0.030275,
+    "ret_5d": 0.005883,
+    "abnormal_5d": 0.006556,
+    "ret_20d": 0.015497,
+    "abnormal_20d": 0.010961,
+    "est_window": [
+     "2024-03-20",
+     "2024-09-11"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "NG=F",
+    "benchmark": "SPY",
+    "beta_used": 0.6682,
+    "t0_date": "2024-09-25",
+    "realized_dates": {
+     "1d": "2024-09-26",
+     "5d": "2024-10-02",
+     "20d": "2024-10-23"
+    },
+    "ret_1d": -0.019719,
+    "abnormal_1d": -0.022369,
+    "ret_5d": 0.094425,
+    "abnormal_5d": 0.095809,
+    "ret_20d": -0.11187,
+    "abnormal_20d": -0.121189,
+    "est_window": [
+     "2024-03-20",
+     "2024-09-11"
+    ],
+    "price_symbol": "NG=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ALL",
+    "benchmark": "SPY",
+    "beta_used": -0.0007,
+    "t0_date": "2024-09-25",
+    "realized_dates": {
+     "1d": "2024-09-26",
+     "5d": "2024-10-02",
+     "20d": "2024-10-23"
+    },
+    "ret_1d": -0.006895,
+    "abnormal_1d": -0.006892,
+    "ret_5d": 0.001158,
+    "abnormal_5d": 0.001156,
+    "ret_20d": 0.014632,
+    "abnormal_20d": 0.014641,
+    "est_window": [
+     "2024-03-20",
+     "2024-09-11"
+    ],
+    "price_symbol": "ALL",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3252, \"t0_date\": \"2024-09-25\", \"realized_dates\": {\"1d\": \"2024-09-26\", \"5d\": \"2024-10-02\", \"20d\": \"2024-10-23\"}, \"ret_1d\": -0.028986, \"abnormal_1d\": -0.030275, \"ret_5d\": 0.005883, \"abnormal_5d\": 0.006556, \"ret_20d\": 0.015497, \"abnormal_20d\": 0.010961, \"est_window\": [\"2024-03-20\", \"2024-09-11\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"NG=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.6682, \"t0_date\": \"2024-09-25\", \"realized_dates\": {\"1d\": \"2024-09-26\", \"5d\": \"2024-10-02\", \"20d\": \"2024-10-23\"}, \"ret_1d\": -0.019719, \"abnormal_1d\": -0.022369, \"ret_5d\": 0.094425, \"abnormal_5d\": 0.095809, \"ret_20d\": -0.11187, \"abnormal_20d\": -0.121189, \"est_window\": [\"2024-03-20\", \"2024-09-11\"], \"price_symbol\": \"NG=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ALL\", \"benchmark\": \"SPY\", \"beta_used\": -0.0007, \"t0_date\": \"2024-09-25\", \"realized_dates\": {\"1d\": \"2024-09-26\", \"5d\": \"2024-10-02\", \"20d\": \"2024-10-23\"}, \"ret_1d\": -0.006895, \"abnormal_1d\": -0.006892, \"ret_5d\": 0.001158, \"abnormal_5d\": 0.001156, \"ret_20d\": 0.014632, \"abnormal_20d\": 0.014641, \"est_window\": [\"2024-03-20\", \"2024-09-11\"], \"price_symbol\": \"ALL\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "hurricane_milton_2024",
+  "title": "Hurricane Milton Florida Siesta Key Landfall",
+  "event_type": "hurricane",
+  "region": "Florida",
+  "country": "US",
+  "start_date": "2024-10-05",
+  "end_date": "2024-10-10",
+  "event_date": "2024-10-09",
+  "severity_value": 3.0,
+  "severity_unit": "Saffir-Simpson category",
+  "severity_norm": 0.6,
+  "description": "Category 3 hurricane struck Siesta Key Florida shortly after Helene spawning multiple tornadoes and producing flash flooding across Central Florida.",
+  "mechanism": "Extensive insured structural losses and localized business disruptions pressured insurance underwriting margins.",
+  "affected_assets": [
+   "crude",
+   "insurers",
+   "insurance"
+  ],
+  "tickers": [
+   "CL=F",
+   "ALL",
+   "TRV"
+  ],
+  "split": "train",
+  "source": "NOAA NHC",
+  "source_url": "https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "hurricane Florida severity 3 Saffir-Simpson category. Category 3 hurricane struck Siesta Key Florida shortly after Helene spawning multiple tornadoes and producing flash flooding across Central Florida. Mechanism: Extensive insured structural losses and localized business disruptions pressured insurance underwriting margins.",
+  "outcomes": [
+   {
+    "asset": "CL=F",
+    "benchmark": "SPY",
+    "beta_used": 0.3984,
+    "t0_date": "2024-10-08",
+    "realized_dates": {
+     "1d": "2024-10-09",
+     "5d": "2024-10-15",
+     "20d": "2024-11-05"
+    },
+    "ret_1d": -0.004486,
+    "abnormal_1d": -0.007245,
+    "ret_5d": -0.040642,
+    "abnormal_5d": -0.045236,
+    "ret_20d": -0.021476,
+    "abnormal_20d": -0.02393,
+    "est_window": [
+     "2024-04-03",
+     "2024-09-24"
+    ],
+    "price_symbol": "CL=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ALL",
+    "benchmark": "SPY",
+    "beta_used": 0.0271,
+    "t0_date": "2024-10-08",
+    "realized_dates": {
+     "1d": "2024-10-09",
+     "5d": "2024-10-15",
+     "20d": "2024-11-05"
+    },
+    "ret_1d": 0.011155,
+    "abnormal_1d": 0.010968,
+    "ret_5d": 0.055449,
+    "abnormal_5d": 0.055137,
+    "ret_20d": 0.011976,
+    "abnormal_20d": 0.011809,
+    "est_window": [
+     "2024-04-03",
+     "2024-09-24"
+    ],
+    "price_symbol": "ALL",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "TRV",
+    "benchmark": "SPY",
+    "beta_used": 0.2579,
+    "t0_date": "2024-10-08",
+    "realized_dates": {
+     "1d": "2024-10-09",
+     "5d": "2024-10-15",
+     "20d": "2024-11-05"
+    },
+    "ret_1d": 0.004906,
+    "abnormal_1d": 0.00312,
+    "ret_5d": 0.045759,
+    "abnormal_5d": 0.042784,
+    "ret_20d": 0.06295,
+    "abnormal_20d": 0.061362,
+    "est_window": [
+     "2024-04-03",
+     "2024-09-24"
+    ],
+    "price_symbol": "TRV",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"CL=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.3984, \"t0_date\": \"2024-10-08\", \"realized_dates\": {\"1d\": \"2024-10-09\", \"5d\": \"2024-10-15\", \"20d\": \"2024-11-05\"}, \"ret_1d\": -0.004486, \"abnormal_1d\": -0.007245, \"ret_5d\": -0.040642, \"abnormal_5d\": -0.045236, \"ret_20d\": -0.021476, \"abnormal_20d\": -0.02393, \"est_window\": [\"2024-04-03\", \"2024-09-24\"], \"price_symbol\": \"CL=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ALL\", \"benchmark\": \"SPY\", \"beta_used\": 0.0271, \"t0_date\": \"2024-10-08\", \"realized_dates\": {\"1d\": \"2024-10-09\", \"5d\": \"2024-10-15\", \"20d\": \"2024-11-05\"}, \"ret_1d\": 0.011155, \"abnormal_1d\": 0.010968, \"ret_5d\": 0.055449, \"abnormal_5d\": 0.055137, \"ret_20d\": 0.011976, \"abnormal_20d\": 0.011809, \"est_window\": [\"2024-04-03\", \"2024-09-24\"], \"price_symbol\": \"ALL\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"TRV\", \"benchmark\": \"SPY\", \"beta_used\": 0.2579, \"t0_date\": \"2024-10-08\", \"realized_dates\": {\"1d\": \"2024-10-09\", \"5d\": \"2024-10-15\", \"20d\": \"2024-11-05\"}, \"ret_1d\": 0.004906, \"abnormal_1d\": 0.00312, \"ret_5d\": 0.045759, \"abnormal_5d\": 0.042784, \"ret_20d\": 0.06295, \"abnormal_20d\": 0.061362, \"est_window\": [\"2024-04-03\", \"2024-09-24\"], \"price_symbol\": \"TRV\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "cyclone_phailin_2013",
+  "title": "Extremely Severe Cyclonic Storm Phailin Odisha",
+  "event_type": "cyclone",
+  "region": "Odisha",
+  "country": "IN",
+  "start_date": "2013-10-08",
+  "end_date": "2013-10-14",
+  "event_date": "2013-10-12",
+  "severity_value": 6.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.8571,
+  "description": "Extremely Severe Cyclonic Storm Phailin crossed the southern Odisha coast near Gopalpur with wind speeds reaching 215 km/h followed by torrential rainfall.",
+  "mechanism": "Widespread destruction of paddy crops paddy field inundation power transmission failure and closure of Paradip and Gopalpur ports.",
+  "affected_assets": [
+   "equities",
+   "fmcg",
+   "currency"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^CNXFMCG",
+   "INR=X"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Odisha severity 6 IMD class (1-7). Extremely Severe Cyclonic Storm Phailin crossed the southern Odisha coast near Gopalpur with wind speeds reaching 215 km/h followed by torrential rainfall. Mechanism: Widespread destruction of paddy crops paddy field inundation power transmission failure and closure of Paradip and Gopalpur ports.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2013-10-11",
+    "realized_dates": {
+     "1d": "2013-10-14",
+     "5d": "2013-10-21",
+     "20d": "2013-11-12"
+    },
+    "ret_1d": 0.002707,
+    "abnormal_1d": null,
+    "ret_5d": 0.017839,
+    "abnormal_5d": null,
+    "ret_20d": -0.01282,
+    "abnormal_20d": null,
+    "est_window": [
+     "2013-04-03",
+     "2013-09-26"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7191,
+    "t0_date": "2013-10-11",
+    "realized_dates": {
+     "1d": "2013-10-14",
+     "5d": "2013-10-21",
+     "20d": "2013-11-12"
+    },
+    "ret_1d": -0.012419,
+    "abnormal_1d": -0.014366,
+    "ret_5d": 0.008445,
+    "abnormal_5d": -0.004383,
+    "ret_20d": -0.040164,
+    "abnormal_20d": -0.030946,
+    "est_window": [
+     "2013-04-03",
+     "2013-09-26"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   },
+   {
+    "asset": "INR=X",
+    "benchmark": "^NSEI",
+    "beta_used": -0.0384,
+    "t0_date": "2013-10-11",
+    "realized_dates": {
+     "1d": "2013-10-14",
+     "5d": "2013-10-21",
+     "20d": "2013-11-12"
+    },
+    "ret_1d": -0.010063,
+    "abnormal_1d": -0.009959,
+    "ret_5d": -0.006006,
+    "abnormal_5d": -0.005321,
+    "ret_20d": 0.030352,
+    "abnormal_20d": 0.029861,
+    "est_window": [
+     "2013-04-02",
+     "2013-09-25"
+    ],
+    "price_symbol": "INR=X",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2013-10-11\", \"realized_dates\": {\"1d\": \"2013-10-14\", \"5d\": \"2013-10-21\", \"20d\": \"2013-11-12\"}, \"ret_1d\": 0.002707, \"abnormal_1d\": null, \"ret_5d\": 0.017839, \"abnormal_5d\": null, \"ret_20d\": -0.01282, \"abnormal_20d\": null, \"est_window\": [\"2013-04-03\", \"2013-09-26\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7191, \"t0_date\": \"2013-10-11\", \"realized_dates\": {\"1d\": \"2013-10-14\", \"5d\": \"2013-10-21\", \"20d\": \"2013-11-12\"}, \"ret_1d\": -0.012419, \"abnormal_1d\": -0.014366, \"ret_5d\": 0.008445, \"abnormal_5d\": -0.004383, \"ret_20d\": -0.040164, \"abnormal_20d\": -0.030946, \"est_window\": [\"2013-04-03\", \"2013-09-26\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}, {\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.0384, \"t0_date\": \"2013-10-11\", \"realized_dates\": {\"1d\": \"2013-10-14\", \"5d\": \"2013-10-21\", \"20d\": \"2013-11-12\"}, \"ret_1d\": -0.010063, \"abnormal_1d\": -0.009959, \"ret_5d\": -0.006006, \"abnormal_5d\": -0.005321, \"ret_20d\": 0.030352, \"abnormal_20d\": 0.029861, \"est_window\": [\"2013-04-02\", \"2013-09-25\"], \"price_symbol\": \"INR=X\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "cyclone_hudhud_2014",
+  "title": "Extremely Severe Cyclonic Storm Hudhud Visakhapatnam",
+  "event_type": "cyclone",
+  "region": "Andhra (Vizag)",
+  "country": "IN",
+  "start_date": "2014-10-07",
+  "end_date": "2014-10-14",
+  "event_date": "2014-10-12",
+  "severity_value": 6.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.8571,
+  "description": "Cyclone Hudhud made landfall over Visakhapatnam Andhra Pradesh battering the industrial port city with 185 km/h gale winds and severe storm surges.",
+  "mechanism": "Visakhapatnam port shut cargo operations HPCL refinery sustained damage and regional industrial production was paused.",
+  "affected_assets": [
+   "equities",
+   "energy"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^CNXENERGY"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Andhra (Vizag) severity 6 IMD class (1-7). Cyclone Hudhud made landfall over Visakhapatnam Andhra Pradesh battering the industrial port city with 185 km/h gale winds and severe storm surges. Mechanism: Visakhapatnam port shut cargo operations HPCL refinery sustained damage and regional industrial production was paused.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2014-10-10",
+    "realized_dates": {
+     "1d": "2014-10-13",
+     "5d": "2014-10-20",
+     "20d": "2014-11-14"
+    },
+    "ret_1d": 0.003092,
+    "abnormal_1d": null,
+    "ret_5d": 0.002475,
+    "abnormal_5d": null,
+    "ret_20d": 0.067424,
+    "abnormal_20d": null,
+    "est_window": [
+     "2014-03-27",
+     "2014-09-23"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXENERGY",
+    "benchmark": "^NSEI",
+    "beta_used": 1.449,
+    "t0_date": "2014-10-10",
+    "realized_dates": {
+     "1d": "2014-10-13",
+     "5d": "2014-10-20",
+     "20d": "2014-11-14"
+    },
+    "ret_1d": -0.002863,
+    "abnormal_1d": -0.007342,
+    "ret_5d": -0.026649,
+    "abnormal_5d": -0.030234,
+    "ret_20d": 0.008848,
+    "abnormal_20d": -0.088847,
+    "est_window": [
+     "2014-03-27",
+     "2014-09-23"
+    ],
+    "price_symbol": "RELIANCE.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXENERGY has no Yahoo history; computed from RELIANCE.NS"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2014-10-10\", \"realized_dates\": {\"1d\": \"2014-10-13\", \"5d\": \"2014-10-20\", \"20d\": \"2014-11-14\"}, \"ret_1d\": 0.003092, \"abnormal_1d\": null, \"ret_5d\": 0.002475, \"abnormal_5d\": null, \"ret_20d\": 0.067424, \"abnormal_20d\": null, \"est_window\": [\"2014-03-27\", \"2014-09-23\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXENERGY\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.449, \"t0_date\": \"2014-10-10\", \"realized_dates\": {\"1d\": \"2014-10-13\", \"5d\": \"2014-10-20\", \"20d\": \"2014-11-14\"}, \"ret_1d\": -0.002863, \"abnormal_1d\": -0.007342, \"ret_5d\": -0.026649, \"abnormal_5d\": -0.030234, \"ret_20d\": 0.008848, \"abnormal_20d\": -0.088847, \"est_window\": [\"2014-03-27\", \"2014-09-23\"], \"price_symbol\": \"RELIANCE.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXENERGY has no Yahoo history; computed from RELIANCE.NS\"}]"
+ },
+ {
+  "event_id": "cyclone_vardah_2016",
+  "title": "Very Severe Cyclonic Storm Vardah Chennai",
+  "event_type": "cyclone",
+  "region": "Tamil Nadu (Chennai)",
+  "country": "IN",
+  "start_date": "2016-12-06",
+  "end_date": "2016-12-13",
+  "event_date": "2016-12-12",
+  "severity_value": 5.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.7143,
+  "description": "Very Severe Cyclonic Storm Vardah crossed north Tamil Nadu coast near Chennai uprooting thousands of trees and flattening power lines and telecom towers.",
+  "mechanism": "Industrial manufacturing clusters auto assembly plants and IT corridors halted operations due to power and communication outages.",
+  "affected_assets": [
+   "equities",
+   "auto"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^CNXAUTO"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Tamil Nadu (Chennai) severity 5 IMD class (1-7). Very Severe Cyclonic Storm Vardah crossed north Tamil Nadu coast near Chennai uprooting thousands of trees and flattening power lines and telecom towers. Mechanism: Industrial manufacturing clusters auto assembly plants and IT corridors halted operations due to power and communication outages.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2016-12-09",
+    "realized_dates": {
+     "1d": "2016-12-12",
+     "5d": "2016-12-16",
+     "20d": "2017-01-06"
+    },
+    "ret_1d": -0.011009,
+    "abnormal_1d": null,
+    "ret_5d": -0.014803,
+    "abnormal_5d": null,
+    "ret_20d": -0.002173,
+    "abnormal_20d": null,
+    "est_window": [
+     "2016-05-30",
+     "2016-11-25"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXAUTO",
+    "benchmark": "^NSEI",
+    "beta_used": 1.3385,
+    "t0_date": "2016-12-09",
+    "realized_dates": {
+     "1d": "2016-12-12",
+     "5d": "2016-12-16",
+     "20d": "2017-01-06"
+    },
+    "ret_1d": -0.017307,
+    "abnormal_1d": -0.002571,
+    "ret_5d": -0.008854,
+    "abnormal_5d": 0.01096,
+    "ret_20d": 0.072693,
+    "abnormal_20d": 0.075602,
+    "est_window": [
+     "2016-05-30",
+     "2016-11-25"
+    ],
+    "price_symbol": "MARUTI.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXAUTO has no Yahoo history; computed from MARUTI.NS"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2016-12-09\", \"realized_dates\": {\"1d\": \"2016-12-12\", \"5d\": \"2016-12-16\", \"20d\": \"2017-01-06\"}, \"ret_1d\": -0.011009, \"abnormal_1d\": null, \"ret_5d\": -0.014803, \"abnormal_5d\": null, \"ret_20d\": -0.002173, \"abnormal_20d\": null, \"est_window\": [\"2016-05-30\", \"2016-11-25\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXAUTO\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.3385, \"t0_date\": \"2016-12-09\", \"realized_dates\": {\"1d\": \"2016-12-12\", \"5d\": \"2016-12-16\", \"20d\": \"2017-01-06\"}, \"ret_1d\": -0.017307, \"abnormal_1d\": -0.002571, \"ret_5d\": -0.008854, \"abnormal_5d\": 0.01096, \"ret_20d\": 0.072693, \"abnormal_20d\": 0.075602, \"est_window\": [\"2016-05-30\", \"2016-11-25\"], \"price_symbol\": \"MARUTI.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXAUTO has no Yahoo history; computed from MARUTI.NS\"}]"
+ },
+ {
+  "event_id": "cyclone_ockhi_2017",
+  "title": "Very Severe Cyclonic Storm Ockhi Kerala and Tamil Nadu",
+  "event_type": "cyclone",
+  "region": "Kerala/TN",
+  "country": "IN",
+  "start_date": "2017-11-29",
+  "end_date": "2017-12-06",
+  "event_date": "2017-11-30",
+  "severity_value": 5.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.7143,
+  "description": "Cyclone Ockhi intensified rapidly over the Arabian Sea near Kanyakumari bringing extreme squalls and torrential rain across coastal Kerala and Tamil Nadu.",
+  "mechanism": "Severe damage to marine fisheries coastal agriculture plantation crops and local transportation disrupted southern economic activity.",
+  "affected_assets": [
+   "equities"
+  ],
+  "tickers": [
+   "^NSEI"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Kerala/TN severity 5 IMD class (1-7). Cyclone Ockhi intensified rapidly over the Arabian Sea near Kanyakumari bringing extreme squalls and torrential rain across coastal Kerala and Tamil Nadu. Mechanism: Severe damage to marine fisheries coastal agriculture plantation crops and local transportation disrupted southern economic activity.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2017-11-29",
+    "realized_dates": {
+     "1d": "2017-11-30",
+     "5d": "2017-12-06",
+     "20d": "2017-12-28"
+    },
+    "ret_1d": -0.013005,
+    "abnormal_1d": null,
+    "ret_5d": -0.030614,
+    "abnormal_5d": null,
+    "ret_20d": 0.011253,
+    "abnormal_20d": null,
+    "est_window": [
+     "2017-05-24",
+     "2017-11-15"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2017-11-29\", \"realized_dates\": {\"1d\": \"2017-11-30\", \"5d\": \"2017-12-06\", \"20d\": \"2017-12-28\"}, \"ret_1d\": -0.013005, \"abnormal_1d\": null, \"ret_5d\": -0.030614, \"abnormal_5d\": null, \"ret_20d\": 0.011253, \"abnormal_20d\": null, \"est_window\": [\"2017-05-24\", \"2017-11-15\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "cyclone_fani_2019",
+  "title": "Extremely Severe Cyclonic Storm Fani Puri Odisha",
+  "event_type": "cyclone",
+  "region": "Odisha",
+  "country": "IN",
+  "start_date": "2019-04-26",
+  "end_date": "2019-05-04",
+  "event_date": "2019-05-03",
+  "severity_value": 6.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.8571,
+  "description": "Extremely Severe Cyclonic Storm Fani made landfall near Puri Odisha with sustained winds of 215 km/h devastating coastal infrastructure and coastal districts.",
+  "mechanism": "Demolition of power transmission grids telecommunications shutdown agricultural damage and temporary closure of Paradip port.",
+  "affected_assets": [
+   "equities",
+   "energy",
+   "fmcg"
+  ],
+  "tickers": [
+   "^NSEI",
+   "ONGC.NS",
+   "^CNXFMCG"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Odisha severity 6 IMD class (1-7). Extremely Severe Cyclonic Storm Fani made landfall near Puri Odisha with sustained winds of 215 km/h devastating coastal infrastructure and coastal districts. Mechanism: Demolition of power transmission grids telecommunications shutdown agricultural damage and temporary closure of Paradip port.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2019-05-02",
+    "realized_dates": {
+     "1d": "2019-05-03",
+     "5d": "2019-05-09",
+     "20d": "2019-05-30"
+    },
+    "ret_1d": -0.001066,
+    "abnormal_1d": null,
+    "ret_5d": -0.036073,
+    "abnormal_5d": null,
+    "ret_20d": 0.018862,
+    "abnormal_20d": null,
+    "est_window": [
+     "2018-10-15",
+     "2019-04-12"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ONGC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7947,
+    "t0_date": "2019-05-02",
+    "realized_dates": {
+     "1d": "2019-05-03",
+     "5d": "2019-05-09",
+     "20d": "2019-05-30"
+    },
+    "ret_1d": 0.007993,
+    "abnormal_1d": 0.008841,
+    "ret_5d": 0.002961,
+    "abnormal_5d": 0.031628,
+    "ret_20d": 0.003257,
+    "abnormal_20d": -0.011733,
+    "est_window": [
+     "2018-10-15",
+     "2019-04-12"
+    ],
+    "price_symbol": "ONGC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.6175,
+    "t0_date": "2019-05-02",
+    "realized_dates": {
+     "1d": "2019-05-03",
+     "5d": "2019-05-09",
+     "20d": "2019-05-30"
+    },
+    "ret_1d": -0.017406,
+    "abnormal_1d": -0.016748,
+    "ret_5d": -0.011488,
+    "abnormal_5d": 0.010786,
+    "ret_20d": 0.035218,
+    "abnormal_20d": 0.023571,
+    "est_window": [
+     "2018-10-15",
+     "2019-04-12"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2019-05-02\", \"realized_dates\": {\"1d\": \"2019-05-03\", \"5d\": \"2019-05-09\", \"20d\": \"2019-05-30\"}, \"ret_1d\": -0.001066, \"abnormal_1d\": null, \"ret_5d\": -0.036073, \"abnormal_5d\": null, \"ret_20d\": 0.018862, \"abnormal_20d\": null, \"est_window\": [\"2018-10-15\", \"2019-04-12\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ONGC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7947, \"t0_date\": \"2019-05-02\", \"realized_dates\": {\"1d\": \"2019-05-03\", \"5d\": \"2019-05-09\", \"20d\": \"2019-05-30\"}, \"ret_1d\": 0.007993, \"abnormal_1d\": 0.008841, \"ret_5d\": 0.002961, \"abnormal_5d\": 0.031628, \"ret_20d\": 0.003257, \"abnormal_20d\": -0.011733, \"est_window\": [\"2018-10-15\", \"2019-04-12\"], \"price_symbol\": \"ONGC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.6175, \"t0_date\": \"2019-05-02\", \"realized_dates\": {\"1d\": \"2019-05-03\", \"5d\": \"2019-05-09\", \"20d\": \"2019-05-30\"}, \"ret_1d\": -0.017406, \"abnormal_1d\": -0.016748, \"ret_5d\": -0.011488, \"abnormal_5d\": 0.010786, \"ret_20d\": 0.035218, \"abnormal_20d\": 0.023571, \"est_window\": [\"2018-10-15\", \"2019-04-12\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}]"
+ },
+ {
+  "event_id": "cyclone_amphan_2020",
+  "title": "Super Cyclonic Storm Amphan West Bengal",
+  "event_type": "cyclone",
+  "region": "West Bengal",
+  "country": "IN",
+  "start_date": "2020-05-16",
+  "end_date": "2020-05-21",
+  "event_date": "2020-05-20",
+  "severity_value": 7.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 1.0,
+  "description": "Super Cyclonic Storm Amphan struck West Bengal near the Sundarbans bringing catastrophic storm surges and hurricane-force winds into Kolkata.",
+  "mechanism": "Catastrophic damage to urban infrastructure rural agriculture jute and rice crops and long-duration power outages dampened consumption.",
+  "affected_assets": [
+   "equities",
+   "fmcg",
+   "tobacco"
+  ],
+  "tickers": [
+   "^NSEI",
+   "ITC.NS",
+   "^CNXFMCG"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone West Bengal severity 7 IMD class (1-7). Super Cyclonic Storm Amphan struck West Bengal near the Sundarbans bringing catastrophic storm surges and hurricane-force winds into Kolkata. Mechanism: Catastrophic damage to urban infrastructure rural agriculture jute and rice crops and long-duration power outages dampened consumption.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2020-05-19",
+    "realized_dates": {
+     "1d": "2020-05-20",
+     "5d": "2020-05-27",
+     "20d": "2020-06-17"
+    },
+    "ret_1d": 0.021111,
+    "abnormal_1d": null,
+    "ret_5d": 0.049087,
+    "abnormal_5d": null,
+    "ret_20d": 0.112855,
+    "abnormal_20d": null,
+    "est_window": [
+     "2019-11-06",
+     "2020-05-05"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ITC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7194,
+    "t0_date": "2020-05-19",
+    "realized_dates": {
+     "1d": "2020-05-20",
+     "5d": "2020-05-27",
+     "20d": "2020-06-17"
+    },
+    "ret_1d": 0.029282,
+    "abnormal_1d": 0.014095,
+    "ret_5d": 0.125329,
+    "abnormal_5d": 0.090017,
+    "ret_20d": 0.0612,
+    "abnormal_20d": -0.019985,
+    "est_window": [
+     "2019-11-06",
+     "2020-05-05"
+    ],
+    "price_symbol": "ITC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.6888,
+    "t0_date": "2020-05-19",
+    "realized_dates": {
+     "1d": "2020-05-20",
+     "5d": "2020-05-27",
+     "20d": "2020-06-17"
+    },
+    "ret_1d": 0.007745,
+    "abnormal_1d": -0.006797,
+    "ret_5d": 0.011415,
+    "abnormal_5d": -0.022398,
+    "ret_20d": 0.051985,
+    "abnormal_20d": -0.025753,
+    "est_window": [
+     "2019-11-06",
+     "2020-05-05"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2020-05-19\", \"realized_dates\": {\"1d\": \"2020-05-20\", \"5d\": \"2020-05-27\", \"20d\": \"2020-06-17\"}, \"ret_1d\": 0.021111, \"abnormal_1d\": null, \"ret_5d\": 0.049087, \"abnormal_5d\": null, \"ret_20d\": 0.112855, \"abnormal_20d\": null, \"est_window\": [\"2019-11-06\", \"2020-05-05\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ITC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7194, \"t0_date\": \"2020-05-19\", \"realized_dates\": {\"1d\": \"2020-05-20\", \"5d\": \"2020-05-27\", \"20d\": \"2020-06-17\"}, \"ret_1d\": 0.029282, \"abnormal_1d\": 0.014095, \"ret_5d\": 0.125329, \"abnormal_5d\": 0.090017, \"ret_20d\": 0.0612, \"abnormal_20d\": -0.019985, \"est_window\": [\"2019-11-06\", \"2020-05-05\"], \"price_symbol\": \"ITC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.6888, \"t0_date\": \"2020-05-19\", \"realized_dates\": {\"1d\": \"2020-05-20\", \"5d\": \"2020-05-27\", \"20d\": \"2020-06-17\"}, \"ret_1d\": 0.007745, \"abnormal_1d\": -0.006797, \"ret_5d\": 0.011415, \"abnormal_5d\": -0.022398, \"ret_20d\": 0.051985, \"abnormal_20d\": -0.025753, \"est_window\": [\"2019-11-06\", \"2020-05-05\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}]"
+ },
+ {
+  "event_id": "cyclone_nisarga_2020",
+  "title": "Severe Cyclonic Storm Nisarga Maharashtra",
+  "event_type": "cyclone",
+  "region": "Maharashtra",
+  "country": "IN",
+  "start_date": "2020-06-01",
+  "end_date": "2020-06-04",
+  "event_date": "2020-06-03",
+  "severity_value": 4.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.5714,
+  "description": "Severe Cyclonic Storm Nisarga struck coastal Raigad district south of Mumbai causing heavy rains and localized power and communication disruptions.",
+  "mechanism": "Precautionary shutdowns across chemical manufacturing hubs and coastal logistics corridors slowed regional supply chains.",
+  "affected_assets": [
+   "equities",
+   "energy"
+  ],
+  "tickers": [
+   "^NSEI",
+   "RELIANCE.NS"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Maharashtra severity 4 IMD class (1-7). Severe Cyclonic Storm Nisarga struck coastal Raigad district south of Mumbai causing heavy rains and localized power and communication disruptions. Mechanism: Precautionary shutdowns across chemical manufacturing hubs and coastal logistics corridors slowed regional supply chains.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2020-06-02",
+    "realized_dates": {
+     "1d": "2020-06-03",
+     "5d": "2020-06-09",
+     "20d": "2020-06-30"
+    },
+    "ret_1d": 0.008262,
+    "abnormal_1d": null,
+    "ret_5d": 0.006769,
+    "abnormal_5d": null,
+    "ret_20d": 0.032368,
+    "abnormal_20d": null,
+    "est_window": [
+     "2019-11-20",
+     "2020-05-18"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RELIANCE.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.1642,
+    "t0_date": "2020-06-02",
+    "realized_dates": {
+     "1d": "2020-06-03",
+     "5d": "2020-06-09",
+     "20d": "2020-06-30"
+    },
+    "ret_1d": 0.003874,
+    "abnormal_1d": -0.005744,
+    "ret_5d": 0.000944,
+    "abnormal_5d": -0.006936,
+    "ret_20d": 0.109657,
+    "abnormal_20d": 0.071975,
+    "est_window": [
+     "2019-11-20",
+     "2020-05-18"
+    ],
+    "price_symbol": "RELIANCE.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2020-06-02\", \"realized_dates\": {\"1d\": \"2020-06-03\", \"5d\": \"2020-06-09\", \"20d\": \"2020-06-30\"}, \"ret_1d\": 0.008262, \"abnormal_1d\": null, \"ret_5d\": 0.006769, \"abnormal_5d\": null, \"ret_20d\": 0.032368, \"abnormal_20d\": null, \"est_window\": [\"2019-11-20\", \"2020-05-18\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RELIANCE.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1642, \"t0_date\": \"2020-06-02\", \"realized_dates\": {\"1d\": \"2020-06-03\", \"5d\": \"2020-06-09\", \"20d\": \"2020-06-30\"}, \"ret_1d\": 0.003874, \"abnormal_1d\": -0.005744, \"ret_5d\": 0.000944, \"abnormal_5d\": -0.006936, \"ret_20d\": 0.109657, \"abnormal_20d\": 0.071975, \"est_window\": [\"2019-11-20\", \"2020-05-18\"], \"price_symbol\": \"RELIANCE.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "cyclone_tauktae_2021",
+  "title": "Extremely Severe Cyclonic Storm Tauktae Gujarat Coast",
+  "event_type": "cyclone",
+  "region": "Gujarat / Bombay High",
+  "country": "IN",
+  "start_date": "2021-05-14",
+  "end_date": "2021-05-19",
+  "event_date": "2021-05-17",
+  "severity_value": 6.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.8571,
+  "description": "Cyclone Tauktae moved parallel to the west coast and struck southern Gujarat near Saurashtra after damaging offshore oil facilities at Bombay High.",
+  "mechanism": "Offshore oil production barges broke moorings western ports halted vessel movements and horticultural crops suffered heavy damage.",
+  "affected_assets": [
+   "energy",
+   "ports",
+   "refiners"
+  ],
+  "tickers": [
+   "ONGC.NS",
+   "RELIANCE.NS",
+   "ADANIPORTS.NS"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Gujarat / Bombay High severity 6 IMD class (1-7). Cyclone Tauktae moved parallel to the west coast and struck southern Gujarat near Saurashtra after damaging offshore oil facilities at Bombay High. Mechanism: Offshore oil production barges broke moorings western ports halted vessel movements and horticultural crops suffered heavy damage.",
+  "outcomes": [
+   {
+    "asset": "ONGC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.1008,
+    "t0_date": "2021-05-14",
+    "realized_dates": {
+     "1d": "2021-05-17",
+     "5d": "2021-05-21",
+     "20d": "2021-06-11"
+    },
+    "ret_1d": 0.01151,
+    "abnormal_1d": -0.006891,
+    "ret_5d": -0.00177,
+    "abnormal_5d": -0.039082,
+    "ret_20d": 0.093847,
+    "abnormal_20d": 0.009733,
+    "est_window": [
+     "2020-10-30",
+     "2021-04-29"
+    ],
+    "price_symbol": "ONGC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RELIANCE.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.9113,
+    "t0_date": "2021-05-14",
+    "realized_dates": {
+     "1d": "2021-05-17",
+     "5d": "2021-05-21",
+     "20d": "2021-06-11"
+    },
+    "ret_1d": 0.011898,
+    "abnormal_1d": -0.003335,
+    "ret_5d": 0.033681,
+    "abnormal_5d": 0.002793,
+    "ret_20d": 0.146372,
+    "abnormal_20d": 0.076739,
+    "est_window": [
+     "2020-10-30",
+     "2021-04-29"
+    ],
+    "price_symbol": "RELIANCE.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ADANIPORTS.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.1757,
+    "t0_date": "2021-05-14",
+    "realized_dates": {
+     "1d": "2021-05-17",
+     "5d": "2021-05-21",
+     "20d": "2021-06-11"
+    },
+    "ret_1d": 0.028151,
+    "abnormal_1d": 0.008499,
+    "ret_5d": 0.048599,
+    "abnormal_5d": 0.00875,
+    "ret_20d": 0.144775,
+    "abnormal_20d": 0.054941,
+    "est_window": [
+     "2020-10-30",
+     "2021-04-29"
+    ],
+    "price_symbol": "ADANIPORTS.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"ONGC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1008, \"t0_date\": \"2021-05-14\", \"realized_dates\": {\"1d\": \"2021-05-17\", \"5d\": \"2021-05-21\", \"20d\": \"2021-06-11\"}, \"ret_1d\": 0.01151, \"abnormal_1d\": -0.006891, \"ret_5d\": -0.00177, \"abnormal_5d\": -0.039082, \"ret_20d\": 0.093847, \"abnormal_20d\": 0.009733, \"est_window\": [\"2020-10-30\", \"2021-04-29\"], \"price_symbol\": \"ONGC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RELIANCE.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9113, \"t0_date\": \"2021-05-14\", \"realized_dates\": {\"1d\": \"2021-05-17\", \"5d\": \"2021-05-21\", \"20d\": \"2021-06-11\"}, \"ret_1d\": 0.011898, \"abnormal_1d\": -0.003335, \"ret_5d\": 0.033681, \"abnormal_5d\": 0.002793, \"ret_20d\": 0.146372, \"abnormal_20d\": 0.076739, \"est_window\": [\"2020-10-30\", \"2021-04-29\"], \"price_symbol\": \"RELIANCE.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ADANIPORTS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1757, \"t0_date\": \"2021-05-14\", \"realized_dates\": {\"1d\": \"2021-05-17\", \"5d\": \"2021-05-21\", \"20d\": \"2021-06-11\"}, \"ret_1d\": 0.028151, \"abnormal_1d\": 0.008499, \"ret_5d\": 0.048599, \"abnormal_5d\": 0.00875, \"ret_20d\": 0.144775, \"abnormal_20d\": 0.054941, \"est_window\": [\"2020-10-30\", \"2021-04-29\"], \"price_symbol\": \"ADANIPORTS.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "cyclone_yaas_2021",
+  "title": "Very Severe Cyclonic Storm Yaas Odisha West Bengal",
+  "event_type": "cyclone",
+  "region": "Odisha/WB",
+  "country": "IN",
+  "start_date": "2021-05-23",
+  "end_date": "2021-05-28",
+  "event_date": "2021-05-26",
+  "severity_value": 5.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.7143,
+  "description": "Cyclone Yaas made landfall south of Balasore Odisha generating severe tidal inundation along coastal Odisha and West Bengal.",
+  "mechanism": "Inundation of low-lying agricultural land with saline water port operations suspension and disrupted rural supply networks.",
+  "affected_assets": [
+   "equities",
+   "fmcg"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^CNXFMCG"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Odisha/WB severity 5 IMD class (1-7). Cyclone Yaas made landfall south of Balasore Odisha generating severe tidal inundation along coastal Odisha and West Bengal. Mechanism: Inundation of low-lying agricultural land with saline water port operations suspension and disrupted rural supply networks.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2021-05-25",
+    "realized_dates": {
+     "1d": "2021-05-26",
+     "5d": "2021-06-01",
+     "20d": "2021-06-22"
+    },
+    "ret_1d": 0.006115,
+    "abnormal_1d": null,
+    "ret_5d": 0.024092,
+    "abnormal_5d": null,
+    "ret_20d": 0.037104,
+    "abnormal_20d": null,
+    "est_window": [
+     "2020-11-10",
+     "2021-05-10"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.4021,
+    "t0_date": "2021-05-25",
+    "realized_dates": {
+     "1d": "2021-05-26",
+     "5d": "2021-06-01",
+     "20d": "2021-06-22"
+    },
+    "ret_1d": 0.004245,
+    "abnormal_1d": 0.001786,
+    "ret_5d": 0.006079,
+    "abnormal_5d": -0.003608,
+    "ret_20d": 0.070058,
+    "abnormal_20d": 0.055138,
+    "est_window": [
+     "2020-11-10",
+     "2021-05-10"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2021-05-25\", \"realized_dates\": {\"1d\": \"2021-05-26\", \"5d\": \"2021-06-01\", \"20d\": \"2021-06-22\"}, \"ret_1d\": 0.006115, \"abnormal_1d\": null, \"ret_5d\": 0.024092, \"abnormal_5d\": null, \"ret_20d\": 0.037104, \"abnormal_20d\": null, \"est_window\": [\"2020-11-10\", \"2021-05-10\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.4021, \"t0_date\": \"2021-05-25\", \"realized_dates\": {\"1d\": \"2021-05-26\", \"5d\": \"2021-06-01\", \"20d\": \"2021-06-22\"}, \"ret_1d\": 0.004245, \"abnormal_1d\": 0.001786, \"ret_5d\": 0.006079, \"abnormal_5d\": -0.003608, \"ret_20d\": 0.070058, \"abnormal_20d\": 0.055138, \"est_window\": [\"2020-11-10\", \"2021-05-10\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}]"
+ },
+ {
+  "event_id": "cyclone_biparjoy_2023",
+  "title": "Very Severe Cyclonic Storm Biparjoy Gujarat Landfall",
+  "event_type": "cyclone",
+  "region": "Gujarat (Kutch)",
+  "country": "IN",
+  "start_date": "2023-06-06",
+  "end_date": "2023-06-19",
+  "event_date": "2023-06-15",
+  "severity_value": 5.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.7143,
+  "description": "Cyclone Biparjoy crossed Saurashtra and Kutch coasts near Jakhau Port Gujarat with heavy gales uprooting trees and damaging electrical infrastructure.",
+  "mechanism": "Port operations at Mundra and Kandla were suspended while coastal oil transport and logistics lines were frozen.",
+  "affected_assets": [
+   "ports",
+   "energy",
+   "equities"
+  ],
+  "tickers": [
+   "ADANIPORTS.NS",
+   "RELIANCE.NS",
+   "^NSEI"
+  ],
+  "split": "holdout",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Gujarat (Kutch) severity 5 IMD class (1-7). Cyclone Biparjoy crossed Saurashtra and Kutch coasts near Jakhau Port Gujarat with heavy gales uprooting trees and damaging electrical infrastructure. Mechanism: Port operations at Mundra and Kandla were suspended while coastal oil transport and logistics lines were frozen.",
+  "outcomes": [
+   {
+    "asset": "ADANIPORTS.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 2.6148,
+    "t0_date": "2023-06-14",
+    "realized_dates": {
+     "1d": "2023-06-15",
+     "5d": "2023-06-21",
+     "20d": "2023-07-13"
+    },
+    "ret_1d": 0.000203,
+    "abnormal_1d": 0.009655,
+    "ret_5d": 0.013661,
+    "abnormal_5d": -0.000413,
+    "ret_20d": -0.029959,
+    "abnormal_20d": -0.121671,
+    "est_window": [
+     "2022-12-05",
+     "2023-05-31"
+    ],
+    "price_symbol": "ADANIPORTS.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "RELIANCE.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.3575,
+    "t0_date": "2023-06-14",
+    "realized_dates": {
+     "1d": "2023-06-15",
+     "5d": "2023-06-21",
+     "20d": "2023-07-13"
+    },
+    "ret_1d": 0.000274,
+    "abnormal_1d": 0.005182,
+    "ret_5d": 0.004879,
+    "abnormal_5d": -0.002428,
+    "ret_20d": 0.074907,
+    "abnormal_20d": 0.027293,
+    "est_window": [
+     "2022-12-05",
+     "2023-05-31"
+    ],
+    "price_symbol": "RELIANCE.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2023-06-14",
+    "realized_dates": {
+     "1d": "2023-06-15",
+     "5d": "2023-06-21",
+     "20d": "2023-07-13"
+    },
+    "ret_1d": -0.003615,
+    "abnormal_1d": null,
+    "ret_5d": 0.005382,
+    "abnormal_5d": null,
+    "ret_20d": 0.035074,
+    "abnormal_20d": null,
+    "est_window": [
+     "2022-12-05",
+     "2023-05-31"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"ADANIPORTS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 2.6148, \"t0_date\": \"2023-06-14\", \"realized_dates\": {\"1d\": \"2023-06-15\", \"5d\": \"2023-06-21\", \"20d\": \"2023-07-13\"}, \"ret_1d\": 0.000203, \"abnormal_1d\": 0.009655, \"ret_5d\": 0.013661, \"abnormal_5d\": -0.000413, \"ret_20d\": -0.029959, \"abnormal_20d\": -0.121671, \"est_window\": [\"2022-12-05\", \"2023-05-31\"], \"price_symbol\": \"ADANIPORTS.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"RELIANCE.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.3575, \"t0_date\": \"2023-06-14\", \"realized_dates\": {\"1d\": \"2023-06-15\", \"5d\": \"2023-06-21\", \"20d\": \"2023-07-13\"}, \"ret_1d\": 0.000274, \"abnormal_1d\": 0.005182, \"ret_5d\": 0.004879, \"abnormal_5d\": -0.002428, \"ret_20d\": 0.074907, \"abnormal_20d\": 0.027293, \"est_window\": [\"2022-12-05\", \"2023-05-31\"], \"price_symbol\": \"RELIANCE.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2023-06-14\", \"realized_dates\": {\"1d\": \"2023-06-15\", \"5d\": \"2023-06-21\", \"20d\": \"2023-07-13\"}, \"ret_1d\": -0.003615, \"abnormal_1d\": null, \"ret_5d\": 0.005382, \"abnormal_5d\": null, \"ret_20d\": 0.035074, \"abnormal_20d\": null, \"est_window\": [\"2022-12-05\", \"2023-05-31\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "cyclone_michaung_2023",
+  "title": "Severe Cyclonic Storm Michaung Chennai and Andhra",
+  "event_type": "cyclone",
+  "region": "TN/Andhra (Chennai)",
+  "country": "IN",
+  "start_date": "2023-12-01",
+  "end_date": "2023-12-06",
+  "event_date": "2023-12-05",
+  "severity_value": 4.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.5714,
+  "description": "Severe Cyclonic Storm Michaung tracked close to Chennai before making landfall near Bapatla Andhra Pradesh causing extreme urban inundation.",
+  "mechanism": "Chennai automotive manufacturing clusters and electronics fabrication plants suffered severe flooding and assembly suspensions.",
+  "affected_assets": [
+   "auto",
+   "manufacturing",
+   "equities"
+  ],
+  "tickers": [
+   "^CNXAUTO",
+   "ASHOKLEY.NS",
+   "TVSMOTOR.NS"
+  ],
+  "split": "holdout",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone TN/Andhra (Chennai) severity 4 IMD class (1-7). Severe Cyclonic Storm Michaung tracked close to Chennai before making landfall near Bapatla Andhra Pradesh causing extreme urban inundation. Mechanism: Chennai automotive manufacturing clusters and electronics fabrication plants suffered severe flooding and assembly suspensions.",
+  "outcomes": [
+   {
+    "asset": "^CNXAUTO",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7554,
+    "t0_date": "2023-12-04",
+    "realized_dates": {
+     "1d": "2023-12-05",
+     "5d": "2023-12-11",
+     "20d": "2024-01-02"
+    },
+    "ret_1d": 0.011553,
+    "abnormal_1d": 0.005407,
+    "ret_5d": -0.005444,
+    "abnormal_5d": -0.016775,
+    "ret_20d": -0.037898,
+    "abnormal_20d": -0.073647,
+    "est_window": [
+     "2023-05-25",
+     "2023-11-17"
+    ],
+    "price_symbol": "MARUTI.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXAUTO has no Yahoo history; computed from MARUTI.NS"
+   },
+   {
+    "asset": "ASHOKLEY.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7967,
+    "t0_date": "2023-12-04",
+    "realized_dates": {
+     "1d": "2023-12-05",
+     "5d": "2023-12-11",
+     "20d": "2024-01-02"
+    },
+    "ret_1d": 0.002866,
+    "abnormal_1d": -0.003615,
+    "ret_5d": 0.006306,
+    "abnormal_5d": -0.005645,
+    "ret_20d": 0.034107,
+    "abnormal_20d": -0.003597,
+    "est_window": [
+     "2023-05-25",
+     "2023-11-17"
+    ],
+    "price_symbol": "ASHOKLEY.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "TVSMOTOR.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.6984,
+    "t0_date": "2023-12-04",
+    "realized_dates": {
+     "1d": "2023-12-05",
+     "5d": "2023-12-11",
+     "20d": "2024-01-02"
+    },
+    "ret_1d": -0.000499,
+    "abnormal_1d": -0.006181,
+    "ret_5d": 0.014943,
+    "abnormal_5d": 0.004466,
+    "ret_20d": 0.034245,
+    "abnormal_20d": 0.001192,
+    "est_window": [
+     "2023-05-25",
+     "2023-11-17"
+    ],
+    "price_symbol": "TVSMOTOR.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^CNXAUTO\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7554, \"t0_date\": \"2023-12-04\", \"realized_dates\": {\"1d\": \"2023-12-05\", \"5d\": \"2023-12-11\", \"20d\": \"2024-01-02\"}, \"ret_1d\": 0.011553, \"abnormal_1d\": 0.005407, \"ret_5d\": -0.005444, \"abnormal_5d\": -0.016775, \"ret_20d\": -0.037898, \"abnormal_20d\": -0.073647, \"est_window\": [\"2023-05-25\", \"2023-11-17\"], \"price_symbol\": \"MARUTI.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXAUTO has no Yahoo history; computed from MARUTI.NS\"}, {\"asset\": \"ASHOKLEY.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7967, \"t0_date\": \"2023-12-04\", \"realized_dates\": {\"1d\": \"2023-12-05\", \"5d\": \"2023-12-11\", \"20d\": \"2024-01-02\"}, \"ret_1d\": 0.002866, \"abnormal_1d\": -0.003615, \"ret_5d\": 0.006306, \"abnormal_5d\": -0.005645, \"ret_20d\": 0.034107, \"abnormal_20d\": -0.003597, \"est_window\": [\"2023-05-25\", \"2023-11-17\"], \"price_symbol\": \"ASHOKLEY.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"TVSMOTOR.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.6984, \"t0_date\": \"2023-12-04\", \"realized_dates\": {\"1d\": \"2023-12-05\", \"5d\": \"2023-12-11\", \"20d\": \"2024-01-02\"}, \"ret_1d\": -0.000499, \"abnormal_1d\": -0.006181, \"ret_5d\": 0.014943, \"abnormal_5d\": 0.004466, \"ret_20d\": 0.034245, \"abnormal_20d\": 0.001192, \"est_window\": [\"2023-05-25\", \"2023-11-17\"], \"price_symbol\": \"TVSMOTOR.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "cyclone_dana_2024",
+  "title": "Severe Cyclonic Storm Dana Odisha Coast",
+  "event_type": "cyclone",
+  "region": "Odisha",
+  "country": "IN",
+  "start_date": "2024-10-22",
+  "end_date": "2024-10-26",
+  "event_date": "2024-10-25",
+  "severity_value": 4.0,
+  "severity_unit": "IMD class (1-7)",
+  "severity_norm": 0.5714,
+  "description": "Severe Cyclonic Storm Dana struck the northern Odisha coast between Dhamra and Habalikhati Nature Camp bringing heavy rain and coastal winds.",
+  "mechanism": "Evacuations of coastal districts suspension of flights and train services alongside preemptive port mooring protocols.",
+  "affected_assets": [
+   "equities",
+   "fmcg"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^CNXFMCG"
+  ],
+  "split": "train",
+  "source": "IMD RSMC",
+  "source_url": "https://rsmcnewdelhi.imd.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "cyclone Odisha severity 4 IMD class (1-7). Severe Cyclonic Storm Dana struck the northern Odisha coast between Dhamra and Habalikhati Nature Camp bringing heavy rain and coastal winds. Mechanism: Evacuations of coastal districts suspension of flights and train services alongside preemptive port mooring protocols.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2024-10-24",
+    "realized_dates": {
+     "1d": "2024-10-25",
+     "5d": "2024-10-31",
+     "20d": "2024-11-25"
+    },
+    "ret_1d": -0.008959,
+    "abnormal_1d": null,
+    "ret_5d": -0.007953,
+    "abnormal_5d": null,
+    "ret_20d": -0.007275,
+    "abnormal_20d": null,
+    "est_window": [
+     "2024-04-16",
+     "2024-10-10"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.0285,
+    "t0_date": "2024-10-24",
+    "realized_dates": {
+     "1d": "2024-10-25",
+     "5d": "2024-10-31",
+     "20d": "2024-11-25"
+    },
+    "ret_1d": 0.009161,
+    "abnormal_1d": 0.009416,
+    "ret_5d": 0.009241,
+    "abnormal_5d": 0.009467,
+    "ret_20d": -0.001953,
+    "abnormal_20d": -0.001746,
+    "est_window": [
+     "2024-04-16",
+     "2024-10-10"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2024-10-24\", \"realized_dates\": {\"1d\": \"2024-10-25\", \"5d\": \"2024-10-31\", \"20d\": \"2024-11-25\"}, \"ret_1d\": -0.008959, \"abnormal_1d\": null, \"ret_5d\": -0.007953, \"abnormal_5d\": null, \"ret_20d\": -0.007275, \"abnormal_20d\": null, \"est_window\": [\"2024-04-16\", \"2024-10-10\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.0285, \"t0_date\": \"2024-10-24\", \"realized_dates\": {\"1d\": \"2024-10-25\", \"5d\": \"2024-10-31\", \"20d\": \"2024-11-25\"}, \"ret_1d\": 0.009161, \"abnormal_1d\": 0.009416, \"ret_5d\": 0.009241, \"abnormal_5d\": 0.009467, \"ret_20d\": -0.001953, \"abnormal_20d\": -0.001746, \"est_window\": [\"2024-04-16\", \"2024-10-10\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}]"
+ },
+ {
+  "event_id": "monsoon_deficit_2009",
+  "title": "Historic Indian Monsoon Deficit 2009",
+  "event_type": "monsoon_deficit",
+  "region": "All-India",
+  "country": "IN",
+  "start_date": "2009-06-01",
+  "end_date": "2009-09-30",
+  "event_date": "2009-08-01",
+  "severity_value": -22.0,
+  "severity_unit": "rain deficit %",
+  "severity_norm": 0.7333,
+  "description": "India suffered its worst drought in nearly four decades as southwest monsoon rains ended 22 percent below normal across the country.",
+  "mechanism": "Severe kharif crop failure lowered rural incomes triggered food price inflation and pressured commercial tractor and auto sales.",
+  "affected_assets": [
+   "equities",
+   "fmcg",
+   "auto",
+   "currency"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^CNXFMCG",
+   "M&M.NS",
+   "INR=X"
+  ],
+  "split": "train",
+  "source": "IMD Monsoon Report",
+  "source_url": "https://mausam.imd.gov.in/",
+  "date_approximate": true,
+  "notes": "Approximate public-announcement date (IMD bulletin); verify.",
+  "embedding_text": "monsoon_deficit All-India severity -22 rain deficit %. India suffered its worst drought in nearly four decades as southwest monsoon rains ended 22 percent below normal across the country. Mechanism: Severe kharif crop failure lowered rural incomes triggered food price inflation and pressured commercial tractor and auto sales.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2009-07-31",
+    "realized_dates": {
+     "1d": "2009-08-03",
+     "5d": "2009-08-07",
+     "20d": "2009-08-28"
+    },
+    "ret_1d": 0.016165,
+    "abnormal_1d": null,
+    "ret_5d": -0.033442,
+    "abnormal_5d": null,
+    "ret_20d": 0.020684,
+    "abnormal_20d": null,
+    "est_window": [
+     "2009-01-16",
+     "2009-07-17"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.3328,
+    "t0_date": "2009-07-31",
+    "realized_dates": {
+     "1d": "2009-08-03",
+     "5d": "2009-08-07",
+     "20d": "2009-08-28"
+    },
+    "ret_1d": -0.021955,
+    "abnormal_1d": -0.027335,
+    "ret_5d": -0.075129,
+    "abnormal_5d": -0.064,
+    "ret_20d": -0.106861,
+    "abnormal_20d": -0.113744,
+    "est_window": [
+     "2009-01-16",
+     "2009-07-17"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   },
+   {
+    "asset": "M&M.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.1607,
+    "t0_date": "2009-07-31",
+    "realized_dates": {
+     "1d": "2009-08-03",
+     "5d": "2009-08-07",
+     "20d": "2009-08-28"
+    },
+    "ret_1d": 0.06967,
+    "abnormal_1d": 0.050906,
+    "ret_5d": -0.027472,
+    "abnormal_5d": 0.011344,
+    "ret_20d": -0.036843,
+    "abnormal_20d": -0.060852,
+    "est_window": [
+     "2009-01-16",
+     "2009-07-17"
+    ],
+    "price_symbol": "M&M.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "INR=X",
+    "benchmark": "^NSEI",
+    "beta_used": -0.1747,
+    "t0_date": "2009-07-31",
+    "realized_dates": {
+     "1d": "2009-08-03",
+     "5d": "2009-08-07",
+     "20d": "2009-08-28"
+    },
+    "ret_1d": -0.00021,
+    "abnormal_1d": 0.002615,
+    "ret_5d": 0.005102,
+    "abnormal_5d": -0.000741,
+    "ret_20d": 0.018939,
+    "abnormal_20d": 0.022553,
+    "est_window": [
+     "2009-01-16",
+     "2009-07-17"
+    ],
+    "price_symbol": "INR=X",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2009-07-31\", \"realized_dates\": {\"1d\": \"2009-08-03\", \"5d\": \"2009-08-07\", \"20d\": \"2009-08-28\"}, \"ret_1d\": 0.016165, \"abnormal_1d\": null, \"ret_5d\": -0.033442, \"abnormal_5d\": null, \"ret_20d\": 0.020684, \"abnormal_20d\": null, \"est_window\": [\"2009-01-16\", \"2009-07-17\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.3328, \"t0_date\": \"2009-07-31\", \"realized_dates\": {\"1d\": \"2009-08-03\", \"5d\": \"2009-08-07\", \"20d\": \"2009-08-28\"}, \"ret_1d\": -0.021955, \"abnormal_1d\": -0.027335, \"ret_5d\": -0.075129, \"abnormal_5d\": -0.064, \"ret_20d\": -0.106861, \"abnormal_20d\": -0.113744, \"est_window\": [\"2009-01-16\", \"2009-07-17\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1607, \"t0_date\": \"2009-07-31\", \"realized_dates\": {\"1d\": \"2009-08-03\", \"5d\": \"2009-08-07\", \"20d\": \"2009-08-28\"}, \"ret_1d\": 0.06967, \"abnormal_1d\": 0.050906, \"ret_5d\": -0.027472, \"abnormal_5d\": 0.011344, \"ret_20d\": -0.036843, \"abnormal_20d\": -0.060852, \"est_window\": [\"2009-01-16\", \"2009-07-17\"], \"price_symbol\": \"M&M.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.1747, \"t0_date\": \"2009-07-31\", \"realized_dates\": {\"1d\": \"2009-08-03\", \"5d\": \"2009-08-07\", \"20d\": \"2009-08-28\"}, \"ret_1d\": -0.00021, \"abnormal_1d\": 0.002615, \"ret_5d\": 0.005102, \"abnormal_5d\": -0.000741, \"ret_20d\": 0.018939, \"abnormal_20d\": 0.022553, \"est_window\": [\"2009-01-16\", \"2009-07-17\"], \"price_symbol\": \"INR=X\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "monsoon_deficit_2014",
+  "title": "El Nino Induced Monsoon Deficit 2014",
+  "event_type": "monsoon_deficit",
+  "region": "All-India",
+  "country": "IN",
+  "start_date": "2014-06-01",
+  "end_date": "2014-09-30",
+  "event_date": "2014-08-01",
+  "severity_value": -12.0,
+  "severity_unit": "rain deficit %",
+  "severity_norm": 0.4,
+  "description": "Monsoon rains were impacted by developing El Nino conditions leading to a 12 percent seasonal deficit and spatial unevenness across northwest India.",
+  "mechanism": "Stagnant rural wages lowered agricultural output and reduced demand for crop protection chemicals and farm machinery.",
+  "affected_assets": [
+   "fmcg",
+   "auto",
+   "agri"
+  ],
+  "tickers": [
+   "^CNXFMCG",
+   "M&M.NS",
+   "UPL.NS"
+  ],
+  "split": "train",
+  "source": "IMD Monsoon Report",
+  "source_url": "https://mausam.imd.gov.in/",
+  "date_approximate": true,
+  "notes": "Approximate public-announcement date (IMD bulletin); verify.",
+  "embedding_text": "monsoon_deficit All-India severity -12 rain deficit %. Monsoon rains were impacted by developing El Nino conditions leading to a 12 percent seasonal deficit and spatial unevenness across northwest India. Mechanism: Stagnant rural wages lowered agricultural output and reduced demand for crop protection chemicals and farm machinery.",
+  "outcomes": [
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.2245,
+    "t0_date": "2014-07-31",
+    "realized_dates": {
+     "1d": "2014-08-01",
+     "5d": "2014-08-07",
+     "20d": "2014-09-01"
+    },
+    "ret_1d": 0.010122,
+    "abnormal_1d": 0.013573,
+    "ret_5d": 0.022356,
+    "abnormal_5d": 0.024451,
+    "ret_20d": 0.078357,
+    "abnormal_20d": 0.069448,
+    "est_window": [
+     "2014-01-17",
+     "2014-07-16"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   },
+   {
+    "asset": "M&M.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7412,
+    "t0_date": "2014-07-31",
+    "realized_dates": {
+     "1d": "2014-08-01",
+     "5d": "2014-08-07",
+     "20d": "2014-09-01"
+    },
+    "ret_1d": -0.022885,
+    "abnormal_1d": -0.011491,
+    "ret_5d": 0.039737,
+    "abnormal_5d": 0.046654,
+    "ret_20d": 0.167853,
+    "abnormal_20d": 0.13844,
+    "est_window": [
+     "2014-01-17",
+     "2014-07-16"
+    ],
+    "price_symbol": "M&M.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "UPL.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7545,
+    "t0_date": "2014-07-31",
+    "realized_dates": {
+     "1d": "2014-08-01",
+     "5d": "2014-08-07",
+     "20d": "2014-09-01"
+    },
+    "ret_1d": 0.011707,
+    "abnormal_1d": 0.023306,
+    "ret_5d": -0.026187,
+    "abnormal_5d": -0.019147,
+    "ret_20d": 0.008114,
+    "abnormal_20d": -0.021827,
+    "est_window": [
+     "2014-01-17",
+     "2014-07-16"
+    ],
+    "price_symbol": "UPL.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.2245, \"t0_date\": \"2014-07-31\", \"realized_dates\": {\"1d\": \"2014-08-01\", \"5d\": \"2014-08-07\", \"20d\": \"2014-09-01\"}, \"ret_1d\": 0.010122, \"abnormal_1d\": 0.013573, \"ret_5d\": 0.022356, \"abnormal_5d\": 0.024451, \"ret_20d\": 0.078357, \"abnormal_20d\": 0.069448, \"est_window\": [\"2014-01-17\", \"2014-07-16\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7412, \"t0_date\": \"2014-07-31\", \"realized_dates\": {\"1d\": \"2014-08-01\", \"5d\": \"2014-08-07\", \"20d\": \"2014-09-01\"}, \"ret_1d\": -0.022885, \"abnormal_1d\": -0.011491, \"ret_5d\": 0.039737, \"abnormal_5d\": 0.046654, \"ret_20d\": 0.167853, \"abnormal_20d\": 0.13844, \"est_window\": [\"2014-01-17\", \"2014-07-16\"], \"price_symbol\": \"M&M.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"UPL.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7545, \"t0_date\": \"2014-07-31\", \"realized_dates\": {\"1d\": \"2014-08-01\", \"5d\": \"2014-08-07\", \"20d\": \"2014-09-01\"}, \"ret_1d\": 0.011707, \"abnormal_1d\": 0.023306, \"ret_5d\": -0.026187, \"abnormal_5d\": -0.019147, \"ret_20d\": 0.008114, \"abnormal_20d\": -0.021827, \"est_window\": [\"2014-01-17\", \"2014-07-16\"], \"price_symbol\": \"UPL.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "monsoon_deficit_2015",
+  "title": "Consecutive Drought Year Monsoon Deficit 2015",
+  "event_type": "monsoon_deficit",
+  "region": "All-India",
+  "country": "IN",
+  "start_date": "2015-06-01",
+  "end_date": "2015-09-30",
+  "event_date": "2015-08-01",
+  "severity_value": -14.0,
+  "severity_unit": "rain deficit %",
+  "severity_norm": 0.4667,
+  "description": "Second consecutive year of nationwide drought caused by strong El Nino resulted in a 14 percent cumulative monsoon deficit.",
+  "mechanism": "Reservoir levels dropped sharply dampening fertilizer consumption tractor sales and rural fast-moving consumer goods volume growth.",
+  "affected_assets": [
+   "fmcg",
+   "auto",
+   "fertilizers"
+  ],
+  "tickers": [
+   "^CNXFMCG",
+   "M&M.NS",
+   "CHAMBLFERT.NS"
+  ],
+  "split": "holdout",
+  "source": "IMD Monsoon Report",
+  "source_url": "https://mausam.imd.gov.in/",
+  "date_approximate": true,
+  "notes": "Approximate public-announcement date (IMD bulletin); verify.",
+  "embedding_text": "monsoon_deficit All-India severity -14 rain deficit %. Second consecutive year of nationwide drought caused by strong El Nino resulted in a 14 percent cumulative monsoon deficit. Mechanism: Reservoir levels dropped sharply dampening fertilizer consumption tractor sales and rural fast-moving consumer goods volume growth.",
+  "outcomes": [
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7742,
+    "t0_date": "2015-07-31",
+    "realized_dates": {
+     "1d": "2015-08-03",
+     "5d": "2015-08-07",
+     "20d": "2015-08-28"
+    },
+    "ret_1d": -0.012966,
+    "abnormal_1d": -0.013891,
+    "ret_5d": -0.018228,
+    "abnormal_5d": -0.021109,
+    "ret_20d": -0.072858,
+    "abnormal_20d": -0.024688,
+    "est_window": [
+     "2015-01-20",
+     "2015-07-17"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   },
+   {
+    "asset": "M&M.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0683,
+    "t0_date": "2015-07-31",
+    "realized_dates": {
+     "1d": "2015-08-03",
+     "5d": "2015-08-07",
+     "20d": "2015-08-28"
+    },
+    "ret_1d": -0.018847,
+    "abnormal_1d": -0.020124,
+    "ret_5d": 0.019581,
+    "abnormal_5d": 0.015606,
+    "ret_20d": -0.095079,
+    "abnormal_20d": -0.028614,
+    "est_window": [
+     "2015-01-20",
+     "2015-07-17"
+    ],
+    "price_symbol": "M&M.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "CHAMBLFERT.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.4308,
+    "t0_date": "2015-07-31",
+    "realized_dates": {
+     "1d": "2015-08-03",
+     "5d": "2015-08-07",
+     "20d": "2015-08-28"
+    },
+    "ret_1d": 0.006628,
+    "abnormal_1d": 0.006113,
+    "ret_5d": 0.040596,
+    "abnormal_5d": 0.038993,
+    "ret_20d": 0.030143,
+    "abnormal_20d": 0.056947,
+    "est_window": [
+     "2015-01-20",
+     "2015-07-17"
+    ],
+    "price_symbol": "CHAMBLFERT.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7742, \"t0_date\": \"2015-07-31\", \"realized_dates\": {\"1d\": \"2015-08-03\", \"5d\": \"2015-08-07\", \"20d\": \"2015-08-28\"}, \"ret_1d\": -0.012966, \"abnormal_1d\": -0.013891, \"ret_5d\": -0.018228, \"abnormal_5d\": -0.021109, \"ret_20d\": -0.072858, \"abnormal_20d\": -0.024688, \"est_window\": [\"2015-01-20\", \"2015-07-17\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0683, \"t0_date\": \"2015-07-31\", \"realized_dates\": {\"1d\": \"2015-08-03\", \"5d\": \"2015-08-07\", \"20d\": \"2015-08-28\"}, \"ret_1d\": -0.018847, \"abnormal_1d\": -0.020124, \"ret_5d\": 0.019581, \"abnormal_5d\": 0.015606, \"ret_20d\": -0.095079, \"abnormal_20d\": -0.028614, \"est_window\": [\"2015-01-20\", \"2015-07-17\"], \"price_symbol\": \"M&M.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"CHAMBLFERT.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.4308, \"t0_date\": \"2015-07-31\", \"realized_dates\": {\"1d\": \"2015-08-03\", \"5d\": \"2015-08-07\", \"20d\": \"2015-08-28\"}, \"ret_1d\": 0.006628, \"abnormal_1d\": 0.006113, \"ret_5d\": 0.040596, \"abnormal_5d\": 0.038993, \"ret_20d\": 0.030143, \"abnormal_20d\": 0.056947, \"est_window\": [\"2015-01-20\", \"2015-07-17\"], \"price_symbol\": \"CHAMBLFERT.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "monsoon_aug_dry_2023",
+  "title": "Record Dry August Monsoon Deficit 2023",
+  "event_type": "monsoon_deficit",
+  "region": "All-India (Aug -36%)",
+  "country": "IN",
+  "start_date": "2023-08-01",
+  "end_date": "2023-09-15",
+  "event_date": "2023-09-01",
+  "severity_value": -36.0,
+  "severity_unit": "rain deficit %",
+  "severity_norm": 1.0,
+  "description": "India experienced its driest August since 1901 with nationwide rainfall falling 36 percent below long-period average due to El Nino intensification.",
+  "mechanism": "Water stress on soybean sugarcane and pulse crops raised food inflation expectations and restrained discretionary rural consumer spending.",
+  "affected_assets": [
+   "fmcg",
+   "auto",
+   "consumer"
+  ],
+  "tickers": [
+   "^CNXFMCG",
+   "M&M.NS",
+   "HINDUNILVR.NS"
+  ],
+  "split": "train",
+  "source": "IMD Press Release",
+  "source_url": "https://mausam.imd.gov.in/",
+  "date_approximate": true,
+  "notes": "Approximate public-announcement date (IMD bulletin); verify.",
+  "embedding_text": "monsoon_deficit All-India (Aug -36%) severity -36 rain deficit %. India experienced its driest August since 1901 with nationwide rainfall falling 36 percent below long-period average due to El Nino intensification. Mechanism: Water stress on soybean sugarcane and pulse crops raised food inflation expectations and restrained discretionary rural consumer spending.",
+  "outcomes": [
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.6068,
+    "t0_date": "2023-08-31",
+    "realized_dates": {
+     "1d": "2023-09-01",
+     "5d": "2023-09-07",
+     "20d": "2023-09-29"
+    },
+    "ret_1d": -0.0001,
+    "abnormal_1d": -0.00582,
+    "ret_5d": 0.000958,
+    "abnormal_5d": -0.013957,
+    "ret_20d": -0.015748,
+    "abnormal_20d": -0.027867,
+    "est_window": [
+     "2023-02-20",
+     "2023-08-17"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   },
+   {
+    "asset": "M&M.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.1605,
+    "t0_date": "2023-08-31",
+    "realized_dates": {
+     "1d": "2023-09-01",
+     "5d": "2023-09-07",
+     "20d": "2023-09-29"
+    },
+    "ret_1d": 0.010505,
+    "abnormal_1d": -0.000434,
+    "ret_5d": -0.006125,
+    "abnormal_5d": -0.034649,
+    "ret_20d": -0.013425,
+    "abnormal_20d": -0.0366,
+    "est_window": [
+     "2023-02-20",
+     "2023-08-17"
+    ],
+    "price_symbol": "M&M.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "HINDUNILVR.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.6068,
+    "t0_date": "2023-08-31",
+    "realized_dates": {
+     "1d": "2023-09-01",
+     "5d": "2023-09-07",
+     "20d": "2023-09-29"
+    },
+    "ret_1d": -0.0001,
+    "abnormal_1d": -0.00582,
+    "ret_5d": 0.000958,
+    "abnormal_5d": -0.013957,
+    "ret_20d": -0.015748,
+    "abnormal_20d": -0.027867,
+    "est_window": [
+     "2023-02-20",
+     "2023-08-17"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.6068, \"t0_date\": \"2023-08-31\", \"realized_dates\": {\"1d\": \"2023-09-01\", \"5d\": \"2023-09-07\", \"20d\": \"2023-09-29\"}, \"ret_1d\": -0.0001, \"abnormal_1d\": -0.00582, \"ret_5d\": 0.000958, \"abnormal_5d\": -0.013957, \"ret_20d\": -0.015748, \"abnormal_20d\": -0.027867, \"est_window\": [\"2023-02-20\", \"2023-08-17\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}, {\"asset\": \"M&M.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1605, \"t0_date\": \"2023-08-31\", \"realized_dates\": {\"1d\": \"2023-09-01\", \"5d\": \"2023-09-07\", \"20d\": \"2023-09-29\"}, \"ret_1d\": 0.010505, \"abnormal_1d\": -0.000434, \"ret_5d\": -0.006125, \"abnormal_5d\": -0.034649, \"ret_20d\": -0.013425, \"abnormal_20d\": -0.0366, \"est_window\": [\"2023-02-20\", \"2023-08-17\"], \"price_symbol\": \"M&M.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"HINDUNILVR.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.6068, \"t0_date\": \"2023-08-31\", \"realized_dates\": {\"1d\": \"2023-09-01\", \"5d\": \"2023-09-07\", \"20d\": \"2023-09-29\"}, \"ret_1d\": -0.0001, \"abnormal_1d\": -0.00582, \"ret_5d\": 0.000958, \"abnormal_5d\": -0.013957, \"ret_20d\": -0.015748, \"abnormal_20d\": -0.027867, \"est_window\": [\"2023-02-20\", \"2023-08-17\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "heatwave_2022",
+  "title": "Early Severe Spring Heatwave 2022",
+  "event_type": "heatwave",
+  "region": "North/Central India",
+  "country": "IN",
+  "start_date": "2022-03-15",
+  "end_date": "2022-05-15",
+  "event_date": "2022-04-28",
+  "severity_value": 4.5,
+  "severity_unit": "anomaly deg C",
+  "severity_norm": 0.75,
+  "description": "Unprecedented early spring heatwave across northern and central India drove temperatures 4.5 degrees above seasonal normals and broke century-old records.",
+  "mechanism": "Shriveled terminal wheat yields pushed electricity demand to all-time highs creating domestic coal stock shortages and power cuts.",
+  "affected_assets": [
+   "equities",
+   "power",
+   "coal"
+  ],
+  "tickers": [
+   "^NSEI",
+   "NTPC.NS",
+   "COALINDIA.NS"
+  ],
+  "split": "holdout",
+  "source": "IMD Climate Bulletin",
+  "source_url": "https://mausam.imd.gov.in/",
+  "date_approximate": true,
+  "notes": "Approximate public-announcement date (IMD bulletin); verify.",
+  "embedding_text": "heatwave North/Central India severity 4.5 anomaly deg C. Unprecedented early spring heatwave across northern and central India drove temperatures 4.5 degrees above seasonal normals and broke century-old records. Mechanism: Shriveled terminal wheat yields pushed electricity demand to all-time highs creating domestic coal stock shortages and power cuts.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2022-04-27",
+    "realized_dates": {
+     "1d": "2022-04-28",
+     "5d": "2022-05-05",
+     "20d": "2022-05-26"
+    },
+    "ret_1d": 0.012129,
+    "abnormal_1d": null,
+    "ret_5d": -0.020879,
+    "abnormal_5d": null,
+    "ret_20d": -0.050958,
+    "abnormal_20d": null,
+    "est_window": [
+     "2021-10-18",
+     "2022-04-11"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "NTPC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.8097,
+    "t0_date": "2022-04-27",
+    "realized_dates": {
+     "1d": "2022-04-28",
+     "5d": "2022-05-05",
+     "20d": "2022-05-26"
+    },
+    "ret_1d": 0.02602,
+    "abnormal_1d": 0.0162,
+    "ret_5d": 0.017668,
+    "abnormal_5d": 0.034573,
+    "ret_20d": -0.009637,
+    "abnormal_20d": 0.031623,
+    "est_window": [
+     "2021-10-18",
+     "2022-04-11"
+    ],
+    "price_symbol": "NTPC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "COALINDIA.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.8103,
+    "t0_date": "2022-04-27",
+    "realized_dates": {
+     "1d": "2022-04-28",
+     "5d": "2022-05-05",
+     "20d": "2022-05-26"
+    },
+    "ret_1d": 0.014667,
+    "abnormal_1d": 0.004839,
+    "ret_5d": -0.0088,
+    "abnormal_5d": 0.008119,
+    "ret_20d": -0.022667,
+    "abnormal_20d": 0.018627,
+    "est_window": [
+     "2021-10-18",
+     "2022-04-11"
+    ],
+    "price_symbol": "COALINDIA.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2022-04-27\", \"realized_dates\": {\"1d\": \"2022-04-28\", \"5d\": \"2022-05-05\", \"20d\": \"2022-05-26\"}, \"ret_1d\": 0.012129, \"abnormal_1d\": null, \"ret_5d\": -0.020879, \"abnormal_5d\": null, \"ret_20d\": -0.050958, \"abnormal_20d\": null, \"est_window\": [\"2021-10-18\", \"2022-04-11\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"NTPC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8097, \"t0_date\": \"2022-04-27\", \"realized_dates\": {\"1d\": \"2022-04-28\", \"5d\": \"2022-05-05\", \"20d\": \"2022-05-26\"}, \"ret_1d\": 0.02602, \"abnormal_1d\": 0.0162, \"ret_5d\": 0.017668, \"abnormal_5d\": 0.034573, \"ret_20d\": -0.009637, \"abnormal_20d\": 0.031623, \"est_window\": [\"2021-10-18\", \"2022-04-11\"], \"price_symbol\": \"NTPC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"COALINDIA.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.8103, \"t0_date\": \"2022-04-27\", \"realized_dates\": {\"1d\": \"2022-04-28\", \"5d\": \"2022-05-05\", \"20d\": \"2022-05-26\"}, \"ret_1d\": 0.014667, \"abnormal_1d\": 0.004839, \"ret_5d\": -0.0088, \"abnormal_5d\": 0.008119, \"ret_20d\": -0.022667, \"abnormal_20d\": 0.018627, \"est_window\": [\"2021-10-18\", \"2022-04-11\"], \"price_symbol\": \"COALINDIA.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "heatwave_2024",
+  "title": "Severe Extended Summer Heatwave 2024",
+  "event_type": "heatwave",
+  "region": "North India",
+  "country": "IN",
+  "start_date": "2024-05-01",
+  "end_date": "2024-06-15",
+  "event_date": "2024-05-29",
+  "severity_value": 5.0,
+  "severity_unit": "anomaly deg C",
+  "severity_norm": 0.8333,
+  "description": "Prolonged intense heatwave gripped northern and western India with temperatures crossing 49 degrees Celsius in Delhi and Rajasthan.",
+  "mechanism": "Surging peak air conditioning loads drove record power transmission demand and depleted regional water reservoirs.",
+  "affected_assets": [
+   "power",
+   "utilities",
+   "cooling"
+  ],
+  "tickers": [
+   "NTPC.NS",
+   "TATAPOWER.NS",
+   "VOLTAS.NS"
+  ],
+  "split": "train",
+  "source": "IMD Climate Bulletin",
+  "source_url": "https://mausam.imd.gov.in/",
+  "date_approximate": true,
+  "notes": "Approximate public-announcement date (IMD bulletin); verify.",
+  "embedding_text": "heatwave North India severity 5 anomaly deg C. Prolonged intense heatwave gripped northern and western India with temperatures crossing 49 degrees Celsius in Delhi and Rajasthan. Mechanism: Surging peak air conditioning loads drove record power transmission demand and depleted regional water reservoirs.",
+  "outcomes": [
+   {
+    "asset": "NTPC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.468,
+    "t0_date": "2024-05-28",
+    "realized_dates": {
+     "1d": "2024-05-29",
+     "5d": "2024-06-04",
+     "20d": "2024-06-26"
+    },
+    "ret_1d": -0.002189,
+    "abnormal_1d": 0.009576,
+    "ret_5d": -0.093459,
+    "abnormal_5d": -0.029089,
+    "ret_20d": -0.000958,
+    "abnormal_20d": -0.063853,
+    "est_window": [
+     "2023-11-10",
+     "2024-05-13"
+    ],
+    "price_symbol": "NTPC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "TATAPOWER.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.3149,
+    "t0_date": "2024-05-28",
+    "realized_dates": {
+     "1d": "2024-05-29",
+     "5d": "2024-06-04",
+     "20d": "2024-06-26"
+    },
+    "ret_1d": -0.00927,
+    "abnormal_1d": 0.001269,
+    "ret_5d": -0.085374,
+    "abnormal_5d": -0.027717,
+    "ret_20d": -0.010758,
+    "abnormal_20d": -0.067094,
+    "est_window": [
+     "2023-11-10",
+     "2024-05-13"
+    ],
+    "price_symbol": "TATAPOWER.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "VOLTAS.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0014,
+    "t0_date": "2024-05-28",
+    "realized_dates": {
+     "1d": "2024-05-29",
+     "5d": "2024-06-04",
+     "20d": "2024-06-26"
+    },
+    "ret_1d": -0.010469,
+    "abnormal_1d": -0.002442,
+    "ret_5d": -0.022017,
+    "abnormal_5d": 0.021895,
+    "ret_20d": 0.07987,
+    "abnormal_20d": 0.036965,
+    "est_window": [
+     "2023-11-10",
+     "2024-05-13"
+    ],
+    "price_symbol": "VOLTAS.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"NTPC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.468, \"t0_date\": \"2024-05-28\", \"realized_dates\": {\"1d\": \"2024-05-29\", \"5d\": \"2024-06-04\", \"20d\": \"2024-06-26\"}, \"ret_1d\": -0.002189, \"abnormal_1d\": 0.009576, \"ret_5d\": -0.093459, \"abnormal_5d\": -0.029089, \"ret_20d\": -0.000958, \"abnormal_20d\": -0.063853, \"est_window\": [\"2023-11-10\", \"2024-05-13\"], \"price_symbol\": \"NTPC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"TATAPOWER.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.3149, \"t0_date\": \"2024-05-28\", \"realized_dates\": {\"1d\": \"2024-05-29\", \"5d\": \"2024-06-04\", \"20d\": \"2024-06-26\"}, \"ret_1d\": -0.00927, \"abnormal_1d\": 0.001269, \"ret_5d\": -0.085374, \"abnormal_5d\": -0.027717, \"ret_20d\": -0.010758, \"abnormal_20d\": -0.067094, \"est_window\": [\"2023-11-10\", \"2024-05-13\"], \"price_symbol\": \"TATAPOWER.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"VOLTAS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0014, \"t0_date\": \"2024-05-28\", \"realized_dates\": {\"1d\": \"2024-05-29\", \"5d\": \"2024-06-04\", \"20d\": \"2024-06-26\"}, \"ret_1d\": -0.010469, \"abnormal_1d\": -0.002442, \"ret_5d\": -0.022017, \"abnormal_5d\": 0.021895, \"ret_20d\": 0.07987, \"abnormal_20d\": 0.036965, \"est_window\": [\"2023-11-10\", \"2024-05-13\"], \"price_symbol\": \"VOLTAS.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "taper_tantrum_2013",
+  "title": "US Fed Taper Tantrum Currency and Bond Shock",
+  "event_type": "rate_shock",
+  "region": "Global/US",
+  "country": "US",
+  "start_date": "2013-05-20",
+  "end_date": "2013-06-30",
+  "event_date": "2013-05-22",
+  "severity_value": 100.0,
+  "severity_unit": "bps",
+  "severity_norm": 1.0,
+  "description": "Federal Reserve Chairman Ben Bernanke indicated the central bank might taper asset purchases sparking global bond selloffs and emerging market capital flight.",
+  "mechanism": "Sharp surge in US Treasury yields prompted severe depreciation of the Indian Rupee and aggressive domestic liquidity tightening.",
+  "affected_assets": [
+   "currency",
+   "banking",
+   "equities"
+  ],
+  "tickers": [
+   "INR=X",
+   "^NSEBANK",
+   "^NSEI"
+  ],
+  "split": "train",
+  "source": "Federal Reserve Testimony",
+  "source_url": "https://www.federalreserve.gov/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "rate_shock Global/US severity 100 bps. Federal Reserve Chairman Ben Bernanke indicated the central bank might taper asset purchases sparking global bond selloffs and emerging market capital flight. Mechanism: Sharp surge in US Treasury yields prompted severe depreciation of the Indian Rupee and aggressive domestic liquidity tightening.",
+  "outcomes": [
+   {
+    "asset": "INR=X",
+    "benchmark": "^NSEI",
+    "beta_used": 0.0329,
+    "t0_date": "2013-05-21",
+    "realized_dates": {
+     "1d": "2013-05-22",
+     "5d": "2013-05-28",
+     "20d": "2013-06-18"
+    },
+    "ret_1d": 0.005444,
+    "abnormal_1d": 0.005549,
+    "ret_5d": 0.008293,
+    "abnormal_5d": 0.008308,
+    "ret_20d": 0.054348,
+    "abnormal_20d": 0.055964,
+    "est_window": [
+     "2012-11-06",
+     "2013-05-07"
+    ],
+    "price_symbol": "INR=X",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEBANK",
+    "benchmark": "^NSEI",
+    "beta_used": 1.3469,
+    "t0_date": "2013-05-21",
+    "realized_dates": {
+     "1d": "2013-05-22",
+     "5d": "2013-05-28",
+     "20d": "2013-06-18"
+    },
+    "ret_1d": -0.004458,
+    "abnormal_1d": -0.00014,
+    "ret_5d": -0.008916,
+    "abnormal_5d": -0.008288,
+    "ret_20d": -0.095324,
+    "abnormal_20d": -0.029123,
+    "est_window": [
+     "2012-11-06",
+     "2013-05-07"
+    ],
+    "price_symbol": "^NSEBANK",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2013-05-21",
+    "realized_dates": {
+     "1d": "2013-05-22",
+     "5d": "2013-05-28",
+     "20d": "2013-06-18"
+    },
+    "ret_1d": -0.003206,
+    "abnormal_1d": null,
+    "ret_5d": -0.000466,
+    "abnormal_5d": null,
+    "ret_20d": -0.049149,
+    "abnormal_20d": null,
+    "est_window": [
+     "2012-11-06",
+     "2013-05-07"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.0329, \"t0_date\": \"2013-05-21\", \"realized_dates\": {\"1d\": \"2013-05-22\", \"5d\": \"2013-05-28\", \"20d\": \"2013-06-18\"}, \"ret_1d\": 0.005444, \"abnormal_1d\": 0.005549, \"ret_5d\": 0.008293, \"abnormal_5d\": 0.008308, \"ret_20d\": 0.054348, \"abnormal_20d\": 0.055964, \"est_window\": [\"2012-11-06\", \"2013-05-07\"], \"price_symbol\": \"INR=X\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.3469, \"t0_date\": \"2013-05-21\", \"realized_dates\": {\"1d\": \"2013-05-22\", \"5d\": \"2013-05-28\", \"20d\": \"2013-06-18\"}, \"ret_1d\": -0.004458, \"abnormal_1d\": -0.00014, \"ret_5d\": -0.008916, \"abnormal_5d\": -0.008288, \"ret_20d\": -0.095324, \"abnormal_20d\": -0.029123, \"est_window\": [\"2012-11-06\", \"2013-05-07\"], \"price_symbol\": \"^NSEBANK\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2013-05-21\", \"realized_dates\": {\"1d\": \"2013-05-22\", \"5d\": \"2013-05-28\", \"20d\": \"2013-06-18\"}, \"ret_1d\": -0.003206, \"abnormal_1d\": null, \"ret_5d\": -0.000466, \"abnormal_5d\": null, \"ret_20d\": -0.049149, \"abnormal_20d\": null, \"est_window\": [\"2012-11-06\", \"2013-05-07\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "rbi_emergency_cut_2020",
+  "title": "RBI Emergency COVID-19 Rate Cut",
+  "event_type": "rate_shock",
+  "region": "India",
+  "country": "IN",
+  "start_date": "2020-03-27",
+  "end_date": "2020-04-05",
+  "event_date": "2020-03-27",
+  "severity_value": -75.0,
+  "severity_unit": "bps",
+  "severity_norm": 0.75,
+  "description": "Reserve Bank of India MPC held an emergency meeting cutting repo rate by 75 bps and announcing massive liquidity measures to counter lockdown shocks.",
+  "mechanism": "Monetary easing lowered short-term funding costs and provided emergency credit moratorium to banking and non-banking financial companies.",
+  "affected_assets": [
+   "banking",
+   "equities"
+  ],
+  "tickers": [
+   "^NSEBANK",
+   "^NSEI"
+  ],
+  "split": "train",
+  "source": "RBI Press Release",
+  "source_url": "https://www.rbi.org.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "rate_shock India severity -75 bps. Reserve Bank of India MPC held an emergency meeting cutting repo rate by 75 bps and announcing massive liquidity measures to counter lockdown shocks. Mechanism: Monetary easing lowered short-term funding costs and provided emergency credit moratorium to banking and non-banking financial companies.",
+  "outcomes": [
+   {
+    "asset": "^NSEBANK",
+    "benchmark": "^NSEI",
+    "beta_used": 1.2199,
+    "t0_date": "2020-03-26",
+    "realized_dates": {
+     "1d": "2020-03-27",
+     "5d": "2020-04-03",
+     "20d": "2020-04-29"
+    },
+    "ret_1d": 0.018104,
+    "abnormal_1d": 0.015451,
+    "ret_5d": -0.120557,
+    "abnormal_5d": -0.041834,
+    "ret_20d": 0.075268,
+    "abnormal_20d": -0.053465,
+    "est_window": [
+     "2019-09-16",
+     "2020-03-12"
+    ],
+    "price_symbol": "^NSEBANK",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2020-03-26",
+    "realized_dates": {
+     "1d": "2020-03-27",
+     "5d": "2020-04-03",
+     "20d": "2020-04-29"
+    },
+    "ret_1d": 0.002176,
+    "abnormal_1d": null,
+    "ret_5d": -0.064532,
+    "abnormal_5d": null,
+    "ret_20d": 0.105526,
+    "abnormal_20d": null,
+    "est_window": [
+     "2019-09-16",
+     "2020-03-12"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.2199, \"t0_date\": \"2020-03-26\", \"realized_dates\": {\"1d\": \"2020-03-27\", \"5d\": \"2020-04-03\", \"20d\": \"2020-04-29\"}, \"ret_1d\": 0.018104, \"abnormal_1d\": 0.015451, \"ret_5d\": -0.120557, \"abnormal_5d\": -0.041834, \"ret_20d\": 0.075268, \"abnormal_20d\": -0.053465, \"est_window\": [\"2019-09-16\", \"2020-03-12\"], \"price_symbol\": \"^NSEBANK\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2020-03-26\", \"realized_dates\": {\"1d\": \"2020-03-27\", \"5d\": \"2020-04-03\", \"20d\": \"2020-04-29\"}, \"ret_1d\": 0.002176, \"abnormal_1d\": null, \"ret_5d\": -0.064532, \"abnormal_5d\": null, \"ret_20d\": 0.105526, \"abnormal_20d\": null, \"est_window\": [\"2019-09-16\", \"2020-03-12\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "rbi_offcycle_hike_2022",
+  "title": "RBI Surprise Off-Cycle Repo Rate Hike",
+  "event_type": "rate_shock",
+  "region": "India",
+  "country": "IN",
+  "start_date": "2022-05-04",
+  "end_date": "2022-05-10",
+  "event_date": "2022-05-04",
+  "severity_value": 40.0,
+  "severity_unit": "bps",
+  "severity_norm": 0.4,
+  "description": "RBI Governor announced an unscheduled 40 bps repo rate hike and 50 bps CRR increase to curb soaring headline consumer inflation.",
+  "mechanism": "Sudden tightening raised bond yields, increased bank deposit and lending rates, and triggered equity market profit-taking.",
+  "affected_assets": [
+   "banking",
+   "equities"
+  ],
+  "tickers": [
+   "^NSEBANK",
+   "HDFCBANK.NS",
+   "^NSEI"
+  ],
+  "split": "holdout",
+  "source": "RBI Governor Statement",
+  "source_url": "https://www.rbi.org.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "rate_shock India severity 40 bps. RBI Governor announced an unscheduled 40 bps repo rate hike and 50 bps CRR increase to curb soaring headline consumer inflation. Mechanism: Sudden tightening raised bond yields, increased bank deposit and lending rates, and triggered equity market profit-taking.",
+  "outcomes": [
+   {
+    "asset": "^NSEBANK",
+    "benchmark": "^NSEI",
+    "beta_used": 1.1491,
+    "t0_date": "2022-05-02",
+    "realized_dates": {
+     "1d": "2022-05-04",
+     "5d": "2022-05-10",
+     "20d": "2022-05-31"
+    },
+    "ret_1d": -0.024865,
+    "abnormal_1d": 0.001492,
+    "ret_5d": -0.046486,
+    "abnormal_5d": 0.009328,
+    "ret_20d": -0.018702,
+    "abnormal_20d": 0.013919,
+    "est_window": [
+     "2021-10-21",
+     "2022-04-18"
+    ],
+    "price_symbol": "^NSEBANK",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "HDFCBANK.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.1629,
+    "t0_date": "2022-05-02",
+    "realized_dates": {
+     "1d": "2022-05-04",
+     "5d": "2022-05-10",
+     "20d": "2022-05-31"
+    },
+    "ret_1d": -0.033982,
+    "abnormal_1d": -0.007309,
+    "ret_5d": -0.044632,
+    "abnormal_5d": 0.01185,
+    "ret_20d": 0.000997,
+    "abnormal_20d": 0.034009,
+    "est_window": [
+     "2021-10-21",
+     "2022-04-18"
+    ],
+    "price_symbol": "HDFCBANK.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2022-05-02",
+    "realized_dates": {
+     "1d": "2022-05-04",
+     "5d": "2022-05-10",
+     "20d": "2022-05-31"
+    },
+    "ret_1d": -0.022936,
+    "abnormal_1d": null,
+    "ret_5d": -0.04857,
+    "abnormal_5d": null,
+    "ret_20d": -0.028387,
+    "abnormal_20d": null,
+    "est_window": [
+     "2021-10-21",
+     "2022-04-18"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1491, \"t0_date\": \"2022-05-02\", \"realized_dates\": {\"1d\": \"2022-05-04\", \"5d\": \"2022-05-10\", \"20d\": \"2022-05-31\"}, \"ret_1d\": -0.024865, \"abnormal_1d\": 0.001492, \"ret_5d\": -0.046486, \"abnormal_5d\": 0.009328, \"ret_20d\": -0.018702, \"abnormal_20d\": 0.013919, \"est_window\": [\"2021-10-21\", \"2022-04-18\"], \"price_symbol\": \"^NSEBANK\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"HDFCBANK.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.1629, \"t0_date\": \"2022-05-02\", \"realized_dates\": {\"1d\": \"2022-05-04\", \"5d\": \"2022-05-10\", \"20d\": \"2022-05-31\"}, \"ret_1d\": -0.033982, \"abnormal_1d\": -0.007309, \"ret_5d\": -0.044632, \"abnormal_5d\": 0.01185, \"ret_20d\": 0.000997, \"abnormal_20d\": 0.034009, \"est_window\": [\"2021-10-21\", \"2022-04-18\"], \"price_symbol\": \"HDFCBANK.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2022-05-02\", \"realized_dates\": {\"1d\": \"2022-05-04\", \"5d\": \"2022-05-10\", \"20d\": \"2022-05-31\"}, \"ret_1d\": -0.022936, \"abnormal_1d\": null, \"ret_5d\": -0.04857, \"abnormal_5d\": null, \"ret_20d\": -0.028387, \"abnormal_20d\": null, \"est_window\": [\"2021-10-21\", \"2022-04-18\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "abqaiq_attack_2019",
+  "title": "Drone Attack on Saudi Aramco Abqaiq and Khurais",
+  "event_type": "oil_shock",
+  "region": "Saudi Arabia",
+  "country": "Global",
+  "start_date": "2019-09-14",
+  "end_date": "2019-09-25",
+  "event_date": "2019-09-16",
+  "severity_value": 15.0,
+  "severity_unit": "oil move %",
+  "severity_norm": 0.75,
+  "description": "Coordinated drone and missile strikes hit Saudi Aramco processing facilities knocking out 5.7 million barrels per day or roughly half of Saudi output.",
+  "mechanism": "Brent crude oil jumped 15 percent on market open, boosting upstream producer realization while squeezing Indian refiner margins and currency.",
+  "affected_assets": [
+   "crude",
+   "energy",
+   "oil_marketing",
+   "currency"
+  ],
+  "tickers": [
+   "BZ=F",
+   "ONGC.NS",
+   "BPCL.NS",
+   "INR=X"
+  ],
+  "split": "holdout",
+  "source": "Reuters / Bloomberg",
+  "source_url": "https://www.reuters.com/",
+  "date_approximate": false,
+  "notes": "Attack Sat 2019-09-14; event_date = first trading day.",
+  "embedding_text": "oil_shock Saudi Arabia severity 15 oil move %. Coordinated drone and missile strikes hit Saudi Aramco processing facilities knocking out 5.7 million barrels per day or roughly half of Saudi output. Mechanism: Brent crude oil jumped 15 percent on market open, boosting upstream producer realization while squeezing Indian refiner margins and currency.",
+  "outcomes": [
+   {
+    "asset": "BZ=F",
+    "benchmark": "SPY",
+    "beta_used": 0.8041,
+    "t0_date": "2019-09-13",
+    "realized_dates": {
+     "1d": "2019-09-16",
+     "5d": "2019-09-20",
+     "20d": "2019-10-11"
+    },
+    "ret_1d": 0.146131,
+    "abnormal_1d": 0.148615,
+    "ret_5d": 0.067419,
+    "abnormal_5d": 0.071246,
+    "ret_20d": 0.004816,
+    "abnormal_20d": 0.014008,
+    "est_window": [
+     "2019-03-11",
+     "2019-08-29"
+    ],
+    "price_symbol": "BZ=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ONGC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0629,
+    "t0_date": "2019-09-13",
+    "realized_dates": {
+     "1d": "2019-09-16",
+     "5d": "2019-09-20",
+     "20d": "2019-10-15"
+    },
+    "ret_1d": 0.014358,
+    "abnormal_1d": 0.021306,
+    "ret_5d": 0.036865,
+    "abnormal_5d": 0.017834,
+    "ret_20d": 0.076058,
+    "abnormal_20d": 0.042239,
+    "est_window": [
+     "2019-02-27",
+     "2019-08-28"
+    ],
+    "price_symbol": "ONGC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "BPCL.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 1.5889,
+    "t0_date": "2019-09-13",
+    "realized_dates": {
+     "1d": "2019-09-16",
+     "5d": "2019-09-20",
+     "20d": "2019-10-15"
+    },
+    "ret_1d": -0.069881,
+    "abnormal_1d": -0.059495,
+    "ret_5d": -0.011504,
+    "abnormal_5d": -0.039952,
+    "ret_20d": 0.200098,
+    "abnormal_20d": 0.149544,
+    "est_window": [
+     "2019-02-27",
+     "2019-08-28"
+    ],
+    "price_symbol": "BPCL.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "INR=X",
+    "benchmark": "^NSEI",
+    "beta_used": -0.0393,
+    "t0_date": "2019-09-13",
+    "realized_dates": {
+     "1d": "2019-09-16",
+     "5d": "2019-09-20",
+     "20d": "2019-10-15"
+    },
+    "ret_1d": -0.003708,
+    "abnormal_1d": -0.003965,
+    "ret_5d": 0.006067,
+    "abnormal_5d": 0.006772,
+    "ret_20d": 0.00235,
+    "abnormal_20d": 0.003601,
+    "est_window": [
+     "2019-02-26",
+     "2019-08-28"
+    ],
+    "price_symbol": "INR=X",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"BZ=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.8041, \"t0_date\": \"2019-09-13\", \"realized_dates\": {\"1d\": \"2019-09-16\", \"5d\": \"2019-09-20\", \"20d\": \"2019-10-11\"}, \"ret_1d\": 0.146131, \"abnormal_1d\": 0.148615, \"ret_5d\": 0.067419, \"abnormal_5d\": 0.071246, \"ret_20d\": 0.004816, \"abnormal_20d\": 0.014008, \"est_window\": [\"2019-03-11\", \"2019-08-29\"], \"price_symbol\": \"BZ=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ONGC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0629, \"t0_date\": \"2019-09-13\", \"realized_dates\": {\"1d\": \"2019-09-16\", \"5d\": \"2019-09-20\", \"20d\": \"2019-10-15\"}, \"ret_1d\": 0.014358, \"abnormal_1d\": 0.021306, \"ret_5d\": 0.036865, \"abnormal_5d\": 0.017834, \"ret_20d\": 0.076058, \"abnormal_20d\": 0.042239, \"est_window\": [\"2019-02-27\", \"2019-08-28\"], \"price_symbol\": \"ONGC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"BPCL.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.5889, \"t0_date\": \"2019-09-13\", \"realized_dates\": {\"1d\": \"2019-09-16\", \"5d\": \"2019-09-20\", \"20d\": \"2019-10-15\"}, \"ret_1d\": -0.069881, \"abnormal_1d\": -0.059495, \"ret_5d\": -0.011504, \"abnormal_5d\": -0.039952, \"ret_20d\": 0.200098, \"abnormal_20d\": 0.149544, \"est_window\": [\"2019-02-27\", \"2019-08-28\"], \"price_symbol\": \"BPCL.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.0393, \"t0_date\": \"2019-09-13\", \"realized_dates\": {\"1d\": \"2019-09-16\", \"5d\": \"2019-09-20\", \"20d\": \"2019-10-15\"}, \"ret_1d\": -0.003708, \"abnormal_1d\": -0.003965, \"ret_5d\": 0.006067, \"abnormal_5d\": 0.006772, \"ret_20d\": 0.00235, \"abnormal_20d\": 0.003601, \"est_window\": [\"2019-02-26\", \"2019-08-28\"], \"price_symbol\": \"INR=X\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "wti_negative_2020",
+  "title": "WTI May Crude Futures Collapse Below Zero",
+  "event_type": "oil_shock",
+  "region": "US",
+  "country": "US",
+  "start_date": "2020-04-18",
+  "end_date": "2020-04-25",
+  "event_date": "2020-04-20",
+  "severity_value": -300.0,
+  "severity_unit": "oil move %",
+  "severity_norm": 1.0,
+  "description": "Pandemic lockdowns caused unprecedented global oil demand destruction, filling Cushing storage and plunging the expiring May WTI contract to negative 37 dollars.",
+  "mechanism": "Extreme physical inventory congestion caused historic distress for oil producers, service providers, and energy funds.",
+  "affected_assets": [
+   "crude",
+   "energy"
+  ],
+  "tickers": [
+   "CL=F",
+   "ONGC.NS"
+  ],
+  "split": "train",
+  "source": "CME Group / EIA",
+  "source_url": "https://www.eia.gov/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "oil_shock US severity -300 oil move %. Pandemic lockdowns caused unprecedented global oil demand destruction, filling Cushing storage and plunging the expiring May WTI contract to negative 37 dollars. Mechanism: Extreme physical inventory congestion caused historic distress for oil producers, service providers, and energy funds.",
+  "outcomes": [
+   {
+    "asset": "ONGC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.9996,
+    "t0_date": "2020-04-17",
+    "realized_dates": {
+     "1d": "2020-04-20",
+     "5d": "2020-04-24",
+     "20d": "2020-05-18"
+    },
+    "ret_1d": -0.030144,
+    "abnormal_1d": -0.029615,
+    "ret_5d": -0.114024,
+    "abnormal_5d": -0.101904,
+    "ret_20d": -0.044561,
+    "abnormal_20d": 0.003281,
+    "est_window": [
+     "2019-10-03",
+     "2020-03-30"
+    ],
+    "price_symbol": "ONGC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [
+   {
+    "asset": "CL=F",
+    "price_symbol": "CL=F",
+    "reason": "non-positive price in window (percent returns undefined, e.g. WTI 2020-04-20)"
+   }
+  ],
+  "outcomes_json": "[{\"asset\": \"ONGC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.9996, \"t0_date\": \"2020-04-17\", \"realized_dates\": {\"1d\": \"2020-04-20\", \"5d\": \"2020-04-24\", \"20d\": \"2020-05-18\"}, \"ret_1d\": -0.030144, \"abnormal_1d\": -0.029615, \"ret_5d\": -0.114024, \"abnormal_5d\": -0.101904, \"ret_20d\": -0.044561, \"abnormal_20d\": 0.003281, \"est_window\": [\"2019-10-03\", \"2020-03-30\"], \"price_symbol\": \"ONGC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "ukraine_invasion_2022",
+  "title": "Russian Invasion of Ukraine Commodity Price Shock",
+  "event_type": "oil_shock",
+  "region": "Europe",
+  "country": "Global",
+  "start_date": "2022-02-24",
+  "end_date": "2022-03-15",
+  "event_date": "2022-02-24",
+  "severity_value": 8.0,
+  "severity_unit": "oil move %",
+  "severity_norm": 0.4,
+  "description": "Russia launched a full-scale military invasion of Ukraine triggering sweeping Western sanctions and severe panic in global energy and agriculture markets.",
+  "mechanism": "Brent surged past 105 dollars, gold rallied on safe-haven flows, and Indian equity indices slumped on import inflation fears.",
+  "affected_assets": [
+   "crude",
+   "equities",
+   "currency",
+   "gold"
+  ],
+  "tickers": [
+   "BZ=F",
+   "^NSEI",
+   "INR=X",
+   "GC=F"
+  ],
+  "split": "train",
+  "source": "Reuters Market Report",
+  "source_url": "https://www.reuters.com/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "oil_shock Europe severity 8 oil move %. Russia launched a full-scale military invasion of Ukraine triggering sweeping Western sanctions and severe panic in global energy and agriculture markets. Mechanism: Brent surged past 105 dollars, gold rallied on safe-haven flows, and Indian equity indices slumped on import inflation fears.",
+  "outcomes": [
+   {
+    "asset": "BZ=F",
+    "benchmark": "SPY",
+    "beta_used": 0.8508,
+    "t0_date": "2022-02-23",
+    "realized_dates": {
+     "1d": "2022-02-24",
+     "5d": "2022-03-02",
+     "20d": "2022-03-23"
+    },
+    "ret_1d": 0.023131,
+    "abnormal_1d": 0.010327,
+    "ret_5d": 0.16615,
+    "abnormal_5d": 0.13401,
+    "ret_20d": 0.25568,
+    "abnormal_20d": 0.208843,
+    "est_window": [
+     "2021-08-18",
+     "2022-02-08"
+    ],
+    "price_symbol": "BZ=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2022-02-23",
+    "realized_dates": {
+     "1d": "2022-02-24",
+     "5d": "2022-03-03",
+     "20d": "2022-03-25"
+    },
+    "ret_1d": -0.047781,
+    "abnormal_1d": null,
+    "ret_5d": -0.033124,
+    "abnormal_5d": null,
+    "ret_20d": 0.00526,
+    "abnormal_20d": null,
+    "est_window": [
+     "2021-08-17",
+     "2022-02-09"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "INR=X",
+    "benchmark": "^NSEI",
+    "beta_used": -0.027,
+    "t0_date": "2022-02-23",
+    "realized_dates": {
+     "1d": "2022-02-24",
+     "5d": "2022-03-03",
+     "20d": "2022-03-25"
+    },
+    "ret_1d": 0.000134,
+    "abnormal_1d": -0.001157,
+    "ret_5d": 0.013508,
+    "abnormal_5d": 0.012613,
+    "ret_20d": 0.022788,
+    "abnormal_20d": 0.02293,
+    "est_window": [
+     "2021-08-17",
+     "2022-02-09"
+    ],
+    "price_symbol": "INR=X",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "GC=F",
+    "benchmark": "SPY",
+    "beta_used": -0.0486,
+    "t0_date": "2022-02-23",
+    "realized_dates": {
+     "1d": "2022-02-24",
+     "5d": "2022-03-02",
+     "20d": "2022-03-23"
+    },
+    "ret_1d": 0.008323,
+    "abnormal_1d": 0.009055,
+    "ret_5d": 0.006229,
+    "abnormal_5d": 0.008066,
+    "ret_20d": 0.014081,
+    "abnormal_20d": 0.016757,
+    "est_window": [
+     "2021-08-18",
+     "2022-02-08"
+    ],
+    "price_symbol": "GC=F",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"BZ=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.8508, \"t0_date\": \"2022-02-23\", \"realized_dates\": {\"1d\": \"2022-02-24\", \"5d\": \"2022-03-02\", \"20d\": \"2022-03-23\"}, \"ret_1d\": 0.023131, \"abnormal_1d\": 0.010327, \"ret_5d\": 0.16615, \"abnormal_5d\": 0.13401, \"ret_20d\": 0.25568, \"abnormal_20d\": 0.208843, \"est_window\": [\"2021-08-18\", \"2022-02-08\"], \"price_symbol\": \"BZ=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2022-02-23\", \"realized_dates\": {\"1d\": \"2022-02-24\", \"5d\": \"2022-03-03\", \"20d\": \"2022-03-25\"}, \"ret_1d\": -0.047781, \"abnormal_1d\": null, \"ret_5d\": -0.033124, \"abnormal_5d\": null, \"ret_20d\": 0.00526, \"abnormal_20d\": null, \"est_window\": [\"2021-08-17\", \"2022-02-09\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.027, \"t0_date\": \"2022-02-23\", \"realized_dates\": {\"1d\": \"2022-02-24\", \"5d\": \"2022-03-03\", \"20d\": \"2022-03-25\"}, \"ret_1d\": 0.000134, \"abnormal_1d\": -0.001157, \"ret_5d\": 0.013508, \"abnormal_5d\": 0.012613, \"ret_20d\": 0.022788, \"abnormal_20d\": 0.02293, \"est_window\": [\"2021-08-17\", \"2022-02-09\"], \"price_symbol\": \"INR=X\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"GC=F\", \"benchmark\": \"SPY\", \"beta_used\": -0.0486, \"t0_date\": \"2022-02-23\", \"realized_dates\": {\"1d\": \"2022-02-24\", \"5d\": \"2022-03-02\", \"20d\": \"2022-03-23\"}, \"ret_1d\": 0.008323, \"abnormal_1d\": 0.009055, \"ret_5d\": 0.006229, \"abnormal_5d\": 0.008066, \"ret_20d\": 0.014081, \"abnormal_20d\": 0.016757, \"est_window\": [\"2021-08-18\", \"2022-02-08\"], \"price_symbol\": \"GC=F\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "opec_surprise_cut_2023",
+  "title": "OPEC+ Surprise Voluntary Crude Production Cut",
+  "event_type": "oil_shock",
+  "region": "Global",
+  "country": "Global",
+  "start_date": "2023-04-02",
+  "end_date": "2023-04-10",
+  "event_date": "2023-04-03",
+  "severity_value": 6.0,
+  "severity_unit": "oil move %",
+  "severity_norm": 0.3,
+  "description": "Saudi Arabia and OPEC+ allies announced unexpected voluntary oil output cuts exceeding 1.1 million barrels per day to support market stability.",
+  "mechanism": "Brent oil jumped 6 percent overnight, boosting oil exploration earnings while creating input cost headwinds for refiners and petrochemical firms.",
+  "affected_assets": [
+   "crude",
+   "upstream",
+   "oil_marketing"
+  ],
+  "tickers": [
+   "BZ=F",
+   "ONGC.NS",
+   "BPCL.NS"
+  ],
+  "split": "train",
+  "source": "OPEC Press Statement",
+  "source_url": "https://www.opec.org/",
+  "date_approximate": false,
+  "notes": "Announced Sun 2023-04-02; event_date = first trading day.",
+  "embedding_text": "oil_shock Global severity 6 oil move %. Saudi Arabia and OPEC+ allies announced unexpected voluntary oil output cuts exceeding 1.1 million barrels per day to support market stability. Mechanism: Brent oil jumped 6 percent overnight, boosting oil exploration earnings while creating input cost headwinds for refiners and petrochemical firms.",
+  "outcomes": [
+   {
+    "asset": "BZ=F",
+    "benchmark": "SPY",
+    "beta_used": 0.4645,
+    "t0_date": "2023-03-31",
+    "realized_dates": {
+     "1d": "2023-04-03",
+     "5d": "2023-04-10",
+     "20d": "2023-05-01"
+    },
+    "ret_1d": 0.064686,
+    "abnormal_1d": 0.062916,
+    "ret_5d": 0.055284,
+    "abnormal_5d": 0.055034,
+    "ret_20d": -0.005767,
+    "abnormal_20d": -0.01271,
+    "est_window": [
+     "2022-09-23",
+     "2023-03-17"
+    ],
+    "price_symbol": "BZ=F",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "ONGC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.5827,
+    "t0_date": "2023-03-31",
+    "realized_dates": {
+     "1d": "2023-04-03",
+     "5d": "2023-04-11",
+     "20d": "2023-05-04"
+    },
+    "ret_1d": 0.017213,
+    "abnormal_1d": 0.015927,
+    "ret_5d": 0.052963,
+    "abnormal_5d": 0.040793,
+    "ret_20d": 0.065872,
+    "abnormal_20d": 0.035795,
+    "est_window": [
+     "2022-09-22",
+     "2023-03-16"
+    ],
+    "price_symbol": "ONGC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "BPCL.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.4284,
+    "t0_date": "2023-03-31",
+    "realized_dates": {
+     "1d": "2023-04-03",
+     "5d": "2023-04-11",
+     "20d": "2023-05-04"
+    },
+    "ret_1d": -0.041679,
+    "abnormal_1d": -0.042624,
+    "ret_5d": -0.015103,
+    "abnormal_5d": -0.024049,
+    "ret_20d": 0.069852,
+    "abnormal_20d": 0.047741,
+    "est_window": [
+     "2022-09-22",
+     "2023-03-16"
+    ],
+    "price_symbol": "BPCL.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"BZ=F\", \"benchmark\": \"SPY\", \"beta_used\": 0.4645, \"t0_date\": \"2023-03-31\", \"realized_dates\": {\"1d\": \"2023-04-03\", \"5d\": \"2023-04-10\", \"20d\": \"2023-05-01\"}, \"ret_1d\": 0.064686, \"abnormal_1d\": 0.062916, \"ret_5d\": 0.055284, \"abnormal_5d\": 0.055034, \"ret_20d\": -0.005767, \"abnormal_20d\": -0.01271, \"est_window\": [\"2022-09-23\", \"2023-03-17\"], \"price_symbol\": \"BZ=F\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"ONGC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.5827, \"t0_date\": \"2023-03-31\", \"realized_dates\": {\"1d\": \"2023-04-03\", \"5d\": \"2023-04-11\", \"20d\": \"2023-05-04\"}, \"ret_1d\": 0.017213, \"abnormal_1d\": 0.015927, \"ret_5d\": 0.052963, \"abnormal_5d\": 0.040793, \"ret_20d\": 0.065872, \"abnormal_20d\": 0.035795, \"est_window\": [\"2022-09-22\", \"2023-03-16\"], \"price_symbol\": \"ONGC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"BPCL.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.4284, \"t0_date\": \"2023-03-31\", \"realized_dates\": {\"1d\": \"2023-04-03\", \"5d\": \"2023-04-11\", \"20d\": \"2023-05-04\"}, \"ret_1d\": -0.041679, \"abnormal_1d\": -0.042624, \"ret_5d\": -0.015103, \"abnormal_5d\": -0.024049, \"ret_20d\": 0.069852, \"abnormal_20d\": 0.047741, \"est_window\": [\"2022-09-22\", \"2023-03-16\"], \"price_symbol\": \"BPCL.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "demonetisation_2016",
+  "title": "Indian Currency Demonetisation Shock",
+  "event_type": "policy",
+  "region": "India",
+  "country": "IN",
+  "start_date": "2016-11-08",
+  "end_date": "2016-11-20",
+  "event_date": "2016-11-09",
+  "severity_value": 0.9,
+  "severity_unit": "index scale 0-1",
+  "severity_norm": 0.9,
+  "description": "Prime Minister Narendra Modi announced the sudden demonetisation of all 500 and 1000 rupee banknotes, wiping out 86 percent of circulating cash.",
+  "mechanism": "Acute liquidity crunch paralyzed cash-dependent retail consumption, real estate transactions, and vehicle purchases, while surging bank deposits.",
+  "affected_assets": [
+   "equities",
+   "auto",
+   "banking"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^CNXAUTO",
+   "^NSEBANK"
+  ],
+  "split": "train",
+  "source": "Government of India Gazette",
+  "source_url": "https://www.pib.gov.in/",
+  "date_approximate": false,
+  "notes": "Announced 2016-11-08 ~20:15 IST after the close; event_date = first trading day.",
+  "embedding_text": "policy India severity 0.9 index scale 0-1. Prime Minister Narendra Modi announced the sudden demonetisation of all 500 and 1000 rupee banknotes, wiping out 86 percent of circulating cash. Mechanism: Acute liquidity crunch paralyzed cash-dependent retail consumption, real estate transactions, and vehicle purchases, while surging bank deposits.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2016-11-08",
+    "realized_dates": {
+     "1d": "2016-11-09",
+     "5d": "2016-11-16",
+     "20d": "2016-12-07"
+    },
+    "ret_1d": -0.013057,
+    "abnormal_1d": null,
+    "ret_5d": -0.050559,
+    "abnormal_5d": null,
+    "ret_20d": -0.051676,
+    "abnormal_20d": null,
+    "est_window": [
+     "2016-04-28",
+     "2016-10-24"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXAUTO",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0903,
+    "t0_date": "2016-11-08",
+    "realized_dates": {
+     "1d": "2016-11-09",
+     "5d": "2016-11-16",
+     "20d": "2016-12-07"
+    },
+    "ret_1d": -0.048695,
+    "abnormal_1d": -0.034459,
+    "ret_5d": -0.119633,
+    "abnormal_5d": -0.06451,
+    "ret_20d": -0.097434,
+    "abnormal_20d": -0.041092,
+    "est_window": [
+     "2016-04-28",
+     "2016-10-24"
+    ],
+    "price_symbol": "MARUTI.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXAUTO has no Yahoo history; computed from MARUTI.NS"
+   },
+   {
+    "asset": "^NSEBANK",
+    "benchmark": "^NSEI",
+    "beta_used": 1.2327,
+    "t0_date": "2016-11-08",
+    "realized_dates": {
+     "1d": "2016-11-09",
+     "5d": "2016-11-16",
+     "20d": "2016-12-07"
+    },
+    "ret_1d": 0.000895,
+    "abnormal_1d": 0.01699,
+    "ret_5d": -0.020138,
+    "abnormal_5d": 0.042186,
+    "ret_20d": -0.064954,
+    "abnormal_20d": -0.001252,
+    "est_window": [
+     "2016-04-28",
+     "2016-10-24"
+    ],
+    "price_symbol": "^NSEBANK",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2016-11-08\", \"realized_dates\": {\"1d\": \"2016-11-09\", \"5d\": \"2016-11-16\", \"20d\": \"2016-12-07\"}, \"ret_1d\": -0.013057, \"abnormal_1d\": null, \"ret_5d\": -0.050559, \"abnormal_5d\": null, \"ret_20d\": -0.051676, \"abnormal_20d\": null, \"est_window\": [\"2016-04-28\", \"2016-10-24\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXAUTO\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0903, \"t0_date\": \"2016-11-08\", \"realized_dates\": {\"1d\": \"2016-11-09\", \"5d\": \"2016-11-16\", \"20d\": \"2016-12-07\"}, \"ret_1d\": -0.048695, \"abnormal_1d\": -0.034459, \"ret_5d\": -0.119633, \"abnormal_5d\": -0.06451, \"ret_20d\": -0.097434, \"abnormal_20d\": -0.041092, \"est_window\": [\"2016-04-28\", \"2016-10-24\"], \"price_symbol\": \"MARUTI.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXAUTO has no Yahoo history; computed from MARUTI.NS\"}, {\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.2327, \"t0_date\": \"2016-11-08\", \"realized_dates\": {\"1d\": \"2016-11-09\", \"5d\": \"2016-11-16\", \"20d\": \"2016-12-07\"}, \"ret_1d\": 0.000895, \"abnormal_1d\": 0.01699, \"ret_5d\": -0.020138, \"abnormal_5d\": 0.042186, \"ret_20d\": -0.064954, \"abnormal_20d\": -0.001252, \"est_window\": [\"2016-04-28\", \"2016-10-24\"], \"price_symbol\": \"^NSEBANK\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "corp_tax_cut_2019",
+  "title": "Historic Corporate Income Tax Rate Reduction",
+  "event_type": "policy",
+  "region": "India",
+  "country": "IN",
+  "start_date": "2019-09-20",
+  "end_date": "2019-09-30",
+  "event_date": "2019-09-20",
+  "severity_value": 0.7,
+  "severity_unit": "index scale 0-1",
+  "severity_norm": 0.7,
+  "description": "Finance Minister slashed base corporate tax rates for domestic companies from 30 percent to 22 percent to boost private capital investment.",
+  "mechanism": "Massive immediate boost to corporate earnings after tax sparked the biggest single-day Indian equity rally in a decade.",
+  "affected_assets": [
+   "equities",
+   "banking"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^NSEBANK"
+  ],
+  "split": "train",
+  "source": "Ministry of Finance Ordinance",
+  "source_url": "https://www.pib.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "policy India severity 0.7 index scale 0-1. Finance Minister slashed base corporate tax rates for domestic companies from 30 percent to 22 percent to boost private capital investment. Mechanism: Massive immediate boost to corporate earnings after tax sparked the biggest single-day Indian equity rally in a decade.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2019-09-19",
+    "realized_dates": {
+     "1d": "2019-09-20",
+     "5d": "2019-09-26",
+     "20d": "2019-10-22"
+    },
+    "ret_1d": 0.053191,
+    "abnormal_1d": null,
+    "ret_5d": 0.080936,
+    "abnormal_5d": null,
+    "ret_20d": 0.082538,
+    "abnormal_20d": null,
+    "est_window": [
+     "2019-03-06",
+     "2019-09-04"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEBANK",
+    "benchmark": "^NSEI",
+    "beta_used": 1.2404,
+    "t0_date": "2019-09-19",
+    "realized_dates": {
+     "1d": "2019-09-20",
+     "5d": "2019-09-26",
+     "20d": "2019-10-22"
+    },
+    "ret_1d": 0.083113,
+    "abnormal_1d": 0.017137,
+    "ret_5d": 0.121272,
+    "abnormal_5d": 0.020883,
+    "ret_20d": 0.099168,
+    "abnormal_20d": -0.003208,
+    "est_window": [
+     "2019-03-06",
+     "2019-09-04"
+    ],
+    "price_symbol": "^NSEBANK",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2019-09-19\", \"realized_dates\": {\"1d\": \"2019-09-20\", \"5d\": \"2019-09-26\", \"20d\": \"2019-10-22\"}, \"ret_1d\": 0.053191, \"abnormal_1d\": null, \"ret_5d\": 0.080936, \"abnormal_5d\": null, \"ret_20d\": 0.082538, \"abnormal_20d\": null, \"est_window\": [\"2019-03-06\", \"2019-09-04\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.2404, \"t0_date\": \"2019-09-19\", \"realized_dates\": {\"1d\": \"2019-09-20\", \"5d\": \"2019-09-26\", \"20d\": \"2019-10-22\"}, \"ret_1d\": 0.083113, \"abnormal_1d\": 0.017137, \"ret_5d\": 0.121272, \"abnormal_5d\": 0.020883, \"ret_20d\": 0.099168, \"abnormal_20d\": -0.003208, \"est_window\": [\"2019-03-06\", \"2019-09-04\"], \"price_symbol\": \"^NSEBANK\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "covid_lockdown_2020",
+  "title": "Nationwide COVID-19 Lockdown Announcement",
+  "event_type": "policy",
+  "region": "India",
+  "country": "IN",
+  "start_date": "2020-03-24",
+  "end_date": "2020-04-15",
+  "event_date": "2020-03-25",
+  "severity_value": 1.0,
+  "severity_unit": "index scale 0-1",
+  "severity_norm": 1.0,
+  "description": "Government announced a comprehensive 21-day nationwide lockdown shutting non-essential manufacturing, commercial travel, and retail activity.",
+  "mechanism": "Unprecedented cessation of economic activity prompted broad-based selloffs in equities, credit spreads widening, and currency pressure.",
+  "affected_assets": [
+   "equities",
+   "banking",
+   "currency"
+  ],
+  "tickers": [
+   "^NSEI",
+   "^NSEBANK",
+   "INR=X"
+  ],
+  "split": "train",
+  "source": "NDMA Order / PIB",
+  "source_url": "https://www.pib.gov.in/",
+  "date_approximate": false,
+  "notes": "Lockdown announced 2020-03-24 ~20:00 IST after the close; first trading reaction 2020-03-25.",
+  "embedding_text": "policy India severity 1 index scale 0-1. Government announced a comprehensive 21-day nationwide lockdown shutting non-essential manufacturing, commercial travel, and retail activity. Mechanism: Unprecedented cessation of economic activity prompted broad-based selloffs in equities, credit spreads widening, and currency pressure.",
+  "outcomes": [
+   {
+    "asset": "^NSEI",
+    "benchmark": "^NSEI",
+    "beta_used": 1.0,
+    "t0_date": "2020-03-24",
+    "realized_dates": {
+     "1d": "2020-03-25",
+     "5d": "2020-03-31",
+     "20d": "2020-04-27"
+    },
+    "ret_1d": 0.066247,
+    "abnormal_1d": null,
+    "ret_5d": 0.102127,
+    "abnormal_5d": null,
+    "ret_20d": 0.189878,
+    "abnormal_20d": null,
+    "est_window": [
+     "2019-09-12",
+     "2020-03-09"
+    ],
+    "price_symbol": "^NSEI",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^NSEBANK",
+    "benchmark": "^NSEI",
+    "beta_used": 1.2535,
+    "t0_date": "2020-03-24",
+    "realized_dates": {
+     "1d": "2020-03-25",
+     "5d": "2020-03-31",
+     "20d": "2020-04-27"
+    },
+    "ret_1d": 0.080302,
+    "abnormal_1d": -0.002741,
+    "ret_5d": 0.119054,
+    "abnormal_5d": -0.008966,
+    "ret_20d": 0.173835,
+    "abnormal_20d": -0.064184,
+    "est_window": [
+     "2019-09-12",
+     "2020-03-09"
+    ],
+    "price_symbol": "^NSEBANK",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "INR=X",
+    "benchmark": "^NSEI",
+    "beta_used": -0.0659,
+    "t0_date": "2020-03-24",
+    "realized_dates": {
+     "1d": "2020-03-25",
+     "5d": "2020-03-31",
+     "20d": "2020-04-27"
+    },
+    "ret_1d": 0.009856,
+    "abnormal_1d": 0.014223,
+    "ret_5d": -0.014456,
+    "abnormal_5d": -0.007723,
+    "ret_20d": -0.003065,
+    "abnormal_20d": 0.009454,
+    "est_window": [
+     "2019-09-12",
+     "2020-03-09"
+    ],
+    "price_symbol": "INR=X",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"^NSEI\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.0, \"t0_date\": \"2020-03-24\", \"realized_dates\": {\"1d\": \"2020-03-25\", \"5d\": \"2020-03-31\", \"20d\": \"2020-04-27\"}, \"ret_1d\": 0.066247, \"abnormal_1d\": null, \"ret_5d\": 0.102127, \"abnormal_5d\": null, \"ret_20d\": 0.189878, \"abnormal_20d\": null, \"est_window\": [\"2019-09-12\", \"2020-03-09\"], \"price_symbol\": \"^NSEI\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^NSEBANK\", \"benchmark\": \"^NSEI\", \"beta_used\": 1.2535, \"t0_date\": \"2020-03-24\", \"realized_dates\": {\"1d\": \"2020-03-25\", \"5d\": \"2020-03-31\", \"20d\": \"2020-04-27\"}, \"ret_1d\": 0.080302, \"abnormal_1d\": -0.002741, \"ret_5d\": 0.119054, \"abnormal_5d\": -0.008966, \"ret_20d\": 0.173835, \"abnormal_20d\": -0.064184, \"est_window\": [\"2019-09-12\", \"2020-03-09\"], \"price_symbol\": \"^NSEBANK\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"INR=X\", \"benchmark\": \"^NSEI\", \"beta_used\": -0.0659, \"t0_date\": \"2020-03-24\", \"realized_dates\": {\"1d\": \"2020-03-25\", \"5d\": \"2020-03-31\", \"20d\": \"2020-04-27\"}, \"ret_1d\": 0.009856, \"abnormal_1d\": 0.014223, \"ret_5d\": -0.014456, \"abnormal_5d\": -0.007723, \"ret_20d\": -0.003065, \"abnormal_20d\": 0.009454, \"est_window\": [\"2019-09-12\", \"2020-03-09\"], \"price_symbol\": \"INR=X\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ },
+ {
+  "event_id": "wheat_export_ban_2022",
+  "title": "India Imposes Ban on Wheat Exports",
+  "event_type": "policy",
+  "region": "India",
+  "country": "IN",
+  "start_date": "2022-05-13",
+  "end_date": "2022-05-25",
+  "event_date": "2022-05-16",
+  "severity_value": 0.5,
+  "severity_unit": "index scale 0-1",
+  "severity_norm": 0.5,
+  "description": "Directorate General of Foreign Trade prohibited wheat exports with immediate effect following spring heatwave damage to safeguard domestic food security.",
+  "mechanism": "Export curbs stabilized domestic flour prices, limiting export margin upside for agribusiness exporters and commodity trading firms.",
+  "affected_assets": [
+   "agribusiness",
+   "fmcg"
+  ],
+  "tickers": [
+   "ITC.NS",
+   "^CNXFMCG"
+  ],
+  "split": "train",
+  "source": "DGFT Notification",
+  "source_url": "https://dgft.gov.in/",
+  "date_approximate": false,
+  "notes": "DGFT notification dated Fri 2022-05-13 (late night), reported 2022-05-14; first trading reaction Mon 2022-05-16.",
+  "embedding_text": "policy India severity 0.5 index scale 0-1. Directorate General of Foreign Trade prohibited wheat exports with immediate effect following spring heatwave damage to safeguard domestic food security. Mechanism: Export curbs stabilized domestic flour prices, limiting export margin upside for agribusiness exporters and commodity trading firms.",
+  "outcomes": [
+   {
+    "asset": "ITC.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7815,
+    "t0_date": "2022-05-13",
+    "realized_dates": {
+     "1d": "2022-05-16",
+     "5d": "2022-05-20",
+     "20d": "2022-06-10"
+    },
+    "ret_1d": -0.017402,
+    "abnormal_1d": -0.02038,
+    "ret_5d": 0.082753,
+    "abnormal_5d": 0.058786,
+    "ret_20d": 0.070134,
+    "abnormal_20d": 0.049354,
+    "est_window": [
+     "2021-11-02",
+     "2022-04-28"
+    ],
+    "price_symbol": "ITC.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "^CNXFMCG",
+    "benchmark": "^NSEI",
+    "beta_used": 0.7868,
+    "t0_date": "2022-05-13",
+    "realized_dates": {
+     "1d": "2022-05-16",
+     "5d": "2022-05-20",
+     "20d": "2022-06-10"
+    },
+    "ret_1d": 0.010551,
+    "abnormal_1d": 0.007552,
+    "ret_5d": 0.060093,
+    "abnormal_5d": 0.035963,
+    "ret_20d": 0.002643,
+    "abnormal_20d": -0.018278,
+    "est_window": [
+     "2021-11-02",
+     "2022-04-28"
+    ],
+    "price_symbol": "HINDUNILVR.NS",
+    "price_source": "yfinance (auto_adjust close)",
+    "proxy_note": "^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"ITC.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7815, \"t0_date\": \"2022-05-13\", \"realized_dates\": {\"1d\": \"2022-05-16\", \"5d\": \"2022-05-20\", \"20d\": \"2022-06-10\"}, \"ret_1d\": -0.017402, \"abnormal_1d\": -0.02038, \"ret_5d\": 0.082753, \"abnormal_5d\": 0.058786, \"ret_20d\": 0.070134, \"abnormal_20d\": 0.049354, \"est_window\": [\"2021-11-02\", \"2022-04-28\"], \"price_symbol\": \"ITC.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"^CNXFMCG\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.7868, \"t0_date\": \"2022-05-13\", \"realized_dates\": {\"1d\": \"2022-05-16\", \"5d\": \"2022-05-20\", \"20d\": \"2022-06-10\"}, \"ret_1d\": 0.010551, \"abnormal_1d\": 0.007552, \"ret_5d\": 0.060093, \"abnormal_5d\": 0.035963, \"ret_20d\": 0.002643, \"abnormal_20d\": -0.018278, \"est_window\": [\"2021-11-02\", \"2022-04-28\"], \"price_symbol\": \"HINDUNILVR.NS\", \"price_source\": \"yfinance (auto_adjust close)\", \"proxy_note\": \"^CNXFMCG has no Yahoo history; computed from HINDUNILVR.NS\"}]"
+ },
+ {
+  "event_id": "rice_export_ban_2023",
+  "title": "India Prohibits Non-Basmati White Rice Exports",
+  "event_type": "policy",
+  "region": "India",
+  "country": "IN",
+  "start_date": "2023-07-20",
+  "end_date": "2023-08-05",
+  "event_date": "2023-07-20",
+  "severity_value": 0.6,
+  "severity_unit": "index scale 0-1",
+  "severity_norm": 0.6,
+  "description": "Government prohibited exports of non-basmati white rice to check domestic retail price rises and ensure adequate food supply after erratic monsoon start.",
+  "mechanism": "International rice prices climbed to multi-year highs while domestic rice processing and exporting companies faced export volume contractions.",
+  "affected_assets": [
+   "rice_exporters",
+   "agri"
+  ],
+  "tickers": [
+   "KRBL.NS",
+   "LTFOODS.NS"
+  ],
+  "split": "holdout",
+  "source": "DGFT Notification",
+  "source_url": "https://dgft.gov.in/",
+  "date_approximate": false,
+  "notes": "",
+  "embedding_text": "policy India severity 0.6 index scale 0-1. Government prohibited exports of non-basmati white rice to check domestic retail price rises and ensure adequate food supply after erratic monsoon start. Mechanism: International rice prices climbed to multi-year highs while domestic rice processing and exporting companies faced export volume contractions.",
+  "outcomes": [
+   {
+    "asset": "KRBL.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.6455,
+    "t0_date": "2023-07-19",
+    "realized_dates": {
+     "1d": "2023-07-20",
+     "5d": "2023-07-26",
+     "20d": "2023-08-17"
+    },
+    "ret_1d": 0.012179,
+    "abnormal_1d": 0.007427,
+    "ret_5d": 0.010171,
+    "abnormal_5d": 0.011956,
+    "ret_20d": 0.07053,
+    "abnormal_20d": 0.085759,
+    "est_window": [
+     "2023-01-06",
+     "2023-07-05"
+    ],
+    "price_symbol": "KRBL.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   },
+   {
+    "asset": "LTFOODS.NS",
+    "benchmark": "^NSEI",
+    "beta_used": 0.68,
+    "t0_date": "2023-07-19",
+    "realized_dates": {
+     "1d": "2023-07-20",
+     "5d": "2023-07-26",
+     "20d": "2023-08-17"
+    },
+    "ret_1d": 0.042477,
+    "abnormal_1d": 0.037472,
+    "ret_5d": 0.029831,
+    "abnormal_5d": 0.031712,
+    "ret_20d": 0.123438,
+    "abnormal_20d": 0.139481,
+    "est_window": [
+     "2023-01-06",
+     "2023-07-05"
+    ],
+    "price_symbol": "LTFOODS.NS",
+    "price_source": "yfinance (auto_adjust close)"
+   }
+  ],
+  "outcomes_skipped": [],
+  "outcomes_json": "[{\"asset\": \"KRBL.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.6455, \"t0_date\": \"2023-07-19\", \"realized_dates\": {\"1d\": \"2023-07-20\", \"5d\": \"2023-07-26\", \"20d\": \"2023-08-17\"}, \"ret_1d\": 0.012179, \"abnormal_1d\": 0.007427, \"ret_5d\": 0.010171, \"abnormal_5d\": 0.011956, \"ret_20d\": 0.07053, \"abnormal_20d\": 0.085759, \"est_window\": [\"2023-01-06\", \"2023-07-05\"], \"price_symbol\": \"KRBL.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}, {\"asset\": \"LTFOODS.NS\", \"benchmark\": \"^NSEI\", \"beta_used\": 0.68, \"t0_date\": \"2023-07-19\", \"realized_dates\": {\"1d\": \"2023-07-20\", \"5d\": \"2023-07-26\", \"20d\": \"2023-08-17\"}, \"ret_1d\": 0.042477, \"abnormal_1d\": 0.037472, \"ret_5d\": 0.029831, \"abnormal_5d\": 0.031712, \"ret_20d\": 0.123438, \"abnormal_20d\": 0.139481, \"est_window\": [\"2023-01-06\", \"2023-07-05\"], \"price_symbol\": \"LTFOODS.NS\", \"price_source\": \"yfinance (auto_adjust close)\"}]"
+ }
+]

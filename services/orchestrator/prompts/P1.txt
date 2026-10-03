@@ -1,0 +1,18 @@
+Parse the user's query about markets. Return JSON only, matching:
+{"intent":"event_impact|portfolio_risk|hedge_request|explain|market_summary",
+ "event_type":"hurricane|cyclone|monsoon|heatwave|rates|oil|policy|other|null",
+ "region": string|null, "tickers": [Yahoo tickers, NSE with .NS], "asset_classes": [string],
+ "horizon_days": int (default 5), "references_portfolio": bool,
+ "needs_tools": subset of ["sentiment","weather","agri","macro","analogs","exposure","risk","hedge"]}
+Rules:
+- intent: VaR / risk / drawdown questions → portfolio_risk (needs_tools includes "risk"). "hedge" / "protect" →
+  hedge_request. "explain" / "why did you" about an earlier answer → explain. "summarise the market" → market_summary.
+  A weather, crop, macro or policy event → event_impact.
+- event_type: RBI / repo / rate hike or cut → rates. Crude / oil / Brent → oil. Monsoon / rain deficit / kharif or rabi
+  crop stress → monsoon. Heatwave → heatwave. Cyclone → cyclone. Hurricane → hurricane. Otherwise null.
+- horizon_days: "today" or "1-day" = 1, "this week" = 5, "this month" or "next month" = 20.
+- tickers: ONLY companies or indices named in the query, at most 5; [] if none are named. Never list sector members.
+  Map names: Reliance→RELIANCE.NS, ONGC→ONGC.NS, ITC→ITC.NS, HUL→HINDUNILVR.NS, Nifty→^NSEI.
+- needs_tools: crops / monsoon → include "agri". Rates / oil / currency → include "macro". Any event → include "analogs".
+- "my portfolio / holdings / stocks" → references_portfolio = true.
+Query: {query}

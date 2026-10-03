@@ -1,0 +1,14 @@
+# Vector DB / analogs service (L2 :8104), docs/08. Install from the repo root, after requirements.txt (copilot_common):
+#   .venv\Scripts\python -m pip install torch --index-url https://download.pytorch.org/whl/cu130   (GPU; plain `torch` for CPU)
+#   .venv\Scripts\python -m pip install -r services/vectordb/requirements.txt
+fastapi
+uvicorn
+weaviate-client>=4.16      # Configure.Vectors.self_provided; schema.py falls back for older 4.x
+sentence-transformers      # BAAI/bge-small-en-v1.5
+torch
+yfinance                   # scripts/build_events.py only
+pandas
+numpy
+pydantic>=2.6
+httpx
+pytest

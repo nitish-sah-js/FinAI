@@ -1,0 +1,54 @@
+{
+  "evidence": [
+    {
+      "id": "ev_news_001",
+      "run_id": null,
+      "tool": "news",
+      "value": {
+        "items": [
+          {
+            "news_id": "n_20261003_0007",
+            "title": "IMD warns of very severe cyclone heading for Odisha coast",
+            "summary": "Landfall expected near Puri within 48 hours; ports at Paradip and Gopalpur suspend operations.",
+            "source": "mock",
+            "url": "https://example.com/news/cyclone-odisha",
+            "published_at": "2026-10-03T06:10:00+00:00",
+            "tickers": ["^NSEI"],
+            "sentiment_label": "negative",
+            "sentiment_score": -0.62,
+            "ingested_at": "2026-10-03T06:11:05+00:00",
+            "indexed_at": "2026-10-03T06:11:05.300000+00:00",
+            "score": 0.81
+          },
+          {
+            "news_id": "n_20261003_0011",
+            "title": "Coastal Odisha power utilities prepare for outages",
+            "summary": "Grid operators pre-position crews as the cyclone intensifies over the Bay of Bengal.",
+            "source": "mock",
+            "url": "https://example.com/news/odisha-power",
+            "published_at": "2026-10-03T07:25:00+00:00",
+            "tickers": ["NTPC.NS"],
+            "sentiment_label": null,
+            "sentiment_score": null,
+            "ingested_at": "2026-10-03T07:26:10+00:00",
+            "indexed_at": "2026-10-03T07:26:10.240000+00:00",
+            "score": 0.74
+          }
+        ],
+        "n": 2
+      },
+      "summary": "2 news item(s) for 'cyclone Odisha'",
+      "source": "vectordb NewsItem hybrid search (alpha 0.5)",
+      "source_url": null,
+      "as_of": "2026-10-03T07:25:00Z",
+      "timestamp": "2026-10-03T08:45:00Z",
+      "freshness_s": 4800,
+      "confidence": 0.8,
+      "degraded": false,
+      "degraded_reason": null,
+      "latency_ms": 60,
+      "model_version": "BAAI/bge-small-en-v1.5"
+    }
+  ],
+  "warnings": []
+}

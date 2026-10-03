@@ -1,0 +1,4 @@
+{"evidence":[{"id":"ev_news_001","tool":"news","value":{"items":[
+ {"news_id":"c1d2e3f4a5b6","title":"ITC: Outcome of Board Meeting","summary":"...","source":"NSE","url":"https://www.nseindia.com/...","published_at":"2026-10-03T05:30:00Z","tickers":["ITC.NS"],"category":"corporate_announcement"}]},
+ "summary":"1 announcements for ITC.NS","source":"NSE corporate announcements (best effort)",
+ "as_of":"2026-10-03T05:30:00Z","timestamp":"2026-10-03T08:45:03Z","confidence":null,"degraded":false}],"warnings":[]}
