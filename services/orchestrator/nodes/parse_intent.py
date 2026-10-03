@@ -1,12 +1,15 @@
 """parse_intent: P1 via llm.chat('intent'), with keyword rules as the fallback (05 P1)."""
 from __future__ import annotations
 
+import json
 import re
+from functools import lru_cache
 from typing import Literal
 
 from pydantic import Field
 
 from copilot_common.models import Intent
+from copilot_common.settings import project_root
 
 from ..budget import budget
 from ..events import bus
@@ -27,6 +30,75 @@ EVENT_WORDS = [("cyclone", "cyclone"), ("hurricane", "hurricane"), ("typhoon", "
 REGIONS = ["odisha", "gujarat", "kutch", "chennai", "tamil nadu", "andhra", "west bengal", "maharashtra", "vidarbha",
            "mumbai", "madhya pradesh", "punjab", "rajasthan", "delhi", "north india", "gulf", "louisiana", "texas",
            "bay of bengal", "india"]
+
+# ---------------- ticker validation ----------------
+# NSE/BSE equity symbol; the model sometimes leaks JSON fragments into a ticker string ("BOB.NS'],'ASSET_CLASSES'")
+TICKER_RE = re.compile(r"^[A-Z0-9&-]{1,20}(\.(NS|BO))?$")
+# indices, futures and FX the tools understand (they fail the equity regex by design)
+NON_EQUITY = {"^NSEI", "^NSEBANK", "^BSESN", "^CNXIT", "CL=F", "BZ=F", "NG=F", "GC=F", "INR=X", "^GSPC", "^VIX"}
+
+
+@lru_cache(maxsize=1)
+def _universe() -> tuple[frozenset, dict]:
+    """Known NSE symbols (data/nse_symbols.json) and lower-case alias -> ticker (data/ticker_aliases.json + names)."""
+    data = project_root() / "data"
+    try:
+        syms = frozenset(json.loads((data / "nse_symbols.json").read_text(encoding="utf-8")))
+    except (OSError, ValueError):
+        syms = frozenset()
+    aliases = {k: v for k, v in NAME_TO_TICKER.items()}
+    try:
+        for t, names in json.loads((data / "ticker_aliases.json").read_text(encoding="utf-8")).items():
+            for n in names:
+                aliases.setdefault(n.lower(), t)
+    except (OSError, ValueError):
+        pass
+    return syms | {t for t in NAME_TO_TICKER.values() if t.endswith(".NS")}, aliases
+
+
+def clean_ticker(raw: str) -> str | None:
+    """Canonical ticker, or None if it is not a well-formed symbol in the known universe."""
+    t = (raw or "").strip()
+    if t in NON_EQUITY:
+        return t
+    t = t.upper()
+    if not TICKER_RE.match(t):
+        return None
+    syms, _ = _universe()
+    if not syms:                                  # no symbol file: accept anything well-formed
+        return t if "." in t else f"{t}.NS"
+    base = t.split(".")[0]
+    if t in syms:
+        return t
+    if t.endswith(".BO") and f"{base}.NS" in syms:
+        return t
+    if "." not in t and f"{t}.NS" in syms:
+        return f"{t}.NS"
+    return None
+
+
+def named_in_query(query: str) -> list[str]:
+    """Tickers the user actually named (by symbol or a known company alias)."""
+    q = query.lower()
+    _, aliases = _universe()
+    out = [t for name, t in aliases.items() if re.search(rf"(?<![a-z0-9]){re.escape(name)}(?![a-z0-9])", q)]
+    for tok in re.findall(r"\b[A-Z][A-Z0-9&-]{1,19}(?:\.(?:NS|BO))?\b", query):     # SYMBOLS typed in capitals
+        if (c := clean_ticker(tok)) and c not in NON_EQUITY:
+            out.append(c)
+    return list(dict.fromkeys(out))
+
+
+def scope_tickers(state: dict, limit: int = 12) -> list[str]:
+    """Tickers an agent should look at. Intent tickers are ADDED to the portfolio's, never replace them, unless the
+    user named specific stocks in the question (then those stocks are the scope)."""
+    query = state["request"]["query"]
+    named = [t for t in named_in_query(query) if t not in NON_EQUITY]
+    if named:
+        return named[:limit]
+    held = [h["ticker"] for h in (state.get("portfolio") or {}).get("holdings", [])]
+    extra = [t for t in (state.get("intent") or {}).get("tickers", []) if t not in NON_EQUITY]
+    return list(dict.fromkeys(held + extra))[:limit]
+
 
 ToolName = Literal["sentiment", "weather", "agri", "macro", "analogs", "exposure", "risk", "hedge"]
 
@@ -77,8 +149,9 @@ def keyword_intent(query: str) -> Intent:
 def normalise(intent: Intent, query: str) -> Intent:
     intent = Intent.model_validate(intent.model_dump())          # IntentLLM → plain Intent
     intent.horizon_days = max(1, min(int(intent.horizon_days or 5), 60))
-    tickers = [t.strip().upper() if not t.startswith("^") else t.strip() for t in intent.tickers]
-    intent.tickers = list(dict.fromkeys(t for t in tickers if t and t.lower() not in {"null", "none", "n/a"}))[:5]
+    # keep only well-formed, known symbols; junk from the model is dropped, names in the query are added back
+    cleaned = [c for t in intent.tickers if (c := clean_ticker(t))]
+    intent.tickers = list(dict.fromkeys(named_in_query(query) + cleaned))[:5]
     q = query.lower()
     if re.search(r"\bexplain\b|why did you", q) and intent.intent != "explain":
         intent.intent = "explain"

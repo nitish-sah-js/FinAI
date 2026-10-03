@@ -17,6 +17,7 @@ from ..prompt_loader import render
 from ..regions import resolve
 from ..staleness import apply_staleness, effective_confidence
 from .common import as_of, chaos, chat, finish_kwargs
+from .parse_intent import scope_tickers
 
 AGENT_HOST = {"sentiment_agent": "L2", "weather_agent": "L3", "agri_agent": "L2", "macro_agent": "L3",
               "analog_agent": "L2", "exposure_agent": "L2"}
@@ -103,7 +104,7 @@ def _situation(s: dict) -> str:
 async def sentiment_agent(s: dict) -> dict:
     async def work(b: Budget):
         i = s["intent"]
-        tickers = i.get("tickers") or [h["ticker"] for h in s["portfolio"].get("holdings", [])]
+        tickers = scope_tickers(s)
         news_tr: ToolResult = await tools.news(_situation(s), tickers, as_of=as_of(s), **_kw(s, "sentiment_agent"))
         items = next((e.value.get("items", []) for e in news_tr.evidence if e.tool == "news"), [])
         sent_tr = await tools.sentiment(items, s["portfolio"], as_of=as_of(s), **_kw(s, "sentiment_agent"))
@@ -155,7 +156,7 @@ async def macro_agent(s: dict) -> dict:
 async def analog_agent(s: dict) -> dict:
     async def work(b: Budget):
         i = s["intent"]
-        assets = (i.get("tickers") or [h["ticker"] for h in s["portfolio"].get("holdings", [])])[:8] + ["^NSEI"]
+        assets = scope_tickers(s, limit=8) + ["^NSEI"]
         horizon = "1d" if i.get("horizon_days", 5) <= 1 else "20d" if i.get("horizon_days", 5) >= 15 else "5d"
         tr = await tools.analogs(_situation(s), i.get("event_type"), i.get("region"), assets, horizon,
                                  as_of=as_of(s), exclude_holdout=bool(s["request"].get("exclude_holdout")),
