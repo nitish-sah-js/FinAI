@@ -18,7 +18,12 @@ def run(c):
 
 def bars(days=21, spike=0.0, vol_mult=1.0, seed=0):
     rng = np.random.default_rng(seed)
-    end = pd.Timestamp(now_utc()).floor("5min")
+    # sessions end at 10:00 UTC (NSE close is 10:00 UTC), so a 200-minute window never straddles UTC midnight;
+    # anchoring on "now" made this test fail between 00:00 and 03:20 UTC
+    now = pd.Timestamp(now_utc())
+    end = now.floor("D") + pd.Timedelta(hours=10)
+    if end > now:
+        end -= pd.Timedelta(days=1)
     idx = []
     for d in range(days, -1, -1):
         day_end = end - pd.Timedelta(days=d)
