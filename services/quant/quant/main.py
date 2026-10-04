@@ -311,7 +311,7 @@ async def _exposure(req: ExposureReq, run_id: str | None) -> ToolResult:
     res = await asyncio.to_thread(exposure.run, req.portfolio, df[[h.ticker for h in held]].ffill(), bench, sens)
     top = sorted(res["by_sector"].items(), key=lambda kv: -kv[1])[:2]
     summary = "Largest exposures: " + ", ".join(f"{s} {w:.0%}" for s, w in top)
-    ev = make_evidence(run_id, "exposure", res, "quant exposure_v1 + sector_sensitivity.json (judgment)", _last_date(df),
+    ev = make_evidence(run_id, "exposure", res, "quant exposure_v1 + sector_sensitivity.json (crude measured for 5 sectors, rest judgment)", _last_date(df),
                        0.8, d, reason, _ms(t0), summary)
     return ToolResult(evidence=[ev], warnings=warns)
 

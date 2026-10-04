@@ -1,0 +1,233 @@
+{
+  "generated": "2026-10-04",
+  "years": 5,
+  "model": "weekly log returns; r_sector ~ nifty + brent + usdinr",
+  "shrink_k": 4.0,
+  "sectors": {
+    "Banks": {
+      "index": "index ^NSEBANK",
+      "members": [
+        "^NSEBANK"
+      ],
+      "n_weeks": 260,
+      "r2": 0.732,
+      "beta_nifty": 1.065,
+      "factors": {
+        "crude": {
+          "beta_ols": -0.0279,
+          "se": 0.0139,
+          "t": -2.0,
+          "beta_shrunk": -0.0189,
+          "judgment_beta": -0.01,
+          "half1": -0.0222,
+          "half2": -0.0334,
+          "stable": false
+        },
+        "usd_inr": {
+          "beta_ols": 0.1281,
+          "se": 0.1315,
+          "t": 0.97,
+          "beta_shrunk": -0.0078,
+          "judgment_beta": -0.04,
+          "half1": 0.3315,
+          "half2": -0.0833,
+          "stable": false
+        }
+      }
+    },
+    "Pharma": {
+      "index": "index ^CNXPHARMA",
+      "members": [
+        "^CNXPHARMA"
+      ],
+      "n_weeks": 260,
+      "r2": 0.284,
+      "beta_nifty": 0.646,
+      "factors": {
+        "crude": {
+          "beta_ols": 0.0189,
+          "se": 0.0212,
+          "t": 0.89,
+          "beta_shrunk": -0.0052,
+          "judgment_beta": -0.01,
+          "half1": 0.0266,
+          "half2": 0.0172,
+          "stable": false
+        },
+        "usd_inr": {
+          "beta_ols": 0.2762,
+          "se": 0.2002,
+          "t": 1.38,
+          "beta_shrunk": 0.1568,
+          "judgment_beta": 0.1,
+          "half1": 0.2248,
+          "half2": 0.3553,
+          "stable": false
+        }
+      }
+    },
+    "IT": {
+      "index": "index ^CNXIT",
+      "members": [
+        "^CNXIT"
+      ],
+      "n_weeks": 260,
+      "r2": 0.338,
+      "beta_nifty": 0.944,
+      "factors": {
+        "crude": {
+          "beta_ols": 0.0652,
+          "se": 0.0302,
+          "t": 2.16,
+          "beta_shrunk": 0.0327,
+          "judgment_beta": -0.005,
+          "half1": 0.0698,
+          "half2": 0.0553,
+          "stable": true
+        },
+        "usd_inr": {
+          "beta_ols": -0.4956,
+          "se": 0.285,
+          "t": -1.74,
+          "beta_shrunk": -0.1337,
+          "judgment_beta": 0.14,
+          "half1": -0.7379,
+          "half2": -0.2118,
+          "stable": false
+        }
+      }
+    },
+    "FMCG": {
+      "index": "ETF FMCGIETF.NS (tracks Nifty FMCG)",
+      "members": [
+        "FMCGIETF.NS"
+      ],
+      "n_weeks": 260,
+      "r2": 0.405,
+      "beta_nifty": 0.669,
+      "factors": {
+        "crude": {
+          "beta_ols": -0.0437,
+          "se": 0.0175,
+          "t": -2.49,
+          "beta_shrunk": -0.0305,
+          "judgment_beta": -0.01,
+          "half1": -0.0775,
+          "half2": -0.0132,
+          "stable": true
+        },
+        "usd_inr": {
+          "beta_ols": 0.3169,
+          "se": 0.1653,
+          "t": 1.92,
+          "beta_shrunk": 0.1413,
+          "judgment_beta": -0.02,
+          "half1": 0.1782,
+          "half2": 0.3738,
+          "stable": false
+        }
+      }
+    },
+    "Auto": {
+      "index": "ETF AUTOBEES.NS (tracks Nifty Auto)",
+      "members": [
+        "AUTOBEES.NS"
+      ],
+      "n_weeks": 244,
+      "r2": 0.6,
+      "beta_nifty": 1.173,
+      "factors": {
+        "crude": {
+          "beta_ols": -0.0569,
+          "se": 0.0211,
+          "t": -2.7,
+          "beta_shrunk": -0.0544,
+          "judgment_beta": -0.05,
+          "half1": -0.0683,
+          "half2": -0.0354,
+          "stable": true
+        },
+        "usd_inr": {
+          "beta_ols": 0.2479,
+          "se": 0.2013,
+          "t": 1.23,
+          "beta_shrunk": 0.0247,
+          "judgment_beta": -0.06,
+          "half1": 0.1122,
+          "half2": 0.3632,
+          "stable": false
+        }
+      }
+    },
+    "Energy": {
+      "index": "equal-weight basket",
+      "members": [
+        "RELIANCE.NS",
+        "ONGC.NS",
+        "NTPC.NS",
+        "POWERGRID.NS",
+        "COALINDIA.NS"
+      ],
+      "n_weeks": 260,
+      "r2": 0.395,
+      "beta_nifty": 0.866,
+      "factors": {
+        "crude": {
+          "beta_ols": 0.1044,
+          "se": 0.023,
+          "t": 4.53,
+          "beta_shrunk": 0.1005,
+          "judgment_beta": 0.08,
+          "half1": 0.0907,
+          "half2": 0.1316,
+          "stable": true
+        },
+        "usd_inr": {
+          "beta_ols": 0.2289,
+          "se": 0.2173,
+          "t": 1.05,
+          "beta_shrunk": 0.0028,
+          "judgment_beta": -0.06,
+          "half1": 0.2793,
+          "half2": 0.1388,
+          "stable": false
+        }
+      }
+    },
+    "Metals": {
+      "index": "equal-weight basket",
+      "members": [
+        "TATASTEEL.NS",
+        "JSWSTEEL.NS",
+        "HINDALCO.NS",
+        "VEDL.NS",
+        "NMDC.NS"
+      ],
+      "n_weeks": 260,
+      "r2": 0.351,
+      "beta_nifty": 1.221,
+      "factors": {
+        "crude": {
+          "beta_ols": 0.0939,
+          "se": 0.0359,
+          "t": 2.62,
+          "beta_shrunk": 0.0445,
+          "judgment_beta": -0.04,
+          "half1": 0.1559,
+          "half2": 0.029,
+          "stable": true
+        },
+        "usd_inr": {
+          "beta_ols": -0.0475,
+          "se": 0.3384,
+          "t": -0.14,
+          "beta_shrunk": -0.0997,
+          "judgment_beta": -0.1,
+          "half1": -0.0024,
+          "half2": 0.0874,
+          "stable": false
+        }
+      }
+    }
+  }
+}
