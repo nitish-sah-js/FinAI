@@ -140,8 +140,35 @@ def validation_lines(ev: dict | None) -> list[str]:
 _BARE_TAIL = re.compile(r"\n\s*(\{[^\n]*\"(?:confidence|holdings_impact)\"[\s\S]*\})\s*$")
 
 
+_STRAY_JSON = re.compile(r'(?m)^[ \t]*\{\s*"(?:confidence|holdings_impact|bottom_line|hedges|what_could_be_wrong)"')
+
+
+def _json_end(text: str, start: int) -> int | None:
+    """Index just past the object that opens at text[start] ('{'), honouring strings; None if it never closes."""
+    depth, in_str, esc = 0, False, False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if in_str:
+            esc = (ch == "\\") and not esc
+            if ch == '"' and not esc:
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return i + 1
+    return None
+
+
 def split_answer(text: str) -> tuple[str, dict | None]:
-    """Split markdown from the JSON tail: <json>…</json>, or a bare trailing JSON object (small models drop the tags)."""
+    """Split markdown from the JSON tail: <json>…</json>, or a bare trailing JSON object (small models drop the tags).
+    A 4B model also writes the answer JSON in the MIDDLE of the markdown, or gets cut off inside it: every such block
+    is removed from the text the user reads (its numbers would otherwise appear uncited), the first parseable one is
+    kept as the tail."""
     from copilot_llm.json_repair import extract_json
     text = text or ""
     m = _JSON_TAIL.search(text) or _BARE_TAIL.search(text)
@@ -149,6 +176,16 @@ def split_answer(text: str) -> tuple[str, dict | None]:
     if m:
         tail = extract_json(m.group(1))
         text = text[:m.start()].rstrip()
+    while (s := _STRAY_JSON.search(text)) is not None:
+        start = text.index("{", s.start())
+        end = _json_end(text, start)
+        if end is None:                                   # unterminated (token limit): drop to the end of the paragraph
+            nxt = text.find("\n\n", start)
+            end = len(text) if nxt < 0 else nxt
+        elif tail is None:
+            got = extract_json(text[start:end])
+            tail = got if isinstance(got, dict) else None
+        text = (text[:s.start()].rstrip() + "\n\n" + text[end:].lstrip()).strip()
     return dedupe_lines(text.strip()), tail if isinstance(tail, dict) else None
 
 

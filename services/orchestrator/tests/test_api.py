@@ -98,3 +98,22 @@ def test_cluster_status_and_alert_ingest():
             assert ws.receive_json() == {"type": "alert", "data": {**alert, "evidence_ids": [], "acknowledged": False,
                                                                     "created_at": "2026-10-04T00:00:00Z"}}
         assert c.get("/alerts/recent").json()[0]["alert_id"] == "al_t"
+
+
+def test_run_trace_records_services_and_llm_roles():
+    """MOCK run: every tool call is traced as fixture (MOCK data), every LLM call as mock, each with its node."""
+    with client() as c:
+        acc = c.post("/query", json={"query": Q}).json()
+        with c.websocket_connect(f"/ws/{acc['run_id']}") as ws:
+            while ws.receive_json()["type"] != "final":
+                pass
+        rows = c.get(f"/runs/{acc['run_id']}/trace").json()
+    svc = {r["service"] for r in rows}
+    assert {"quant", "vectordb", "ingestion"} <= svc
+    assert any(s.startswith("llm:") for s in svc)
+    by = {(r["service"], r["node"]) for r in rows}
+    assert ("vectordb", "analog_agent") in by and ("quant", "quant_agent") in by
+    assert all(r["status"] == "fixture" for r in rows if not r["service"].startswith("llm:"))
+    assert all(r["status"] == "mock" for r in rows if r["service"].startswith("llm:"))
+    assert all(r["host"].startswith(("L1", "L2", "L3", "mock")) for r in rows), {r["host"] for r in rows}
+    assert c.get("/runs/nope/trace").status_code == 404

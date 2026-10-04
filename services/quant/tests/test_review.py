@@ -194,3 +194,9 @@ def test_builder_ignores_analog_distribution_from_too_few_events():
         {"asset": "^NSEI", "horizon": "5d", "measure": "raw", "n": 1, "p10": -0.033, "median": -0.033, "p90": -0.033}]}}]
     cases, prov = scenario_builder.build(ev)
     assert "nifty" not in cases["median"] and prov == []
+
+
+def test_validation_when_the_index_is_also_held():
+    df = _frame(["RELIANCE.NS", "^NSEI"])
+    res = validation.validate(df, {"RELIANCE.NS": 100, "^NSEI": 5}, "^NSEI", EVENTS, compare_optimizer=False)
+    assert res["n"] == 6 and res["skipped"] == []

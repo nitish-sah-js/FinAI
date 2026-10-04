@@ -424,11 +424,13 @@ def _obj_to_event(obj: Any) -> tuple[dict, np.ndarray | None]:
 
 def weaviate_search(req: AnalogReq, embedder: Embedder) -> tuple[list[tuple[float, dict]], list[str], str | None]:
     """Hybrid query per relaxation step; similarity is OUR cosine(qvec, stored vector), hybrid score only ranks.
-    Hard filters are applied server-side AND re-checked here. UNTESTED against a live Weaviate."""
+    Hard filters are applied server-side AND re-checked here. Parity with numpy_search: tests/test_parity_live.py."""
     from weaviate.classes.query import MetadataQuery
     from .schema import HISTORICAL_EVENT_COLLECTION
 
     coll = wv.get_client().collections.get(HISTORICAL_EVENT_COLLECTION)
+    if not coll.aggregate.over_all(total_count=True).total_count:
+        raise RuntimeError("Weaviate holds no events (not seeded yet)")    # → numpy fallback, marked degraded
     qvec = embedder.encode_one(req.situation)
     query = (req.situation + " " + (req.region_hint or "")).strip()
     c = Criteria.from_req(req, MIN_SIM)

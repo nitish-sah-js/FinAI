@@ -18,6 +18,7 @@ from copilot_common import reachability
 from copilot_common.models import FinalAnswer, Intent, QueryRequest, ValidatorReport
 from copilot_common.settings import get_settings
 
+from . import trace
 from .events import bus
 from .ledger import ledger
 from .nodes.parse_intent import EVENT_WORDS, named_in_query
@@ -120,17 +121,25 @@ _ALERT_WORDS = {"weather_threshold": "weather", "agri_stress": "crop stress", "n
                 "sentiment_shift": "sentiment", "price_z": "price move", "volume_z": "trading volume"}
 
 
-async def active_alerts(timeout_s: float = 0.4) -> list[dict]:
+async def active_alerts(timeout_s: float = 0.4, run_id: str | None = None) -> list[dict]:
     """Unacknowledged tier 2-3 alerts from the monitor; [] if it does not answer within timeout_s."""
     url = get_settings().MONITOR_URL.rstrip("/") + "/alerts"
     if reachability.is_down(url):
+        await trace.record(run_id, "conversation", "monitor", trace.service_host("monitor"), None, 0, "unavailable",
+                           "GET /alerts: skipped, monitor marked down")
         return []
+    t0 = time.perf_counter()
     try:
         async with httpx.AsyncClient(timeout=timeout_s) as c:
             r = await asyncio.wait_for(c.get(url, params={"tier_min": 2, "limit": 10}), timeout_s)
-            return [a for a in r.json() if not a.get("acknowledged")]
-    except Exception:  # noqa: BLE001
+            out = [a for a in r.json() if not a.get("acknowledged")]
+        await trace.record(run_id, "conversation", "monitor", trace.service_host("monitor"), None,
+                           int((time.perf_counter() - t0) * 1000), "ok", f"GET /alerts: {len(out)} active")
+        return out
+    except Exception as e:  # noqa: BLE001
         reachability.mark_down(url)
+        await trace.record(run_id, "conversation", "monitor", trace.service_host("monitor"), None,
+                           int((time.perf_counter() - t0) * 1000), "unavailable", f"GET /alerts: {type(e).__name__}")
         return []
 
 
@@ -205,7 +214,7 @@ def reply_text(intent: str, req: QueryRequest) -> str:
 async def answer(run_id: str, req: QueryRequest, portfolio: dict, intent_name: str, t0: float) -> dict:
     """Publish a conversational FinalAnswer (no agents, no numbers) through the normal run stream."""
     await bus.emit(run_id, "parse_intent", "started", message="checking what kind of message this is")
-    alerts = await active_alerts()
+    alerts = await active_alerts(run_id=run_id)
     focus = named_in_query(req.query) if intent_name == "out_of_scope" else []
     sugg = suggestions(portfolio.get("holdings", []), alerts,
                        req.query if intent_name in ("unclear", "out_of_scope") else "", focus)

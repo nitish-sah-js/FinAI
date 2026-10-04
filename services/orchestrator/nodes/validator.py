@@ -10,8 +10,9 @@ from copilot_common.models import ValidatorReport
 
 from ..events import bus
 
-NUM = re.compile(r"(?<![\w.])[-+−]?₹?\d[\d,]*(?:\.\d+)?\s?(?:%|σ|bps\b|bp\b|cr\b|crore\b|lakh\b|x\b)?")
+NUM = re.compile(r"(?<![\w.])[-+−]?₹?\d(?:[\d,]*\d)?(?:\.\d+)?\s?(?:%|σ|bps\b|bp\b|cr\b|crore\b|lakh\b|x\b)?")
 CITE = re.compile(r"\[(ev_[a-z_]+_\d{3})\]")
+BAD_CITE = re.compile(r"\[ev_[^\]\s]*\]")          # any [ev_...] token, well-formed or not
 DATE = re.compile(r"\b\d{4}-\d{2}-\d{2}(?:[T ]\d{2}:\d{2}(?::\d{2})?Z?)?\b")
 SENT_SPLIT = re.compile(r"(?<=[.!?;])\s+(?=[A-Z*_\-(\[])")
 LIST_MARKER = re.compile(r"^\s*(?:\d+[.)])\s")
@@ -145,7 +146,8 @@ def validate(draft: str, evidence: list[dict], horizon_days: int = 5, query: str
         for si, sent in enumerate(sents):
             # a sentence without its own citation may borrow the one that closes its bullet/line (later sentences only)
             cites = CITE.findall(sent) or next((c for later in sents[si + 1:] if (c := CITE.findall(later))), [])
-            scan = DATE.sub(lambda m: " " * len(m.group(0)), CITE.sub(lambda m: " " * len(m.group(0)), sent))
+            # blank valid citations AND malformed ones ("[ev_macro_00-01]"): digits inside an ev_ reference are no figure
+            scan = DATE.sub(lambda m: " " * len(m.group(0)), BAD_CITE.sub(lambda m: " " * len(m.group(0)), sent))
             cited_pool = [v for c in cites if c in pools for v in pools[c]]
             for m in NUM.finditer(scan):
                 raw = m.group(0)
@@ -179,7 +181,12 @@ def validate(draft: str, evidence: list[dict], horizon_days: int = 5, query: str
             sent_ids.setdefault((li, si), set()).update(CITE.findall(sent))
     still = []
     for f in bad_uncited:
-        if set(ambiguous.get(id(f), [])) & sent_ids.get((f.line_idx, f.sent_idx), set()):
+        owners = ambiguous.get(id(f), [])
+        literal = [eid for eid in owners if f.raw in (by_id[eid].get("summary") or "")]
+        if set(owners) & sent_ids.get((f.line_idx, f.sent_idx), set()):
+            matched += 1
+        elif len(literal) == 1:           # the exact figure ("₹6,397") is printed in one evidence summary: cite it
+            auto.append((f, literal[0]))
             matched += 1
         else:
             still.append(f)

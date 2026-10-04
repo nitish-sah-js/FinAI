@@ -126,4 +126,13 @@ def create_service_app(name: str, version: str = "0.1.0",
                       host=socket.gethostname(), uptime_s=int(time.time() - started), deps=deps,
                       models=models or [], gpu=gpu_info())
 
+    @app.get("/llm/calls")
+    async def llm_calls(since: str | None = None, limit: int = 500) -> list[dict]:
+        """LLM calls made by this process (role, model, laptop, latency, ok/fallback/cached); read by verify_usage."""
+        try:
+            from copilot_llm import calls
+        except ImportError:                       # a service that never talks to an LLM
+            return []
+        return calls.recent(since, limit)
+
     return app

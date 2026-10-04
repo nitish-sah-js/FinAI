@@ -49,7 +49,7 @@ async def planner(state: dict) -> dict:
                     break
                 steps += 1
                 args = call.get("arguments") or {}
-                kw = {"run_id": run_id, "chaos": chaos(state), "timeout_s": 8}
+                kw = {"run_id": run_id, "chaos": chaos(state), "timeout_s": 8, "node": "planner"}
                 if call["name"] == "event_study" and args.get("ticker") and args.get("event_date"):
                     tr = await tools.event_study(args["ticker"], args["event_date"], as_of=as_of(state), **kw)
                 elif call["name"] == "scenario" and isinstance(args.get("shocks"), dict):

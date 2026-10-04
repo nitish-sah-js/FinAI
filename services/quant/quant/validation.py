@@ -54,8 +54,9 @@ def validate(prices: pd.DataFrame, qty: dict[str, float], underlying: str, event
         if underlying not in prices.columns or not held or len(before) < 60:
             skipped.append(f"{eid}: not enough history before {edate.date()}")
             continue
-        fit = before[held + [underlying]].tail(lookback + 1).ffill().pct_change().dropna()
-        base = before[held + [underlying]].ffill().iloc[-1]
+        cols = list(dict.fromkeys(held + [underlying]))          # the hedge index may itself be a holding
+        fit = before[cols].tail(lookback + 1).ffill().pct_change().dropna()
+        base = before[cols].ffill().iloc[-1]
         vals = np.array([qty[t] * base[t] for t in held])
         V = float(vals.sum())
         w = vals / V
@@ -65,7 +66,7 @@ def validate(prices: pd.DataFrame, qty: dict[str, float], underlying: str, event
             skipped.append(f"{eid}: flat hedge instrument")
             continue
         h_star = float(rp.cov(rf) / rf.var())                      # fitted strictly before the event
-        fwd = prices[prices.index >= before.index[-1]][held + [underlying]].ffill().head(h + 1)
+        fwd = prices[prices.index >= before.index[-1]][cols].ffill().head(h + 1)
         if len(fwd) < h + 1 or fwd.isna().any().any():
             skipped.append(f"{eid}: fewer than {h} trading days after the event in the data")
             continue

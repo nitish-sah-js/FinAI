@@ -92,6 +92,7 @@ class QueryRequest(BaseModel):
     ref_run_id: str | None = None
     exclude_holdout: bool = False        # backtest (12 §A3.2): analog search must skip held-out events
     alert_id: str | None = None          # set when a run starts from a monitor alert deep link (11 §13)
+    no_cache: bool = False               # skip LLM cache reads for this run (scripts/verify_usage.py wants real calls)
 
 
 class QueryAccepted(BaseModel):

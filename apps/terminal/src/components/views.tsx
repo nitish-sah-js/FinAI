@@ -115,13 +115,14 @@ export function PaperView() {
   const approvedBy = useSettings((s) => s.approvedBy);
   const [hist, setHist] = useState<{ proposals: any[]; positions: any[]; marks: any[] } | null>(null);
   const [open, setOpen] = useState<any[]>([]);
+  const [closed, setClosed] = useState<any[]>([]);
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
     try {
-      const [h, o] = await Promise.all([api.paperHistory(), api.paperPositions('open')]);
-      setHist(h); setOpen(o); setErr(null);
+      const [h, o, c] = await Promise.all([api.paperHistory(), api.paperPositions('open'), api.paperPositions('closed')]);
+      setHist(h); setOpen(o); setClosed(c); setErr(null);
     } catch (e: any) { setErr(`Could not load paper trades: ${e.message}`); }
   }, []);
   useEffect(() => { load(); }, [load]);
@@ -138,7 +139,7 @@ export function PaperView() {
   return (
     <div className="max-w-[1400px] mx-auto space-y-4">
       <div className="flex items-end justify-between px-1 pt-1">
-        <p className="text-[13px] text-t-muted max-w-[70ch]">Simulated trades only. Nothing here reaches a broker. Positions are re-priced every 15 minutes during market hours.</p>
+        <p className="text-[13px] text-t-muted max-w-[70ch]">Simulated trades only. Nothing here reaches a broker. Positions are re-priced every 15 minutes during NSE trading hours (not on exchange holidays).</p>
         <div className="flex gap-2">
           <button onClick={load} className={BTN} aria-label="Refresh"><RefreshCw size={14} /></button>
           <button disabled={busy} onClick={() => act(api.paperMark)} className={BTN}>Re-price now</button>
@@ -197,6 +198,35 @@ export function PaperView() {
           </table>
         )}
       </section>
+
+      {closed.length > 0 && (
+        <section className={PANEL}>
+          <PanelHeader title="Closed positions"
+            right={<span className="text-xs text-t-muted">Realised P&amp;L in total{' '}
+              <span className={`font-medium ${pnlTone(closed.reduce((a, p) => a + (p.realised_pnl_inr ?? 0), 0))}`}>
+                {fmtInr(closed.reduce((a, p) => a + (p.realised_pnl_inr ?? 0), 0))}</span></span>} />
+          <table className="w-full text-left text-[13px]">
+            <thead><tr className="border-b border-t-fg/[0.07]">
+              <th className={TH}>Instrument</th><th className={TH}>Trade</th><th className={TH}>Closed</th>
+              <th className={`${TH} text-right`}>Entry</th><th className={`${TH} text-right`}>Exit</th>
+              <th className={`${TH} text-right`}>Realised P&amp;L</th>
+            </tr></thead>
+            <tbody>
+              {closed.map((p) => (
+                <tr key={p.position_id} className="border-b border-t-fg/[0.05] last:border-0">
+                  <td className={`${TD} font-bold text-t-fg`}>{p.instrument}</td>
+                  <td className={TD}>{side(p.side)} {p.quantity} {p.unit}</td>
+                  <td className={`${TD} text-t-muted`}>{fmtTs(p.exit_ts)}</td>
+                  <td className={`${TD} text-right text-t-text`}>{p.entry_price?.toFixed(2)}</td>
+                  <td className={`${TD} text-right text-t-text`}>{p.exit_price?.toFixed(2) ?? '—'}</td>
+                  <td className={`${TD} text-right font-medium ${pnlTone(p.realised_pnl_inr)}`}>
+                    {p.realised_pnl_inr == null ? 'not recorded' : fmtInr(p.realised_pnl_inr)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      )}
 
       {decided.length > 0 && (
         <section className={PANEL}>

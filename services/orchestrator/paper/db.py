@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS paper_positions (
   position_id TEXT PRIMARY KEY, proposal_id TEXT, instrument TEXT, underlying TEXT, side TEXT,
   quantity REAL, unit TEXT, entry_price REAL, entry_ts TEXT,
   price_kind TEXT,  -- 'close' | 'spot_proxy' | 'model_price'
-  status TEXT CHECK(status IN ('open','closed')), exit_price REAL, exit_ts TEXT);
+  status TEXT CHECK(status IN ('open','closed')), exit_price REAL, exit_ts TEXT,
+  realised_pnl_inr REAL);  -- set on close: (exit - entry) x quantity x lot size, signed by side
 CREATE TABLE IF NOT EXISTS paper_marks (
   position_id TEXT, ts TEXT, mark_price REAL, pnl_inr REAL, portfolio_pnl_unhedged_inr REAL,
   portfolio_pnl_hedged_inr REAL, PRIMARY KEY (position_id, ts));
@@ -38,6 +39,9 @@ async def connect() -> aiosqlite.Connection:
     db = await conn
     db.row_factory = aiosqlite.Row
     await db.executescript(SCHEMA)
+    cols = {r[1] for r in await (await db.execute("PRAGMA table_info(paper_positions)")).fetchall()}
+    if "realised_pnl_inr" not in cols:          # ledger.db created before realised P&L existed
+        await db.execute("ALTER TABLE paper_positions ADD COLUMN realised_pnl_inr REAL")
     # the orchestrator ledger creates `runs`; make sure it exists on a fresh DB (no-op otherwise)
     from ..ledger import SCHEMA as LEDGER_SCHEMA
     await db.executescript(LEDGER_SCHEMA)

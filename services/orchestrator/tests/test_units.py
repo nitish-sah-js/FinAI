@@ -240,3 +240,57 @@ def test_tool_call_gives_up_after_two_retries(monkeypatch):
     with pytest.raises(httpx.HTTPStatusError):
         asyncio.run(T._post_with_retries("http://10.9.9.8:8101/exposure", {}, {}, 5))
     assert calls["n"] == 3
+
+
+@pytest.mark.parametrize("intent, query, must", [
+    (Intent(intent="portfolio_risk"), "How bad is a weak monsoon for my FMCG names?", {"agri_agent"}),
+    (Intent(intent="hedge_request"), "hedge against crop failure", {"agri_agent"}),
+    (Intent(intent="rank_exposure"), "what is the news sentiment on my holdings", {"sentiment_agent"}),
+    (Intent(intent="stock_lookup", tickers=["ITC.NS"]), "ITC price and RBI repo outlook", {"macro_agent"}),
+    (I(event_type="cyclone", region="Odisha"), "cyclone in Odisha", {"analog_agent"}),
+])
+def test_keyword_rules_add_the_service_that_answers(intent, query, must):
+    assert must <= set(select_agents(intent, PF, query))
+
+
+def test_keyword_rules_do_not_fire_on_unrelated_words():
+    got = set(select_agents(Intent(intent="rank_exposure"), PF, "rank my exposure"))
+    assert got == {"exposure_agent", "macro_agent"}
+    assert "agri_agent" not in select_agents(Intent(intent="market_summary"), PF, "brainstorm a summary")
+
+
+def test_quant_only_for_intents_that_need_it():
+    from orchestrator.router import quant_plan
+    for name in ("event_impact", "portfolio_risk", "hedge_request", "what_if", "rank_exposure"):
+        assert quant_plan(Intent(intent=name), "")["risk"] is True
+    for name in ("market_summary", "stock_lookup"):
+        assert quant_plan(Intent(intent=name), "")["risk"] is False
+    assert quant_plan(Intent(intent="market_summary"), "if crude +10%")["scenario"] == {"crude": 10.0}
+
+
+def test_split_answer_removes_json_written_mid_answer_and_truncated_json():
+    """Shapes seen live from qwen3:4b (verify_usage): the answer JSON in the middle of the markdown, and a JSON
+    block cut off by the token limit. Neither may reach the user (its figures are uncited)."""
+    from orchestrator.nodes.synthesizer import split_answer
+    mid = ('### Bottom line\nLoss of 2% [ev_risk_001].\n\n{"confidence":"medium","holdings_impact":[{"ticker":"ONGC.NS",'
+           '"range":"-10.2% to +4.1%"}]}\n\n### Confidence\nmedium [ev_risk_001].')
+    md, tail = split_answer(mid)
+    assert "holdings_impact" not in md and "### Confidence" in md and tail["confidence"] == "medium"
+    cut = '### Bottom line\nLoss of 2% [ev_risk_001].\n\n{"confidence":"medium","holdings_impact":[{"ticker":"UPL.NS","impact":"no'
+    md, tail = split_answer(cut)
+    assert md == "### Bottom line\nLoss of 2% [ev_risk_001]." and tail is None
+
+
+def test_ambiguous_figure_cited_by_the_summary_that_prints_it():
+    ev = [{"id": "ev_scenario_001", "tool": "scenario", "value": {"median_inr": 6397.4},
+           "summary": "Evidence-based scenario: median ₹6,397, no range"},
+          {"id": "ev_scenario_002", "tool": "scenario", "value": {"pnl_inr": 6397.0}, "summary": "Crude +15% → ₹1,887"}]
+    report, md = validate("A loss of ₹6,397, though small.", ev)
+    assert report.action == "pass" and "[ev_scenario_001]" in md
+    assert report.auto_cited == ["₹6,397→ev_scenario_001"]
+
+
+def test_malformed_citation_digits_are_not_figures():
+    ev = [{"id": "ev_macro_001", "tool": "macro", "value": {"brent_5d": -0.0198}, "summary": "Brent -2.0% 5d"}]
+    report, _ = validate("- HINDUNILVR.NS: no direct exposure [ev_macro_00-01]", ev)
+    assert report.action == "pass" and report.numbers_found == 0

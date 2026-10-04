@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import copy
+import time
 from datetime import date, datetime, time as dtime, timedelta, timezone
 from typing import Any
 
@@ -14,6 +15,8 @@ from copilot_common.models import Evidence, ToolResult
 from copilot_common.service_base import load_fixture, now_utc
 from copilot_common.settings import get_settings
 
+from . import trace
+
 # tool → (fixture/service dir, Settings URL attribute, endpoint)
 ENDPOINTS: dict[str, tuple[str, str, str]] = {
     "news": ("ingestion", "INGEST_URL", "/news"),
@@ -22,6 +25,7 @@ ENDPOINTS: dict[str, tuple[str, str, str]] = {
     "prices": ("ingestion", "INGEST_URL", "/prices"),
     "sentiment": ("sentiment", "SENTIMENT_URL", "/sentiment/score"),
     "agri": ("agri", "AGRI_URL", "/agri_signal"),
+    "agri_batch": ("agri", "AGRI_URL", "/agri_signal/batch"),       # every district the crop model covers
     "analogs": ("vectordb", "VECTOR_URL", "/find_analogs"),
     "exposure": ("quant", "QUANT_URL", "/exposure"),
     "risk": ("quant", "QUANT_URL", "/var_montecarlo"),
@@ -68,7 +72,7 @@ def _fixture_result(service: str, endpoint: str, tool: str) -> ToolResult:
 
 
 TOOL_NAME = {"news": "news", "weather": "weather", "macro": "macro", "prices": "price", "sentiment": "news sentiment",
-             "agri": "crop", "analogs": "past-event", "exposure": "exposure", "risk": "risk", "hedge": "hedge",
+             "agri": "crop", "agri_batch": "crop", "analogs": "past-event", "exposure": "exposure", "risk": "risk", "hedge": "hedge",
              "event_study": "event study", "scenario": "scenario", "correlations": "correlation",
              "scenario_evidence": "scenario", "hedge_validation": "hedge back-check"}
 
@@ -78,7 +82,7 @@ def unavailable_result(tool: str, service: str, reason: str) -> ToolResult:
     status 'unavailable' and a plain reason. The synthesizer is told there is no data, and must say so."""
     t = now_utc()
     what = TOOL_NAME.get(tool, tool)
-    tool_name = "scenario" if tool == "scenario_evidence" else tool
+    tool_name = {"scenario_evidence": "scenario", "agri_batch": "agri"}.get(tool, tool)
     ev = Evidence(id=f"ev_{tool_name}_000", tool=tool_name, value={"status": "unavailable", "reason": reason},
                   summary=f"No {what} data: {reason}", source=service, as_of=t, timestamp=t, confidence=0.0,
                   degraded=True, degraded_reason="unavailable")
@@ -157,7 +161,19 @@ async def _post_with_retries(url: str, body: dict, headers: dict, timeout_s: flo
 
 
 async def call_tool(tool: str, body: dict, *, run_id: str | None = None, chaos: dict | None = None,
-                    timeout_s: float = 15.0) -> ToolResult:
+                    timeout_s: float = 15.0, node: str | None = None) -> ToolResult:
+    t0 = time.perf_counter()
+    tr = await _call_tool(tool, body, run_id=run_id, chaos=chaos, timeout_s=timeout_s)
+    service = ENDPOINTS[tool][0]
+    status = trace.tool_status(tr)
+    reasons = sorted({e.degraded_reason for e in tr.evidence if e.degraded_reason})
+    await trace.record(run_id, node, service, trace.service_host(service), None, int((time.perf_counter() - t0) * 1000),
+                       status, f"{tool} {ENDPOINTS[tool][2]}" + (f": {', '.join(reasons)}" if reasons else ""))
+    return tr
+
+
+async def _call_tool(tool: str, body: dict, *, run_id: str | None = None, chaos: dict | None = None,
+                     timeout_s: float = 15.0) -> ToolResult:
     s = get_settings()
     service, url_attr, endpoint = ENDPOINTS[tool]
     chaos = chaos or {}
@@ -236,6 +252,10 @@ async def sentiment(items: list[dict], portfolio: dict, as_of=None, **kw) -> Too
 
 async def agri(region_id: str, on_date: str, crop_season: str | None = None, as_of=None, **kw) -> ToolResult:
     return await call_tool("agri", {"region_id": region_id, "date": on_date, "crop_season": crop_season, "as_of": as_of}, **kw)
+
+
+async def agri_batch(on_date: str, as_of=None, **kw) -> ToolResult:
+    return await call_tool("agri_batch", {"on_date": on_date, "as_of": as_of}, **kw)
 
 
 async def analogs(situation: str, event_type: str | None, region_hint: str | None, assets: list[str],

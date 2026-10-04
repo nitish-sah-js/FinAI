@@ -34,13 +34,14 @@ def _hsum(s: pd.Series, h: int) -> pd.Series:
     return s.rolling(h).sum().dropna() if h > 1 else s
 
 
-def _stats(rets: pd.DataFrame, w: np.ndarray, f: str, h: int, V: float) -> dict | None:
-    rp = pd.Series(rets[[c for c in rets.columns if c != f]].values @ w, index=rets.index)
-    rf = rets[f]
+def _stats(hold: pd.DataFrame, rf: pd.Series, w: np.ndarray, h: int, V: float) -> dict | None:
+    """hold: daily returns of the holdings (columns in weight order); rf: returns of the hedge instrument. The
+    instrument may itself be a holding (a portfolio that holds the index): its own beta is then simply 1."""
+    rp = pd.Series(hold.values @ w, index=hold.index)
     if len(rp) < 60 or rf.var() == 0:
         return None
-    t250 = rets.tail(250)
-    betas = np.array([t250[c].cov(t250[f]) / t250[f].var() for c in rets.columns if c != f])
+    t250, f250 = hold.tail(250), rf.tail(250)
+    betas = np.array([t250[c].cov(f250) / f250.var() for c in hold.columns])
     beta_p = float(w @ betas)
     rph, rfh = _hsum(rp, h), _hsum(rf, h)
     h_star = float(rph.cov(rfh) / rfh.var())
@@ -66,13 +67,13 @@ def propose(portfolio: Portfolio, prices: pd.DataFrame, candidates: list[str], t
         if f not in prices.columns:
             warnings.append(f"no price data for hedge candidate {f}")
             continue
-        px = prices[hold_cols + [f]].dropna()
+        px = prices[list(dict.fromkeys(hold_cols + [f]))].dropna()      # f may also be a holding: no duplicate column
         last = px.iloc[-1]
         vals = np.array([qty[c] * last[c] for c in hold_cols])
         V = float(vals.sum())
         w = vals / V
         rets = px.pct_change().dropna()
-        st = _stats(rets[hold_cols + [f]], w, f, h, V)
+        st = _stats(rets[hold_cols], rets[f], w, h, V)
         if st is None:
             warnings.append(f"insufficient history for hedge candidate {f}")
             continue

@@ -6,8 +6,9 @@ from typing import Any
 from pydantic import BaseModel
 
 from copilot_common.settings import get_settings
-from copilot_llm import FORCE_RATE_LIMIT, LLMResult, llm
+from copilot_llm import FORCE_RATE_LIMIT, NO_CACHE, LLMResult, calls, llm
 
+from .. import trace
 from ..budget import Budget
 from ..events import bus
 from ..staleness import effective_confidence
@@ -36,16 +37,24 @@ async def chat(state: dict, node: str, b: Budget, role: str, messages: list[dict
         note = "cache hit" if info.get("cached") else f"{info['latency_ms']} ms"
         if info.get("fallbacks"):
             note += " · fallbacks: " + ", ".join(info["fallbacks"])
+        status = calls.status_for(role, info.get("provider_name", ""), bool(info.get("cached")), run_mode(state))
+        await trace.record(run_id, node, f"llm:{role}", info.get("provider") or "", info.get("model"),
+                           info.get("latency_ms"), status, "; ".join(info.get("fallbacks") or []))
         await bus.emit(run_id, node, "progress", model=info.get("model"), provider=info.get("provider"),
                        tokens_in=info.get("tokens_in"), tokens_out=info.get("tokens_out"),
                        latency_ms=info.get("latency_ms"), message=f"LLM {info.get('model')} · {note}")
 
     token = FORCE_RATE_LIMIT.set(bool(chaos(state).get("force_rate_limit")))
+    nc = NO_CACHE.set(bool((state.get("request") or {}).get("no_cache")))
     try:
-        return await llm.chat(role, messages, schema=schema, mode=run_mode(state), run_id=run_id, on_event=on_event,
-                              fixture=fixture, tools=tools, max_tokens=max_tokens or b.max_tokens, timeout_s=timeout_s)
+        res = await llm.chat(role, messages, schema=schema, mode=run_mode(state), run_id=run_id, on_event=on_event,
+                             fixture=fixture, tools=tools, max_tokens=max_tokens or b.max_tokens, timeout_s=timeout_s)
     finally:
+        NO_CACHE.reset(nc)
         FORCE_RATE_LIMIT.reset(token)
+    if not res.ok:
+        await trace.record(run_id, node, f"llm:{role}", "", None, None, "failed", "; ".join(res.fallbacks)[:300])
+    return res
 
 
 def compact(ev: dict, with_value: bool = True) -> dict:

@@ -27,11 +27,20 @@ def test_every_agri_id_is_modelled():
 
 
 def test_unmodelled_region_agri_agent_says_so_without_calling_the_tool():
-    final = asyncio.run(G.run_graph(QueryRequest(query="Cyclone near Odisha: crop damage to paddy, what about my portfolio?")))
+    final = asyncio.run(G.run_graph(QueryRequest(query="Cyclone near Odisha, what about my portfolio?")))
     sig = next((s for s in final.get("signals", []) if s["agent"] == "agri_agent"), None)
     assert all(e["tool"] != "agri" for e in final["evidence"])
     if sig:                                               # agri_agent was routed (cyclone) → honest n/a
         assert sig["signal"] == "n/a" and "No crop-stress model" in sig["summary"]
+
+
+def test_crop_question_on_unmodelled_region_uses_covered_districts_and_says_so():
+    """A crop / monsoon question about Odisha: the signal comes from the districts the model covers (batch), and the
+    summary says it is not Odisha's."""
+    final = asyncio.run(G.run_graph(QueryRequest(query="Cyclone near Odisha: crop damage to paddy, what about my portfolio?")))
+    sig = next(s for s in final["signals"] if s["agent"] == "agri_agent")
+    assert any(e["tool"] == "agri" for e in final["evidence"])
+    assert "no crop model covers" in sig["summary"] and "districts the model covers" in sig["summary"]
 
 
 def test_every_weather_region_exists_in_ingestion():

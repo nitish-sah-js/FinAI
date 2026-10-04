@@ -16,7 +16,7 @@ from copilot_common import reachability
 from copilot_common.service_base import FIXTURES_DIR
 from copilot_common.settings import get_settings
 
-from . import llm_cache
+from . import calls, llm_cache
 from .chaos import FORCE_RATE_LIMIT
 from .json_repair import parse_as
 from .providers import Provider, build_providers
@@ -206,6 +206,7 @@ class Gateway:
             parsed = schema.model_validate(parsed)
         res = LLMResult(ok=True, text=text, parsed=parsed, provider="mock", model="mock", latency_ms=1)
         usage_for(run_id).record("mock", "local", "mock", 0, 0, False, 0)
+        calls.record(role, "mock", "mock", "mock", 1, "mock", run_id)
         if on_event:
             await _maybe_await(on_event({"provider": "mock", "provider_name": "mock", "model": "mock", "latency_ms": 1,
                                          "tokens_in": 0, "tokens_out": 0, "cached": False, "fallbacks": []}))
@@ -237,6 +238,8 @@ class Gateway:
             n_fb = sum(1 for f in fallbacks if "skipped" not in f)
             for u in (usage_for(run_id), SESSION):
                 u.record(p.name, p.kind, p.model, t_in, t_out, cached, n_fb)
+            calls.record(role, p.name, p.model, p.host_label, ms, calls.status_for(role, p.name, cached, mode), run_id,
+                         fallbacks)
             if not cached and t_out:
                 perf = self._perf.setdefault(p.name, [0.0, 0.0])
                 perf[0] += t_out
@@ -260,7 +263,8 @@ class Gateway:
             return rec, text, parsed
 
         # replay: any cached answer along the chain wins; strict mode never calls a model
-        if s.CACHE_MODE == "replay":
+        use_cache = not calls.NO_CACHE.get()
+        if s.CACHE_MODE == "replay" and use_cache:
             for p, msgs, rf, _extra in prepared:
                 hit = from_cache(p, msgs, rf)
                 if hit:
@@ -270,7 +274,7 @@ class Gateway:
                 return LLMResult(ok=False, fallbacks=fallbacks + ["cache:miss(strict)"], error="replay cache miss")
 
         for p, msgs, rf, extra in prepared:
-            if s.CACHE_MODE == "record":
+            if s.CACHE_MODE == "record" and use_cache:
                 hit = from_cache(p, msgs, rf)
                 if hit:
                     rec, text, parsed = hit
@@ -312,6 +316,7 @@ class Gateway:
                                                        "usage": {"tokens_in": t_in, "tokens_out": t_out}})
             return await finish(p, text, tool_calls, t_in, t_out, ms, False, parsed)
 
+        calls.record(role, "", "", "", 0, "failed", run_id, fallbacks)
         return LLMResult(ok=False, fallbacks=fallbacks, error="all LLM providers failed")
 
     async def warmup(self, timeout_s: float = 180) -> dict[str, str]:

@@ -132,6 +132,13 @@ async def run_detail(run_id: str) -> dict:
     return {"run_id": run_id, "status": run["status"], "query": run["query"], "final": run["final"], "events": events}
 
 
+@app.get("/runs/{run_id}/trace")
+async def run_trace(run_id: str) -> list[dict]:
+    """Which node called which service / model, on which laptop, how long, ok / degraded / fallback (Phase 5)."""
+    await _run_or_404(run_id)
+    return await ledger.get_trace([run_id])
+
+
 @app.get("/runs/{run_id}/events.jsonl", response_class=PlainTextResponse)
 async def run_events_jsonl(run_id: str) -> str:
     await _run_or_404(run_id)

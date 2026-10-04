@@ -22,7 +22,13 @@ from .events import BacktestCase, load_cases
 from .extract import check_leakage, extract_prediction, holdout_analogs, similarity_of_top_analog
 from .realized import fetch_bars, realized_return
 
-DEMO_PORTFOLIO = None  # orchestrator falls back to its demo portfolio when omitted
+
+
+def case_portfolio(case: BacktestCase) -> dict:
+    """The question is asked for a portfolio holding exactly the assets the case scores (1 unit each). With the demo
+    portfolio instead, the copilot analysed RELIANCE/ONGC/... while the scoreboard scored NG=F, ADANIPORTS, ..., so
+    13 of 16 points had no prediction at all. Quantity does not enter the per-asset return forecast."""
+    return {"portfolio_id": f"bt_{case.event_id}", "holdings": [{"ticker": a, "qty": 1} for a in case.assets]}
 
 
 def fetch_sentiment(case: BacktestCase, asset: str) -> float | None:
@@ -113,7 +119,7 @@ def build_scoreboard(points: list[dict], cfg: dict) -> dict:
 async def collect(cases: list[BacktestCase], llm_mode: str, holdout_ids: set[str] | None = None) -> tuple[list[dict], dict]:
     points, notes = [], {"no_prediction": [], "no_realized": [], "sentiment_unavailable": 0, "degraded_runs": []}
     for case in cases:  # sequential: GPUs are shared
-        run_id, final, events = await run_case(case, llm_mode=llm_mode, portfolio=DEMO_PORTFOLIO)
+        run_id, final, events = await run_case(case, llm_mode=llm_mode, portfolio=case_portfolio(case))
         print(f"[run] {case.event_id} -> {run_id}")
         bad = check_leakage(final, events, case.as_of)
         bad += [f"holdout analog returned: {e}" for e in holdout_analogs(final, (holdout_ids or set()) - {case.event_id})]

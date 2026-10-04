@@ -33,21 +33,23 @@ async def quant_agent(state: dict) -> dict:
     run_id = state["run_id"]
     intent = Intent.model_validate(state["intent"])
     plan = quant_plan(intent, state["request"]["query"])
-    await bus.emit(run_id, "quant_agent", "started", host="L2",
-                   message="running " + ", ".join(k for k, v in plan.items() if v))
-    kw = {"run_id": run_id, "chaos": chaos(state), "timeout_s": timeout_for("quant_agent")}
+    kw = {"run_id": run_id, "chaos": chaos(state), "timeout_s": timeout_for("quant_agent"), "node": "quant_agent"}
     pf, h = state["portfolio"], intent.horizon_days
-    jobs = {"risk": tools.risk(pf, h, as_of=as_of(state), **kw)}
+    jobs = {"risk": tools.risk(pf, h, as_of=as_of(state), **kw)} if plan["risk"] else {}
     if plan["hedge"]:
         jobs["hedge"] = tools.hedge(pf, h, as_of=as_of(state), **kw)
     if plan["scenario"]:
         jobs["scenario"] = tools.scenario(pf, plan["scenario"], as_of=as_of(state), **kw)
     prior = state.get("evidence", [])
-    if shock_evidence(prior):
+    if plan["risk"] and shock_evidence(prior):
         jobs["scenario_evidence"] = tools.scenario_from_evidence(pf, shock_evidence(prior), "5d" if h <= 10 else "20d",
                                                                  as_of=as_of(state), **kw)
     if plan["hedge"] and analog_events(prior):
         jobs["hedge_validation"] = tools.hedge_validation(pf, analog_events(prior), h, as_of=as_of(state), **kw)
+    if not jobs:                                  # simple intent with no scenario: the quant engine is not needed
+        await bus.emit(run_id, "quant_agent", "skipped", host="L2", message="not needed for this question")
+        return {"quant": {}}
+    await bus.emit(run_id, "quant_agent", "started", host="L2", message="running " + ", ".join(jobs))
     evs, quant = [], {}
     try:
         async with budget("quant_agent") as b:

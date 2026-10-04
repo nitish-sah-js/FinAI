@@ -9,7 +9,7 @@ AGENT_BUDGET = {   # node: (timeout_s, max_tokens for the LLM part)
     "parse_intent": (8, 300), "sentiment_agent": (15, 0), "weather_agent": (12, 300),
     "agri_agent": (12, 300), "macro_agent": (12, 300), "analog_agent": (12, 400),
     "exposure_agent": (8, 0), "quant_agent": (20, 0), "planner": (10, 300),
-    "synthesizer": (40, 900), "red_team": (20, 400), "validator": (3, 0), "explain": (30, 700)}
+    "synthesizer": (40, 1400), "red_team": (20, 400), "validator": (3, 0), "explain": (30, 700)}
 RUN_DEADLINE_S = 90
 MAX_STEPS = 6          # planner loop cap
 

@@ -24,6 +24,17 @@ ALWAYS = {
 WEATHER_SENSITIVE_SECTORS = {"energy", "utilities", "power", "agri", "fmcg", "cement", "ports", "mining", "oil&gas"}
 STORM_WORDS = ("storm", "cyclone", "hurricane", "heat", "rain", "flood", "monsoon")
 
+# Keyword rules (Phase 5): words in the question ADD the agent whose service answers them, for every intent.
+KEYWORD_AGENTS = [
+    (re.compile(r"\b(monsoon|crops?|rain(fall|s|y)?|kharif|rabi|harvest|sowing|drought|fmcg|agri\w*|farm\w*)\b", re.I),
+     "agri_agent"),
+    (re.compile(r"\b(news|sentiment|headlines?|buzz|mood)\b", re.I), "sentiment_agent"),
+    (re.compile(r"\b(prices?|macro|repo|rbi|cpi|inflation|crude|brent|oil|rupee|inr|usd/?inr|yields?|bond|gdp)\b", re.I),
+     "macro_agent"),
+]
+# intents whose answer needs the quant engine (risk / hedge / scenario on L2); simple look-ups skip it
+QUANT_INTENTS = {"event_impact", "portfolio_risk", "hedge_request", "what_if", "rank_exposure"}
+
 
 def select_agents(intent: Intent, portfolio: dict | None, query: str = "") -> list[str]:
     if intent.intent == "explain":
@@ -42,6 +53,9 @@ def select_agents(intent: Intent, portfolio: dict | None, query: str = "") -> li
     elif intent.intent == "market_summary":
         if et in {"cyclone", "hurricane", "heatwave", "monsoon"} or any(w in query.lower() for w in STORM_WORDS):
             agents.append("weather_agent")
+    for rx, agent in KEYWORD_AGENTS:
+        if query and rx.search(query):
+            agents.append(agent)
     for tool in intent.needs_tools:                       # needs_tools can ADD agents, never remove
         a = TOOL_TO_AGENT.get(tool)
         if a:
@@ -77,7 +91,7 @@ def parse_shocks(query: str) -> dict[str, float]:
 
 
 def quant_plan(intent: Intent, query: str) -> dict:
-    """Which quant tools run after the join (04 §2)."""
-    return {"risk": True,
+    """Which quant tools run after the join (04 §2). Simple intents (market summary, stock look-up) skip risk."""
+    return {"risk": intent.intent in QUANT_INTENTS,
             "hedge": intent.intent in {"hedge_request", "event_impact"},
             "scenario": parse_shocks(query) or None}

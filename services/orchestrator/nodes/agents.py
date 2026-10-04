@@ -17,7 +17,10 @@ from ..prompt_loader import render
 from ..regions import resolve
 from ..staleness import apply_staleness, effective_confidence
 from .common import as_of, chaos, chat, finish_kwargs
+from ..router import KEYWORD_AGENTS
 from .parse_intent import scope_tickers
+
+AGRI_WORDS = next(rx for rx, agent in KEYWORD_AGENTS if agent == "agri_agent")
 
 AGENT_HOST = {"sentiment_agent": "L2", "weather_agent": "L3", "agri_agent": "L2", "macro_agent": "L3",
               "analog_agent": "L2", "exposure_agent": "L2"}
@@ -92,7 +95,7 @@ async def _run_agent(s: dict, agent: str, work: Callable[[Budget], Awaitable[tup
 
 
 def _kw(s: dict, agent: str) -> dict:
-    return {"run_id": s["run_id"], "chaos": chaos(s), "timeout_s": timeout_for(agent)}
+    return {"run_id": s["run_id"], "chaos": chaos(s), "timeout_s": timeout_for(agent), "node": agent}
 
 
 def _situation(s: dict) -> str:
@@ -138,11 +141,22 @@ async def weather_agent(s: dict) -> dict:
 async def agri_agent(s: dict) -> dict:
     async def work(b: Budget):
         _, agri_id = resolve(s["intent"].get("region"), s["request"]["query"])
-        if agri_id is None:                       # no crop model covers this region: say so, call nothing
-            sig = code_signal("agri_agent", [], "n/a", "no crop-stress model covers this region")
-            sig.summary = "No crop-stress model covers this region, so there is no agri signal."
-            return [], sig
         on = str(as_of(s) or date.today())
+        if agri_id is None:
+            if not AGRI_WORDS.search(s["request"]["query"]):   # no crop model for the place, no crop question: say so
+                sig = code_signal("agri_agent", [], "n/a", "no crop-stress model covers this region")
+                sig.summary = "No crop-stress model covers this region, so there is no agri signal."
+                return [], sig
+            # a monsoon / crop / FMCG question about a place the model does not cover: answer from every district it
+            # does cover (labelled as such), never as if it were the named place
+            tr = await tools.agri_batch(on, as_of=as_of(s), **_kw(s, "agri_agent"))
+            evs = apply_staleness(tr.evidence)
+            place = s["intent"].get("region") or "the region you named"
+            note = f"no crop model covers {place}; signal from the {len(evs)} districts the model covers"
+            sig = (await narrate(s, "agri_agent", b, evs)) if evs else None
+            sig = sig or code_signal("agri_agent", evs, "mixed")
+            sig.summary = f"{sig.summary} (Note: {note}.)"
+            return evs, sig
         tr = await tools.agri(agri_id, on, as_of=as_of(s), **_kw(s, "agri_agent"))
         evs = apply_staleness(tr.evidence)
         return evs, (await narrate(s, "agri_agent", b, evs)) or code_signal("agri_agent", evs, "mixed")

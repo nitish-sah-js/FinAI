@@ -136,9 +136,10 @@ async def approve(body: ApproveIn):
         position = None
         if status == "approved":
             pos_id = _id("pos")
-            await db.execute("INSERT INTO paper_positions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            await db.execute("INSERT INTO paper_positions (position_id, proposal_id, instrument, underlying, side, "
+                             "quantity, unit, entry_price, entry_ts, price_kind, status) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                              (pos_id, prop["proposal_id"], hedge["instrument"], hedge["underlying"], hedge["side"],
-                              hedge["quantity"], hedge.get("unit", "lots"), price, ts, kind, "open", None, None))
+                              hedge["quantity"], hedge.get("unit", "lots"), price, ts, kind, "open"))
             snap = await snapshot_portfolio(db, prop["run_id"])
             await db.execute("INSERT INTO paper_snapshots VALUES (?,?)", (pos_id, json.dumps(snap)))
             position = (await _rows(db, "SELECT * FROM paper_positions WHERE position_id=?", (pos_id,)))[0]
@@ -200,6 +201,7 @@ async def positions(status: str = "open"):
             res.append({**p, "last_mark": m.get("mark_price"), "pnl_inr": m.get("pnl_inr"),
                         "portfolio_pnl_unhedged_inr": m.get("portfolio_pnl_unhedged_inr"),
                         "portfolio_pnl_hedged_inr": m.get("portfolio_pnl_hedged_inr"), "marked_at": m.get("ts"),
+                        "realised_pnl_inr": p.get("realised_pnl_inr"),
                         "price_label": {"spot_proxy": "spot proxy", "model_price": "model price"}.get(p["price_kind"], "close")})
         return res
     finally:
@@ -216,12 +218,14 @@ async def close(body: CloseIn):
         if rows[0]["status"] == "closed":
             raise HTTPException(409, "already closed")
         prop = await _rows(db, "SELECT hedge_json FROM paper_proposals WHERE proposal_id=?", (rows[0]["proposal_id"],))
+        p = rows[0]
         try:
             price, _ = await asyncio.to_thread(pricing.mark_price, json.loads(prop[0]["hedge_json"]))
-        except PriceUnavailable as e:
+            realised = pricing.pnl_inr(p["side"], p["entry_price"], price, p["quantity"], p["unit"], p["instrument"])
+        except (PriceUnavailable, pricing.LotSizeUnknown) as e:
             raise HTTPException(503, f"no price to close at: {e}")
-        await db.execute("UPDATE paper_positions SET status='closed', exit_price=?, exit_ts=? WHERE position_id=?",
-                         (price, _now(), body.position_id))
+        await db.execute("UPDATE paper_positions SET status='closed', exit_price=?, exit_ts=?, realised_pnl_inr=? "
+                         "WHERE position_id=?", (price, _now(), round(realised, 2), body.position_id))
         await db.commit()
         return (await _rows(db, "SELECT * FROM paper_positions WHERE position_id=?", (body.position_id,)))[0]
     finally:

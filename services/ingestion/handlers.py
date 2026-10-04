@@ -1,6 +1,7 @@
 """Endpoint logic. Each handler: (req, rid, counter, t0, chaos) -> ToolResult."""
 from __future__ import annotations
 import asyncio
+import re
 from datetime import timedelta
 
 import pandas as pd
@@ -89,6 +90,25 @@ async def prices_handler(req, rid, counter, t0, chaos) -> ToolResult:
 
 
 # ------------------------------------------------------------------ news
+# words that say nothing about WHICH news is relevant ("what happens to my portfolio this week")
+_STOP = set("""about after again against also because been before being could does doing during each from have having
+here hits holdings impact into itself just more most much other over portfolio same should some such than that their
+them then there these they this those through under until very week what when where which while will with would your
+yours happens happen affect affects stocks stock market markets news today tomorrow days""".split())
+
+
+def query_terms(query: str | None) -> list[str]:
+    """Keywords of a free-text question: lower-case words of 4+ letters that are not filler."""
+    words = re.findall(r"[a-z][a-z&]{3,}", (query or "").lower())
+    return list(dict.fromkeys(w for w in words if w not in _STOP))
+
+
+def relevance(item: dict, terms: list[str], tickers: set[str]) -> int:
+    """0 = unrelated. Ticker overlap counts most, then each keyword found in the title or summary."""
+    text = f"{item.get('title', '')} {item.get('summary', '')}".lower()
+    return 3 * len(tickers & set(item.get("tickers") or [])) + sum(1 for t in terms if t in text)
+
+
 async def _collect_news(query, as_of, since_hours, warns) -> list[dict]:
     tickers_cfg, feeds = load_json("tickers.json"), load_json("rss_feeds.json")
     end = as_of or utcnow()
@@ -97,10 +117,7 @@ async def _collect_news(query, as_of, since_hours, warns) -> list[dict]:
         try:
             rss_items = await cg("rss", {"feeds": [f["url"] for f in feeds]},
                                  lambda: rss.fetch_feeds(feeds, tickers_cfg), ttl=300)
-            if query:
-                terms = query.lower().split()
-                rss_items = [i for i in rss_items if all(t in f"{i['title']} {i['summary']}".lower() for t in terms)]
-            items += rss_items
+            items += rss_items          # relevance to the question is applied in news_handler
         except Exception as e:
             warns.append(f"rss: {type(e).__name__}")
     if query:
@@ -121,10 +138,13 @@ async def news_handler(req, rid, counter, t0, chaos) -> ToolResult:
     items = await _collect_news(req.query, as_of, req.since_hours, warns)
     items = store.filter_as_of(items, as_of)
     items = [i for i in items if parse_dt(i["published_at"]) >= now - timedelta(hours=req.since_hours)]
-    if req.tickers:
-        want = set(req.tickers)
-        items = [i for i in items if want & set(i["tickers"])]
-    items = rss.dedupe(sorted(items, key=lambda i: i["published_at"], reverse=True))[: req.limit]
+    terms, want = query_terms(req.query), set(req.tickers or [])
+    if terms or want:               # keep items that name a requested ticker OR share a keyword with the question
+        scored = [(relevance(i, terms, want), i) for i in items]
+        items = [i for sc, i in sorted(scored, key=lambda p: (p[0], p[1]["published_at"]), reverse=True) if sc > 0]
+    else:
+        items = sorted(items, key=lambda i: i["published_at"], reverse=True)
+    items = rss.dedupe(items)[: req.limit]
     all_failed = not items and bool(warns)
     last = max((parse_dt(i["published_at"]) for i in items), default=now)
     return ToolResult(evidence=[mk_ev(

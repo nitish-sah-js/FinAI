@@ -27,18 +27,25 @@ from . import client as wv
 from .analogs import AnalogReq, evidence_confidence, find_analogs
 from .corpus import corpus_vectors, load_events
 from .embed import MODEL_NAME, Embedder, model_state
+from .seed import ensure_seeded
 from .news import NewsIndexReq, NewsSearchReq, index_news, latency_stats, record_analog_latency, search_news
 
 logger = logging.getLogger(__name__)
 PROBE_EVERY_S = 15.0
 
 
-async def _prober() -> None:
-    """Keeps the Weaviate breaker state fresh so requests never pay a connect attempt."""
+SEED_STATE = {"events": "not checked"}      # "ok" | "n/40 events" | "error: ..." -> /health deps.weaviate_events
+
+
+async def _prober(emb: Embedder | None = None) -> None:
+    """Keeps the Weaviate breaker state fresh so requests never pay a connect attempt, and seeds an empty Weaviate
+    with the event corpus (new L2 laptop / fresh Docker volume), so analog search does not stay on numpy."""
     while True:
         try:
-            await asyncio.to_thread(wv.refresh)
+            if await asyncio.to_thread(wv.refresh) == "ok" and emb is not None and SEED_STATE["events"] != "ok":
+                SEED_STATE["events"] = await asyncio.to_thread(ensure_seeded, load_events(), emb)
         except Exception as e:  # noqa: BLE001
+            SEED_STATE["events"] = f"error: {type(e).__name__}"
             logger.debug("probe failed: %s", e)
         await asyncio.sleep(PROBE_EVERY_S)
 
@@ -51,7 +58,7 @@ async def lifespan(app):
         events = load_events()
         if events:
             await asyncio.to_thread(corpus_vectors, events, emb)       # warm the fallback cache
-        task = asyncio.create_task(_prober())
+        task = asyncio.create_task(_prober(emb))
     yield
     if task:
         task.cancel()
@@ -66,8 +73,12 @@ async def deps_check() -> dict[str, str]:
     st = model_state()
     emb = "ok" if st["status"] == "ok" else ("not loaded" if st["status"] == "not loaded"
                                              else f"hashing fallback ({st['error']})")
-    return {"weaviate": await wv.weaviate_ready(), "embedder": emb,
-            "corpus": "ok" if load_events() else "missing data/historical_events.json"}
+    weaviate = await wv.weaviate_ready()
+    out = {"weaviate": weaviate, "embedder": emb,
+           "corpus": "ok" if load_events() else "missing data/historical_events.json"}
+    if weaviate == "ok":                          # analogs run on Weaviate only when the events are in it
+        out["weaviate_events"] = SEED_STATE["events"]
+    return out
 
 
 app = create_service_app("vectordb", version=__version__, deps_check=deps_check, models=[MODEL_NAME],

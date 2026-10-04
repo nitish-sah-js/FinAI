@@ -96,3 +96,23 @@ def test_parse_instrument_and_notional():
     assert parse_instrument("RELIANCE 2900 PE")["opt"] == "put" and parse_instrument("RELIANCE 2900 PE")["strike"] == 2900
     assert parse_instrument("NIFTY OCT FUT short") == {"kind": "future", "month": 10}
     assert pnl_inr("sell", 100.0, 90.0, 50000, "notional_inr", "X") == pytest.approx(5000.0)
+
+
+def test_no_marks_on_nse_holidays():
+    from orchestrator.paper.calendar import trading_day
+    gandhi = datetime(2026, 10, 2, 10, 0, tzinfo=IST)          # Friday, Gandhi Jayanti: exchange closed
+    assert not should_mark(gandhi)
+    assert trading_day(gandhi.date()) == (False, "XBOM")
+    assert trading_day(datetime(2026, 10, 5).date()) == (True, "XBOM")
+    ok, src = trading_day(datetime(2031, 3, 4).date())            # past the published calendar: not guessed
+    assert ok is True and src.startswith("weekday-only")
+
+
+def test_close_records_realised_pnl(client):
+    p = _propose(client).json()
+    pos = client.post("/paper/approve", json={"proposal_id": p["proposal_id"], "decision": "approve", "approved_by": "N"}).json()["position"]
+    closed = client.post("/paper/close", json={"position_id": pos["position_id"]}).json()
+    expected = pnl_inr(pos["side"], pos["entry_price"], closed["exit_price"], pos["quantity"], pos["unit"], pos["instrument"])
+    assert closed["realised_pnl_inr"] == pytest.approx(round(expected, 2))
+    assert client.get("/paper/positions", params={"status": "closed"}).json()[0]["realised_pnl_inr"] == closed["realised_pnl_inr"]
+    assert client.post("/paper/close", json={"position_id": pos["position_id"]}).status_code == 409

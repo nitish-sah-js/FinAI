@@ -1,5 +1,5 @@
-"""Mark job (12 §B3): every 15 min 09:15–15:30 IST on weekdays, plus 15:35 IST after the close.
-NSE holidays are not modelled; a holiday mark simply repeats the last close."""
+"""Mark job (12 §B3): every 15 min 09:15–15:30 IST on trading days, plus 15:35 IST after the close.
+Trading days come from the exchange calendar (paper/calendar.py, XBOM = NSE/BSE holidays); no marks on holidays."""
 from __future__ import annotations
 
 import asyncio
@@ -9,10 +9,12 @@ from datetime import datetime, timedelta, timezone
 IST = timezone(timedelta(hours=5, minutes=30))
 log = logging.getLogger("paper.scheduler")
 
+from .calendar import is_trading_day  # noqa: E402
+
 
 def should_mark(now: datetime) -> bool:
     now = now.astimezone(IST)
-    if now.weekday() >= 5:                      # Saturday, Sunday
+    if not is_trading_day(now.date()):          # weekend or exchange holiday
         return False
     hm = (now.hour, now.minute)
     if hm == (15, 35):

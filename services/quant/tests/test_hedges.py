@@ -50,3 +50,14 @@ def test_expiry_is_last_tuesday():
     d = hedges.next_monthly_expiry(date(2026, 10, 3), weekday=1)
     assert d == date(2026, 10, 27) and d.weekday() == 1
     assert hedges.next_monthly_expiry(date(2026, 10, 27), weekday=1) == date(2026, 11, 24)
+
+
+def test_portfolio_that_holds_the_hedge_index_does_not_crash():
+    """Found by the real backtest: holdings [ADANIPORTS, ^NSEI] with candidate ^NSEI gave a duplicate price column
+    and a numpy 'inhomogeneous shape' error. The index's own beta is 1, so the portfolio beta is a weighted mix."""
+    pf, px = _setup(beta=0.5)
+    pf = Portfolio(holdings=[Holding(ticker="S.NS", qty=1000), Holding(ticker="^NSEI", qty=100)])
+    r = hedges.propose(pf, px, ["^NSEI"], "min_variance", {"^NSEI": 1}, True, 5, ref_date=date(2026, 10, 3))
+    assert r["proposals"] and r["proposals"][0]["underlying"] == "^NSEI"
+    w_idx = 100 * px["^NSEI"].iloc[-1] / (1000 * px["S.NS"].iloc[-1] + 100 * px["^NSEI"].iloc[-1])
+    assert abs(r["portfolio_beta"] - (w_idx * 1.0 + (1 - w_idx) * 0.5)) < 0.1

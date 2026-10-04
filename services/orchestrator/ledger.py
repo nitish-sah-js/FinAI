@@ -15,7 +15,11 @@ CREATE TABLE IF NOT EXISTS runs (run_id TEXT PRIMARY KEY, created_at TEXT, query
                                  confidence TEXT, request_json TEXT, final_json TEXT);
 CREATE TABLE IF NOT EXISTS events (run_id TEXT, seq INTEGER, t_ms INTEGER, json TEXT, PRIMARY KEY (run_id, seq));
 CREATE TABLE IF NOT EXISTS evidence (id TEXT, run_id TEXT, tool TEXT, json TEXT, PRIMARY KEY (run_id, id));
+CREATE TABLE IF NOT EXISTS trace (run_id TEXT, ts TEXT, node TEXT, service TEXT, host TEXT, model TEXT,
+                                  latency_ms INTEGER, status TEXT, detail TEXT);
+CREATE INDEX IF NOT EXISTS trace_run ON trace (run_id);
 """
+TRACE_COLS = ("run_id", "ts", "node", "service", "host", "model", "latency_ms", "status", "detail")
 
 
 class Ledger:
@@ -68,6 +72,18 @@ class Ledger:
         db = await self.db()
         await db.execute("INSERT OR REPLACE INTO events VALUES (?,?,?,?)", (run_id, seq, t_ms, json.dumps(event, default=str)))
         await db.commit()
+
+    async def add_trace(self, row: dict) -> None:
+        db = await self.db()
+        await db.execute(f"INSERT INTO trace VALUES ({','.join('?' * len(TRACE_COLS))})",
+                         tuple(row.get(c) for c in TRACE_COLS))
+        await db.commit()
+
+    async def get_trace(self, run_ids: list[str]) -> list[dict]:
+        db = await self.db()
+        q = f"SELECT * FROM trace WHERE run_id IN ({','.join('?' * len(run_ids))}) ORDER BY ts"
+        async with db.execute(q, tuple(run_ids)) as cur:
+            return [dict(r) for r in await cur.fetchall()]
 
     async def get_run(self, run_id: str) -> dict | None:
         db = await self.db()
