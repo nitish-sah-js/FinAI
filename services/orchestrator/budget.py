@@ -30,6 +30,7 @@ class Budget:
         self.tokens_out = 0
         self.model: str | None = None
         self.provider: str | None = None
+        self.evidence: list = []        # evidence fetched so far: kept if the node runs out of time afterwards
 
     @property
     def ms(self) -> int:

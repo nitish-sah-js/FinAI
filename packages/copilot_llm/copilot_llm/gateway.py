@@ -26,6 +26,9 @@ from .usage import SESSION, usage_for
 
 # Ollama keep_alive for every local call and the warm-up load: -1 = keep the model in memory until Ollama stops
 KEEP_ALIVE = -1
+# a local model that just crashed or timed out is skipped this long (per model, not per host: on one laptop every
+# role shares 127.0.0.1:11434, so marking the host down would also take out the working models)
+SICK_TTL_S = 60.0
 
 
 @dataclass
@@ -71,6 +74,7 @@ class Gateway:
         self._quota: QuotaTracker | None = None
         self._clients: dict[str, AsyncOpenAI] = {}
         self._perf: dict[str, list[float]] = {}          # provider -> [tokens_out_total, seconds_total]
+        self._sick_until: dict[str, float] = {}           # provider -> skip until (model crashed / timed out)
         self.http_client_factory = http_client_factory    # tests inject a mock transport here
         # warm-up: "pending" until warmup() has loaded every installed local model once (see is_warm)
         self.warm: dict[str, Any] = {"state": "pending", "models": {}, "started_at": None, "finished_at": None}
@@ -92,6 +96,7 @@ class Gateway:
         self._quota = None
         self._clients.clear()
         self._perf.clear()
+        self._sick_until.clear()
         self.warm = {"state": "pending", "models": {}, "started_at": None, "finished_at": None}
 
     def _client(self, p: Provider) -> AsyncOpenAI:
@@ -279,6 +284,10 @@ class Gateway:
                 if hit:
                     rec, text, parsed = hit
                     return await finish(p, text, rec["response"].get("tool_calls", []), 0, 0, 0, True, parsed)
+            last = p is prepared[-1][0]                  # the chain's final model is never skipped
+            if not last and self._sick_until.get(p.name, 0.0) > time.time():
+                fallbacks.append(f"{p.name}:skipped(failing)")
+                continue
             if reachability.is_down(p.base_url):
                 fallbacks.append(f"{p.name}:skipped(down)")
                 continue
@@ -305,6 +314,11 @@ class Gateway:
                             raise _CallFailed(f"{p.name}:invalid_json")
             except _CallFailed as e:
                 fallbacks.append(e.note)
+                # a local model that crashes (HTTP 5xx, e.g. a CUDA error in llama-server) or hangs is skipped for
+                # SICK_TTL_S, so every later call goes straight to the fallback instead of waiting on it again
+                code = e.note.rsplit(":", 1)[-1]
+                if p.kind == "local" and not last and (code == "timeout" or code.startswith("5")):
+                    self._sick_until[p.name] = time.time() + SICK_TTL_S
                 continue
             except Exception as e:  # noqa: BLE001  never crash the caller
                 fallbacks.append(f"{p.name}:error({type(e).__name__})")

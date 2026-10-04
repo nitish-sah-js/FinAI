@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import sys
 import re
 from functools import lru_cache
 from pathlib import Path
@@ -24,8 +25,12 @@ def project_root() -> Path:
 
 
 def _load_env_file() -> None:
-    """Load .env (cwd first, then repo root) into os.environ, expanding ${VAR}. Real env vars win."""
-    for path in (Path.cwd() / ".env", project_root() / ".env"):
+    """Load .env (cwd first, then repo root) into os.environ, expanding ${VAR}. Real env vars win.
+    Under pytest the laptop's .env is NOT read: tests must not depend on which laptop runs them (a cluster .env
+    adds CLUSTER_KEY and LAN IPs) and must never see real secrets such as SMTP credentials.
+    COPILOT_TEST_DOTENV=1 opts back in."""
+    skip_file = "pytest" in sys.modules and os.environ.get("COPILOT_TEST_DOTENV") != "1"
+    for path in () if skip_file else (Path.cwd() / ".env", project_root() / ".env"):
         if path.is_file():
             raw = dotenv_values(path)
             for k, v in raw.items():

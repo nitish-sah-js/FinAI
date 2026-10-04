@@ -157,3 +157,29 @@ def test_parse_duration():
     assert parse_duration("1h2m") == 3720
     assert parse_duration("12") == 12
     assert parse_duration("250ms") == pytest.approx(0.25)
+
+
+def test_crashing_local_model_is_skipped_after_first_failure(server, monkeypatch):
+    """Seen live on L2: gemma3 crashed in llama-server (HTTP 500, CUDA 0xc0000409) on every call, and each agent
+    waited on it until its time budget ran out. After one 5xx the model is skipped for SICK_TTL_S."""
+    import copilot_llm.gateway as G
+    fake, gw = server
+    crash = (500, {}, {"error": "llama-server process has terminated: exit status 0xc0000409"})
+    fake.add("ollama-l2", "gemma3:4b", crash)
+    fake.add("ollama-l1", "qwen3:4b-instruct", "fallback answer")
+    first = run(gw.chat("narrator", MSGS))
+    assert first.ok and first.provider == "ollama_L1" and first.fallbacks == ["ollama_L2:500"]
+    second = run(gw.chat("narrator", MSGS, run_id="r2"))
+    assert second.ok and second.fallbacks == ["ollama_L2:skipped(failing)"]
+    assert sum(1 for c in fake.calls if c["model"] == "gemma3:4b") == 1          # not asked again
+    monkeypatch.setattr(G.time, "time", lambda: 10 ** 12)                        # after the TTL: tried again
+    run(gw.chat("narrator", MSGS, run_id="r3"))
+    assert sum(1 for c in fake.calls if c["model"] == "gemma3:4b") == 2
+
+
+def test_last_model_in_chain_is_never_skipped(server):
+    fake, gw = server
+    crash = (500, {}, {"error": "boom"})
+    fake.add("ollama-l1", "qwen3:4b-instruct", crash, "ok now")
+    assert not run(gw.chat("intent", MSGS)).ok
+    assert run(gw.chat("intent", MSGS)).text == "ok now"                        # L1 is the end of the chain

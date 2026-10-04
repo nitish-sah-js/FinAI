@@ -294,3 +294,26 @@ def test_malformed_citation_digits_are_not_figures():
     ev = [{"id": "ev_macro_001", "tool": "macro", "value": {"brent_5d": -0.0198}, "summary": "Brent -2.0% 5d"}]
     report, _ = validate("- HINDUNILVR.NS: no direct exposure [ev_macro_00-01]", ev)
     assert report.action == "pass" and report.numbers_found == 0
+
+
+def test_agent_timeout_keeps_evidence_already_fetched(monkeypatch):
+    """Seen in the 3-laptop run: weather/analog/agri data arrived in 1-2 s, the narrator on L2 hung, the 12 s budget
+    ran out and the evidence was thrown away ('No evidence available'). It is now kept and summarised without LLM."""
+    import asyncio
+    from datetime import datetime, timezone
+    from copilot_common.models import Evidence
+    from orchestrator import budget as B
+    from orchestrator.nodes import agents as A
+    monkeypatch.setitem(B.AGENT_BUDGET, "weather_agent", (0.3, 300))
+    t = datetime.now(timezone.utc)
+    ev = Evidence(id="ev_weather_001", tool="weather", value={"rain_mm": 120}, summary="rain 120 mm", source="t",
+                  as_of=t, timestamp=t, confidence=0.8)
+
+    async def work(b):
+        b.evidence = [ev]                 # what narrate() records before calling the LLM
+        await asyncio.sleep(5)            # the LLM hangs
+
+    out = asyncio.run(A._run_agent({"run_id": "run_t", "request": {"query": "q"}}, "weather_agent", work))
+    assert [e["id"] for e in out["evidence"]] == ["ev_weather_001"]
+    sig = out["signals"][0]
+    assert sig["degraded"] and "ev_weather_001" in sig["summary"] and "without the LLM" in sig["summary"]

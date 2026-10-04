@@ -49,6 +49,7 @@ def exposed_holdings(portfolio: dict) -> list[dict]:
 
 
 async def narrate(s: dict, agent: str, b: Budget, evs: list[Evidence]) -> AgentSignal | None:
+    b.evidence = list(evs)               # the data is in hand; a slow narrator must not lose it
     prompt = render(PROMPT[agent], evidence_json=[_compact(e) for e in evs],
                     exposed_holdings=exposed_holdings(s["portfolio"]))
     res = await chat(s, agent, b, "narrator", [{"role": "user", "content": prompt}], schema=AgentSignal,
@@ -78,7 +79,9 @@ async def _run_agent(s: dict, agent: str, work: Callable[[Budget], Awaitable[tup
         async with budget(agent) as b:
             evs, sig = await work(b)
     except TimeoutError:
-        sig = code_signal(agent, evs, note="time budget exceeded")
+        evs = evs or list(b.evidence)    # e.g. the tool answered but the narrator LLM hung: keep the evidence
+        sig = code_signal(agent, evs, note="time budget exceeded; summary written without the LLM" if evs
+                          else "time budget exceeded")
         sig.degraded = True
     except Exception as e:  # noqa: BLE001
         sig = code_signal(agent, evs, note=f"error: {type(e).__name__}")
@@ -109,6 +112,7 @@ async def sentiment_agent(s: dict) -> dict:
         i = s["intent"]
         tickers = scope_tickers(s)
         news_tr: ToolResult = await tools.news(_situation(s), tickers, as_of=as_of(s), **_kw(s, "sentiment_agent"))
+        b.evidence = apply_staleness(list(news_tr.evidence))
         items = next((e.value.get("items", []) for e in news_tr.evidence if e.tool == "news"), [])
         sent_tr = await tools.sentiment(items, s["portfolio"], as_of=as_of(s), **_kw(s, "sentiment_agent"))
         evs = apply_staleness(news_tr.evidence + sent_tr.evidence)
