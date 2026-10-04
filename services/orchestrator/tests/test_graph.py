@@ -135,3 +135,15 @@ def test_explain_replays_previous_run():
 def test_hindi_answer_uses_lang():
     final = run(G.run_graph(QueryRequest(query=Q, lang="hinglish")))
     assert final["lang"] == "hinglish"
+
+
+def test_every_event_has_run_offset_and_validator_is_timed():
+    from orchestrator.events import bus
+    final = run(G.run_graph(QueryRequest(query=Q)))
+    fa = FinalAnswer.model_validate(final)
+    evs = [m["data"] for m in bus._history[fa.run_id] if m["type"] == "event"]
+    assert evs and all(e["t_ms"] is not None and e["t_ms"] >= 0 for e in evs)
+    assert [e["t_ms"] for e in evs] == sorted(e["t_ms"] for e in evs)          # offsets only move forward
+    val = [e for e in evs if e["node"] == "validator" and e["status"] != "started"]
+    assert val and val[-1]["latency_ms"] is not None
+    assert "validator" in fa.latency_ms

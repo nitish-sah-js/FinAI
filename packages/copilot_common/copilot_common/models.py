@@ -181,6 +181,7 @@ class AgentEvent(BaseModel):
     status: Literal["queued", "started", "progress", "finished", "failed", "skipped", "degraded"]
     ts: datetime
     latency_ms: int | None = None
+    t_ms: int | None = None              # ms since the run started (for a start/end waterfall)
     evidence_ids: list[str] = []
     message: str | None = None
     model: str | None = None

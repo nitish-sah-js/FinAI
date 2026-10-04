@@ -181,7 +181,7 @@ function ReasoningBox({ events, final, status, running, elapsed, defaultOpen, ru
               </div>
               <div className="col-span-7 h-56 rounded-lg border border-t-fg/[0.07] flex flex-col overflow-hidden">
                 <PanelHeader title="Time per step" />
-                <LatencyWaterfall latency={latency} />
+                <LatencyWaterfall latency={latency} events={events} />
               </div>
               <div className="col-span-12 h-36 rounded-lg border border-t-fg/[0.07] flex flex-col overflow-hidden">
                 <PanelHeader title="Log" right={<span className="text-xs text-t-muted">{status}</span>} />

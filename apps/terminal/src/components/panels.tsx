@@ -185,7 +185,47 @@ export function IntentPanel({ intent, events }: { intent: Intent | null; events:
 }
 
 const STEP_LABEL: Record<string, string> = { fanout: 'All agents' };
-export function LatencyWaterfall({ latency }: { latency: Record<string, number> }) {
+const DONE = new Set(['finished', 'degraded', 'failed']);
+
+/** Start/end of each step from the run's events (t_ms = ms since the run started). Empty for old runs. */
+export function stepSpans(events: AgentEvent[]): { node: string; start: number; end: number | null; status: string }[] {
+  const spans: Record<string, { node: string; start: number; end: number | null; status: string }> = {};
+  for (const e of events) {
+    if (e.t_ms == null || e.status === 'skipped' || e.status === 'queued') continue;
+    const sp = spans[e.node] ?? (spans[e.node] = { node: e.node, start: e.t_ms, end: null, status: e.status });
+    sp.start = Math.min(sp.start, e.t_ms);
+    if (DONE.has(e.status)) { sp.end = Math.max(sp.end ?? 0, e.t_ms); sp.status = e.status; }
+  }
+  return Object.values(spans).sort((a, b) => a.start - b.start || a.node.localeCompare(b.node));
+}
+
+export function LatencyWaterfall({ latency, events = [] }: { latency: Record<string, number>; events?: AgentEvent[] }) {
+  const spans = stepSpans(events);
+  if (spans.length) {
+    // timeline: each bar starts when the step started, so parallel agents show side by side
+    const total = Math.max(1, latency.total ?? 0, ...spans.map((s) => s.end ?? s.start));
+    return (
+      <div className="flex-1 px-4 py-3 flex flex-col gap-1.5 text-xs overflow-auto">
+        {spans.map((sp) => {
+          const end = sp.end ?? total;
+          const tone = sp.status === 'failed' ? 'bg-t-rose/70' : sp.status === 'degraded' ? 'bg-t-saffron/70' : sp.end == null ? 'bg-t-amber/70 animate-pulse' : 'bg-t-muted/70';
+          return (
+            <div key={sp.node} className="grid grid-cols-[110px_1fr_56px] items-center gap-3">
+              <span className="truncate text-t-muted">{NODE_LABEL[sp.node] ?? sp.node}</span>
+              <div className="h-1.5 rounded-full bg-t-line relative">
+                <div className={`absolute h-full rounded-full ${tone}`}
+                  style={{ left: `${(sp.start / total) * 100}%`, width: `${Math.max(1, ((end - sp.start) / total) * 100)}%` }} />
+              </div>
+              <span className="text-t-text text-right">{sp.end != null ? fmtMs(sp.end - sp.start) : '…'}</span>
+            </div>
+          );
+        })}
+        <div className="grid grid-cols-[110px_1fr_56px] gap-3 pt-1.5 mt-1 border-t border-t-fg/[0.07] font-medium">
+          <span className="text-t-text">Total</span><span /><span className="text-t-text text-right">{fmtMs(total)}</span>
+        </div>
+      </div>
+    );
+  }
   const entries = Object.entries(latency).filter(([k]) => k !== 'total');
   const total = latency.total || Math.max(1, ...entries.map(([, v]) => v));
   if (!entries.length) return <Empty>Step timings appear as each step finishes.</Empty>;

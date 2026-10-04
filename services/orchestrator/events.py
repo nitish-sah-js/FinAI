@@ -50,10 +50,11 @@ class EventBus:
     async def emit(self, run_id: str, node: str, status: str, **kw) -> AgentEvent:
         self._seq[run_id] += 1
         kw.setdefault("host", NODE_HOST.get(node))
+        t = self.t_ms(run_id)
+        kw.setdefault("t_ms", t)
         ev = AgentEvent(run_id=run_id, seq=self._seq[run_id], node=node, status=status,
                         ts=datetime.now(timezone.utc), **kw)
         msg = {"type": "event", "data": ev.model_dump(mode="json")}
-        t = self.t_ms(run_id)
         await self._push(run_id, msg)
         try:
             await ledger.add_event(run_id, ev.seq, t, msg)

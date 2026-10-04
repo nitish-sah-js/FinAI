@@ -144,6 +144,7 @@ export interface AgentEvent {
   status: AgentStatus;
   ts: string;
   latency_ms?: number | null;
+  t_ms?: number | null;   // ms since the run started
   evidence_ids: string[];
   message?: string | null;
   model?: string | null;

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+import time
 from dataclasses import dataclass
 
 from copilot_common.settings import get_settings
@@ -225,6 +226,7 @@ def validate(draft: str, evidence: list[dict], horizon_days: int = 5, query: str
 async def validator(state: dict) -> dict:
     run_id = state["run_id"]
     await bus.emit(run_id, "validator", "started", message="checking every number against the evidence")
+    t0 = time.perf_counter()
     report, answer = validate(state.get("draft", ""), state.get("evidence", []),
                               int(state.get("intent", {}).get("horizon_days", 5)), state["request"]["query"],
                               signals=state.get("signals", []), allow_fixture=get_settings().MOCK)
@@ -233,6 +235,7 @@ async def validator(state: dict) -> dict:
         msg += f" · {len(report.rejected_evidence)} fixture item(s) rejected"
     if report.auto_cited:
         msg += f" · {len(report.auto_cited)} citation(s) added"
+    ms = int((time.perf_counter() - t0) * 1000)
     await bus.emit(run_id, "validator", "finished" if report.action == "pass" else "degraded", message=msg,
-                   meta={"unmatched": report.unmatched, "auto_cited": report.auto_cited})
-    return {"validator": report.model_dump(mode="json"), "answer_markdown": answer}
+                   latency_ms=ms, meta={"unmatched": report.unmatched, "auto_cited": report.auto_cited})
+    return {"validator": report.model_dump(mode="json"), "answer_markdown": answer, "latency": {"validator": ms}}
