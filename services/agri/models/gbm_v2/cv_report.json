@@ -61,7 +61,22 @@
         42,
         132
       ]
-    ]
+    ],
+    "model_deterioration": {
+      "n_deteriorations": 307,
+      "base_rate": 0.17593123209169054,
+      "n_called_worse": 265,
+      "recall": 0.3289902280130293,
+      "precision": 0.38113207547169814
+    },
+    "persistence_deterioration": {
+      "n_deteriorations": 307,
+      "base_rate": 0.17593123209169054,
+      "n_called_worse": 0,
+      "recall": 0.0,
+      "precision": 0.0
+    },
+    "deterioration_evaluated": "2026-10-04"
   },
   "folds": [
     {

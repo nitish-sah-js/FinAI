@@ -86,6 +86,16 @@ def metrics(y, pred) -> dict:
             "macro_f1": float(f1_score(y, pred, labels=list(range(4)), average="macro", zero_division=0))}
 
 
+def deterioration(y, pred, cur) -> dict:
+    """'Catches deteriorations': among composites whose next class is WORSE than the current one, how many did the
+    method call worse (recall), and how many of its 'worse' calls were right (precision). Persistence predicts the
+    current class, so its recall is 0 by construction; 'always one step worse' would have recall 1 at the base rate."""
+    worse, called = y > cur, pred > cur
+    hit = int((called & worse).sum())
+    return {"n_deteriorations": int(worse.sum()), "base_rate": float(worse.mean()), "n_called_worse": int(called.sum()),
+            "recall": hit / max(int(worse.sum()), 1), "precision": hit / max(int(called.sum()), 1)}
+
+
 def run(params_name: str, version: str, out_dir: Path, allow_nan_delta: bool, previous_cv: str | None = None) -> dict:
     params = PARAMS[params_name]
     table = pd.read_csv(TRAINING_FILE, parse_dates=["period_end", "image_date"])
@@ -127,11 +137,16 @@ def run(params_name: str, version: str, out_dir: Path, allow_nan_delta: bool, pr
           "persistence_accuracy": pm["accuracy"], "persistence_macro_f1": pm["macro_f1"],
           "always_healthy_accuracy": hm["accuracy"], "always_healthy_macro_f1": hm["macro_f1"],
           "beats_persistence": beats,
+          "model_deterioration": deterioration(y, pred, pers),
+          "persistence_deterioration": deterioration(y, pers, pers),
           "confusion_matrix": confusion_matrix(y, pred, labels=list(range(4))).tolist(),
           "persistence_confusion_matrix": confusion_matrix(y, pers, labels=list(range(4))).tolist()}
     print(f"\nCV {params_name}: model acc={mm['accuracy']:.4f} F1={mm['macro_f1']:.4f} brier={cv['model_brier']:.4f} | "
           f"persistence acc={pm['accuracy']:.4f} F1={pm['macro_f1']:.4f} | always-healthy F1={hm['macro_f1']:.4f}"
           f" | beats persistence: {beats}")
+    d = cv["model_deterioration"]
+    print(f"Deteriorations: {d['n_deteriorations']} ({d['base_rate']:.1%} of rows) | model recall={d['recall']:.3f} "
+          f"precision={d['precision']:.3f} ({d['n_called_worse']} 'worse' calls) | persistence recall=0 by construction")
 
     # ---------------- final model: leave-current-year-out features of the whole table (= what the service builds)
     Xall = model_frame(labelled)

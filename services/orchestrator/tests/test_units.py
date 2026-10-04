@@ -195,3 +195,16 @@ def test_unavailable_result_has_no_numbers():
     assert ev.value == {"status": "unavailable", "reason": "the quant service could not be reached"}
     assert ev.confidence == 0.0 and ev.degraded_reason == "unavailable" and not ev.fixture
     assert ev.summary == "No risk data: the quant service could not be reached"
+
+
+def test_agri_signal_is_low_weight_with_dated_caveat():
+    from orchestrator.nodes.synthesizer import AGRI_CAVEAT, code_answer, synth_inputs
+    state = {"request": {"query": "monsoon deficit in Vidarbha"}, "portfolio": {"holdings": []}, "evidence": [],
+             "signals": [{"agent": "agri_agent", "signal": "bearish", "summary": "Yavatmal stressed.", "evidence_ids": []},
+                         {"agent": "weather_agent", "signal": "bearish", "summary": "Rain 40% below normal.", "evidence_ids": []}]}
+    sig = {s["agent"]: s for s in synth_inputs(state)["signals_json"]}
+    assert sig["agri_agent"]["weight"] == "low" and "2026-10-04" in sig["agri_agent"]["caveat"]
+    md = code_answer(state)
+    bottom = md.split("### Impact")[0]
+    assert "Yavatmal stressed" not in bottom and "Rain 40% below normal" in bottom     # agri never leads
+    assert AGRI_CAVEAT in md

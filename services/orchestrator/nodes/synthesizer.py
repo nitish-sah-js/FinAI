@@ -20,13 +20,25 @@ def _by_tool(evidence: list[dict], tool: str) -> dict | None:
                  and not (isinstance(e.get("value"), dict) and e["value"].get("status") == "unavailable")), None)
 
 
+# The crop-stress model does not beat a "no change" baseline overall (services/agri/MODEL_CARD.md), so its signal is
+# low weight: it never leads the bottom line, and any answer that uses it carries this dated caveat.
+LOW_WEIGHT_AGENTS = {"agri_agent"}
+AGRI_CAVEAT = ("Crop-stress model caveat (evaluated 2026-10-04): it does not beat a 'no change' forecast overall "
+               "(accuracy 0.60 vs 0.62) and catches about a third of real deteriorations; treat it as an early warning only.")
+
+
+def _agri_used(state: dict) -> bool:
+    return any(s.get("agent") == "agri_agent" and s.get("signal") not in (None, "n/a") for s in state.get("signals", []))
+
+
 def synth_inputs(state: dict) -> dict:
     ev = state.get("evidence", [])
     analogs, risk, hedge = _by_tool(ev, "analogs"), _by_tool(ev, "risk"), _by_tool(ev, "hedge")
     return {
         "query": state["request"]["query"],
         "portfolio_summary": portfolio_summary(state["portfolio"]),
-        "signals_json": [{k: s.get(k) for k in ("agent", "signal", "summary", "evidence_ids", "confidence", "degraded")}
+        "signals_json": [{**{k: s.get(k) for k in ("agent", "signal", "summary", "evidence_ids", "confidence", "degraded")},
+                          **({"weight": "low", "caveat": AGRI_CAVEAT} if s.get("agent") in LOW_WEIGHT_AGENTS else {})}
                          for s in state.get("signals", [])],
         "distribution_json": analog_lines(analogs) or ["no analog evidence"],
         "risk_json": (risk_lines(risk) + scenario_range_lines(ev)) or ["no risk evidence"],
@@ -162,7 +174,7 @@ def code_answer(state: dict) -> str:
     ev = state.get("evidence", [])
     sigs = state.get("signals", [])
     lines = ["### Bottom line"]
-    lead = [s for s in sigs if s["agent"] in ("weather_agent", "analog_agent", "macro_agent", "agri_agent")][:2]
+    lead = [s for s in sigs if s["agent"] in ("weather_agent", "analog_agent", "macro_agent")][:2]   # agri: low weight
     lines.append(" ".join(s["summary"] for s in lead) or "Not enough evidence for a confident view.")
     lines += ["", "### Impact on your holdings"]
     analogs = _by_tool(ev, "analogs")
@@ -185,6 +197,8 @@ def code_answer(state: dict) -> str:
     degraded = [s["agent"] for s in sigs if s.get("degraded")]
     lines.append("- Written from a template because the language model was unavailable.")
     lines += [f"- {x}" for x in unavailable_lines(ev)]
+    if _agri_used(state):
+        lines.append(f"- {AGRI_CAVEAT}")
     if degraded:
         lines.append(f"- Degraded inputs: {', '.join(degraded)}.")
     lines += ["", "_Decision support, not a trading signal._"]

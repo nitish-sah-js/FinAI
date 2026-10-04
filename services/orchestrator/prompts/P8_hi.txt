@@ -1,6 +1,7 @@
 USER QUERY: {query}
 PORTFOLIO: {portfolio_summary}
 AGENT SIGNALS: {signals_json}
+Signals marked "weight": "low" must not drive the bottom line; if you use one, add its caveat under "what could be wrong".
 ANALOG RANGES (pre-written, cited): {distribution_json}
 RISK (pre-written, cited): {risk_json}
 HEDGES (computed; copy each line exactly as one bullet, never change a number): {hedges_json}
