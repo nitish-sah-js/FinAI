@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .env
 .env.bak
+.env.*.bak
 
 # generated at runtime (curated inputs in data/ such as ticker_aliases.json, handlabeled_headlines.csv,
 # nse_symbols.json and hindi_words.json ARE committed)
