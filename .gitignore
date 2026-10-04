@@ -54,3 +54,6 @@ _archive/**/*.git/
 # 3-laptop cluster: real IPs, the shared key and generated per-laptop env files / bundles (secrets)
 deploy/cluster.env
 deploy/out/
+
+# MODIS granules from scripts/download_mod13q1.py (tens of GB; curated inputs elsewhere in data/ stay committed)
+data/mod13q1/

@@ -69,6 +69,24 @@ Every run writes a trace (`GET /runs/{run_id}/trace`). It records which node cal
 laptop, how long it took, and whether the call was `ok`, `degraded`, `fallback` (another model answered), `cached` or
 `unavailable`.
 
+## Download MODIS NDVI (MOD13Q1 v061)
+
+This needs a free NASA Earthdata account. Approve "LP DAAC Data Pool" and "Earthdata Search" under My Profile >
+Applications > Authorized Apps. Put `EARTHDATA_USERNAME` and `EARTHDATA_PASSWORD` (or `EARTHDATA_TOKEN`) in the
+root `.env`, without quotes. The script never prints them.
+
+```powershell
+.venv\Scripts\python scripts\download_mod13q1.py --dry-run                     # count + size: India, 2026-01-01..today
+.venv\Scripts\python scripts\download_mod13q1.py --start 2026-01-01 --end 2026-10-04 --bbox 74 17 82 22
+.venv\Scripts\python -m pytest tests\test_download_args.py                     # argument checks, no network
+```
+
+- Files go to `data/mod13q1/`, which git ignores. Files already there are skipped, so the script is safe to re-run.
+  Failed downloads are retried 3 times.
+- More than 200 granules asks for confirmation, unless you pass `--yes`. For scale: all of India for 2026 is about 272
+  granules, 40 GB; the example box above is 68 granules, 9.9 GB.
+- Exit codes: 2 bad arguments, 3 login failed, 4 no granules, 5 some files failed.
+
 ## Troubleshooting
 
 | Symptom | Cause and fix |
