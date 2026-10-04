@@ -107,6 +107,8 @@ Every request may also include `"chaos": ChaosFlags` and the header `X-Run-Id`.
 - Variable names differ between endpoints (the forecast uses `0_to_1cm`, `1_to_3cm`, `3_to_9cm`, while ERA5 uses `0_to_7cm`). Check the docs pages and map them in one place (`openmeteo.py`).
 
 ### 4.4 NASA POWER (free, no key), the agri/rain cross-check
+> **2026-10-04: not implemented.** `sources/nasa_power.py` was written but never imported, and the agri model (09) was trained on Open-Meteo ERA5 weather instead. The dead module was removed; wire NASA POWER in only together with a retrained agri model.
+
 `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR,T2M,T2M_MAX,RH2M,GWETROOT&community=AG&latitude=..&longitude=..&start=YYYYMMDD&end=YYYYMMDD&format=JSON`
 `GWETROOT` is root-zone soil wetness (0–1). The agri module (09) also uses it for training features, so expose `nasa_power.fetch(lat, lon, start, end) -> pd.DataFrame` as an importable function.
 
