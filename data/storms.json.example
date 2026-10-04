@@ -1,4 +1,19 @@
-[{"name":"DEMO-ODISHA","basin":"NIO","category":"VSCS","imd_class":"Very Severe Cyclonic Storm",
-  "lat":18.9,"lon":87.2,"max_wind_kt":75,"track_toward":["OD-Puri","AP-Visakhapatnam"],
-  "landfall_eta":"2026-10-05T18:00:00Z","source":"IMD RSMC bulletin (manual entry)",
-  "valid_from":"2026-10-01T00:00:00Z"}]
+[
+ {
+  "name": "DEMO-ODISHA",
+  "basin": "NIO",
+  "category": "VSCS",
+  "imd_class": "Very Severe Cyclonic Storm",
+  "lat": 18.9,
+  "lon": 87.2,
+  "max_wind_kt": 75,
+  "track_toward": [
+   "OD-Puri",
+   "AP-Visakhapatnam"
+  ],
+  "landfall_eta": "2026-10-05T18:00:00Z",
+  "source": "SIMULATED demo storm (not a real IMD bulletin)",
+  "valid_from": "2026-10-01T00:00:00Z",
+  "synthetic": true
+ }
+]

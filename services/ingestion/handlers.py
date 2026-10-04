@@ -281,10 +281,16 @@ async def weather_handler(req, rid, counter, t0, chaos) -> ToolResult:
     summ = f"{name}: {h}-day rain {anomaly:+.0f}% vs 2001-{y1} normal" if anomaly is not None else f"{name}: {h}-day forecast"
     if storm:
         summ += f"; {storm['category']} {storm['name']} {storm['distance_km']} km away"
-    if storm and storm["basin"] == "NIO":
+    synthetic = bool(storm and storm.get("synthetic"))
+    if synthetic:
+        value["synthetic"] = True
+        summ = f"SIMULATED: {summ}"
+        src += "; SIMULATED demo storm (DEMO_MODE)"
+    elif storm and storm["basin"] == "NIO":
         src += "; IMD RSMC bulletin (manual)"
     as_ev = parse_dt(f"{daily[0]['date']}T00:00:00+05:30") if as_of else utcnow().replace(minute=0, second=0, microsecond=0)
-    if as_of is None:  # only live values are "last good"; a backtest run must not overwrite them
+    if as_of is None and not synthetic:  # only real live values are "last good"; never a backtest or demo value
         store.save_last_good("weather", key, value, as_ev, conf)
-    return ToolResult(evidence=[mk_ev(counter, rid, "weather", value, src, as_ev, summary=summ,
-                                      confidence=conf, source_url=url, t0=t0)], warnings=warns)
+    ev = mk_ev(counter, rid, "weather", value, src, as_ev, summary=summ, confidence=conf, source_url=url, t0=t0)
+    ev.synthetic = synthetic
+    return ToolResult(evidence=[ev], warnings=warns)

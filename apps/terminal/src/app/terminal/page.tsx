@@ -298,7 +298,10 @@ function Overview({ portfolio, prices, alerts, markAcked, onSubmit, onOpenRun }:
                       <td className={`${TD} text-t-muted`}>{new Date(a.created_at).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false })}</td>
                       <td className={TD}><span className="flex items-center gap-2 text-t-text"><span className={`w-2 h-2 rounded-full ${tier.dot}`} />{tier.label}</span></td>
                       <td className={`${TD} text-t-fg font-bold`}>{a.tickers.map((t) => t.replace(/\.NS$/, '')).join(', ')}</td>
-                      <td className={`${TD} text-t-text leading-snug max-w-[70ch]`} title={a.reason}>{a.headline}</td>
+                      <td className={`${TD} text-t-text leading-snug max-w-[70ch]`} title={a.reason}>
+                        {a.headline.startsWith('SIMULATED') && <span className="mr-2 text-xs font-bold text-t-amber bg-t-amber/[0.12] rounded px-1.5 py-0.5">Simulated</span>}
+                        {a.headline.replace(/^SIMULATED:\s*/, '')}
+                      </td>
                       <td className={`${TD} text-right whitespace-nowrap`}>
                         {q && <button onClick={() => onSubmit(q, a.alert_id)} className="text-[13px] font-medium text-t-fg border border-t-fg/20 hover:bg-t-fg/[0.06] rounded-md px-2.5 py-1 mr-2">Analyze</button>}
                         {a.acknowledged ? <span className="text-xs text-t-muted">Read</span> : (

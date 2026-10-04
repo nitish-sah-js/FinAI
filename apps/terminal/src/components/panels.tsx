@@ -285,10 +285,17 @@ function stripBottomLine(md: string, bottom: string) {
 }
 
 export function AnswerBody({ final, onCite }: { final: FinalAnswer; onCite: (id: string) => void }) {
-  const degraded = final.evidence.filter((e) => e.degraded);
+  const degraded = final.evidence.filter((e) => e.degraded && !e.synthetic);
+  const simulated = final.evidence.filter((e) => e.synthetic);
   return (
     <div className="px-6 py-5 text-[15px] leading-7 text-t-text flex-1 overflow-auto">
       <div className="max-w-[68ch]">
+        {simulated.length > 0 && (
+          <div className="mb-5 rounded-lg border border-t-amber/40 bg-t-amber/[0.08] px-4 py-2.5 text-[13px] leading-6">
+            <span className="font-bold text-t-amber">Simulated data.</span> This answer uses demo data that is not real
+            ({simulated.map((e) => e.tool).join(', ')}). Turn off DEMO_MODE for real data only.
+          </div>
+        )}
         <p className="mb-5 text-lg leading-8 font-medium text-t-fg"><Inline text={final.bottom_line} onCite={onCite} /></p>
         <Markdown md={stripBottomLine(final.answer_markdown, final.bottom_line)} onCite={onCite} />
         {degraded.length > 0 && (
@@ -349,6 +356,7 @@ export function EvidenceDrawer({ id, evidence, onClose }: { id: string; evidence
         </div>
         {!evidence ? <div className="px-6 py-5 text-t-rose">This evidence is not part of this run.</div> : (
           <div className="px-6 py-5 space-y-3">
+            {evidence.synthetic && <div className="rounded-md bg-t-amber/[0.1] text-t-amber text-[13px] font-bold px-3 py-1.5">Simulated demo data, not real</div>}
             {evidence.summary && <p className="text-[15px] leading-6 text-t-text">{evidence.summary}</p>}
             <dl className="space-y-2 pt-1">
               <Row k="Source" v={evidence.source_url ? <a className="underline underline-offset-2" href={evidence.source_url} target="_blank" rel="noreferrer">{evidence.source}</a> : evidence.source} />

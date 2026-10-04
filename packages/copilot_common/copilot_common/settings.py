@@ -67,6 +67,7 @@ class Settings(BaseSettings):
     OLLAMA_MODEL_L3_RED: str = "phi4-mini"
 
     MOCK: bool = False
+    DEMO_MODE: bool = False              # show synthetic demo data (e.g. the DEMO-ODISHA storm), stamped SIMULATED
     CACHE_MODE: str = "record"           # record | replay | off
     LLM_MODE: str = "local"              # local | boost | auto
     GROQ_API_KEY: str = ""

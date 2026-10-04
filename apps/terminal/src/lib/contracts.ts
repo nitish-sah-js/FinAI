@@ -17,6 +17,8 @@ export interface Evidence {
   latency_ms?: number | null;
   model_version?: string | null;
   staleness_factor?: number | null;
+  fixture?: boolean;     // canned test data (MOCK mode only)
+  synthetic?: boolean;   // demo data, not real (DEMO_MODE)
 }
 
 export interface ToolResult {
@@ -111,6 +113,7 @@ export interface ValidatorReport {
   unmatched: string[];
   action: 'pass' | 'flagged' | 'stripped';
   auto_cited: string[];
+  rejected_evidence?: string[];
 }
 
 export interface FinalAnswer {

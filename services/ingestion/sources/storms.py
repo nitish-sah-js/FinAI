@@ -3,6 +3,7 @@ import json, math, os
 from datetime import datetime
 from pathlib import Path
 import httpx
+from copilot_common.settings import get_settings
 from ..features.weather_features import saffir_simpson
 from ..timeutil import parse_dt
 from .. import store
@@ -37,6 +38,8 @@ def manual_storms(as_of: datetime | None = None) -> list[dict]:
     if not p.exists():
         return []
     storms = json.loads(p.read_text())
+    if not get_settings().DEMO_MODE:                 # synthetic demo storms exist only with DEMO_MODE=1
+        storms = [s for s in storms if not s.get("synthetic")]
     if as_of is None:
         return storms
     return [s for s in storms if s.get("valid_from") and parse_dt(s["valid_from"]) <= as_of]
@@ -50,4 +53,6 @@ def attach_storm(region: dict, storms: list[dict]) -> dict | None:
             if best is None or d < best["distance_km"]:
                 best = {"name": s["name"], "category": s["category"], "basin": s["basin"],
                         "track_toward": s.get("track_toward", []), "distance_km": round(d)}
+                if s.get("synthetic"):
+                    best["synthetic"] = True
     return best

@@ -124,7 +124,7 @@ class Engine:
             self.counts["updated"] += 1
             return None
         if decision == "escalate":
-            headline, _ = await write_headline(c, weight, **self._writer_kw())
+            headline, _ = await self._headline(c, weight)
             existing.tier, existing.impact_score, existing.confidence = t, impact, c.confidence
             existing.headline = headline
             existing.reason = f"Escalated: {reason_from_facts(c)}"
@@ -141,7 +141,7 @@ class Engine:
         rebroadcast = impact > existing.impact_score or t > existing.tier
         if impact > existing.impact_score:
             existing.kind, existing.impact_score = c.kind, impact
-            existing.headline, _ = await write_headline(c, weight, **self._writer_kw())
+            existing.headline, _ = await self._headline(c, weight)
         existing.tier = max(existing.tier, t)
         existing.evidence_ids = list(dict.fromkeys(existing.evidence_ids + c.evidence_ids))
         self.cooldown.record(key, existing.alert_id, c.kind, existing.tier, impact, c.tickers)
@@ -149,12 +149,18 @@ class Engine:
         self.counts["merged"] += 1
         return existing if rebroadcast else None
 
+    async def _headline(self, c: Candidate, weight: float) -> tuple[str, str]:
+        headline, how = await write_headline(c, weight, **self._writer_kw())
+        if (c.facts or {}).get("synthetic") and not headline.startswith("SIMULATED"):
+            headline = f"SIMULATED: {headline}"           # demo data (DEMO_MODE): never presented as real
+        return headline, how
+
     def _writer_kw(self) -> dict:
         w = self.cfg.get("writer", {})
         return {"timeout_s": w.get("timeout_s", 1.5), "max_words": w.get("max_words", 25)}
 
     async def build_alert(self, c: Candidate, impact: float, t: int, weight: float) -> Alert:
-        headline, _ = await write_headline(c, weight, **self._writer_kw())
+        headline, _ = await self._headline(c, weight)
         aid = new_alert_id()
         return Alert(alert_id=aid, tier=t, kind=c.kind, tickers=c.tickers, headline=headline,
                      reason=reason_from_facts(c), impact_score=impact, confidence=round(c.confidence, 3),
@@ -165,7 +171,7 @@ class Engine:
         """Store first, then WS (never blocked by Telegram/email, which run in the background)."""
         await store.save(alert)
         n = await hub.broadcast({"type": "alert", "data": alert.model_dump(mode="json")})
-        if alert.tier >= 3:
+        if alert.tier >= 3 and not alert.headline.startswith("SIMULATED"):    # demo alerts stay in the app
             telegram.enqueue(telegram.format_alert(alert))
             if email.enabled():
                 body = f"{alert.headline}\n\n{alert.reason}\n\nAnalyze: {alert.deeplink}"
@@ -200,7 +206,8 @@ class Engine:
             v = ev.get("value") or {}
             rows.append({"region": rid, "kinds": weather_kinds(v), "confidence": ev.get("confidence"),
                          "evidence_id": ev.get("id"),
-                         "facts": {k: v[k] for k in ("rain_anomaly_pct",) if v.get(k) is not None}})
+                         "facts": {**{k: v[k] for k in ("rain_anomaly_pct",) if v.get(k) is not None},
+                                   **({"synthetic": True} if v.get("synthetic") or ev.get("synthetic") else {})}})
         return await self.handle(detect_weather_threshold(rows, self.links, self.cfg["severity"]["weather"],
                                                           self.held | self.watchlist))
 

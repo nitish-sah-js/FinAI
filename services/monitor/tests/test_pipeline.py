@@ -154,3 +154,23 @@ def test_mock_feed_replay_produces_itc_news_burst(isolated):
     assert ("news_burst", "ITC.NS") in kinds
     a = next(a for a in alerts if a.kind == "news_burst")
     assert "10.0.0.3:3000/run/new?q=" in a.deeplink and f"alert={a.alert_id}" in a.deeplink and "q=q=" not in a.deeplink
+
+
+def test_synthetic_weather_alert_is_stamped_and_stays_in_app(monkeypatch):
+    """DEMO_MODE storm -> the alert headline says SIMULATED and no email / Telegram is sent."""
+    from monitor import engine as eng_mod
+    from monitor.delivery import email, telegram
+    from monitor.detectors import Candidate
+    sent = []
+    monkeypatch.setattr(telegram, "enqueue", lambda *a, **k: sent.append("telegram"))
+    monkeypatch.setattr(email, "enabled", lambda: True)
+    monkeypatch.setattr(email, "send_email", lambda *a, **k: sent.append("email"))
+    from monitor import store
+    run(store.init_db())
+    e = eng_mod.Engine()
+    c = Candidate(kind="weather_threshold", tickers=["ONGC.NS"], key="OD-Puri", severity=0.9, relevance=1.0,
+                  confidence=0.9, facts={"region": "OD-Puri", "alerts": ["cyclone"], "synthetic": True})
+    a = run(e.build_alert(c, impact=0.9, t=3, weight=0.5))
+    assert a.headline.startswith("SIMULATED: ")
+    run(e.deliver(a))
+    assert sent == []
