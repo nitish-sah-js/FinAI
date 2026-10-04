@@ -19,6 +19,7 @@ evals/results/
 # node / Next.js / Electron
 node_modules/
 .next/
+.next-build/
 out/
 dist/
 *.tsbuildinfo
