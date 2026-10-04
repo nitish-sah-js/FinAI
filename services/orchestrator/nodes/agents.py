@@ -125,6 +125,10 @@ async def sentiment_agent(s: dict) -> dict:
 async def weather_agent(s: dict) -> dict:
     async def work(b: Budget):
         region_id, _ = resolve(s["intent"].get("region"), s["request"]["query"])
+        if region_id is None:                     # no place named: say so, do not guess a location
+            sig = code_signal("weather_agent", [], "n/a", "no region named in the question")
+            sig.summary = "No region was named, so there is no weather check for this question."
+            return [], sig
         tr = await tools.weather(region_id, s["intent"].get("horizon_days", 5), as_of=as_of(s), **_kw(s, "weather_agent"))
         evs = apply_staleness(tr.evidence)
         return evs, (await narrate(s, "weather_agent", b, evs)) or code_signal("weather_agent", evs, "mixed")

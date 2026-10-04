@@ -1,6 +1,6 @@
 """Free-text region (from the Intent) → region_id used by the weather and agri tools.
 
-Region ids follow 01 §6: <STATE>-<District> (OD-Puri) or <COUNTRY>-<Region> (US-GulfCoast).
+Region ids follow 01 §6: <STATE>-<District> (OD-Puri) or <COUNTRY>-<Region> (US-LA-PortFourchon); every weather id must exist in services/ingestion/config/regions.json.
 The full list lives in ingestion's data/regions.json (10). This static map covers the demo regions.
 """
 from __future__ import annotations
@@ -26,12 +26,14 @@ REGION_MAP: list[tuple[tuple[str, ...], str, str | None]] = [
     (("rajasthan", "jaipur"), "RJ-Jaipur", "RJ-Jodhpur"),             # proxy: Rajasthan arid belt
     (("uttar pradesh", "lucknow", "up "), "UP-Lucknow", "PB-Ludhiana"),           # proxy: rice-wheat belt
     (("delhi", "north india", "ncr"), "DL-NewDelhi", "PB-Ludhiana"),
-    (("gulf", "louisiana", "texas", "houston", "mexico"), "US-GulfCoast", None),
+    (("texas", "houston"), "US-TX-Houston", None),
+    (("louisiana", "port fourchon", "new orleans"), "US-LA-PortFourchon", None),
+    (("gulf", "mexico"), "GULF-Central", None),
     (("bay of bengal", "east coast"), "OD-Puri", None),
-    (("india", "all-india", "monsoon"), "IN-All", "MH-Yavatmal"),
+    (("india", "all-india", "monsoon"), None, "MH-Yavatmal"),       # no single point stands for all of India
 ]
 
-DEFAULT_WEATHER = "IN-All"
+DEFAULT_WEATHER = None            # no region named: the weather agent says so instead of guessing
 DEFAULT_AGRI = "MH-Yavatmal"
 
 

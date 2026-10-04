@@ -42,7 +42,11 @@ def test_unknown_region_is_422(client):
 
 
 def test_regions(client):
-    assert len(client.get("/regions").json()) == 15
+    ids = {r["region_id"] for r in client.get("/regions").json()}
+    # the 15 original regions, plus the 7 the orchestrator resolves to (added 2026-10-04)
+    assert {"OD-Puri", "GJ-Kutch", "MH-Yavatmal", "US-LA-PortFourchon", "GULF-Central"} <= ids
+    assert {"MP-Ujjain", "MH-Latur", "KA-Kalaburagi", "RJ-Jodhpur", "RJ-Jaipur", "UP-Lucknow", "DL-NewDelhi"} <= ids
+    assert len(ids) == 22
 
 
 def test_as_of_fallback_never_serves_live_last_good(client):
