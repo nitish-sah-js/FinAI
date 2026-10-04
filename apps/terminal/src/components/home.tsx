@@ -116,7 +116,8 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices, onAsk }: 
     const t = setTimeout(() => setFallback(true), 150_000);
     return () => clearTimeout(t);
   }, [turn.demo, turn.runId, live.final]);
-  const isDemo = !!turn.demo || !!turn.error || fallback;
+  // a real answer always wins: if it arrives after the demo took over (slow run, recovered connection), show it
+  const isDemo = (!!turn.demo || !!turn.error || fallback) && !live.final;
   const demo = useDemoStream(isDemo ? turn.query : null);
   const raw = isDemo ? demo : live;
   const status = raw.status;

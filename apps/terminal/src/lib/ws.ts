@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { MONITOR_WS, ORCH_WS, withKey } from './config';
 import type { AgentEvent, Alert, FinalAnswer, WsMessage } from './contracts';
-import { getAlerts } from './api';
+import { getAlerts, getRun } from './api';
 
 export type RunStatus = 'idle' | 'connecting' | 'running' | 'done' | 'error';
 
@@ -39,9 +39,46 @@ export function useRunStream(runId: string | null) {
         setStatus('done');
       }
     };
-    ws.onerror = () => setStatus((s) => (gotFinal ? s : 'error'));
-    ws.onclose = () => setStatus((s) => (gotFinal ? 'done' : s === 'running' ? 'error' : s));
-    return () => ws.close();
+    // The socket dropped before the final answer (Wi-Fi blip, server restart): the run itself keeps going on L1, so
+    // fetch it over HTTP every 3 s instead of declaring it failed. 'error' only if L1 stays unreachable for ~3 min.
+    let stopped = false;
+    let poll: ReturnType<typeof setTimeout> | undefined;
+    let misses = 0;
+    const recover = () => {
+      if (stopped || gotFinal) return;
+      getRun(runId).then((r) => {
+        if (stopped) return;
+        misses = 0;
+        if (Array.isArray(r.events)) {
+          setEvents((prev) => {
+            const seen = new Set(prev.map((p) => p.seq));
+            const add = (r.events as AgentEvent[]).filter((e) => !seen.has(e.seq));
+            return add.length ? [...prev, ...add].sort((a, b) => a.seq - b.seq) : prev;
+          });
+        }
+        if (r.final) {
+          gotFinal = true;
+          setFinal(r.final);
+          setStatus('done');
+        } else {
+          poll = setTimeout(recover, 3000);
+        }
+      }).catch(() => {
+        if (stopped) return;
+        if (++misses >= 60) setStatus('error');
+        else poll = setTimeout(recover, 3000);
+      });
+    };
+    ws.onerror = () => { if (!gotFinal) recover(); };
+    ws.onclose = () => { if (!gotFinal) recover(); else setStatus('done'); };
+    return () => {
+      // detach first: this socket's late close must not touch the state of the next one (React dev mode mounts
+      // every component twice; the first socket's onclose used to flip a healthy run to 'error')
+      stopped = true;
+      if (poll) clearTimeout(poll);
+      ws.onopen = ws.onmessage = ws.onerror = ws.onclose = null;
+      ws.close();
+    };
   }, [runId]);
 
   return { events, final, status };

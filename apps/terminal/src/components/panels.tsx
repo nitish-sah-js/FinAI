@@ -47,6 +47,8 @@ const NODE_LAYOUT: [string, string, number, number][] = [
   ['validator', 'Check numbers', 1340, 110],
 ];
 const AGENTS = NODE_LAYOUT.slice(3, 9).map((n) => n[0]);
+const NODE_W = 140;   // fixed node box (label + one status line), see AgentGraph
+const NODE_H = 56;
 export const NODE_LABEL: Record<string, string> = Object.fromEntries(NODE_LAYOUT.map(([id, label]) => [id, label]));
 const STATUS_WORD: Record<string, string> = { started: 'running', progress: 'running', skipped: 'skipped', failed: 'failed', queued: 'queued' };
 export const fmtMs = (ms: number) => (ms < 1000 ? `${ms} ms` : `${(ms / 1000).toFixed(1)} s`);
@@ -98,6 +100,15 @@ export function AgentGraph({ events, onSelect }: { events: AgentEvent[]; onSelec
     return {
       id,
       position: { x, y },
+      // Fixed size: React Flow hides a node until it is measured, and these node objects are rebuilt on every event,
+      // which drops the measurement. With bursts of events nodes stayed hidden for good (only one or two drawn).
+      width: NODE_W,
+      height: NODE_H,
+      // ...and the handle positions too, else edges wait for the same lost measurement (parseHandles in @xyflow/system)
+      handles: [
+        { type: 'target' as const, position: Position.Left, x: 0, y: NODE_H / 2 },
+        { type: 'source' as const, position: Position.Right, x: NODE_W, y: NODE_H / 2 },
+      ],
       sourcePosition: Position.Right,
       targetPosition: Position.Left,
       data: {
@@ -108,7 +119,7 @@ export function AgentGraph({ events, onSelect }: { events: AgentEvent[]; onSelec
           </div>
         ),
       },
-      className: `bg-t-panel text-t-text text-[13px] border px-3 py-2 rounded-md !w-[140px] ${STATUS_STYLE[st] ?? STATUS_STYLE.idle}`,
+      className: `bg-t-panel text-t-text text-[13px] border px-3 py-2 rounded-md !w-[140px] !h-[56px] flex flex-col justify-center ${STATUS_STYLE[st] ?? STATUS_STYLE.idle}`,
     };
   });
   const edges = EDGES.map(([s, t]) => {
