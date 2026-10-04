@@ -5,12 +5,15 @@ Keyed by scheme://host:port, shared by every service and the LLM gateway in one 
 """
 from __future__ import annotations
 
+import os
 import threading
 import time
 from urllib.parse import urlsplit
 
 DOWN_TTL_S = 30.0          # retry a down host after this long (so a laptop that comes back is picked up quickly)
-CONNECT_TIMEOUT_S = 1.5    # a healthy LAN host connects in milliseconds
+# A healthy wired LAN host connects in milliseconds, but a phone hotspot has latency spikes: at 1.5 s one slow
+# connect wrote off L2's quant for 30 s in the first 3-laptop run. Override with CONNECT_TIMEOUT_S in the env.
+CONNECT_TIMEOUT_S = float(os.environ.get("CONNECT_TIMEOUT_S") or 3.0)
 
 _lock = threading.Lock()
 _down_until: dict[str, float] = {}

@@ -317,3 +317,31 @@ def test_agent_timeout_keeps_evidence_already_fetched(monkeypatch):
     assert [e["id"] for e in out["evidence"]] == ["ev_weather_001"]
     sig = out["signals"][0]
     assert sig["degraded"] and "ev_weather_001" in sig["summary"] and "without the LLM" in sig["summary"]
+
+
+def test_one_slow_connect_is_retried_two_are_not(monkeypatch):
+    """On a phone hotspot one connect can stall: it is retried once. Two connect timeouts in a row = host is down."""
+    import asyncio
+    import httpx
+    import pytest
+    from orchestrator import tools_client as T
+    calls = {"n": 0}
+
+    def flaky(request):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise httpx.ConnectTimeout("stalled", request=request)
+        return httpx.Response(200, json={"evidence": [], "warnings": []})
+    monkeypatch.setattr(T, "_client", httpx.AsyncClient(transport=httpx.MockTransport(flaky)))
+    monkeypatch.setattr(T, "RETRY_BACKOFF_S", (0, 0))
+    assert asyncio.run(T._post_with_retries("http://10.9.9.7:8101/risk", {}, {}, 5)).status_code == 200
+    assert calls["n"] == 2
+
+    def dead(request):
+        calls["n"] += 1
+        raise httpx.ConnectTimeout("no route", request=request)
+    calls["n"] = 0
+    monkeypatch.setattr(T, "_client", httpx.AsyncClient(transport=httpx.MockTransport(dead)))
+    with pytest.raises(httpx.ConnectTimeout):
+        asyncio.run(T._post_with_retries("http://10.9.9.6:8101/risk", {}, {}, 5))
+    assert calls["n"] == 2

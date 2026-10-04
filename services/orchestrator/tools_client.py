@@ -150,8 +150,12 @@ async def _post_with_retries(url: str, body: dict, headers: dict, timeout_s: flo
                 continue
             r.raise_for_status()
             return r
-        except httpx.ConnectTimeout:
-            raise                          # host unreachable (laptop off / wrong IP): fail now, breaker opens
+        except httpx.ConnectTimeout as e:
+            # one retry: on Wi-Fi a single connect can stall; a second timeout means the laptop is off / wrong IP
+            last = e
+            if attempt >= 1:
+                raise                      # the caller opens the breaker
+            await asyncio.sleep(RETRY_BACKOFF_S[0])
         except (httpx.ConnectError, httpx.RemoteProtocolError) as e:
             last = e
             if attempt == RETRIES:
