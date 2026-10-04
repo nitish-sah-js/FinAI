@@ -54,13 +54,39 @@ def _as_of_cutoff(as_of: Any) -> datetime | None:
 
 
 def _fixture_result(service: str, endpoint: str, tool: str) -> ToolResult:
+    """Canned data for MOCK mode and chaos demos. Every item is flagged fixture=True."""
     try:
-        return ToolResult.model_validate(load_fixture(service, endpoint))
+        tr = ToolResult.model_validate(load_fixture(service, endpoint))
+        for ev in tr.evidence:
+            ev.fixture = True
+        return tr
     except (OSError, ValueError):
         t = now_utc()
         return ToolResult(evidence=[Evidence(id=f"ev_{tool}_000", tool=tool, value={}, source="none", as_of=t, timestamp=t,
                                              confidence=0.1, degraded=True, degraded_reason="no_fixture",
                                              summary=f"{tool}: no data")])
+
+
+TOOL_NAME = {"news": "news", "weather": "weather", "macro": "macro", "prices": "price", "sentiment": "news sentiment",
+             "agri": "crop", "analogs": "past-event", "exposure": "exposure", "risk": "risk", "hedge": "hedge",
+             "event_study": "event study", "scenario": "scenario", "correlations": "correlation",
+             "scenario_evidence": "scenario", "hedge_validation": "hedge back-check"}
+
+
+def unavailable_result(tool: str, service: str, reason: str) -> ToolResult:
+    """What a tool returns when its service cannot be reached outside MOCK mode: one evidence item with no numbers,
+    status 'unavailable' and a plain reason. The synthesizer is told there is no data, and must say so."""
+    t = now_utc()
+    what = TOOL_NAME.get(tool, tool)
+    tool_name = "scenario" if tool == "scenario_evidence" else tool
+    ev = Evidence(id=f"ev_{tool_name}_000", tool=tool_name, value={"status": "unavailable", "reason": reason},
+                  summary=f"No {what} data: {reason}", source=service, as_of=t, timestamp=t, confidence=0.0,
+                  degraded=True, degraded_reason="unavailable")
+    return ToolResult(evidence=[ev], warnings=[f"{tool}: {reason}"])
+
+
+def is_unavailable(ev: dict) -> bool:
+    return isinstance(ev.get("value"), dict) and ev["value"].get("status") == "unavailable"
 
 
 def _retime_fixture(tr: ToolResult, cutoff: datetime | None) -> None:
@@ -108,7 +134,8 @@ async def call_tool(tool: str, body: dict, *, run_id: str | None = None, chaos: 
     if chaos.get("slow_network_ms"):
         await asyncio.sleep(chaos["slow_network_ms"] / 1000)
 
-    broken = next((flag for flag, t in CHAOS_TOOL.items() if t == tool and chaos.get(flag)), None)
+    # chaos is simulated here only in MOCK mode; real services receive the flags (body + X-Chaos) and degrade themselves
+    broken = next((flag for flag, t in CHAOS_TOOL.items() if t == tool and chaos.get(flag)), None) if s.MOCK else None
     if broken:
         tr = _fixture_result(service, endpoint, tool)
         _retime_fixture(tr, cutoff)
@@ -140,10 +167,16 @@ async def call_tool(tool: str, body: dict, *, run_id: str | None = None, chaos: 
         except (httpx.HTTPError, ValueError) as e:
             if isinstance(e, (httpx.ConnectError, httpx.ConnectTimeout)):
                 reachability.mark_down(url)
-            tr = _fixture_result(service, endpoint, tool)
-            _retime_fixture(tr, cutoff)
-            tr.warnings.append(f"{tool}: {type(e).__name__} calling {url}")
-            _degrade(tr, "service_unreachable")
+            if isinstance(e, httpx.HTTPStatusError):
+                reason = f"the {service} service returned an error (HTTP {e.response.status_code})"
+            elif isinstance(e, (httpx.ConnectError, httpx.ConnectTimeout)):
+                reason = f"the {service} service could not be reached"
+            elif isinstance(e, httpx.TimeoutException):
+                reason = f"the {service} service did not answer in time"
+            else:
+                reason = f"the {service} service sent an unreadable reply"
+            # outside MOCK mode a dead service yields "no data", never canned numbers (fixtures are MOCK-only)
+            tr = unavailable_result(tool, service, reason)
 
     # time-machine guard: nothing may be dated after as_of (04 §5)
     if cutoff:

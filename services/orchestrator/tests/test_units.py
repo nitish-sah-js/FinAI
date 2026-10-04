@@ -176,3 +176,22 @@ def test_validator_ignores_compound_labels_like_10_year():
     evs = [EV("ev_macro_001", "macro", {"us10y": 4.12})]
     rep, _ = validate("The US 10-year yield is 4.12% [ev_macro_001], near its 52-week high.", evs)
     assert rep.action == "pass" and rep.numbers_found == 1
+
+
+def test_validator_rejects_fixture_evidence_outside_mock():
+    from orchestrator.nodes.validator import validate
+    ev = [{"id": "ev_risk_001", "tool": "risk", "value": {"var_inr": 48200}, "confidence": 0.8, "fixture": True}]
+    draft = "5-day VaR is ₹48,200 [ev_risk_001]."
+    ok, _ = validate(draft, ev, allow_fixture=True)
+    assert ok.action == "pass" and not ok.rejected_evidence
+    rep, _ = validate(draft, ev, allow_fixture=False)
+    assert rep.rejected_evidence == ["ev_risk_001"] and rep.action != "pass" and rep.numbers_matched == 0
+
+
+def test_unavailable_result_has_no_numbers():
+    from orchestrator.tools_client import unavailable_result
+    tr = unavailable_result("risk", "quant", "the quant service could not be reached")
+    ev = tr.evidence[0]
+    assert ev.value == {"status": "unavailable", "reason": "the quant service could not be reached"}
+    assert ev.confidence == 0.0 and ev.degraded_reason == "unavailable" and not ev.fixture
+    assert ev.summary == "No risk data: the quant service could not be reached"

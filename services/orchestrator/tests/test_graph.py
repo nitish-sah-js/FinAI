@@ -67,7 +67,7 @@ def test_time_machine_has_no_evidence_after_as_of():
 
 
 def test_services_unreachable_degrade_gracefully(monkeypatch):
-    """MOCK off but no services running → every tool falls back to fixtures marked service_unreachable."""
+    """MOCK off but no services running → every tool reports 'unavailable' (no numbers), never fixture data."""
     monkeypatch.setenv("MOCK", "0")
     for k, port in {"INGEST_URL": 1, "QUANT_URL": 2, "SENTIMENT_URL": 3, "AGRI_URL": 4, "VECTOR_URL": 5}.items():
         monkeypatch.setenv(k, f"http://127.0.0.1:{port}")
@@ -79,7 +79,10 @@ def test_services_unreachable_degrade_gracefully(monkeypatch):
     final = run(G.run_graph(QueryRequest(query=Q), deadline_s=60))
     fa = FinalAnswer.model_validate(final)
     assert fa.evidence and all(e.degraded for e in fa.evidence)
-    assert {e.degraded_reason for e in fa.evidence} == {"service_unreachable"}
+    assert {e.degraded_reason for e in fa.evidence} == {"unavailable"}
+    assert not any(e.fixture for e in fa.evidence)                # fixtures are MOCK-only
+    assert all(e.value.get("status") == "unavailable" for e in fa.evidence)
+    assert "could not be reached" in fa.answer_markdown           # the answer says the data is missing
     assert fa.intent.event_type == "cyclone"                     # keyword fallback when the LLM is down
     assert "### Bottom line" in fa.answer_markdown               # template answer
     assert fa.validator.action == "pass"                          # template only reuses evidence numbers

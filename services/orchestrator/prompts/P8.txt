@@ -4,6 +4,7 @@ AGENT SIGNALS: {signals_json}
 ANALOG RANGES (pre-written, cited): {distribution_json}
 RISK (pre-written, cited): {risk_json}
 HEDGES (computed; copy each line exactly as one bullet, never change a number): {hedges_json}
+MISSING DATA (these sources could not be reached; say so plainly under "what could be wrong" and never fill the gap with your own numbers): {unavailable_json}
 Copy figures together with their [ev_...] tag. Never write raw JSON in the answer.
 Give a return range for a holding ONLY if ANALOG RANGES lists that holding; otherwise write "no analog range".
 If an ANALOG RANGES line says "(via proxy ...)", keep that phrase: the range is the proxy's, not the holding's own.

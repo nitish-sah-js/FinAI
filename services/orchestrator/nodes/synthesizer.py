@@ -16,7 +16,8 @@ _FIRST_SECTION = re.compile(r"^###\s*(Bottom line|Saar)\b", re.M | re.I)
 
 
 def _by_tool(evidence: list[dict], tool: str) -> dict | None:
-    return next((e for e in evidence if e["tool"] == tool), None)
+    return next((e for e in evidence if e["tool"] == tool
+                 and not (isinstance(e.get("value"), dict) and e["value"].get("status") == "unavailable")), None)
 
 
 def synth_inputs(state: dict) -> dict:
@@ -30,7 +31,17 @@ def synth_inputs(state: dict) -> dict:
         "distribution_json": analog_lines(analogs) or ["no analog evidence"],
         "risk_json": (risk_lines(risk) + scenario_range_lines(ev)) or ["no risk evidence"],
         "hedges_json": (hedge_lines(hedge) + validation_lines(_by_tool(ev, "hedge_validation"))) or ["No hedge computed."],
+        "unavailable_json": unavailable_lines(ev) or ["none"],
     }
+
+
+def unavailable_lines(evidence: list[dict]) -> list[str]:
+    """One plain line per tool whose service could not be reached (tools_client.unavailable_result)."""
+    out = []
+    for e in evidence:
+        if isinstance(e.get("value"), dict) and e["value"].get("status") == "unavailable":
+            out.append(e.get("summary") or f"No {e['tool']} data.")
+    return list(dict.fromkeys(out))
 
 
 # Small models copy finished, cited sentences far more reliably than they cite raw JSON fields.
@@ -173,6 +184,7 @@ def code_answer(state: dict) -> str:
     lines += ["", "### Confidence and what could be wrong"]
     degraded = [s["agent"] for s in sigs if s.get("degraded")]
     lines.append("- Written from a template because the language model was unavailable.")
+    lines += [f"- {x}" for x in unavailable_lines(ev)]
     if degraded:
         lines.append(f"- Degraded inputs: {', '.join(degraded)}.")
     lines += ["", "_Decision support, not a trading signal._"]

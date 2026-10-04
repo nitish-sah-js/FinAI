@@ -64,7 +64,7 @@ async def banner() -> None:
         for model, status in (await llm.warmup()).items():
             print(f"    {model}: {status}")
     if not any(ok for n, _, ok in results if not n.startswith("ollama")):
-        print("  → no L2/L3 services reachable: every tool uses its fixture, marked degraded (service_unreachable).")
+        print("  → no L2/L3 services reachable: each tool reports its data as unavailable (no numbers are invented).")
         print("    For a clean demo without them, set MOCK=1 in .env (copy .env.example → .env).")
     print()
 

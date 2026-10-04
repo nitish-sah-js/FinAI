@@ -25,6 +25,8 @@ class Evidence(BaseModel):
     latency_ms: int | None = None
     model_version: str | None = None
     staleness_factor: float | None = None    # set by orchestrator (04)
+    fixture: bool = False                    # canned test data; only legitimate when MOCK=1 (validator rejects it otherwise)
+    synthetic: bool = False                  # demo data that is not real (e.g. the DEMO-ODISHA storm); shown as SIMULATED
 
 
 class ToolResult(BaseModel):
@@ -149,6 +151,7 @@ class ValidatorReport(BaseModel):
     unmatched: list[str]
     action: Literal["pass", "flagged", "stripped"]
     auto_cited: list[str] = []      # "₹48,200→ev_risk_001": uncited figure matched exactly one evidence item
+    rejected_evidence: list[str] = []   # evidence ids not allowed as a source (fixture data outside MOCK mode)
 
 
 class FinalAnswer(BaseModel):

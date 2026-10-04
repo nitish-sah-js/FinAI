@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from copilot_common.settings import get_settings
 from copilot_common.models import ValidatorReport
 
 from ..events import bus
@@ -101,10 +102,14 @@ def _ignorable(raw: str, text: str, end: int, horizon: int, query_nums: set[str]
 
 
 def validate(draft: str, evidence: list[dict], horizon_days: int = 5, query: str = "",
-             signals: list[dict] | None = None) -> tuple[ValidatorReport, str]:
+             signals: list[dict] | None = None, allow_fixture: bool = True) -> tuple[ValidatorReport, str]:
     """Return (report, answer_markdown). Flags (⚠️) or strips unsupported figures.
 
-    Signal confidences shown to the synthesizer are traceable too: each counts for the signal's evidence ids."""
+    Signal confidences shown to the synthesizer are traceable too: each counts for the signal's evidence ids.
+    With allow_fixture=False (any non-MOCK run) fixture evidence is not an acceptable source: its numbers do not
+    count as matched, and its ids are reported in rejected_evidence."""
+    rejected = [] if allow_fixture else [e["id"] for e in evidence if e.get("fixture")]
+    evidence = [e for e in evidence if e["id"] not in set(rejected)]
     by_id = {e["id"]: e for e in evidence}
     pools = {eid: pool_for([e]) for eid, e in by_id.items()}
     for sig in signals or []:
@@ -210,8 +215,10 @@ def validate(draft: str, evidence: list[dict], horizon_days: int = 5, query: str
     if action == "stripped":
         answer += f"\n\n_{len(drop)} sentence(s) with {len(bad_unmatched)} unsupported figures removed by the Numbers Ledger._"
     unmatched = [f.raw for f in bad_unmatched] + [f"uncited:{f.raw}" for f in bad_uncited]
+    if rejected and action == "pass":
+        action = "flagged"
     report = ValidatorReport(numbers_found=len(found), numbers_matched=matched, unmatched=unmatched, action=action,
-                             auto_cited=[f"{f.raw}→{eid}" for f, eid in auto])
+                             auto_cited=[f"{f.raw}→{eid}" for f, eid in auto], rejected_evidence=rejected)
     return report, answer
 
 
@@ -220,8 +227,10 @@ async def validator(state: dict) -> dict:
     await bus.emit(run_id, "validator", "started", message="checking every number against the evidence")
     report, answer = validate(state.get("draft", ""), state.get("evidence", []),
                               int(state.get("intent", {}).get("horizon_days", 5)), state["request"]["query"],
-                              signals=state.get("signals", []))
+                              signals=state.get("signals", []), allow_fixture=get_settings().MOCK)
     msg = f"Numbers Ledger {report.numbers_matched}/{report.numbers_found} · {report.action}"
+    if report.rejected_evidence:
+        msg += f" · {len(report.rejected_evidence)} fixture item(s) rejected"
     if report.auto_cited:
         msg += f" · {len(report.auto_cited)} citation(s) added"
     await bus.emit(run_id, "validator", "finished" if report.action == "pass" else "degraded", message=msg,

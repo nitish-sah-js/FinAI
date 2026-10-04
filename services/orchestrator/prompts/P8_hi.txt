@@ -4,6 +4,7 @@ AGENT SIGNALS: {signals_json}
 ANALOG RANGES (pre-written, cited): {distribution_json}
 RISK (pre-written, cited): {risk_json}
 HEDGES (computed; copy each line exactly as one bullet, never change a number): {hedges_json}
+MISSING DATA (these sources could not be reached; say so plainly under "what could be wrong" and never fill the gap with your own numbers): {unavailable_json}
 Write the answer in {lang_name} (Hindi in Devanagari for "hi"; Roman-script Hinglish for "hinglish").
 Keep tickers, numbers, and [ev_...] citations exactly as in the evidence (do not translate or round them).
 Give a return range for a holding ONLY if ANALOG RANGES lists that holding. State confidence in words, never as a number.
