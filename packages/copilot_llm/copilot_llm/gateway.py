@@ -24,6 +24,9 @@ from .quota import QuotaTracker, parse_duration
 from .routing import ROLE_TABLE, resolve_chain_with_skips
 from .usage import SESSION, usage_for
 
+# Ollama keep_alive for every local call and the warm-up load: -1 = keep the model in memory until Ollama stops
+KEEP_ALIVE = -1
+
 
 @dataclass
 class LLMResult:
@@ -69,6 +72,13 @@ class Gateway:
         self._clients: dict[str, AsyncOpenAI] = {}
         self._perf: dict[str, list[float]] = {}          # provider -> [tokens_out_total, seconds_total]
         self.http_client_factory = http_client_factory    # tests inject a mock transport here
+        # warm-up: "pending" until warmup() has loaded every installed local model once (see is_warm)
+        self.warm: dict[str, Any] = {"state": "pending", "models": {}, "started_at": None, "finished_at": None}
+
+    def is_warm(self) -> bool:
+        """True once warm-up finished (or in MOCK mode). Callers use keyword/template fallbacks until then
+        instead of spending their time budget on a model that is still loading."""
+        return get_settings().MOCK or self.warm["state"] == "ready"
 
     # ---------- plumbing ----------
     @property
@@ -82,6 +92,7 @@ class Gateway:
         self._quota = None
         self._clients.clear()
         self._perf.clear()
+        self.warm = {"state": "pending", "models": {}, "started_at": None, "finished_at": None}
 
     def _client(self, p: Provider) -> AsyncOpenAI:
         key = f"{p.base_url}|{p.api_key[:6]}"
@@ -133,6 +144,9 @@ class Gateway:
             kwargs["response_format"] = response_format
         if max_tokens:
             kwargs["max_tokens"] = max_tokens + (1024 if "gpt-oss" in p.model else 0)
+        if p.kind == "local":
+            # keep the model resident: a request without keep_alive would reset it to Ollama's default (5 min)
+            extra = {**extra, "keep_alive": KEEP_ALIVE}
         if extra:
             kwargs["extra_body"] = extra
         client = self._client(p)
@@ -301,26 +315,42 @@ class Gateway:
         return LLMResult(ok=False, fallbacks=fallbacks, error="all LLM providers failed")
 
     async def warmup(self, timeout_s: float = 180) -> dict[str, str]:
-        """Load every installed local model into VRAM (first load takes ~40 s on a laptop GPU; afterwards
-        OLLAMA_KEEP_ALIVE keeps it resident). Call at service start so the first real query meets its budget."""
+        """Load every installed local model into memory with keep_alive=-1 (first load takes ~40 s on a laptop
+        GPU), via Ollama's native /api/generate with an empty prompt. Sets self.warm; is_warm() turns True when
+        every reachable, installed model has answered once. Missing models / down hosts are reported, not waited on."""
         if get_settings().MOCK:
+            self.warm = {"state": "ready", "models": {}, "started_at": None, "finished_at": None}
             return {}
+        self.warm = {"state": "warming", "models": {}, "started_at": time.time(), "finished_at": None}
         h = await self.health()
         out: dict[str, str] = {}
         for p in build_providers().values():
-            if p.kind != "local":
+            if p.kind != "local" or f"{p.model}@{p.base_url}" in out:
                 continue
-            entry = h["ollama"].get(p.base_url.removesuffix("/v1"), {})
-            if entry.get("status") != "ok" or p.model in entry.get("missing_models", []) or p.model in out:
+            key = f"{p.model}@{p.base_url}"
+            base = p.base_url.removesuffix("/v1")
+            entry = h["ollama"].get(base, {})
+            if entry.get("status") != "ok":
+                out[key] = "host down"
+                self.warm["models"][p.model] = out[key]
                 continue
+            if p.model in entry.get("missing_models", []):
+                out[key] = "not pulled"
+                self.warm["models"][p.model] = out[key]
+                continue
+            self.warm["models"][p.model] = "loading"
             t0 = time.perf_counter()
             try:
-                await self._client(p).chat.completions.create(
-                    model=p.model, messages=[{"role": "user", "content": "ok /no_think"}], max_tokens=1,
-                    timeout=openai.Timeout(timeout_s, connect=reachability.CONNECT_TIMEOUT_S))
-                out[p.model] = f"loaded in {time.perf_counter() - t0:.1f}s"
+                async with httpx.AsyncClient(timeout=httpx.Timeout(timeout_s, connect=reachability.CONNECT_TIMEOUT_S)) as c:
+                    r = await c.post(f"{base}/api/generate", json={"model": p.model, "prompt": "", "keep_alive": KEEP_ALIVE})
+                    r.raise_for_status()
+                out[key] = f"loaded in {time.perf_counter() - t0:.1f}s"
             except Exception as e:  # noqa: BLE001
-                out[p.model] = f"failed: {type(e).__name__}"
+                out[key] = f"failed: {type(e).__name__}"
+            self.warm["models"][p.model] = out[key]
+        loaded = any(v.startswith("loaded") for v in out.values())
+        self.warm["state"] = "ready" if loaded else "failed"
+        self.warm["finished_at"] = time.time()
         return out
 
     async def health(self) -> dict:

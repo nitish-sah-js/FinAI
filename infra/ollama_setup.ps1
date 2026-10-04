@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 
 $vars = [ordered]@{
     OLLAMA_HOST              = "0.0.0.0:11434"   # listen on the LAN, not only 127.0.0.1
-    OLLAMA_KEEP_ALIVE        = "30m"             # keep models loaded (no cold start in the demo)
+    OLLAMA_KEEP_ALIVE        = "-1"              # keep models loaded until Ollama stops (no cold starts)
     OLLAMA_CONTEXT_LENGTH    = "8192"            # the OpenAI endpoint can't set num_ctx per request
     OLLAMA_NUM_PARALLEL      = "2"               # 2 concurrent requests per loaded model
     OLLAMA_MAX_LOADED_MODELS = "2"               # L1/L3 hold 2 models

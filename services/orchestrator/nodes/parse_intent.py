@@ -10,6 +10,7 @@ from pydantic import Field
 
 from copilot_common.models import Intent
 from copilot_common.settings import project_root
+from copilot_llm import llm
 
 from ..budget import budget
 from ..events import bus
@@ -183,13 +184,17 @@ async def parse_intent(state: dict) -> dict:
     status, note = "finished", ""
     try:
         async with budget("parse_intent") as b:
-            res = await chat(state, "parse_intent", b, "intent",
-                             [{"role": "system", "content": "You convert market questions into strict JSON."},
-                              {"role": "user", "content": render("P1", query=query)}], schema=IntentLLM)
-            intent = res.parsed if res.ok else None
-            if not res.ok and res.fallbacks and all(("unreachable" in f or "down" in f or "timeout" in f)
-                                                    for f in res.fallbacks):
-                note = "no LLM reachable"
+            if not llm.is_warm():
+                # the model is still loading (cold start ~40 s): use keyword rules now rather than time out
+                intent, note = None, "language model still warming up"
+            else:
+                res = await chat(state, "parse_intent", b, "intent",
+                                 [{"role": "system", "content": "You convert market questions into strict JSON."},
+                                  {"role": "user", "content": render("P1", query=query)}], schema=IntentLLM)
+                intent = res.parsed if res.ok else None
+                if not res.ok and res.fallbacks and all(("unreachable" in f or "down" in f or "timeout" in f)
+                                                        for f in res.fallbacks):
+                    note = "no LLM reachable"
     except TimeoutError:
         intent = None
         note = "timeout"

@@ -40,6 +40,8 @@ async def deps_check() -> dict[str, str]:
             deps["ollama_L1"] = "ok" if r.status_code == 200 else f"http {r.status_code}"
     except httpx.HTTPError as e:
         deps["ollama_L1"] = f"down ({type(e).__name__})"
+    if not llm.is_warm():
+        deps["llm_warmup"] = f"{llm.warm['state']}: intent uses keyword rules until the model is loaded"
     return deps
 
 
@@ -153,6 +155,15 @@ async def run_resume(run_id: str) -> dict:
 async def llm_quota() -> dict:
     snap = llm.quota.snapshot()
     return {"mode": get_settings().LLM_MODE, "quota": snap, "session": SESSION.to_dict(snap)}
+
+
+@app.get("/llm/warmup")
+async def llm_warmup() -> dict:
+    """Warm-up state for the UI: 'warming' until every installed local model has answered once, then 'ready'.
+    While it is not ready, parse_intent uses keyword rules instead of waiting on a loading model."""
+    w = llm.warm
+    return {"state": "ready" if llm.is_warm() else w["state"], "models": w["models"],
+            "started_at": w["started_at"], "finished_at": w["finished_at"]}
 
 
 @app.get("/llm/health")

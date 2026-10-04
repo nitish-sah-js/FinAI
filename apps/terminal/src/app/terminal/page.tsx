@@ -23,6 +23,20 @@ export default function TerminalWindow() {
   const [backendErr, setBackendErr] = useState<string | null>(null);
   const { alerts, connected: monitorUp, markAcked } = useAlerts();
 
+  // model warm-up (cold start ~40 s): poll until the orchestrator reports ready
+  const [warm, setWarm] = useState<string>('ready');
+  useEffect(() => {
+    let stop = false;
+    let t: ReturnType<typeof setTimeout>;
+    const poll = () => api.getWarmup().then((w) => {
+      if (stop) return;
+      setWarm(w.state);
+      if (w.state !== 'ready' && w.state !== 'failed') t = setTimeout(poll, 3000);
+    }).catch(() => { if (!stop) t = setTimeout(poll, 5000); });
+    poll();
+    return () => { stop = true; clearTimeout(t); };
+  }, []);
+
   // ---- the Home query thread (kept here so it survives tab switches)
   const [turns, setTurns] = useState<Turn[]>([]);
   const nextId = useRef(1);
@@ -167,6 +181,17 @@ export default function TerminalWindow() {
           </div>
         )}
 
+        {!backendErr && (warm === 'warming' || warm === 'pending') && (
+          <div className="mx-5 mt-2 text-[13px] rounded-lg border border-t-amber/30 bg-t-amber/[0.06] text-t-text px-4 py-2 z-20 flex items-center gap-2" role="status">
+            <span className="w-1.5 h-1.5 rounded-full bg-t-amber animate-pulse" />
+            Loading the language model. Questions asked in the next few seconds are understood with simpler keyword rules.
+          </div>
+        )}
+        {!backendErr && warm === 'failed' && (
+          <div className="mx-5 mt-2 text-[13px] rounded-lg border border-t-rose/30 bg-t-rose/[0.06] text-t-text px-4 py-2 z-20" role="status">
+            No language model could be loaded. Check that Ollama is running (ollama list). Answers will use templates.
+          </div>
+        )}
         {backendErr && <div className="mx-5 mt-2 text-t-rose text-[13px] rounded-lg border border-t-rose/30 bg-t-rose/[0.06] px-4 py-2 z-20">{backendErr}</div>}
 
         {/* Main content */}

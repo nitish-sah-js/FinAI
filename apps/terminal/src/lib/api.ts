@@ -35,6 +35,8 @@ export const postQuery = (body: QueryRequest) => post<QueryAccepted>(`${ORCH_URL
 export const getRuns = (limit = 20) => req<any[]>(`${ORCH_URL}/runs?limit=${limit}`);
 export const getRun = (id: string) => req<any>(`${ORCH_URL}/runs/${encodeURIComponent(id)}`);
 export const getQuota = () => req<any>(`${ORCH_URL}/llm/quota`);
+export const getWarmup = () =>
+  req<{ state: 'pending' | 'warming' | 'ready' | 'failed'; models: Record<string, string> }>(`${ORCH_URL}/llm/warmup`, { timeoutMs: 4000 });
 export const getHealthAll = () => req<Record<string, Health>>(`${ORCH_URL}/health/all`, { timeoutMs: 8000 });
 export const getPortfolio = (id = 'demo') => req<Portfolio>(`${ORCH_URL}/portfolio/${encodeURIComponent(id)}`);
 export const savePortfolio = (p: Portfolio) => post<Portfolio>(`${ORCH_URL}/portfolio`, p);

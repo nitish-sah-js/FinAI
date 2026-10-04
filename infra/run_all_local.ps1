@@ -37,6 +37,11 @@ $Services = @(
 )
 
 $env:PYTHONIOENCODING = "utf-8"
+
+# Load this machine's Ollama models once and pin them (keep_alive=-1) so the first question is not a cold start.
+Write-Host "warming up Ollama models on this machine (first load can take ~40 s)..."
+& $Py (Join-Path $Root "infra\warmup.py") --local
+if ($LASTEXITCODE -ne 0) { Write-Host "warning: no model loaded; questions will use keyword rules until Ollama is up" }
 $env:COPILOT_ROOT = $Root
 foreach ($s in $Services) {
     $name, $dir, $app, $port = $s
