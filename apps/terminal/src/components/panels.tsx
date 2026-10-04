@@ -155,6 +155,7 @@ export function NodePopover({ node, events, onClose, onCite }: { node: string; e
 const INTENT_LABEL: Record<string, string> = {
   event_impact: 'Impact of an event', portfolio_risk: 'Portfolio risk', hedge_request: 'Hedge request',
   explain: 'Explain an earlier answer', market_summary: 'Market summary',
+  stock_lookup: 'Check on a stock', rank_exposure: 'Rank holdings by exposure', what_if: 'What-if scenario',
 };
 
 function IntentRow({ k, children }: { k: string; children: React.ReactNode }) {

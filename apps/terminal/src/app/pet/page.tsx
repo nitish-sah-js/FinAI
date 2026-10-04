@@ -35,10 +35,22 @@ export default function PetWindow() {
     return () => clearTimeout(t);
   }, [latest]);
 
-  // Orchestrator activity (WS /ws/activity): think while any run is in progress.
+  // Orchestrator activity (WS /ws/activity): pet_reaction drives the animation
+  //   wave (greeting / thanks / help), think (agents running), happy (answer ready), confused (unclear / out of scope)
+  const [mood, setMood] = useState<"none" | "wave" | "happy" | "confused">("none");
+  const moodTimer = useRef<ReturnType<typeof setTimeout>>();
+  const showMood = (m: "wave" | "happy" | "confused", ms: number) => {
+    setMood(m);
+    clearTimeout(moodTimer.current);
+    moodTimer.current = setTimeout(() => setMood("none"), ms);
+  };
   useActivity((m) => {
-    if (m.type === "event" && m.data.node === "parse_intent" && m.data.status === "started") setState("thinking");
-    else if (m.type === "final") setState((s) => (s === "thinking" ? "idle" : s));
+    if (m.type !== "pet_reaction") return;
+    const r = m.data.reaction;
+    if (r === "think") setState("thinking");
+    else if (r === "happy") { setState((s) => (s === "thinking" ? "idle" : s)); showMood("happy", 2500); }
+    else if (r === "wave") { setState((s) => (s === "pointing" ? s : "idle")); showMood("wave", 2500); }
+    else if (r === "confused") { setState((s) => (s === "thinking" ? "idle" : s)); showMood("confused", 3000); }
   });
 
   useEffect(() => {
@@ -126,9 +138,18 @@ export default function PetWindow() {
             alt="pet" 
             draggable={false}
             className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl pointer-events-none"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            animate={mood === "wave" ? { rotate: [0, -12, 12, -10, 8, 0], y: 0 }
+              : mood === "happy" ? { y: [0, -26, 0, -14, 0], rotate: 0 }
+              : mood === "confused" ? { rotate: -12, y: 0 }
+              : { y: [0, -8, 0], rotate: 0 }}
+            transition={mood === "none" ? { repeat: Infinity, duration: 4, ease: "easeInOut" } : { duration: 1.1, ease: "easeInOut" }}
           />
+          <AnimatePresence>
+            {mood === "confused" && (
+              <motion.span initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                className="absolute top-2 right-6 text-3xl font-black text-white drop-shadow-lg select-none" aria-hidden>?</motion.span>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

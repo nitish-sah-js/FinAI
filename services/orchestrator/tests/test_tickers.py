@@ -41,3 +41,8 @@ def test_intent_tickers_add_to_portfolio_unless_user_named_stocks():
     # indices never become agent tickers
     s = _state("will the market fall?", ["^NSEI"])
     assert "^NSEI" not in scope_tickers(s)
+
+
+def test_null_strings_become_none():
+    raw = Intent(intent="market_summary", region="null", event_type=None)
+    assert normalise(raw, "how is the market").region is None

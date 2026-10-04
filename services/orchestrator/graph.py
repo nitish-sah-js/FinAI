@@ -21,6 +21,7 @@ from copilot_llm import llm, usage_for
 
 from . import portfolio as portfolios
 from .budget import RUN_DEADLINE_S
+from . import conversation
 from .events import bus
 from .ledger import ledger
 from .nodes.agents import AGENTS
@@ -259,13 +260,22 @@ async def run_graph(request: QueryRequest, run_id: str | None = None, deadline_s
     if await ledger.get_run(run_id) is None:
         await ledger.create_run(run_id, request.query, request.model_dump(mode="json"))
     pf = request.portfolio or portfolios.load("demo")
+    # conversation fast path: greetings, help, unclear, out-of-scope -> template reply, no LLM, no agents
+    kind = conversation.fast_classify(request.query, has_context=bool(request.ref_run_id))
+    if kind:
+        return await conversation.answer(run_id, request, pf.model_dump(mode="json"), kind, t0)
+    request = await conversation.resolve_followup(request)          # "why?" / "and for ITC?" use the previous run
+    await bus.publish_activity({"type": "pet_reaction", "data": {"run_id": run_id, "reaction": "think"}})
     init: RunState = {"run_id": run_id, "request": request.model_dump(mode="json"), "portfolio": pf.model_dump(mode="json"),
                       "evidence": [], "signals": [], "errors": [], "steps": 0, "latency": {}}
     state, status = await _invoke(run_id, init, deadline_s)
     state.setdefault("run_id", run_id)
     state.setdefault("request", init["request"])
     state.setdefault("portfolio", init["portfolio"])
-    return await _finish(run_id, state, t0, status)
+    final = await _finish(run_id, state, t0, status)
+    await bus.publish_activity({"type": "pet_reaction", "data": {
+        "run_id": run_id, "reaction": "happy" if status == "done" else "confused"}})
+    return final
 
 
 async def resume_run(run_id: str, deadline_s: float = RUN_DEADLINE_S) -> dict:

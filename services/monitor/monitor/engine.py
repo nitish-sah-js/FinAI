@@ -171,6 +171,9 @@ class Engine:
         """Store first, then WS (never blocked by Telegram/email, which run in the background)."""
         await store.save(alert)
         n = await hub.broadcast({"type": "alert", "data": alert.model_dump(mode="json")})
+        if alert.tier >= 2:                    # the desktop pet points at tier 2-3 alerts
+            await hub.broadcast({"type": "pet_reaction", "data": {"reaction": "alert", "alert_id": alert.alert_id,
+                                                                  "tier": alert.tier}})
         if alert.tier >= 3 and not alert.headline.startswith("SIMULATED"):    # demo alerts stay in the app
             telegram.enqueue(telegram.format_alert(alert))
             if email.enabled():

@@ -16,6 +16,9 @@ ALWAYS = {
     "portfolio_risk": ["exposure_agent", "sentiment_agent", "macro_agent"],
     "hedge_request": ["exposure_agent", "macro_agent", "analog_agent"],
     "market_summary": ["sentiment_agent", "macro_agent"],
+    "stock_lookup": ["sentiment_agent", "exposure_agent", "macro_agent"],
+    "rank_exposure": ["exposure_agent", "macro_agent"],
+    "what_if": ["exposure_agent", "macro_agent"],
     "explain": [],
 }
 WEATHER_SENSITIVE_SECTORS = {"energy", "utilities", "power", "agri", "fmcg", "cement", "ports", "mining", "oil&gas"}

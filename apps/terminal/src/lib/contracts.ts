@@ -68,7 +68,9 @@ export interface QueryAccepted {
 }
 
 export interface Intent {
-  intent: 'event_impact' | 'portfolio_risk' | 'hedge_request' | 'explain' | 'market_summary';
+  intent: 'event_impact' | 'portfolio_risk' | 'hedge_request' | 'explain' | 'market_summary'
+    | 'stock_lookup' | 'rank_exposure' | 'what_if'
+    | 'greeting' | 'smalltalk' | 'thanks' | 'help' | 'out_of_scope' | 'unclear';
   event_type?: string | null;
   region?: string | null;
   tickers: string[];
@@ -133,6 +135,8 @@ export interface FinalAnswer {
   lang: string;
   llm_usage: Record<string, any>;
   latency_ms: Record<string, number>;
+  kind?: 'analysis' | 'conversation';   // conversation: greeting / help / unclear ... no agents, no numbers
+  suggestions?: string[];
 }
 
 export type AgentStatus = 'queued' | 'started' | 'progress' | 'finished' | 'failed' | 'skipped' | 'degraded';
@@ -186,4 +190,7 @@ export interface Health {
   hint?: string;
 }
 
-export type WsMessage = { type: 'event'; data: AgentEvent } | { type: 'final'; data: FinalAnswer };
+export type WsMessage = { type: 'event'; data: AgentEvent } | { type: 'final'; data: FinalAnswer }
+  | { type: 'pet_reaction'; data: { reaction: PetReaction; run_id?: string } };
+
+export type PetReaction = 'wave' | 'think' | 'confused' | 'happy' | 'alert';

@@ -76,3 +76,12 @@ def test_health_and_state_with_upstreams_down(monkeypatch):
 async def _noop(*a, **k):
     from monitor import store
     await store.init_db()
+
+
+def test_tier2_alert_also_sends_pet_reaction():
+    with client() as c:
+        with c.websocket_connect("/ws/alerts") as ws:
+            c.post("/alerts/test", json={"tier": 2, "tickers": ["ITC.NS"]})
+            msgs = [ws.receive_json() for _ in range(2)]
+    kinds = [m["type"] for m in msgs]
+    assert kinds == ["alert", "pet_reaction"] and msgs[1]["data"]["reaction"] == "alert"

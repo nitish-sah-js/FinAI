@@ -98,8 +98,9 @@ function useElapsed(running: boolean) {
   return ((now - t0) / 1000).toFixed(1);
 }
 
-function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices }: {
+function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices, onAsk }: {
   turn: Turn; isLatest: boolean; layoutId: string; portfolio: Portfolio | null; bars: Record<string, Bar[]>; prices: PriceMap;
+  onAsk: (q: string) => void;
 }) {
   const { events, final, status } = useRunStream(turn.runId);
   const [cite, setCite] = useState<string | null>(null);
@@ -109,8 +110,12 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices }: {
   const evidenceById = useMemo(() => Object.fromEntries((final?.evidence ?? []).map((e) => [e.id, e])) as Record<string, Evidence>, [final]);
   useEffect(() => { const t = setTimeout(() => setSettled(true), 900); return () => clearTimeout(t); }, []);
 
+  // greetings, help, unclear ... come back as a short reply with suggestions (no agents ran)
+  const conversation = final?.kind === 'conversation' || events.some((e) => e.meta?.fast_path);
+  const waiting = !turn.error && !final && events.length === 0;
   const stateChip = turn.error || status === 'error'
     ? <span className="text-xs font-bold bg-t-rose/15 text-t-rose px-2 py-1 rounded-md">Failed</span>
+    : conversation ? null
     : final ? <ConfidencePill c={final.confidence} />
     : <span className="text-xs font-medium bg-[#2c2d2d] text-[#f5e6d3] px-2.5 py-1 rounded-md flex items-center gap-1.5 whitespace-nowrap"><Loader2 size={11} className="animate-spin" /> Thinking, {elapsed} s</span>;
 
@@ -125,6 +130,12 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices }: {
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.4 }} className="space-y-2.5">
         {turn.error ? (
           <div className={`${INNER} px-5 py-4 text-t-rose text-sm`}>{turn.error}</div>
+        ) : waiting ? (
+          <div className={`${INNER} px-5 py-4 flex gap-1.5`} aria-label="Waiting for a reply">
+            {[0, 1, 2].map((i) => <span key={i} className="w-1.5 h-1.5 rounded-full bg-t-muted animate-pulse" style={{ animationDelay: `${i * 150}ms` }} />)}
+          </div>
+        ) : conversation ? (
+          final && <ConversationReply final={final} onAsk={onAsk} />
         ) : (<>
           <ReasoningBox events={events} final={final} status={status} running={running} elapsed={elapsed}
             defaultOpen={isLatest} runId={turn.runId} onCite={setCite} />
@@ -134,6 +145,24 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices }: {
       </motion.div>
       {cite && <EvidenceDrawer id={cite} evidence={evidenceById[cite]} onClose={() => setCite(null)} />}
     </motion.div>
+  );
+}
+
+function ConversationReply({ final, onAsk }: { final: FinalAnswer; onAsk: (q: string) => void }) {
+  return (
+    <div className={`${INNER} px-6 py-5`}>
+      <p className="text-[15px] leading-7 text-t-text max-w-[68ch]">{final.answer_markdown}</p>
+      {(final.suggestions ?? []).length > 0 && (
+        <div className="mt-4 flex flex-col items-start gap-2">
+          {final.suggestions!.map((q) => (
+            <button key={q} onClick={() => onAsk(q)}
+              className="text-left text-sm text-t-fg border border-t-fg/15 hover:border-t-fg/35 hover:bg-t-fg/[0.04] rounded-lg px-3.5 py-2 transition-colors">
+              {q}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -155,7 +184,7 @@ function ReasoningBox({ events, final, status, running, elapsed, defaultOpen, ru
       <button onClick={() => setOpen((o) => !o)} aria-expanded={open}
         className="w-full px-4 h-12 flex items-center gap-4 text-left hover:bg-t-fg/[0.02]">
         <span className="text-[15px] font-bold text-t-fg">Reasoning</span>
-        <span className="text-[13px] text-t-muted">
+        <span className="text-[13px] text-t-muted whitespace-nowrap shrink-0">
           {events.length} steps, {total ? fmtMs(total) : `${elapsed} s`}
           {degraded > 0 && <span className="text-t-saffron">, {degraded} used fallback data</span>}
         </span>
@@ -427,7 +456,8 @@ export function HomeView({ turns, nextId, onSubmit, onNewChat, submitting, portf
 
         {turns.map((t, i) => (
           <div key={t.id} ref={i === turns.length - 1 ? lastTurn : undefined} className="scroll-mt-4">
-            <TurnCard turn={t} isLatest={i === turns.length - 1} layoutId={`box-${t.id}`} portfolio={portfolio} bars={bars} prices={prices} />
+            <TurnCard turn={t} isLatest={i === turns.length - 1} layoutId={`box-${t.id}`} portfolio={portfolio} bars={bars}
+              prices={prices} onAsk={onSubmit} />
           </div>
         ))}
 

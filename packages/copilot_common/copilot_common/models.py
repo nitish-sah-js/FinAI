@@ -100,7 +100,10 @@ class QueryAccepted(BaseModel):
 
 
 # ---------- Intent (output of P1) ----------
-IntentType = Literal["event_impact", "portfolio_risk", "hedge_request", "explain", "market_summary"]
+IntentType = Literal["event_impact", "portfolio_risk", "hedge_request", "explain", "market_summary",
+                     "stock_lookup", "rank_exposure", "what_if",                                  # analysis (agents run)
+                     "greeting", "smalltalk", "thanks", "help", "out_of_scope", "unclear"]        # conversation (no agents)
+CONVERSATIONAL_INTENTS = ("greeting", "smalltalk", "thanks", "help", "out_of_scope", "unclear")
 EventType = Literal["hurricane", "cyclone", "monsoon", "heatwave", "rates", "oil", "policy", "other"]
 
 
@@ -171,6 +174,8 @@ class FinalAnswer(BaseModel):
     lang: str = "en"
     llm_usage: dict = {}
     latency_ms: dict = {}
+    kind: Literal["analysis", "conversation"] = "analysis"   # conversation = greeting / help / unclear ...: no agents, no numbers
+    suggestions: list[str] = []                               # clickable follow-up questions
 
 
 # ---------- Live events (WebSocket) ----------

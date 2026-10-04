@@ -93,6 +93,11 @@ class EventBus:
         finally:
             self._subs[run_id].remove(q)
 
+    async def publish_activity(self, msg: dict) -> None:
+        """Push a message to activity subscribers only (not a run's history): e.g. pet_reaction for the desktop pet."""
+        for q in list(self._activity):
+            q.put_nowait(msg)
+
     async def subscribe_activity(self):
         q: asyncio.Queue = asyncio.Queue()
         self._activity.append(q)

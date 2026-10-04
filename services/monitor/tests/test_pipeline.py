@@ -101,7 +101,9 @@ def test_same_weather_twice_one_broadcast_then_escalation(isolated):
             ws_hub.hub.broadcast = orig
         return a, b, c
     a, b, c = run(go())
-    assert len(a) == 1 and a[0].tier == 2 and b == [] and len(sent) == 2
+    alerts_sent = [m for m in sent if m["type"] == "alert"]                  # pet_reaction messages ride along
+    assert len(a) == 1 and a[0].tier == 2 and b == [] and len(alerts_sent) == 2
+    assert [m["data"]["reaction"] for m in sent if m["type"] == "pet_reaction"] == ["alert", "alert"]
     assert c[0].alert_id == a[0].alert_id and c[0].tier == 3 and c[0].reason.startswith("Escalated:")
     stored = run(store.list_alerts())
     assert len(stored) == 1 and stored[0].tier == 3 and eng.counts["updated"] == 1

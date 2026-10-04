@@ -112,11 +112,34 @@ class IntentLLM(Intent):
     needs_tools: list[ToolName] = Field(default_factory=list, max_length=8)
 
 
+_WHAT_IF = re.compile(r"\bwhat\s+if\b|\bwhat\s+happens\s+if\b|\bsuppose\b|\bagar\b|\bscenario\b", re.I)
+_RANK = re.compile(r"\brank\b|\branking\b|which\s+(of\s+my\s+)?(holdings|stocks|shares|positions)|"
+                   r"most\s+(exposed|sensitive|at\s+risk|vulnerable)|biggest\s+(risk|exposure)|kaun\s+sa", re.I)
+_LOOKUP = re.compile(r"\bhow\s+is\b|\bhow's\b|\btell\s+me\s+about\b|\bprice\s+of\b|\bnews\s+(on|about)\b|"
+                     r"\bupdate\s+on\b|\bwhat'?s\s+happening\s+(with|to)\b|\boutlook\b|\bkaisa\b", re.I)
+_CONVERSATIONAL = {"greeting", "smalltalk", "thanks", "help", "out_of_scope", "unclear"}
+
+
+def special_intent(query: str) -> str | None:
+    """Keyword rules for the newer analysis intents (they beat a generic LLM label)."""
+    from ..router import parse_shocks
+    q = query.lower()
+    if _WHAT_IF.search(q) and parse_shocks(query):
+        return "what_if"
+    if _RANK.search(q):
+        return "rank_exposure"
+    if named_in_query(query) and _LOOKUP.search(q) and not any(w in q for w, _ in EVENT_WORDS):
+        return "stock_lookup"
+    return None
+
+
 def keyword_intent(query: str) -> Intent:
     q = query.lower()
     event_type = next((et for w, et in EVENT_WORDS if w in q), None)
     if re.search(r"\bexplain\b|why did you|samjhao", q):
         intent = "explain"
+    elif special_intent(query):
+        intent = special_intent(query)
     elif "hedge" in q or "protect" in q:
         intent = "hedge_request"
     elif re.search(r"\bvar\b|value at risk|\brisk\b|drawdown", q):
@@ -137,7 +160,9 @@ def keyword_intent(query: str) -> Intent:
     region = next((r.title() for r in REGIONS if r in q), None)
     tools = {"event_impact": ["weather", "analogs", "exposure", "sentiment"],
              "portfolio_risk": ["exposure", "risk"], "hedge_request": ["exposure", "hedge"],
-             "market_summary": ["sentiment", "macro"], "explain": []}[intent]
+             "market_summary": ["sentiment", "macro"], "explain": [],
+             "stock_lookup": ["sentiment", "exposure"], "rank_exposure": ["exposure", "risk"],
+             "what_if": ["exposure", "risk"]}[intent]
     if event_type in {"monsoon", "heatwave"}:
         tools.append("agri")
     if event_type in {"oil", "rates", "policy"}:
@@ -150,12 +175,22 @@ def keyword_intent(query: str) -> Intent:
 def normalise(intent: Intent, query: str) -> Intent:
     intent = Intent.model_validate(intent.model_dump())          # IntentLLM → plain Intent
     intent.horizon_days = max(1, min(int(intent.horizon_days or 5), 60))
+    # small models sometimes write the string "null" instead of null
+    if intent.region and intent.region.strip().lower() in {"null", "none", "n/a", ""}:
+        intent.region = None
+    if intent.event_type and str(intent.event_type).lower() in {"null", "none"}:
+        intent.event_type = None
     # keep only well-formed, known symbols; junk from the model is dropped, names in the query are added back
     cleaned = [c for t in intent.tickers if (c := clean_ticker(t))]
     intent.tickers = list(dict.fromkeys(named_in_query(query) + cleaned))[:5]
     q = query.lower()
     if re.search(r"\bexplain\b|why did you", q) and intent.intent != "explain":
         intent.intent = "explain"
+    sp = special_intent(query)
+    if sp and intent.intent != "explain" and not (intent.intent == "hedge_request" and "hedge" in q):
+        intent.intent = sp
+    if intent.intent in _CONVERSATIONAL:            # the fast path already saw a finance entity: this is analysis
+        intent.intent = "market_summary"
     # unambiguous horizon words beat the model's guess
     if re.search(r"\b1[- ]day\b|\btoday\b|\baaj\b", q):
         intent.horizon_days = 1

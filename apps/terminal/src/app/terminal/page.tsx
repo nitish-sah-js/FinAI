@@ -6,7 +6,8 @@ import BrailleTerrainBackground from '@/components/BrailleTerrainBackground';
 import * as api from '@/lib/api';
 import type { Alert, Portfolio, ToolResult } from '@/lib/contracts';
 import { useSettings } from '@/lib/store';
-import { useAlerts } from '@/lib/ws';
+import { useActivity, useAlerts } from '@/lib/ws';
+import { motion } from 'framer-motion';
 import { Empty, PANEL, PanelHeader, fmtInr, fmtPct, type Bar } from '@/components/panels';
 import { BacktestView, HealthView, PaperView, PortfolioView, SettingsView, type PriceMap } from '@/components/views';
 import { HomeView, type Turn } from '@/components/home';
@@ -22,6 +23,12 @@ export default function TerminalWindow() {
   const [bars, setBars] = useState<Record<string, Bar[]>>({});
   const [backendErr, setBackendErr] = useState<string | null>(null);
   const { alerts, connected: monitorUp, markAcked } = useAlerts();
+
+  // pet_reaction (orchestrator activity stream) also animates the Σ mark, so the terminal reacts like the pet
+  const [reaction, setReaction] = useState<{ kind: string; n: number }>({ kind: 'none', n: 0 });
+  useActivity((m) => {
+    if (m.type === 'pet_reaction' && m.data.reaction !== 'think') setReaction((r) => ({ kind: m.data.reaction, n: r.n + 1 }));
+  });
 
   // model warm-up (cold start ~40 s): poll until the orchestrator reports ready
   const [warm, setWarm] = useState<string>('ready');
@@ -135,7 +142,11 @@ export default function TerminalWindow() {
         {/* Title bar (draggable) */}
         <header className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 pt-4 pb-3 z-50 shrink-0 bg-t-ink/80 backdrop-blur-sm" style={{ WebkitAppRegion: 'drag' } as any}>
           <div className="flex items-center gap-2.5">
-            <span className="w-7 h-7 rounded-lg bg-t-fg text-t-ink grid place-items-center text-[15px] font-black leading-none" aria-hidden>Σ</span>
+            <motion.span key={reaction.n} aria-hidden
+              className="w-7 h-7 rounded-lg bg-t-fg text-t-ink grid place-items-center text-[15px] font-black leading-none"
+              animate={reaction.kind === 'wave' ? { rotate: [0, -14, 14, -8, 0] } : reaction.kind === 'happy' ? { y: [0, -6, 0, -3, 0] }
+                : reaction.kind === 'confused' ? { rotate: [0, -10, -10, 0] } : reaction.kind === 'alert' ? { scale: [1, 1.18, 1, 1.12, 1] } : {}}
+              transition={{ duration: 0.9, ease: 'easeInOut' }}>Σ</motion.span>
             <span className="font-bold text-t-fg text-[15px]">Sigma</span>
           </div>
 
