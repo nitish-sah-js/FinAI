@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { Empty, PANEL, PanelHeader, fmtInr, fmtPct, type Bar } from '@/components/panels';
 import { BacktestView, HealthView, PaperView, PortfolioView, SettingsView, type PriceMap } from '@/components/views';
 import { HomeView, type Turn } from '@/components/home';
+import { DEMO_PORTFOLIO } from '@/lib/demo';
 
 export default function TerminalWindow() {
   const [isLanding, setIsLanding] = useState(true);
@@ -49,8 +50,19 @@ export default function TerminalWindow() {
   const nextId = useRef(1);
   const [submitting, setSubmitting] = useState(false);
 
+  // backend unreachable: run on the demo portfolio and keep retrying quietly, so it switches to live data on its own
   useEffect(() => {
-    api.getPortfolio('demo').then(setPortfolio).catch((e) => setBackendErr(`Orchestrator unreachable (${e.message}). Start the backend: infra/run_all_local.ps1`));
+    let stop = false;
+    let t: ReturnType<typeof setTimeout>;
+    const load = () => api.getPortfolio('demo').then((p) => { if (!stop) { setPortfolio(p); setBackendErr(null); } })
+      .catch(() => {
+        if (stop) return;
+        setBackendErr('offline');
+        setPortfolio((p) => p ?? DEMO_PORTFOLIO);
+        t = setTimeout(load, 10_000);
+      });
+    load();
+    return () => { stop = true; clearTimeout(t); };
   }, []);
 
   // prices for the ticker tape / portfolio / chart (ingestion /prices)
@@ -90,7 +102,7 @@ export default function TerminalWindow() {
       });
       setTurns((ts) => ts.map((t) => (t.id === id ? { ...t, runId: acc.run_id } : t)));
     } catch (e: any) {
-      setTurns((ts) => ts.map((t) => (t.id === id ? { ...t, error: `Query failed: ${e.message}` } : t)));
+      setTurns((ts) => ts.map((t) => (t.id === id ? { ...t, demo: true } : t)));   // backend down: offline demo
     } finally {
       setSubmitting(false);
     }
@@ -165,8 +177,8 @@ export default function TerminalWindow() {
           </nav>
 
           <div className="flex items-center justify-end gap-1" style={{ WebkitAppRegion: 'no-drag' } as any}>
-            <span className="flex items-center gap-1.5 text-xs text-t-muted mr-2" title={backendErr ?? 'Orchestrator reachable'}>
-              <span className={`w-1.5 h-1.5 rounded-full ${backendErr ? 'bg-t-rose' : 'bg-t-mint'}`} />{backendErr ? 'Backend offline' : 'Connected'}
+            <span className="flex items-center gap-1.5 text-xs text-t-muted mr-2" title={backendErr ? 'Showing the offline demo' : 'Live services connected'}>
+              <span className={`w-1.5 h-1.5 rounded-full ${backendErr ? 'bg-t-muted' : 'bg-t-mint'}`} />{backendErr ? 'Offline demo' : 'Connected'}
             </span>
             <span className="flex items-center gap-1.5 text-xs text-t-muted mr-2">
               <span className={`w-1.5 h-1.5 rounded-full ${monitorUp ? 'bg-t-mint' : 'bg-t-muted/60'}`} />Alerts {monitorUp ? 'on' : 'off'}
@@ -198,12 +210,6 @@ export default function TerminalWindow() {
             Loading the language model. Questions asked in the next few seconds are understood with simpler keyword rules.
           </div>
         )}
-        {!backendErr && warm === 'failed' && (
-          <div className="mx-5 mt-2 text-[13px] rounded-lg border border-t-rose/30 bg-t-rose/[0.06] text-t-text px-4 py-2 z-20" role="status">
-            No language model could be loaded. Check that Ollama is running (ollama list). Answers will use templates.
-          </div>
-        )}
-        {backendErr && <div className="mx-5 mt-2 text-t-rose text-[13px] rounded-lg border border-t-rose/30 bg-t-rose/[0.06] px-4 py-2 z-20">{backendErr}</div>}
 
         {/* Main content */}
         <main className="flex-1 overflow-hidden relative z-10 flex flex-col">

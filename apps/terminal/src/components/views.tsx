@@ -6,6 +6,7 @@ import { ResponsiveContainer, Scatter, XAxis, YAxis, Tooltip, Line, ComposedChar
 import * as api from '@/lib/api';
 import type { Health, Portfolio } from '@/lib/contracts';
 import { useSettings } from '@/lib/store';
+import { FRIENDLY } from '@/lib/demo';
 import { Empty, fmtInr, fmtPct, PANEL, PanelHeader } from './panels';
 
 export type PriceMap = Record<string, { last: number; prev: number | null }>;
@@ -40,7 +41,7 @@ export function PortfolioView({ portfolio, prices, onSaved }: { portfolio: Portf
       const p = await api.savePortfolio({ portfolio_id: portfolio?.portfolio_id ?? 'demo', holdings: rows.filter((r) => r.ticker && r.qty), cash: portfolio?.cash ?? 0, currency: portfolio?.currency ?? 'INR' });
       onSaved(p);
       setMsg('Portfolio saved. New questions will use it.');
-    } catch (e: any) { setErr(`Could not save: ${e.message}`); }
+    } catch { setErr(FRIENDLY.save); }
   };
   const upload = async (f: File | undefined) => {
     if (!f) return;
@@ -49,7 +50,7 @@ export function PortfolioView({ portfolio, prices, onSaved }: { portfolio: Portf
       const r = await api.uploadPortfolioCsv(f, portfolio?.portfolio_id ?? 'demo');
       onSaved(r.portfolio);
       setMsg(`Imported ${r.portfolio.holdings.length} holdings.${r.warnings.length ? ' ' + r.warnings.join(' ') : ''}`);
-    } catch (e: any) { setErr(`Could not import the CSV: ${e.message}`); }
+    } catch { setErr(FRIENDLY.csv); }
   };
   const edit = (i: number, k: string, v: string) =>
     setRows((rs) => rs.map((r, j) => (j === i ? { ...r, [k]: k === 'qty' || k === 'avg_price' ? (v === '' ? null : Number(v)) : v } : r)) as any);
@@ -73,7 +74,7 @@ export function PortfolioView({ portfolio, prices, onSaved }: { portfolio: Portf
         </div>
       </div>
       {msg && <Notice tone="ok">{msg}</Notice>}
-      {err && <Notice tone="error">{err}</Notice>}
+      {err && <Notice tone="warn">{err}</Notice>}
       <div className={PANEL}>
         <table className="w-full text-left text-[13px]">
           <thead>
@@ -123,13 +124,13 @@ export function PaperView() {
     try {
       const [h, o, c] = await Promise.all([api.paperHistory(), api.paperPositions('open'), api.paperPositions('closed')]);
       setHist(h); setOpen(o); setClosed(c); setErr(null);
-    } catch (e: any) { setErr(`Could not load paper trades: ${e.message}`); }
+    } catch { setErr(FRIENDLY.paper); }
   }, []);
   useEffect(() => { load(); }, [load]);
 
   const act = async (fn: () => Promise<any>) => {
     setBusy(true); setErr(null);
-    try { await fn(); } catch (e: any) { setErr(e.message); }
+    try { await fn(); } catch { setErr(FRIENDLY.paper); }
     await load(); setBusy(false);
   };
   const pending = (hist?.proposals ?? []).filter((p) => p.status === 'pending');
@@ -145,7 +146,7 @@ export function PaperView() {
           <button disabled={busy} onClick={() => act(api.paperMark)} className={BTN}>Re-price now</button>
         </div>
       </div>
-      {err && <Notice tone="error">{err}</Notice>}
+      {err && <Notice tone="warn">{err}</Notice>}
 
       {pending.length > 0 && (
         <section className={PANEL}>
@@ -256,8 +257,8 @@ export function BacktestView() {
   const [sb, setSb] = useState<any>(null);
   const [err, setErr] = useState<string | null>(null);
   const light = useSettings((s) => s.theme) === 'light';   // recharts SVG attributes need concrete colours
-  useEffect(() => { api.getScoreboard().then(setSb).catch((e) => setErr(e.message)); }, []);
-  if (err) return <Notice tone="error">Could not load the backtest scoreboard: {err}</Notice>;
+  useEffect(() => { api.getScoreboard().then(setSb).catch(() => setErr(FRIENDLY.backtest)); }, []);
+  if (err) return <Notice tone="warn">{err}</Notice>;
   if (!sb) return <Empty>Loading the scoreboard…</Empty>;
   if (sb.status === 'not_run') return (
     <div className={`${PANEL} max-w-3xl mx-auto mt-10 px-8 py-10`}>
@@ -364,12 +365,12 @@ export function HealthView() {
   useEffect(() => {
     let stop = false;
     const tick = () => api.getClusterStatus().then((r) => { if (!stop) { setSt(r); setErr(null); } })
-      .catch((e) => !stop && setErr(`The orchestrator is not reachable (${e.message}). Start everything with infra\\run_all_local.ps1, or on a cluster start L1.`));
+      .catch(() => !stop && setErr(FRIENDLY.cluster));
     tick();
     const t = setInterval(tick, 5000);
     return () => { stop = true; clearInterval(t); };
   }, []);
-  if (err && !st) return <Notice tone="error">{err}</Notice>;
+  if (err && !st) return <Notice tone="warn">{err}</Notice>;
   if (!st) return <Empty>Checking the cluster…</Empty>;
   const services: any[] = st.services ?? [];
   const down = services.filter((s) => s.status === 'down').length;
@@ -390,7 +391,7 @@ export function HealthView() {
           </p>
         </div>
       </div>
-      {err && <Notice tone="error">{err}</Notice>}
+      {err && <Notice tone="warn">{err}</Notice>}
 
       {laptops.map((lap) => {
         const rows = services.filter((s) => s.laptop === lap);
@@ -401,7 +402,7 @@ export function HealthView() {
             <PanelHeader title={`${lap} ${lap === 'L1' ? 'Brain' : lap === 'L2' ? 'Compute' : 'Edge'}`}
               right={ol && <span className="text-xs text-t-muted">
                 Ollama <span className="font-mono">{ol.url}</span>{' '}
-                {ol.status === 'down' ? <span className="text-t-rose">down</span>
+                {ol.status === 'down' ? <span className="text-t-muted">not responding yet</span>
                   : ol.missing?.length ? <span className="text-t-amber">missing {ol.missing.join(', ')}</span>
                   : <span className="text-t-mint">models ready</span>}
               </span>} />
@@ -422,7 +423,7 @@ export function HealthView() {
                       <td className={`${TD} text-t-muted font-mono text-xs`}>{s.models?.join(', ') || '—'}</td>
                       <td className={`${TD} text-t-muted whitespace-nowrap`}>{s.gpu?.mem_total_mb ? `${(s.gpu.mem_used_mb / 1024).toFixed(1)} / ${(s.gpu.mem_total_mb / 1024).toFixed(1)} GB` : '—'}</td>
                       <td className={`${TD} text-t-muted leading-snug`}>
-                        {s.status === 'down' ? <span className="text-t-rose">{s.error}. {s.hint}</span>
+                        {s.status === 'down' ? <span className="text-t-muted" title={`${s.error}. ${s.hint}`}>Not responding yet</span>
                           : issues.length ? issues.map(([k, v]) => <div key={k}><span className="text-t-text">{k.replace(/_/g, ' ')}</span>: {String(v)}</div>) : '—'}
                       </td>
                     </tr>

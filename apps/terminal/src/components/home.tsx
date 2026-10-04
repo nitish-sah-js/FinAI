@@ -8,6 +8,7 @@ import * as api from '@/lib/api';
 import type { AgentEvent, Evidence, FinalAnswer, Intent, Portfolio } from '@/lib/contracts';
 import { useSettings } from '@/lib/store';
 import { useRunStream } from '@/lib/ws';
+import { FRIENDLY, useDemoStream } from '@/lib/demo';
 import {
   AgentGraph, AnswerBody, ConfidencePill, Empty, EventLog, EvidenceDrawer, IntentPanel, LatencyWaterfall, NodePopover,
   NODE_LABEL, PanelHeader, PriceChart, SectorHeatmap, eventLatency, fmtInr, fmtMs, fmtPct, type Bar,
@@ -19,6 +20,7 @@ export interface Turn {
   query: string;
   runId: string | null;
   error: string | null;
+  demo?: boolean;          // backend unreachable: show the offline demo (lib/demo.ts), labelled "Demo data"
 }
 
 export const EXAMPLES = [
@@ -102,19 +104,32 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices, onAsk }: 
   turn: Turn; isLatest: boolean; layoutId: string; portfolio: Portfolio | null; bars: Record<string, Bar[]>; prices: PriceMap;
   onAsk: (q: string) => void;
 }) {
-  const { events, final, status } = useRunStream(turn.runId);
+  const live = useRunStream(turn.demo ? null : turn.runId);
+  // pitch safety net: if the backend drops the run (connection error) or never answers, replay the offline demo
+  const [fallback, setFallback] = useState(false);
+  useEffect(() => {
+    if (!turn.demo && live.status === 'error' && !live.final) setFallback(true);
+  }, [turn.demo, live.status, live.final]);
+  useEffect(() => {
+    if (turn.demo || !turn.runId || live.final) return;
+    const t = setTimeout(() => setFallback(true), 150_000);
+    return () => clearTimeout(t);
+  }, [turn.demo, turn.runId, live.final]);
+  const isDemo = !!turn.demo || !!turn.error || fallback;
+  const demo = useDemoStream(isDemo ? turn.query : null);
+  const { events, final, status } = isDemo ? demo : live;
   const [cite, setCite] = useState<string | null>(null);
   const [settled, setSettled] = useState(false);
-  const running = !turn.error && !final && status !== 'error';
+  const running = !final && status !== 'error';
   const elapsed = useElapsed(running);
   const evidenceById = useMemo(() => Object.fromEntries((final?.evidence ?? []).map((e) => [e.id, e])) as Record<string, Evidence>, [final]);
   useEffect(() => { const t = setTimeout(() => setSettled(true), 900); return () => clearTimeout(t); }, []);
 
   // greetings, help, unclear ... come back as a short reply with suggestions (no agents ran)
   const conversation = final?.kind === 'conversation' || events.some((e) => e.meta?.fast_path);
-  const waiting = !turn.error && !final && events.length === 0;
-  const stateChip = turn.error || status === 'error'
-    ? <span className="text-xs font-bold bg-t-rose/15 text-t-rose px-2 py-1 rounded-md">Failed</span>
+  const waiting = !final && events.length === 0;
+  const stateChip = isDemo && final
+    ? <span className="text-xs font-medium bg-t-fg/[0.08] text-t-muted px-2 py-1 rounded-md" title="The live services did not answer, so this shows the offline demo">Demo data</span>
     : conversation ? null
     : final ? <ConfidencePill c={final.confidence} />
     : <span className="text-xs font-medium bg-[#2c2d2d] text-[#f5e6d3] px-2.5 py-1 rounded-md flex items-center gap-1.5 whitespace-nowrap"><Loader2 size={11} className="animate-spin" /> Thinking, {elapsed} s</span>;
@@ -128,9 +143,7 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices, onAsk }: 
         <div className="shrink-0 mt-0.5">{stateChip}</div>
       </div>
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.4 }} className="space-y-2.5">
-        {turn.error ? (
-          <div className={`${INNER} px-5 py-4 text-t-rose text-sm`}>{turn.error}</div>
-        ) : waiting ? (
+        {waiting ? (
           <div className={`${INNER} px-5 py-4 flex gap-1.5`} aria-label="Waiting for a reply">
             {[0, 1, 2].map((i) => <span key={i} className="w-1.5 h-1.5 rounded-full bg-t-muted animate-pulse" style={{ animationDelay: `${i * 150}ms` }} />)}
           </div>
@@ -243,7 +256,7 @@ function AnswerBox({ final, events, running, onCite }: { final: FinalAnswer | nu
             </div>
             <div className="text-[13px] text-t-muted pt-1">{events.some((e) => e.node === 'synthesizer' && e.status === 'started') ? 'Writing the answer from the evidence.' : 'Collecting evidence from the agents.'}</div>
           </div>
-        ) : <div className="text-t-rose text-sm">The run stopped without an answer. Check data/logs/orchestrator.log.err.</div>}
+        ) : <div className="text-t-muted text-sm">{FRIENDLY.generic}</div>}
       </div>
     );
   }
@@ -290,7 +303,7 @@ function HedgePanel({ final }: { final: FinalAnswer }) {
       const r = await api.paperApprove(prop.proposal_id, 'approve', approvedBy);
       setState((s) => ({ ...s, [hedgeId]: r.position ? `Paper trade opened at ${Number(r.position.entry_price).toFixed(2)}` : `Proposal ${r.proposal?.status ?? 'saved'}` }));
     } catch (e: any) {
-      setState((s) => ({ ...s, [hedgeId]: `error: ${e.message}` }));
+      setState((s) => ({ ...s, [hedgeId]: FRIENDLY.hedge }));
     }
   };
   return (
@@ -307,7 +320,7 @@ function HedgePanel({ final }: { final: FinalAnswer }) {
                   <span className={h.side === 'buy' ? 'text-t-mint' : 'text-t-rose'}>{h.side === 'buy' ? 'Buy' : 'Sell'}</span> {h.quantity} {h.unit}, hedge ratio {h.hedge_ratio.toFixed(2)}
                   {h.est_cost_inr != null && <>, about {fmtInr(h.est_cost_inr)}</>}
                 </div>
-                {st ? <div className={`mt-1.5 ${st.startsWith('error') ? 'text-t-rose' : 'text-t-text'}`}>{st.replace(/^error: /, 'Could not open: ')}</div> : (
+                {st ? <div className="mt-1.5 text-t-text">{st}</div> : (
                   <button onClick={() => approve(h.hedge_id)}
                     className="mt-2 text-[13px] font-medium text-t-fg border border-t-fg/20 hover:bg-t-fg/[0.06] rounded-md px-3 py-1.5 transition-colors">
                     Paper trade
@@ -380,7 +393,7 @@ function WhatIf({ portfolio }: { portfolio: Portfolio | null }) {
       const nonZero = Object.fromEntries(Object.entries(shocks).filter(([, v]) => v !== 0));
       api.postScenario({ portfolio, shocks: nonZero })
         .then((r) => { setRes(r.evidence[0] ?? null); setErr(null); })
-        .catch((e) => setErr(e.message))
+        .catch(() => setErr(FRIENDLY.scenario))
         .finally(() => setBusy(false));
     }, 300);
     return () => clearTimeout(t);
@@ -399,7 +412,7 @@ function WhatIf({ portfolio }: { portfolio: Portfolio | null }) {
       ))}
       <div className="mt-auto pt-3 border-t border-t-fg/[0.07]">
         <div className="text-xs text-t-muted">Portfolio impact</div>
-        {err ? <div className="text-[13px] text-t-rose">{err}</div> : (
+        {err ? <div className="text-[13px] text-t-muted">{err}</div> : (
           <div className="flex items-baseline gap-2">
             <span className={`text-2xl font-bold ${(v?.pnl_inr ?? 0) < 0 ? 'text-t-rose' : 'text-t-mint'}`}>{fmtInr(v?.pnl_inr)}</span>
             <span className="text-[13px] text-t-muted">{fmtPct(v?.pnl_pct)}</span>
