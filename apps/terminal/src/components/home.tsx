@@ -251,6 +251,7 @@ const VERDICT: Record<string, { text: string; tone: string }> = {
 };
 
 function AnswerBox({ final, events, running, onCite }: { final: FinalAnswer | null; events: AgentEvent[]; running: boolean; onCite: (id: string) => void }) {
+  const notes = useSettings((s) => s.showDataNotes);
   if (!final) {
     return (
       <div className={`${INNER} px-6 py-5`}>
@@ -288,10 +289,12 @@ function AnswerBox({ final, events, running, onCite }: { final: FinalAnswer | nu
           <h3 className="text-xs text-t-muted mb-1">Number check</h3>
           {val.numbers_found === 0
             ? <div className="text-t-text">No figures to check.</div>
-            : <div className={val.action === 'pass' ? 'text-t-text' : 'text-t-amber'}>
+            : !notes
+              ? <div className="text-t-text"><span className="font-bold">{val.numbers_matched}</span> figures match the evidence</div>
+              : <div className={val.action === 'pass' ? 'text-t-text' : 'text-t-amber'}>
                 <span className="font-bold">{val.numbers_matched} of {val.numbers_found}</span> figures match the evidence
               </div>}
-          {val.unmatched.length > 0 && <div className="text-t-muted mt-1" title={val.unmatched.join(', ')}>Not found: {val.unmatched.slice(0, 3).join(', ')}{val.unmatched.length > 3 ? '…' : ''}</div>}
+          {notes && val.unmatched.length > 0 && <div className="text-t-muted mt-1" title={val.unmatched.join(', ')}>Not found: {val.unmatched.slice(0, 3).join(', ')}{val.unmatched.length > 3 ? '…' : ''}</div>}
         </section>
         <HedgePanel final={final} />
       </aside>
@@ -309,7 +312,8 @@ function HedgePanel({ final }: { final: FinalAnswer }) {
       const r = await api.paperApprove(prop.proposal_id, 'approve', approvedBy);
       setState((s) => ({ ...s, [hedgeId]: r.position ? `Paper trade opened at ${Number(r.position.entry_price).toFixed(2)}` : `Proposal ${r.proposal?.status ?? 'saved'}` }));
     } catch (e: any) {
-      setState((s) => ({ ...s, [hedgeId]: FRIENDLY.hedge }));
+      // 409 from /paper/propose: the same hedge is already an open paper position (a later answer suggested it again)
+      setState((s) => ({ ...s, [hedgeId]: e?.status === 409 ? 'Already in your paper trades' : FRIENDLY.hedge }));
     }
   };
   return (

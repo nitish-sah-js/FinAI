@@ -116,3 +116,37 @@ def test_close_records_realised_pnl(client):
     assert closed["realised_pnl_inr"] == pytest.approx(round(expected, 2))
     assert client.get("/paper/positions", params={"status": "closed"}).json()[0]["realised_pnl_inr"] == closed["realised_pnl_inr"]
     assert client.post("/paper/close", json={"position_id": pos["position_id"]}).status_code == 409
+
+
+def test_new_position_is_marked_at_entry_right_away(client):
+    p = _propose(client).json()
+    client.post("/paper/approve", json={"proposal_id": p["proposal_id"], "decision": "approve", "approved_by": "N"})
+    row = client.get("/paper/positions").json()[0]
+    assert row["last_mark"] == row["entry_price"] and row["pnl_inr"] == 0.0 and row["marked_at"] is not None
+
+
+def test_same_hedge_is_not_opened_twice(client):
+    p = _propose(client).json()
+    pos = client.post("/paper/approve", json={"proposal_id": p["proposal_id"], "decision": "approve", "approved_by": "N"}).json()["position"]
+    again = _propose(client)
+    assert again.status_code == 409 and again.json()["detail"]["position_id"] == pos["position_id"]
+    assert len(client.get("/paper/positions").json()) == 1
+    client.post("/paper/close", json={"position_id": pos["position_id"]})
+    assert _propose(client).status_code == 200          # closed: it can be opened again
+
+
+def test_realised_pnl_backfilled_for_old_closes(client):
+    db = os.environ["LEDGER_DB"]
+    con = sqlite3.connect(db)
+    con.execute("INSERT INTO paper_positions (position_id, proposal_id, instrument, underlying, side, quantity, unit, "
+                "entry_price, entry_ts, price_kind, status, exit_price, exit_ts) VALUES "
+                "('pos_old','pp_x','NIFTY OCT FUT short','^NSEI','sell',1,'lots',100.0,'t','spot_proxy','closed',90.0,'t2')")
+    con.commit(); con.close()
+    row = client.get("/paper/positions", params={"status": "closed"}).json()[0]
+    assert row["realised_pnl_inr"] == pytest.approx(10 * 75)        # short: entry 100, exit 90, 75 per lot
+
+
+def test_market_status(client):
+    m = client.get("/paper/market").json()
+    assert set(m) >= {"open_now", "trading_day", "reason", "calendar", "now_ist"}
+    assert (m["reason"] is None) == m["trading_day"]

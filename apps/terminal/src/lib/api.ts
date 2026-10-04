@@ -64,6 +64,8 @@ export const paperPositions = (status = 'open') => req<any[]>(`${ORCH_URL}/paper
 export const paperHistory = () => req<{ proposals: any[]; positions: any[]; marks: any[] }>(`${ORCH_URL}/paper/history`);
 export const paperMark = () => post<any>(`${ORCH_URL}/paper/mark`, {}, 60000);
 export const paperClose = (position_id: string) => post<any>(`${ORCH_URL}/paper/close`, { position_id }, 30000);
+export const paperMarket = () =>
+  req<{ open_now: boolean; trading_day: boolean; reason: string | null; calendar: string; now_ist: string }>(`${ORCH_URL}/paper/market`);
 
 // ---- monitor ----
 export const getAlerts = () => req<Alert[]>(`${MONITOR_URL}/alerts`);

@@ -117,6 +117,8 @@ export function PaperView() {
   const [hist, setHist] = useState<{ proposals: any[]; positions: any[]; marks: any[] } | null>(null);
   const [open, setOpen] = useState<any[]>([]);
   const [closed, setClosed] = useState<any[]>([]);
+  const [market, setMarket] = useState<{ open_now: boolean; reason: string | null } | null>(null);
+  useEffect(() => { api.paperMarket().then(setMarket).catch(() => {}); }, []);
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -140,7 +142,15 @@ export function PaperView() {
   return (
     <div className="max-w-[1400px] mx-auto space-y-4">
       <div className="flex items-end justify-between px-1 pt-1">
-        <p className="text-[13px] text-t-muted max-w-[70ch]">Simulated trades only. Nothing here reaches a broker. Positions are re-priced every 15 minutes during NSE trading hours (not on exchange holidays).</p>
+        <div className="max-w-[70ch]">
+          <p className="text-[13px] text-t-muted">Simulated trades only. Nothing here reaches a broker. Positions are re-priced every 15 minutes during NSE trading hours (not on exchange holidays).</p>
+          {market && !market.open_now && (
+            <p className="text-[13px] text-t-text mt-1">
+              NSE is closed {market.reason ? `today (${market.reason})` : 'right now'}: prices are the last close, so
+              positions opened since then show no change until trading resumes.
+            </p>
+          )}
+        </div>
         <div className="flex gap-2">
           <button onClick={load} className={BTN} aria-label="Refresh"><RefreshCw size={14} /></button>
           <button disabled={busy} onClick={() => act(api.paperMark)} className={BTN}>Re-price now</button>
@@ -257,6 +267,7 @@ export function BacktestView() {
   const [sb, setSb] = useState<any>(null);
   const [err, setErr] = useState<string | null>(null);
   const light = useSettings((s) => s.theme) === 'light';   // recharts SVG attributes need concrete colours
+  const notes = useSettings((s) => s.showDataNotes);
   useEffect(() => { api.getScoreboard().then(setSb).catch(() => setErr(FRIENDLY.backtest)); }, []);
   if (err) return <Notice tone="warn">{err}</Notice>;
   if (!sb) return <Empty>Loading the scoreboard…</Empty>;
@@ -270,14 +281,17 @@ export function BacktestView() {
       <pre className="mt-5 font-mono text-[13px] bg-t-shade/[0.06] border border-t-fg/[0.07] rounded-lg px-4 py-3 text-t-text select-text">python -m backtest.run_backtest</pre>
     </div>
   );
-  const methods = Object.entries(sb.methods ?? {}) as [string, any][];
+  // data-quality notes off: no rows for events Sigma made no call on, no baseline that produced no calls
+  const methods = (Object.entries(sb.methods ?? {}) as [string, any][])
+    .filter(([k, m]) => notes || k === 'zero' || m.hit_rate != null);
+  const rows = ((sb.rows ?? []) as any[]).filter((r) => notes || r.copilot?.median != null);
   const pct = (v: any) => (v == null ? '—' : `${(v * 100).toFixed(0)}%`);
   return (
     <div className="max-w-[1400px] mx-auto space-y-4">
       {sb._mock && <Notice tone="warn">{sb._mock}</Notice>}
       <section className={`${PANEL}`}>
         <PanelHeader title="How often each method called the direction right" />
-        <table className="w-full text-left text-[13px]">
+        <div className="overflow-x-auto"><table className="w-full text-left text-[13px]">
           <thead><tr className="border-b border-t-fg/[0.07]">
             <th className={TH}>Method</th><th className={`${TH} text-right`}>Hit rate</th><th className={`${TH} text-right`}>Avg error</th>
             <th className={`${TH} text-right`}>Inside 80% range</th><th className={`${TH} text-right`}>Cases</th>
@@ -293,10 +307,10 @@ export function BacktestView() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       </section>
-      <div className="grid grid-cols-12 gap-4">
-        <section className={`${PANEL} col-span-8`}>
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-4">
+        <section className={`${PANEL} xl:col-span-8 min-w-0`}>
           <PanelHeader title="Event by event" />
           <div className="overflow-auto">
             <table className="w-full text-left text-[13px]">
@@ -305,21 +319,22 @@ export function BacktestView() {
                 <th className={`${TH} text-right`}>Predicted (range)</th><th className={`${TH} text-right`}>Actual</th><th className={`${TH} text-right`}>Right call</th>
               </tr></thead>
               <tbody>
-                {(sb.rows ?? []).map((r: any, i: number) => (
+                {rows.map((r: any, i: number) => (
                   <tr key={i} className="border-b border-t-fg/[0.05] last:border-0">
                     <td className={`${TD} text-t-fg`}>{String(r.event_id).replace(/_/g, ' ')}</td>
                     <td className={`${TD} text-t-text`}>{r.asset}</td>
                     <td className={`${TD} text-t-muted whitespace-nowrap`}>{r.as_of}</td>
                     <td className={`${TD} text-right text-t-text whitespace-nowrap`}>{fmtPct(r.copilot?.median, 1)} <span className="text-t-muted">({fmtPct(r.copilot?.p10, 1)} to {fmtPct(r.copilot?.p90, 1)})</span></td>
                     <td className={`${TD} text-right ${pnlTone(r.realized)}`}>{fmtPct(r.realized, 1)}</td>
-                    <td className={`${TD} text-right ${r.hit ? 'text-t-mint' : 'text-t-rose'}`}>{r.hit == null ? '—' : r.hit ? 'Yes' : 'No'}</td>
+                    <td className={`${TD} text-right ${r.copilot?.median == null ? 'text-t-muted' : r.hit ? 'text-t-mint' : 'text-t-rose'}`}>
+                      {r.copilot?.median == null ? 'No call' : r.hit == null ? '—' : r.hit ? 'Yes' : 'No'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </section>
-        <section className={`${PANEL} col-span-4 flex flex-col h-80`}>
+        <section className={`${PANEL} xl:col-span-4 min-w-0 flex flex-col h-80`}>
           <PanelHeader title="Stated confidence vs. how often it was right" />
           <div className="flex-1 p-3">
             <ResponsiveContainer width="100%" height="100%">
@@ -342,7 +357,8 @@ export function BacktestView() {
           {(sb.misses ?? []).map((m: any, i: number) => (
             <div key={i}>
               <div className="text-t-fg font-medium">{String(m.event_id).replace(/_/g, ' ')}, {m.asset}</div>
-              <div className="text-t-muted">Predicted {fmtPct(m.pred_median, 1)}, actual <span className="text-t-rose">{fmtPct(m.realized, 1)}</span>. {m.why_missed}</div>
+              <div className="text-t-muted">Predicted {fmtPct(m.pred_median, 1)}, actual <span className="text-t-rose">{fmtPct(m.realized, 1)}</span>.
+                {' '}{String(m.why_missed ?? '').replace(/PENDING HUMAN REVIEW \(read the trace\)\s*[—-]\s*/i, '').replace(/^./, (c) => c.toUpperCase())}</div>
             </div>
           ))}
         </div>

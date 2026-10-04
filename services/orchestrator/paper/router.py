@@ -97,6 +97,11 @@ async def propose(body: ProposeIn):
         hedge = next((h for h in final.get("hedges", []) if h.get("hedge_id") == body.hedge_id), None)
         if hedge is None:
             raise HTTPException(404, "hedge_id not found in run")
+        dup = await _rows(db, "SELECT position_id FROM paper_positions WHERE status='open' AND instrument=? AND side=? "
+                              "AND quantity=? AND unit=?",
+                          (hedge["instrument"], hedge["side"], hedge["quantity"], hedge.get("unit", "lots")))
+        if dup:   # the same hedge suggested by a later answer: keep one paper position, not one per click
+            raise HTTPException(409, {"detail": "already open", "position_id": dup[0]["position_id"]})
         pid = _id("pp")
         # the hedge is copied EXACTLY from the stored FinalAnswer, never resized (12 §B3)
         await db.execute("INSERT INTO paper_proposals VALUES (?,?,?,?,?,?,?,?)",
@@ -142,6 +147,8 @@ async def approve(body: ApproveIn):
                               hedge["quantity"], hedge.get("unit", "lots"), price, ts, kind, "open"))
             snap = await snapshot_portfolio(db, prop["run_id"])
             await db.execute("INSERT INTO paper_snapshots VALUES (?,?)", (pos_id, json.dumps(snap)))
+            # opening mark: priced at entry, P&L 0 (the 15-min job and "Re-price now" move it from here)
+            await db.execute("INSERT OR REPLACE INTO paper_marks VALUES (?,?,?,?,?,?)", (pos_id, ts, price, 0.0, 0.0, 0.0))
             position = (await _rows(db, "SELECT * FROM paper_positions WHERE position_id=?", (pos_id,)))[0]
         await db.commit()
         proposal = (await _rows(db, "SELECT * FROM paper_proposals WHERE proposal_id=?", (body.proposal_id,)))[0]
@@ -190,12 +197,34 @@ async def mark():
         await db.close()
 
 
+@router.get("/market")
+async def market():
+    """Is NSE trading now (IST)? Lets the Paper page explain why marks equal the last close on holidays/weekends."""
+    from .calendar import trading_day
+    from .scheduler import IST
+    now = datetime.now(IST)
+    is_day, source = trading_day(now.date())
+    in_hours = is_day and (9, 15) <= (now.hour, now.minute) <= (15, 30)
+    reason = None if is_day else ("weekend" if now.weekday() >= 5 else "exchange holiday")
+    return {"open_now": in_hours, "trading_day": is_day, "reason": reason, "calendar": source,
+            "now_ist": now.strftime("%Y-%m-%d %H:%M")}
+
+
 @router.get("/positions")
 async def positions(status: str = "open"):
     db = await connect()
     try:
         res = []
         for p in await _rows(db, "SELECT * FROM paper_positions WHERE status=?", (status,)):
+            if p["status"] == "closed" and p.get("realised_pnl_inr") is None and p.get("exit_price") is not None:
+                try:
+                    p["realised_pnl_inr"] = round(pricing.pnl_inr(p["side"], p["entry_price"], p["exit_price"],
+                                                                  p["quantity"], p["unit"], p["instrument"]), 2)
+                    await db.execute("UPDATE paper_positions SET realised_pnl_inr=? WHERE position_id=?",
+                                     (p["realised_pnl_inr"], p["position_id"]))
+                    await db.commit()
+                except pricing.LotSizeUnknown:
+                    pass
             m = await _rows(db, "SELECT * FROM paper_marks WHERE position_id=? ORDER BY ts DESC LIMIT 1", (p["position_id"],))
             m = m[0] if m else {}
             res.append({**p, "last_mark": m.get("mark_price"), "pnl_inr": m.get("pnl_inr"),
