@@ -79,6 +79,9 @@ def load_cluster(path: Path = CLUSTER_ENV, allow_loopback: bool = False) -> dict
             raise ConfigError(f"{k}={v!r} is not a port")
         c[k] = v
     c["MOCK"] = c.get("MOCK") or "0"
+    c["WEAVIATE_LAPTOP"] = (c.get("WEAVIATE_LAPTOP") or "L2").upper()
+    if c["WEAVIATE_LAPTOP"] not in ("L1", "L2", "L3"):
+        raise ConfigError(f"WEAVIATE_LAPTOP={c['WEAVIATE_LAPTOP']!r} must be L1, L2 or L3")
     c["DEMO_MODE"] = c.get("DEMO_MODE") or "0"
     return c
 
@@ -107,6 +110,8 @@ def render_laptop(c: dict[str, str], laptop: str, secrets_from: dict[str, str]) 
         s = re.sub(rf"^({url_key}=http://\$\{{L[123]_HOST\}}):\d+", rf"\g<1>:{c[port_key]}", s, flags=re.M)
     s = re.sub(r"^CLUSTER_KEY=.*$", f"CLUSTER_KEY={c['CLUSTER_KEY']}", s, flags=re.M)
     s = re.sub(r"^DEMO_MODE=.*$", f"DEMO_MODE={c['DEMO_MODE']}", s, flags=re.M)
+    wl = c.get("WEAVIATE_LAPTOP", "L2")
+    s = re.sub(r"^WEAVIATE_HOST=.*$", lambda _m: "WEAVIATE_HOST=${" + wl + "_HOST}", s, flags=re.M)
     # secrets (LLM boost keys, SMTP, Telegram, Earthdata): empty in the template, copied from this machine's .env
     for k, v in secrets_from.items():
         if v and k not in {"CLUSTER_KEY", "MOCK", "DEMO_MODE", "THIS_LAPTOP"} and not k.endswith("_HOST"):
@@ -203,8 +208,10 @@ if ($PullModels) {{
 
 
 def _readme(lap: str, c: dict[str, str]) -> str:
+    weaviate = ("Weaviate :8080 (Docker)" if c.get("WEAVIATE_LAPTOP", "L2") == "L2"
+                else f"Weaviate runs on {c['WEAVIATE_LAPTOP']} ({c[c['WEAVIATE_LAPTOP'] + '_IP']}:8080), no Docker needed here")
     role = {"L2": "Compute: quant :{QUANT_PORT}, sentiment :{SENTIMENT_PORT}, agri :{AGRI_PORT}, vectordb :{VECTOR_PORT}, "
-                  "Weaviate :8080, Ollama :11434",
+                  + weaviate.replace("{", "{{").replace("}", "}}") + ", Ollama :11434",
             "L3": "Edge: ingestion :{INGEST_PORT}, monitor :{MONITOR_PORT}, the desktop app (Next.js :3000 + Electron), "
                   "Ollama :11434"}[lap].format(**c)
     return f"""# {lap} bundle
@@ -232,6 +239,7 @@ def cmd_bundle(args) -> int:
         raise ConfigError("run deploy/gen_cluster.ps1 first (deploy/out/L2.env missing)")
     c["CLUSTER_KEY"] = read_env(OUT / "L2.env").get("CLUSTER_KEY", "")
     for lap, spec in BUNDLES.items():
+        spec = {**spec, "docker": spec["docker"] and c["WEAVIATE_LAPTOP"] == lap}   # Weaviate only where it runs
         dst = OUT / f"{lap}_bundle"
         if dst.exists():
             shutil.rmtree(dst)
@@ -280,6 +288,16 @@ def verify(c: dict[str, str], timeout: float = 3.0) -> list[dict]:
             row["health"], row["auth"] = f"unreachable ({type(e).__name__})", "-"
         row["pass"] = row["health"] in ("ok", "degraded") and row["auth"] in ("ok", "off")
         rows.append(row)
+    wl = c.get("WEAVIATE_LAPTOP", "L2")
+    base = f"http://{ip[wl]}:8080"
+    row = {"check": "weaviate", "laptop": wl, "url": base, "auth": "-"}
+    try:
+        code = httpx.get(f"{base}/v1/.well-known/ready", timeout=timeout).status_code
+        row["health"] = "ok" if code == 200 else f"HTTP {code}"
+    except httpx.HTTPError as e:
+        row["health"] = f"unreachable ({type(e).__name__})"
+    row["pass"] = row["health"] == "ok"
+    rows.append(row)
     want = {"L1": [c.get("OLLAMA_MODEL_L1")], "L2": [c.get("OLLAMA_MODEL_L2")],
             "L3": [c.get("OLLAMA_MODEL_L3_FAST"), c.get("OLLAMA_MODEL_L3_RED")]}
     for lap in ("L1", "L2", "L3"):

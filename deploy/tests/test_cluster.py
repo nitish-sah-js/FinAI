@@ -116,3 +116,24 @@ def test_setup_script_stops_on_failure_and_needs_no_python_312_packages(tmp_path
     assert 'Check "docker compose' in (tmp_path / "out" / "L2_bundle" / "setup_L2.ps1").read_text()
     reqs = (cluster.ROOT / "requirements.txt").read_text()
     assert "earthaccess" not in reqs and "s3fs" not in reqs
+
+
+def test_weaviate_on_l1_points_every_laptop_there_and_drops_docker_from_l2(tmp_path, monkeypatch):
+    monkeypatch.setattr(cluster, "OUT", tmp_path / "out")
+    p = _cfg(tmp_path, GOOD + "WEAVIATE_LAPTOP=L1\n")
+    assert cluster.main(["gen", "--config", str(p)]) == 0 and cluster.main(["bundle", "--config", str(p)]) == 0
+    for lap in ("L1", "L2", "L3"):
+        assert "WEAVIATE_HOST=${L1_HOST}" in (tmp_path / "out" / f"{lap}.env").read_text()
+    b2 = tmp_path / "out" / "L2_bundle"
+    assert "docker" not in (b2 / "setup_L2.ps1").read_text() and "docker" not in (b2 / "start_L2.ps1").read_text()
+    assert "Weaviate runs on L1 (192.168.1.11:8080)" in (b2 / "README.md").read_text()
+    with pytest.raises(cluster.ConfigError, match="WEAVIATE_LAPTOP"):
+        cluster.load_cluster(_cfg(tmp_path, GOOD + "WEAVIATE_LAPTOP=L9\n"))
+
+
+def test_default_keeps_weaviate_on_l2(tmp_path, monkeypatch):
+    monkeypatch.setattr(cluster, "OUT", tmp_path / "out")
+    p = _cfg(tmp_path, GOOD)
+    assert cluster.main(["gen", "--config", str(p)]) == 0 and cluster.main(["bundle", "--config", str(p)]) == 0
+    assert "WEAVIATE_HOST=${L2_HOST}" in (tmp_path / "out" / "L2.env").read_text()
+    assert "docker compose" in (tmp_path / "out" / "L2_bundle" / "start_L2.ps1").read_text()

@@ -44,6 +44,12 @@ if (Test-Path $EnvFile) {
     Get-Content $EnvFile | ForEach-Object { if ($_ -match '^([A-Z_]+_PORT)=(\d+)') { $over[$Matches[1]] = [int]$Matches[2] } }
     foreach ($s in $Services) { if ($over.ContainsKey($PortKey[$s[0]])) { $s[3] = $over[$PortKey[$s[0]]] } }
 }
+if ($Laptop -and (Test-Path $EnvFile) -and (Select-String -Path $EnvFile -Pattern "^WEAVIATE_HOST=\`$\{$Laptop`_HOST\}" -Quiet)) {
+    # this laptop hosts Weaviate for the cluster (deploy/cluster.env WEAVIATE_LAPTOP)
+    Write-Host "weaviate      starting Docker container (this laptop is the cluster's Weaviate host)"
+    docker compose -f (Join-Path $Root "infra\docker-compose.yml") up -d
+    if ($LASTEXITCODE -ne 0) { Write-Host "warning: Weaviate did not start (is Docker Desktop running?); analog search falls back to numpy" -ForegroundColor Yellow }
+}
 if ($Laptop) {
     # cluster mode: only this laptop's services; the Next.js/Electron app runs on L3
     $Services = @($Services | Where-Object { $_[4] -eq $Laptop })
