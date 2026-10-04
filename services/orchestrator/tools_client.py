@@ -124,6 +124,38 @@ def _degrade(tr: ToolResult, reason: str, factor: float = 0.5) -> ToolResult:
     return tr
 
 
+RETRIES = 2                       # after the first attempt
+RETRY_BACKOFF_S = (0.25, 0.75)
+_RETRY_STATUS = {502, 503, 504}
+
+
+async def _post_with_retries(url: str, body: dict, headers: dict, timeout_s: float) -> httpx.Response:
+    """POST with up to RETRIES retries on connection failures and 502/503/504. Slow replies (read timeouts) are not
+    retried, so a node never waits for more than one full timeout. A host marked down by the circuit breaker
+    (copilot_common.reachability, 30 s) fails at once instead of hanging."""
+    last: Exception | None = None
+    for attempt in range(RETRIES + 1):
+        if reachability.is_down(url):
+            raise httpx.ConnectError(f"{reachability.host_key(url)} marked down (retry in ≤30 s)")
+        try:
+            r = await client().post(url, json=body, headers=headers,
+                                    timeout=httpx.Timeout(timeout_s, connect=reachability.CONNECT_TIMEOUT_S))
+            reachability.mark_up(url)
+            if r.status_code in _RETRY_STATUS and attempt < RETRIES:
+                await asyncio.sleep(RETRY_BACKOFF_S[attempt])
+                continue
+            r.raise_for_status()
+            return r
+        except httpx.ConnectTimeout:
+            raise                          # host unreachable (laptop off / wrong IP): fail now, breaker opens
+        except (httpx.ConnectError, httpx.RemoteProtocolError) as e:
+            last = e
+            if attempt == RETRIES:
+                raise
+            await asyncio.sleep(RETRY_BACKOFF_S[attempt])
+    raise last or httpx.ConnectError(url)
+
+
 async def call_tool(tool: str, body: dict, *, run_id: str | None = None, chaos: dict | None = None,
                     timeout_s: float = 15.0) -> ToolResult:
     s = get_settings()
@@ -157,12 +189,7 @@ async def call_tool(tool: str, body: dict, *, run_id: str | None = None, chaos: 
         if active:
             headers["X-Chaos"] = ",".join(active)
         try:
-            if reachability.is_down(url):
-                raise httpx.ConnectError(f"{reachability.host_key(url)} marked down (retry in ≤30 s)")
-            r = await client().post(url, json=body, headers=headers,
-                                    timeout=httpx.Timeout(timeout_s, connect=reachability.CONNECT_TIMEOUT_S))
-            reachability.mark_up(url)
-            r.raise_for_status()
+            r = await _post_with_retries(url, body, headers, timeout_s)
             tr = ToolResult.model_validate(r.json())
         except (httpx.HTTPError, ValueError) as e:
             if isinstance(e, (httpx.ConnectError, httpx.ConnectTimeout)):

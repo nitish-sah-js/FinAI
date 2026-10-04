@@ -328,55 +328,95 @@ const SERVICE_LABEL: Record<string, string> = {
 };
 
 export function HealthView() {
-  const [h, setH] = useState<Record<string, Health> | null>(null);
+  // Cluster page: GET /cluster/status on the orchestrator (L1), polled every 5 s
+  const [st, setSt] = useState<any>(null);
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => {
     let stop = false;
-    const tick = () => api.getHealthAll().then((r) => { if (!stop) { setH(r); setErr(null); } }).catch((e) => !stop && setErr(`The orchestrator is not reachable (${e.message}). Start everything with infra\\run_all_local.ps1.`));
+    const tick = () => api.getClusterStatus().then((r) => { if (!stop) { setSt(r); setErr(null); } })
+      .catch((e) => !stop && setErr(`The orchestrator is not reachable (${e.message}). Start everything with infra\\run_all_local.ps1, or on a cluster start L1.`));
     tick();
     const t = setInterval(tick, 5000);
     return () => { stop = true; clearInterval(t); };
   }, []);
-  if (err && !h) return <Notice tone="error">{err}</Notice>;
-  if (!h) return <Empty>Checking services…</Empty>;
-  const services = Object.entries(h).filter(([n]) => n !== 'llm');
-  const down = services.filter(([, s]) => s.status === 'down').length;
-  const degraded = services.filter(([, s]) => s.status === 'degraded').length;
+  if (err && !st) return <Notice tone="error">{err}</Notice>;
+  if (!st) return <Empty>Checking the cluster…</Empty>;
+  const services: any[] = st.services ?? [];
+  const down = services.filter((s) => s.status === 'down').length;
+  const degraded = services.filter((s) => s.status === 'degraded').length;
+  const dot = (status: string) => (status === 'down' ? 'bg-t-rose' : status === 'degraded' ? 'bg-t-amber' : 'bg-t-mint');
+  const word = (status: string) => (status === 'down' ? 'Down' : status === 'degraded' ? 'Fallbacks' : 'OK');
+  const laptops = ['L1', 'L2', 'L3'];
+  const nl = st.news_latency?.pipeline_ms || {};
   return (
     <div className="max-w-[1400px] mx-auto space-y-4">
-      <div className="px-1 pt-1">
-        <div className="text-xl font-bold text-t-fg">
-          {down ? `${down} service${down > 1 ? 's' : ''} down` : degraded ? 'Running, with some fallbacks' : 'Everything is running'}
+      <div className="px-1 pt-1 flex items-end justify-between gap-6">
+        <div>
+          <div className="text-xl font-bold text-t-fg">
+            {down ? `${down} service${down > 1 ? 's' : ''} down` : degraded ? 'Running, with some fallbacks' : 'Everything is running'}
+          </div>
+          <p className="text-[13px] text-t-muted mt-1">
+            Checked every 5 seconds from L1 ({st.took_ms} ms). {st.cluster_key ? 'Services require the cluster key.' : 'Cluster key is off (single-laptop mode).'}
+          </p>
         </div>
-        <p className="text-[13px] text-t-muted mt-1">Checked every 5 seconds. A service running with fallbacks still answers, but with older or simpler data.</p>
       </div>
       {err && <Notice tone="error">{err}</Notice>}
-      <section className={PANEL}>
-        <table className="w-full text-left text-[13px]">
-          <thead><tr className="border-b border-t-fg/[0.07]">
-            <th className={TH}>Service</th><th className={TH}>Status</th><th className={TH}>Needs attention</th><th className={TH}>Model</th><th className={`${TH} text-right`}>Address</th>
-          </tr></thead>
-          <tbody>
-            {services.map(([name, s]) => {
-              const issues = Object.entries(s.deps ?? {}).filter(([, v]) => v !== 'ok');
-              const tone = s.status === 'down' ? 'bg-t-rose' : s.status === 'degraded' ? 'bg-t-amber' : 'bg-t-mint';
-              return (
-                <tr key={name} className="border-b border-t-fg/[0.05] last:border-0 align-top">
-                  <td className={`${TD} font-bold text-t-fg whitespace-nowrap`}>{SERVICE_LABEL[name] ?? name}</td>
-                  <td className={`${TD} whitespace-nowrap`}><span className="flex items-center gap-2 text-t-text"><span className={`w-2 h-2 rounded-full ${tone}`} />
-                    {s.status === 'down' ? 'Down' : s.status === 'degraded' ? 'Fallbacks' : 'OK'}{s.mock ? ' (mock data)' : ''}</span></td>
-                  <td className={`${TD} text-t-muted leading-snug`}>
-                    {s.status === 'down' ? <span className="text-t-rose">{s.error}. {s.hint}</span>
-                      : issues.length ? issues.map(([k, v]) => <div key={k}><span className="text-t-text">{k.replace(/_/g, ' ')}</span>: {v}</div>) : '—'}
-                  </td>
-                  <td className={`${TD} text-t-muted font-mono text-xs`}>{s.models?.join(', ') || '—'}</td>
-                  <td className={`${TD} text-right text-t-muted font-mono text-xs`}>{s.url?.replace(/\/health$/, '') ?? '—'}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </section>
+
+      {laptops.map((lap) => {
+        const rows = services.filter((s) => s.laptop === lap);
+        const ol = (st.ollama ?? []).find((o: any) => o.laptop === lap);
+        if (!rows.length && !ol) return null;
+        return (
+          <section key={lap} className={PANEL}>
+            <PanelHeader title={`${lap} ${lap === 'L1' ? 'Brain' : lap === 'L2' ? 'Compute' : 'Edge'}`}
+              right={ol && <span className="text-xs text-t-muted">
+                Ollama <span className="font-mono">{ol.url}</span>{' '}
+                {ol.status === 'down' ? <span className="text-t-rose">down</span>
+                  : ol.missing?.length ? <span className="text-t-amber">missing {ol.missing.join(', ')}</span>
+                  : <span className="text-t-mint">models ready</span>}
+              </span>} />
+            <table className="w-full text-left text-[13px]">
+              <thead><tr className="border-b border-t-fg/[0.07]">
+                <th className={TH}>Service</th><th className={TH}>Status</th><th className={`${TH} text-right`}>Latency</th>
+                <th className={TH}>Host</th><th className={TH}>Model</th><th className={TH}>GPU memory</th><th className={TH}>Needs attention</th>
+              </tr></thead>
+              <tbody>
+                {rows.map((s) => {
+                  const issues = Object.entries(s.deps ?? {}).filter(([, v]) => v !== 'ok');
+                  return (
+                    <tr key={s.name} className="border-b border-t-fg/[0.05] last:border-0 align-top">
+                      <td className={`${TD} font-bold text-t-fg whitespace-nowrap`}>{SERVICE_LABEL[s.name] ?? s.name}</td>
+                      <td className={`${TD} whitespace-nowrap`}><span className="flex items-center gap-2 text-t-text"><span className={`w-2 h-2 rounded-full ${dot(s.status)}`} />{word(s.status)}{s.mock ? ' (mock)' : ''}</span></td>
+                      <td className={`${TD} text-right text-t-text whitespace-nowrap`}>{s.latency_ms != null ? `${s.latency_ms} ms` : '—'}</td>
+                      <td className={`${TD} text-t-muted font-mono text-xs`}>{s.host ?? s.url}</td>
+                      <td className={`${TD} text-t-muted font-mono text-xs`}>{s.models?.join(', ') || '—'}</td>
+                      <td className={`${TD} text-t-muted whitespace-nowrap`}>{s.gpu?.mem_total_mb ? `${(s.gpu.mem_used_mb / 1024).toFixed(1)} / ${(s.gpu.mem_total_mb / 1024).toFixed(1)} GB` : '—'}</td>
+                      <td className={`${TD} text-t-muted leading-snug`}>
+                        {s.status === 'down' ? <span className="text-t-rose">{s.error}. {s.hint}</span>
+                          : issues.length ? issues.map(([k, v]) => <div key={k}><span className="text-t-text">{k.replace(/_/g, ' ')}</span>: {String(v)}</div>) : '—'}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            {ol?.loaded?.length > 0 && <div className="px-4 py-2 text-xs text-t-muted border-t border-t-fg/[0.05]">Loaded in memory: <span className="font-mono">{ol.loaded.join(', ')}</span></div>}
+          </section>
+        );
+      })}
+
+      <div className="grid grid-cols-2 gap-4">
+        <section className={`${PANEL} px-4 py-3 text-[13px]`}>
+          <div className="font-bold text-t-fg mb-1">Weaviate (past events, news)</div>
+          <span className="flex items-center gap-2 text-t-text"><span className={`w-2 h-2 rounded-full ${dot(st.weaviate?.status)}`} />{word(st.weaviate?.status)}</span>
+          <div className="text-xs text-t-muted font-mono mt-1">{st.weaviate?.url}</div>
+        </section>
+        <section className={`${PANEL} px-4 py-3 text-[13px]`}>
+          <div className="font-bold text-t-fg mb-1">News indexing delay</div>
+          {nl.n ? <div className="text-t-text">Median {Math.round(nl.p50)} ms from ingestion to searchable, p95 {Math.round(nl.p95)} ms ({nl.n} items)</div>
+            : <div className="text-t-muted">No news indexed since the vector service started.</div>}
+        </section>
+      </div>
     </div>
   );
 }

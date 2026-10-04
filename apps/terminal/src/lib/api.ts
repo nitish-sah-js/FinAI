@@ -1,5 +1,5 @@
 // REST client for the orchestrator (L1:8000), monitor (L3:8202) and ingestion (L3:8201). docs/13 §8.
-import { INGEST_URL, MONITOR_URL, ORCH_URL, QUANT_URL } from './config';
+import { CLUSTER_KEY, INGEST_URL, MONITOR_URL, ORCH_URL, QUANT_URL } from './config';
 import type { Alert, Health, Portfolio, QueryAccepted, QueryRequest, ToolResult } from './contracts';
 
 export class ApiError extends Error {
@@ -12,7 +12,9 @@ async function req<T>(url: string, init?: RequestInit & { timeoutMs?: number }):
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), init?.timeoutMs ?? 15000);
   try {
-    const r = await fetch(url, { ...init, signal: ctrl.signal });
+    const headers = new Headers(init?.headers);
+    if (CLUSTER_KEY) headers.set('X-Cluster-Key', CLUSTER_KEY);
+    const r = await fetch(url, { ...init, headers, signal: ctrl.signal });
     if (!r.ok) {
       let detail = r.statusText;
       try {
@@ -37,6 +39,7 @@ export const getRun = (id: string) => req<any>(`${ORCH_URL}/runs/${encodeURIComp
 export const getQuota = () => req<any>(`${ORCH_URL}/llm/quota`);
 export const getWarmup = () =>
   req<{ state: 'pending' | 'warming' | 'ready' | 'failed'; models: Record<string, string> }>(`${ORCH_URL}/llm/warmup`, { timeoutMs: 4000 });
+export const getClusterStatus = () => req<any>(`${ORCH_URL}/cluster/status`, { timeoutMs: 10000 });
 export const getHealthAll = () => req<Record<string, Health>>(`${ORCH_URL}/health/all`, { timeoutMs: 8000 });
 export const getPortfolio = (id = 'demo') => req<Portfolio>(`${ORCH_URL}/portfolio/${encodeURIComponent(id)}`);
 export const savePortfolio = (p: Portfolio) => post<Portfolio>(`${ORCH_URL}/portfolio`, p);

@@ -82,3 +82,19 @@ def test_scenario_proxy_quota_health_scoreboard(monkeypatch):
         assert h["service"] == "orchestrator" and h["mock"] is True
         all_ = c.get("/health/all").json()
         assert all_["orchestrator"]["status"] == "ok" and all_["quant"]["status"] == "down"
+
+
+def test_cluster_status_and_alert_ingest():
+    with client() as c:
+        st = c.get("/cluster/status").json()
+        names = {x["name"] for x in st["services"]}
+        assert {"orchestrator", "quant", "sentiment", "agri", "vectordb", "ingestion", "monitor"} <= names
+        assert {o["laptop"] for o in st["ollama"]} == {"L1", "L2", "L3"} and "weaviate" in st
+        alert = {"alert_id": "al_t", "tier": 3, "kind": "weather_threshold", "tickers": ["ONGC.NS"], "headline": "h",
+                 "reason": "r", "impact_score": 0.7, "confidence": 0.8, "created_at": "2026-10-04T00:00:00Z",
+                 "cooldown_key": "k", "deeplink": "http://x/run/new?q=a"}
+        with c.websocket_connect("/ws/activity") as ws:
+            assert c.post("/alerts/ingest", json=alert).json() == {"ok": True}
+            assert ws.receive_json() == {"type": "alert", "data": {**alert, "evidence_ids": [], "acknowledged": False,
+                                                                    "created_at": "2026-10-04T00:00:00Z"}}
+        assert c.get("/alerts/recent").json()[0]["alert_id"] == "al_t"

@@ -1,8 +1,8 @@
 # Start every backend service + the Next.js terminal on this laptop (docs/15 R1, single-laptop mode).
-# Usage (repo root):  powershell -ExecutionPolicy Bypass -File infra\run_all_local.ps1 [-NoFrontend] [-Browser] [-Stop]
+# Usage (repo root):  powershell -ExecutionPolicy Bypass -File infra\run_all_local.ps1 [-NoFrontend] [-Browser] [-Stop] [-Laptop L1|L2|L3]
 # Default opens the Electron desktop app (terminal window + pet); -Browser only serves http://127.0.0.1:3000/terminal
-# Logs: data\logs\<service>.log   Stop everything: -Stop
-param([switch]$NoFrontend, [switch]$Browser, [switch]$Stop)
+# -Laptop L2 starts only L2's services (3-laptop cluster, deploy/README.md). Logs: data\logs\<service>.log   Stop: -Stop
+param([switch]$NoFrontend, [switch]$Browser, [switch]$Stop, [ValidateSet("", "L1", "L2", "L3")][string]$Laptop = "")
 
 $Root = Split-Path -Parent $PSScriptRoot
 $Py = Join-Path $Root ".venv\Scripts\python.exe"
@@ -25,16 +25,30 @@ if ($Stop) {
     exit 0
 }
 
-# name, working dir (relative to repo root), uvicorn app, port
+# name, working dir (relative to repo root), uvicorn app, port, laptop
 $Services = @(
-    @("quant",        "services\quant",     "quant.main:app",          8101),
-    @("sentiment",    "services\sentiment", "sentiment.main:app",      8102),
-    @("agri",         "services\agri",      "agri.main:app",           8103),
-    @("vectordb",     "services\vectordb",  "vectordb.main:app",       8104),
-    @("ingestion",    ".",                  "services.ingestion.app:app", 8201),
-    @("monitor",      "services\monitor",   "monitor.main:app",        8202),
-    @("orchestrator", "services",           "orchestrator.app:app",    8000)
+    @("quant",        "services\quant",     "quant.main:app",          8101, "L2"),
+    @("sentiment",    "services\sentiment", "sentiment.main:app",      8102, "L2"),
+    @("agri",         "services\agri",      "agri.main:app",           8103, "L2"),
+    @("vectordb",     "services\vectordb",  "vectordb.main:app",       8104, "L2"),
+    @("ingestion",    ".",                  "services.ingestion.app:app", 8201, "L3"),
+    @("monitor",      "services\monitor",   "monitor.main:app",        8202, "L3"),
+    @("orchestrator", "services",           "orchestrator.app:app",    8000, "L1")
 )
+# port overrides written by deploy/gen_cluster.ps1 (ORCH_PORT=..., QUANT_PORT=... in .env)
+$PortKey = @{ orchestrator = "ORCH_PORT"; quant = "QUANT_PORT"; sentiment = "SENTIMENT_PORT"; agri = "AGRI_PORT";
+              vectordb = "VECTOR_PORT"; ingestion = "INGEST_PORT"; monitor = "MONITOR_PORT" }
+$EnvFile = Join-Path $Root ".env"
+if (Test-Path $EnvFile) {
+    $over = @{}
+    Get-Content $EnvFile | ForEach-Object { if ($_ -match '^([A-Z_]+_PORT)=(\d+)') { $over[$Matches[1]] = [int]$Matches[2] } }
+    foreach ($s in $Services) { if ($over.ContainsKey($PortKey[$s[0]])) { $s[3] = $over[$PortKey[$s[0]]] } }
+}
+if ($Laptop) {
+    # cluster mode: only this laptop's services; the Next.js/Electron app runs on L3
+    $Services = @($Services | Where-Object { $_[4] -eq $Laptop })
+    if ($Laptop -ne "L3") { $NoFrontend = $true }
+}
 
 $env:PYTHONIOENCODING = "utf-8"
 
@@ -44,7 +58,7 @@ Write-Host "warming up Ollama models on this machine (first load can take ~40 s)
 if ($LASTEXITCODE -ne 0) { Write-Host "warning: no model loaded; questions will use keyword rules until Ollama is up" }
 $env:COPILOT_ROOT = $Root
 foreach ($s in $Services) {
-    $name, $dir, $app, $port = $s
+    $name, $dir, $app, $port, $null = $s
     if (Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) {
         Write-Host ("{0,-13} :{1} already listening, skipped" -f $name, $port)
         continue

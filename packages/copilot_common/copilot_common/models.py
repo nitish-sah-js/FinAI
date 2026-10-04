@@ -224,3 +224,4 @@ class Health(BaseModel):
     uptime_s: int = 0
     deps: dict[str, str] = {}
     models: list[str] = []
+    gpu: dict = {}                       # {name, mem_used_mb, mem_total_mb} from nvidia-smi, {} if no GPU

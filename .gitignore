@@ -50,3 +50,7 @@ data/ledger.db*
 
 # archived nested repo history (kept on disk, not in this repo)
 _archive/**/*.git/
+
+# 3-laptop cluster: real IPs, the shared key and generated per-laptop env files / bundles (secrets)
+deploy/cluster.env
+deploy/out/

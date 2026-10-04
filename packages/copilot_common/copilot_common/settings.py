@@ -67,6 +67,7 @@ class Settings(BaseSettings):
     OLLAMA_MODEL_L3_RED: str = "phi4-mini"
 
     MOCK: bool = False
+    CLUSTER_KEY: str = ""                # shared secret for X-Cluster-Key between laptops; empty = auth off
     DEMO_MODE: bool = False              # show synthetic demo data (e.g. the DEMO-ODISHA storm), stamped SIMULATED
     CACHE_MODE: str = "record"           # record | replay | off
     LLM_MODE: str = "local"              # local | boost | auto

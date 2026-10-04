@@ -5,6 +5,7 @@ import asyncio
 import contextvars
 import json
 import socket
+import subprocess
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,6 +13,8 @@ from typing import Any, Awaitable, Callable
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+
+from .auth import ClusterKeyMiddleware, install_httpx_hook
 from fastapi.responses import JSONResponse
 
 from .models import Evidence, Health, ToolResult
@@ -64,11 +67,33 @@ async def mock_or(service: str, endpoint: str, real_fn: Callable[[], Awaitable[A
     return data
 
 
+_GPU: dict = {"t": 0.0, "v": {}}
+
+
+def gpu_info(max_age_s: float = 30) -> dict:
+    """First GPU's name and memory from nvidia-smi (cached); {} on machines without an NVIDIA GPU."""
+    if time.time() - _GPU["t"] < max_age_s:
+        return _GPU["v"]
+    v: dict = {}
+    try:
+        out = subprocess.run(["nvidia-smi", "--query-gpu=name,memory.used,memory.total", "--format=csv,noheader,nounits"],
+                             capture_output=True, text=True, timeout=3).stdout.strip().splitlines()
+        if out:
+            name, used, total = [x.strip() for x in out[0].split(",")]
+            v = {"name": name, "mem_used_mb": int(float(used)), "mem_total_mb": int(float(total))}
+    except (OSError, ValueError, subprocess.SubprocessError):
+        v = {}
+    _GPU.update(t=time.time(), v=v)
+    return v
+
+
 def create_service_app(name: str, version: str = "0.1.0",
                        deps_check: Callable[[], Awaitable[dict[str, str]]] | None = None,
                        models: list[str] | None = None, lifespan=None) -> FastAPI:
     app = FastAPI(title=f"copilot-{name}", version=version, lifespan=lifespan)
     started = time.time()
+    install_httpx_hook()                       # outgoing calls to our other services carry X-Cluster-Key
+    app.add_middleware(ClusterKeyMiddleware)   # incoming calls must carry it (when CLUSTER_KEY is set)
     app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
     @app.middleware("http")
@@ -99,6 +124,6 @@ def create_service_app(name: str, version: str = "0.1.0",
         status = "ok" if all(v == "ok" for v in deps.values()) else "degraded"
         return Health(service=name, status=status, version=version, mock=get_settings().MOCK,
                       host=socket.gethostname(), uptime_s=int(time.time() - started), deps=deps,
-                      models=models or [])
+                      models=models or [], gpu=gpu_info())
 
     return app

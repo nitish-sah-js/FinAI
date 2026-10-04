@@ -208,3 +208,35 @@ def test_agri_signal_is_low_weight_with_dated_caveat():
     bottom = md.split("### Impact")[0]
     assert "Yavatmal stressed" not in bottom and "Rain 40% below normal" in bottom     # agri never leads
     assert AGRI_CAVEAT in md
+
+
+def test_tool_call_retries_transient_failures_then_succeeds(monkeypatch):
+    import asyncio
+    import httpx
+    from orchestrator import tools_client as T
+    calls = {"n": 0}
+
+    def handler(request):
+        calls["n"] += 1
+        return httpx.Response(503) if calls["n"] < 3 else httpx.Response(200, json={"evidence": [], "warnings": []})
+    monkeypatch.setattr(T, "_client", httpx.AsyncClient(transport=httpx.MockTransport(handler)))
+    monkeypatch.setattr(T, "RETRY_BACKOFF_S", (0, 0))
+    r = asyncio.run(T._post_with_retries("http://10.9.9.9:8101/exposure", {}, {}, 5))
+    assert r.status_code == 200 and calls["n"] == 3                 # 2 retries, then success
+
+
+def test_tool_call_gives_up_after_two_retries(monkeypatch):
+    import asyncio
+    import httpx
+    import pytest
+    from orchestrator import tools_client as T
+    calls = {"n": 0}
+
+    def handler(request):
+        calls["n"] += 1
+        return httpx.Response(503)
+    monkeypatch.setattr(T, "_client", httpx.AsyncClient(transport=httpx.MockTransport(handler)))
+    monkeypatch.setattr(T, "RETRY_BACKOFF_S", (0, 0))
+    with pytest.raises(httpx.HTTPStatusError):
+        asyncio.run(T._post_with_retries("http://10.9.9.8:8101/exposure", {}, {}, 5))
+    assert calls["n"] == 3

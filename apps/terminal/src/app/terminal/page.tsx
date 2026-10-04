@@ -130,7 +130,7 @@ export default function TerminalWindow() {
     return { t, ch: prev ? (last - prev) / prev : 0 };
   });
 
-  const navTabs = ['Home', 'Overview', 'Portfolio', 'Paper', 'Backtest', 'Health', 'Settings'];
+  const navTabs = ['Home', 'Overview', 'Portfolio', 'Paper', 'Backtest', 'Cluster', 'Settings'];
   const isActive = (tab: string) => (tab === 'Home' ? isLanding : !isLanding && activeTab === tab);
   const iconBtn = 'p-2 rounded-lg transition-colors text-t-muted hover:text-t-fg hover:bg-t-fg/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-t-fg/40';
 
@@ -216,7 +216,7 @@ export default function TerminalWindow() {
               {activeTab === 'Portfolio' && <PortfolioView portfolio={portfolio} prices={prices} onSaved={setPortfolio} />}
               {activeTab === 'Paper' && <PaperView />}
               {activeTab === 'Backtest' && <BacktestView />}
-              {activeTab === 'Health' && <HealthView />}
+              {activeTab === 'Cluster' && <HealthView />}
               {activeTab === 'Settings' && <SettingsView />}
             </div>
           )}

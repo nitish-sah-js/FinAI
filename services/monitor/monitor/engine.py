@@ -10,8 +10,10 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
 
+import httpx
 import pandas as pd
 
+from copilot_common import reachability
 from copilot_common.ids import new_alert_id
 from copilot_common.models import Alert
 from copilot_common.service_base import FIXTURES_DIR, now_utc
@@ -167,10 +169,24 @@ class Engine:
                      evidence_ids=c.evidence_ids, created_at=now_utc(), cooldown_key=c.cooldown_key(),
                      deeplink=deeplink(suggested_query(c), aid))
 
+    async def _push_to_l1(self, alert: Alert) -> None:
+        """POST the alert to the orchestrator on L1 (/alerts/ingest). Best effort: never blocks or fails delivery."""
+        url = get_settings().ORCH_URL.rstrip("/") + "/alerts/ingest"
+        if reachability.is_down(url):
+            return
+        try:
+            async with httpx.AsyncClient(timeout=httpx.Timeout(3.0, connect=reachability.CONNECT_TIMEOUT_S)) as c:
+                (await c.post(url, json=alert.model_dump(mode="json"))).raise_for_status()
+        except (httpx.ConnectError, httpx.ConnectTimeout):
+            reachability.mark_down(url)
+        except httpx.HTTPError as e:
+            log.debug("push to L1 failed: %s", e)
+
     async def deliver(self, alert: Alert) -> int:
         """Store first, then WS (never blocked by Telegram/email, which run in the background)."""
         await store.save(alert)
         n = await hub.broadcast({"type": "alert", "data": alert.model_dump(mode="json")})
+        self.tasks.append(asyncio.create_task(self._push_to_l1(alert)))     # L1 keeps a copy (background)
         if alert.tier >= 2:                    # the desktop pet points at tier 2-3 alerts
             await hub.broadcast({"type": "pet_reaction", "data": {"reaction": "alert", "alert_id": alert.alert_id,
                                                                   "tier": alert.tier}})

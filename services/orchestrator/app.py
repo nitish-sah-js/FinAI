@@ -2,7 +2,11 @@
 from __future__ import annotations
 
 import asyncio
+import collections
 import json
+import socket
+import time
+from datetime import datetime, timezone
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -11,8 +15,8 @@ from fastapi import Body, File, HTTPException, Request, UploadFile, WebSocket, W
 from fastapi.responses import JSONResponse, PlainTextResponse
 
 from copilot_common.ids import new_run_id
-from copilot_common.models import Portfolio, QueryAccepted, QueryRequest, ToolResult
-from copilot_common.service_base import create_service_app
+from copilot_common.models import Alert, Portfolio, QueryAccepted, QueryRequest, ToolResult
+from copilot_common.service_base import create_service_app, gpu_info
 from copilot_common.settings import get_settings
 from copilot_llm import SESSION, llm
 
@@ -191,6 +195,88 @@ async def health_all() -> dict:
                                "deps": await deps_check()}
     results["llm"] = await llm.health()
     return results
+
+
+# ---------------- cluster status (every service, Ollama per laptop, Weaviate, news latency) ----------------
+ROLE_MODELS = {"OLLAMA_L1": ("L1", ("OLLAMA_MODEL_L1",)), "OLLAMA_L2": ("L2", ("OLLAMA_MODEL_L2",)),
+               "OLLAMA_L3": ("L3", ("OLLAMA_MODEL_L3_FAST", "OLLAMA_MODEL_L3_RED"))}
+
+
+@app.get("/cluster/status")
+async def cluster_status() -> dict:
+    """One call for the UI's Cluster page and deploy/verify_cluster: per service status + round-trip latency,
+    which Ollama models each laptop has installed / loaded, Weaviate readiness, and news indexing latency."""
+    s = get_settings()
+
+    async def svc(name: str, attr: str, laptop: str) -> dict:
+        url = getattr(s, attr).rstrip("/")
+        t0 = time.perf_counter()
+        try:
+            async with httpx.AsyncClient(timeout=3) as c:
+                h = (await c.get(f"{url}/health")).json()
+            return {"name": name, "laptop": laptop, "url": url, "latency_ms": int((time.perf_counter() - t0) * 1000), **h}
+        except (httpx.HTTPError, ValueError) as e:
+            return {"name": name, "laptop": laptop, "url": url, "status": "down", "latency_ms": None,
+                    "error": type(e).__name__, "hint": "check the laptop is on, firewall rules, 0.0.0.0 binding, same Wi-Fi"}
+
+    async def ollama(attr: str) -> dict:
+        laptop, model_attrs = ROLE_MODELS[attr]
+        base = getattr(s, attr).rstrip("/")
+        want = [getattr(s, m) for m in model_attrs]
+        t0 = time.perf_counter()
+        try:
+            async with httpx.AsyncClient(timeout=3) as c:
+                tags = [m["name"] for m in (await c.get(f"{base}/api/tags")).json().get("models", [])]
+                ps = [m["name"] for m in (await c.get(f"{base}/api/ps")).json().get("models", [])]
+            have = lambda m: any(t == m or t == f"{m}:latest" for t in tags)  # noqa: E731
+            return {"laptop": laptop, "url": base, "status": "ok", "latency_ms": int((time.perf_counter() - t0) * 1000),
+                    "expected": want, "missing": [m for m in want if not have(m)], "loaded": ps}
+        except (httpx.HTTPError, ValueError) as e:
+            return {"laptop": laptop, "url": base, "status": "down", "expected": want, "error": type(e).__name__}
+
+    async def weaviate() -> dict:
+        url = f"http://{s.WEAVIATE_HOST}:8080/v1/.well-known/ready"
+        try:
+            async with httpx.AsyncClient(timeout=2) as c:
+                return {"url": url, "status": "ok" if (await c.get(url)).status_code == 200 else "down"}
+        except httpx.HTTPError as e:
+            return {"url": url, "status": "down", "error": type(e).__name__}
+
+    async def news_latency() -> dict:
+        try:
+            async with httpx.AsyncClient(timeout=3) as c:
+                return (await c.get(f"{s.VECTOR_URL.rstrip('/')}/latency")).json()
+        except (httpx.HTTPError, ValueError):
+            return {}
+
+    t0 = time.perf_counter()
+    services = await asyncio.gather(*(svc(n, a, h) for n, (a, h) in HEALTH_SERVICES.items()))
+    hosts = list(dict.fromkeys(a for a in ROLE_MODELS))
+    ollamas = await asyncio.gather(*(ollama(a) for a in hosts))
+    wv, news = await asyncio.gather(weaviate(), news_latency())
+    me = {"name": "orchestrator", "laptop": "L1", "url": s.ORCH_URL, "status": "ok", "latency_ms": 0, "mock": s.MOCK,
+          "deps": await deps_check(), "models": [s.OLLAMA_MODEL_L1], "gpu": gpu_info(), "host": socket.gethostname()}
+    return {"checked_at": datetime.now(timezone.utc).isoformat(), "took_ms": int((time.perf_counter() - t0) * 1000),
+            "cluster_key": bool(s.CLUSTER_KEY), "services": [me, *services], "ollama": ollamas, "weaviate": wv,
+            "news_latency": news}
+
+
+# ---------------- alerts pushed by the monitor (L3) to L1 ----------------
+RECENT_ALERTS: "collections.deque[dict]" = collections.deque(maxlen=50)
+
+
+@app.post("/alerts/ingest")
+async def alerts_ingest(alert: Alert) -> dict:
+    """The monitor pushes every delivered alert here, so L1 has them too; forwarded on /ws/activity."""
+    a = alert.model_dump(mode="json")
+    RECENT_ALERTS.appendleft(a)
+    await bus.publish_activity({"type": "alert", "data": a})
+    return {"ok": True}
+
+
+@app.get("/alerts/recent")
+async def alerts_recent() -> list[dict]:
+    return list(RECENT_ALERTS)
 
 
 # ---------------- portfolio ----------------

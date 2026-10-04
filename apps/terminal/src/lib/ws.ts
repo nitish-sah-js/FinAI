@@ -1,7 +1,7 @@
 'use client';
 // Live streams: orchestrator run events (WS /ws/{run_id}) and monitor alerts (WS /ws/alerts). docs/13 Prompt 13-A §6.
 import { useEffect, useRef, useState } from 'react';
-import { MONITOR_WS, ORCH_WS } from './config';
+import { MONITOR_WS, ORCH_WS, withKey } from './config';
 import type { AgentEvent, Alert, FinalAnswer, WsMessage } from './contracts';
 import { getAlerts } from './api';
 
@@ -21,7 +21,7 @@ export function useRunStream(runId: string | null) {
     }
     setStatus('connecting');
     let gotFinal = false;
-    const ws = new WebSocket(`${ORCH_WS}/ws/${encodeURIComponent(runId)}`);
+    const ws = new WebSocket(withKey(`${ORCH_WS}/ws/${encodeURIComponent(runId)}`));
     ws.onopen = () => setStatus('running');
     ws.onmessage = (e) => {
       let msg: WsMessage;
@@ -71,7 +71,7 @@ export function useAlerts() {
 
     const connect = () => {
       if (stopped) return;
-      ws = new WebSocket(`${MONITOR_WS}/ws/alerts`);
+      ws = new WebSocket(withKey(`${MONITOR_WS}/ws/alerts`));
       ws.onopen = () => {
         retry.current = 1000;
         setConnected(true);
@@ -120,7 +120,7 @@ export function useActivity(onMsg: (m: WsMessage) => void) {
     let delay = 1000;
     const connect = () => {
       if (stopped) return;
-      ws = new WebSocket(`${ORCH_WS}/ws/activity`);
+      ws = new WebSocket(withKey(`${ORCH_WS}/ws/activity`));
       ws.onopen = () => (delay = 1000);
       ws.onmessage = (e) => {
         try {

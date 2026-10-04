@@ -41,8 +41,8 @@ def main() -> None:
     out = ROOT / "infra" / "env"
     out.mkdir(parents=True, exist_ok=True)
     for laptop in ("L1", "L2", "L3"):
-        (out / f"{laptop}.env").write_text(render(base, tuple(a.hosts), laptop, 0), encoding="utf-8")
-    (out / "single.env").write_text(render(base, ("127.0.0.1",) * 3, "single", 1), encoding="utf-8")
+        (out / f"{laptop}.env").write_text(render(base, tuple(a.hosts), laptop, 0), encoding="utf-8", newline="\n")
+    (out / "single.env").write_text(render(base, ("127.0.0.1",) * 3, "single", 1), encoding="utf-8", newline="\n")
     print(f"wrote L1.env L2.env L3.env single.env to {out} (hosts {', '.join(a.hosts)})")
 
 

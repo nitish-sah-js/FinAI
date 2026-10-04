@@ -9,3 +9,9 @@ export const MONITOR_WS = env(process.env.NEXT_PUBLIC_MONITOR_WS, MONITOR_URL.re
 export const QUANT_URL = env(process.env.NEXT_PUBLIC_QUANT_URL, 'http://127.0.0.1:8101');
 export const INGEST_URL = env(process.env.NEXT_PUBLIC_INGEST_URL, 'http://127.0.0.1:8201');
 export const VECTOR_URL = env(process.env.NEXT_PUBLIC_VECTOR_URL, 'http://127.0.0.1:8104');
+
+// Shared cluster secret (X-Cluster-Key). Empty in single-laptop mode. It ends up in the app bundle, so it only
+// keeps other devices on the network out; it is not a user password.
+export const CLUSTER_KEY = (process.env.NEXT_PUBLIC_CLUSTER_KEY || '').trim();
+/** Append ?key= to a WebSocket URL (browsers cannot set headers on a WebSocket). */
+export const withKey = (url: string) => (CLUSTER_KEY ? `${url}${url.includes('?') ? '&' : '?'}key=${encodeURIComponent(CLUSTER_KEY)}` : url);
