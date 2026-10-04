@@ -76,6 +76,7 @@ Applications > Authorized Apps. Put `EARTHDATA_USERNAME` and `EARTHDATA_PASSWORD
 root `.env`, without quotes. The script never prints them.
 
 ```powershell
+.venv\Scripts\pip install -r requirements-modis.txt                         # once; needs Python 3.12+
 .venv\Scripts\python scripts\download_mod13q1.py --dry-run                     # count + size: India, 2026-01-01..today
 .venv\Scripts\python scripts\download_mod13q1.py --start 2026-01-01 --end 2026-10-04 --bbox 74 17 82 22
 .venv\Scripts\python -m pytest tests\test_download_args.py                     # argument checks, no network

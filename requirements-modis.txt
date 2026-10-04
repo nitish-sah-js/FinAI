@@ -1,0 +1,6 @@
+# Only for scripts/download_mod13q1.py (NASA MODIS downloads). Kept out of requirements.txt: earthaccess>=0.19 needs
+# Python 3.12+, and the cluster laptops run 3.11. fsspec/s3fs are pinned so `datasets` (sentiment eval) still resolves.
+#   .venv\Scripts\pip install -r requirements-modis.txt
+earthaccess>=0.19
+fsspec[http]==2026.6.0
+s3fs==2026.6.0

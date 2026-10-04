@@ -99,3 +99,20 @@ def test_gen_and_bundle(tmp_path, monkeypatch):
 def test_bundle_needs_gen_first(tmp_path, monkeypatch):
     monkeypatch.setattr(cluster, "OUT", tmp_path / "out")
     assert cluster.main(["bundle", "--config", str(_cfg(tmp_path, GOOD))]) == 2
+
+
+def test_setup_script_stops_on_failure_and_needs_no_python_312_packages(tmp_path, monkeypatch):
+    """L3 (Python 3.11) once got 'setup done' although pip had failed: earthaccess needs 3.12 and was in
+    requirements.txt. Every native step is now checked, and requirements.txt stays installable on 3.11."""
+    monkeypatch.setattr(cluster, "OUT", tmp_path / "out")
+    p = _cfg(tmp_path, GOOD)
+    assert cluster.main(["gen", "--config", str(p)]) == 0 and cluster.main(["bundle", "--config", str(p)]) == 0
+    for lap in ("L2", "L3"):
+        s = (tmp_path / "out" / f"{lap}_bundle" / f"setup_{lap}.ps1").read_text()
+        assert 'Check "pip install (Python packages)"' in s and "sys.version_info >= (3, 11)" in s
+        pulls = [ln for ln in s.splitlines() if ln.strip().startswith("ollama pull")]
+        assert pulls and all('Check "ollama pull' in ln for ln in pulls)
+    assert 'Check "npm install"' in (tmp_path / "out" / "L3_bundle" / "setup_L3.ps1").read_text()
+    assert 'Check "docker compose' in (tmp_path / "out" / "L2_bundle" / "setup_L2.ps1").read_text()
+    reqs = (cluster.ROOT / "requirements.txt").read_text()
+    assert "earthaccess" not in reqs and "s3fs" not in reqs

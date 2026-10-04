@@ -171,22 +171,27 @@ def _copy(src: Path, dst: Path) -> None:
 def _scripts(lap: str, spec: dict, env: dict[str, str]) -> dict[str, str]:
     reqs = " ".join(f'-r "{r}\\requirements.txt"' for r in spec["reqs"])
     models = [env.get(m, "") for m in spec["models"]]
-    pulls = "\n".join(f"    ollama pull {m}" for m in models if m)
+    pulls = "\n".join(f'    ollama pull {m}; Check "ollama pull {m}"' for m in models if m)
     setup = f"""# One-time setup for {lap}. Run in this folder:  powershell -ExecutionPolicy Bypass -File setup_{lap}.ps1 [-PullModels]
+# Safe to re-run. Every step is checked: the script stops at the first failure instead of reporting "setup done".
 param([switch]$PullModels)
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
-if (-not (Test-Path .venv)) {{ python -m venv .venv }}
-.venv\\Scripts\\python -m pip install --upgrade pip
-.venv\\Scripts\\python -m pip install -r requirements.txt {reqs}
+function Check([string]$what) {{
+    if ($LASTEXITCODE -ne 0) {{ Write-Host "FAILED: $what (exit $LASTEXITCODE). Fix the error above and re-run setup_{lap}.ps1" -ForegroundColor Red; exit 1 }}
+}}
+python -c "import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)"; Check "Python 3.11 or newer is required (python --version)"
+if (-not (Test-Path .venv)) {{ python -m venv .venv; Check "python -m venv .venv" }}
+.venv\\Scripts\\python -m pip install --upgrade pip; Check "pip upgrade"
+.venv\\Scripts\\python -m pip install -r requirements.txt {reqs}; Check "pip install (Python packages)"
 if ($PullModels) {{
 {pulls}
 }} else {{ Write-Host "models this laptop serves: {', '.join(models)}  (re-run with -PullModels, or ollama pull <tag>)" }}
 """
     if spec["docker"]:
-        setup += "docker compose -f infra\\docker-compose.yml up -d   # Weaviate :8080\n"
+        setup += 'docker compose -f infra\\docker-compose.yml up -d; Check "docker compose up (is Docker Desktop running?)"\n'
     if spec["frontend"]:
-        setup += "Push-Location apps\\terminal; npm install; Pop-Location\n"
+        setup += 'Push-Location apps\\terminal; npm install; Pop-Location; Check "npm install"\n'
     setup += ('Write-Host "Open the firewall once (Admin PowerShell): powershell -ExecutionPolicy Bypass -File infra\\firewall.ps1"\n'
               f'Write-Host "setup done. start: .\\start_{lap}.ps1" -ForegroundColor Green\n')
     start = (f"# Start {lap}'s services (and on L3 the desktop app).  .\\start_{lap}.ps1\n"
