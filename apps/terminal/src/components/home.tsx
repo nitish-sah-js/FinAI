@@ -137,9 +137,10 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices, onAsk }: 
         ) : conversation ? (
           final && <ConversationReply final={final} onAsk={onAsk} />
         ) : (<>
+          {/* answer first; how it was reached (graph, timings, log) and the analysis panels below it */}
+          <AnswerBox final={final} events={events} running={running} onCite={setCite} />
           <ReasoningBox events={events} final={final} status={status} running={running} elapsed={elapsed}
             defaultOpen={isLatest} runId={turn.runId} onCite={setCite} />
-          <AnswerBox final={final} events={events} running={running} onCite={setCite} />
           {isLatest && final && <AnalysisBox final={final} portfolio={portfolio} bars={bars} prices={prices} />}
         </>)}
       </motion.div>
