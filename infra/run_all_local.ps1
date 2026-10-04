@@ -44,6 +44,18 @@ if (Test-Path $EnvFile) {
     Get-Content $EnvFile | ForEach-Object { if ($_ -match '^([A-Z_]+_PORT)=(\d+)') { $over[$Matches[1]] = [int]$Matches[2] } }
     foreach ($s in $Services) { if ($over.ContainsKey($PortKey[$s[0]])) { $s[3] = $over[$PortKey[$s[0]]] } }
 }
+if ($Laptop -and (Test-Path $EnvFile)) {
+    # cluster mode: .env is the source of truth. A variable left in this shell (e.g. L2_HOST=127.0.0.1 from an
+    # earlier single-laptop session) would silently win over .env in every service, so drop those first.
+    $stale = @()
+    Get-Content $EnvFile | ForEach-Object {
+        if ($_ -match '^([A-Z][A-Z0-9_]*)=') {
+            $k = $Matches[1]
+            if (Test-Path "Env:$k") { $stale += $k; Remove-Item "Env:$k" }
+        }
+    }
+    if ($stale) { Write-Host ("using .env, ignoring shell variables: " + ($stale -join ", ")) -ForegroundColor Yellow }
+}
 if ($Laptop -and (Test-Path $EnvFile) -and (Select-String -Path $EnvFile -Pattern "^WEAVIATE_HOST=\`$\{$Laptop`_HOST\}" -Quiet)) {
     # this laptop hosts Weaviate for the cluster (deploy/cluster.env WEAVIATE_LAPTOP)
     Write-Host "weaviate      starting Docker container (this laptop is the cluster's Weaviate host)"

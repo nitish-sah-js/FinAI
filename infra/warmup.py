@@ -10,9 +10,11 @@ Exit code 0 when at least one model loaded, 1 otherwise.
 from __future__ import annotations
 
 import argparse
+import socket
 import sys
 import time
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import httpx
 
@@ -23,8 +25,20 @@ from copilot_common.settings import get_settings  # noqa: E402
 KEEP_ALIVE = -1
 
 
+def local_addresses() -> set[str]:
+    """Names / IPs that mean "this machine": loopback plus every IPv4 of this host (in cluster mode the .env lists
+    this laptop by its LAN IP, e.g. OLLAMA_L3=http://10.153.50.201:11434 on L3)."""
+    out = {"127.0.0.1", "localhost", socket.gethostname().lower()}
+    try:
+        out |= {a[4][0] for a in socket.getaddrinfo(socket.gethostname(), None, socket.AF_INET)}
+    except OSError:
+        pass
+    return out
+
+
 def targets(local_only: bool) -> list[tuple[str, str, str]]:
     s = get_settings()
+    local = local_addresses()
     rows = [("intent / synthesizer / explain", s.OLLAMA_L1, s.OLLAMA_MODEL_L1),
             ("narrators / sentiment 2nd opinion", s.OLLAMA_L2, s.OLLAMA_MODEL_L2),
             ("alerts / small talk", s.OLLAMA_L3, s.OLLAMA_MODEL_L3_FAST),
@@ -32,7 +46,7 @@ def targets(local_only: bool) -> list[tuple[str, str, str]]:
     seen, out = set(), []
     for role, host, model in rows:
         host = host.rstrip("/")
-        if local_only and not any(h in host for h in ("127.0.0.1", "localhost")):
+        if local_only and (urlsplit(host).hostname or "").lower() not in local:
             continue
         if (host, model) not in seen:
             seen.add((host, model))
