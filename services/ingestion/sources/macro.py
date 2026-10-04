@@ -70,6 +70,12 @@ def build_macro(inr: pd.Series | None, brent: pd.Series | None, us10y: pd.Series
     if len(c):
         v["cpi_yoy"] = float(c.iloc[-1]["cpi_yoy"])
         dates["cpi_yoy"] = c.iloc[-1]["date"].strftime("%Y-%m-%d")
+        month = str(c.iloc[-1]["as_of"]) if "as_of" in c.columns and pd.notna(c.iloc[-1]["as_of"]) else dates["cpi_yoy"]
+        v["cpi_as_of"] = month                                   # the month the figure describes
+        ref = cutoff if cutoff is not None else pd.Timestamp.now(tz="UTC").tz_localize(None)
+        age_days = (ref - pd.Timestamp(month)).days
+        if age_days > 75:                                        # newer than ~2 releases is expected
+            warns.append(f"cpi_yoy is old: latest available figure is for {month[:7]} ({age_days // 30} months ago)")
     else:
         v["cpi_yoy"] = None
         warns.append("cpi_yoy unavailable")

@@ -1,1 +1,571 @@
-[{"date":"2025-06-06","repo_rate":5.50},{"date":"2025-12-05","repo_rate":5.25}]
+[
+ {
+  "date": "2001-04-03",
+  "repo_rate": 8.5,
+  "as_of": "2001-04-03",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2001-04-27",
+  "repo_rate": 9.0,
+  "as_of": "2001-04-27",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2001-04-30",
+  "repo_rate": 8.75,
+  "as_of": "2001-04-30",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2001-06-07",
+  "repo_rate": 8.5,
+  "as_of": "2001-06-07",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2002-03-28",
+  "repo_rate": 8.0,
+  "as_of": "2002-03-28",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2002-11-12",
+  "repo_rate": 7.5,
+  "as_of": "2002-11-12",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2003-03-07",
+  "repo_rate": 7.1,
+  "as_of": "2003-03-07",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2003-03-19",
+  "repo_rate": 7.0,
+  "as_of": "2003-03-19",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2004-03-31",
+  "repo_rate": 6.0,
+  "as_of": "2004-03-31",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2005-10-26",
+  "repo_rate": 6.25,
+  "as_of": "2005-10-26",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2006-01-24",
+  "repo_rate": 6.5,
+  "as_of": "2006-01-24",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2006-06-08",
+  "repo_rate": 6.75,
+  "as_of": "2006-06-08",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2006-07-25",
+  "repo_rate": 7.0,
+  "as_of": "2006-07-25",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2006-10-31",
+  "repo_rate": 7.25,
+  "as_of": "2006-10-31",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2007-01-31",
+  "repo_rate": 7.5,
+  "as_of": "2007-01-31",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2007-03-31",
+  "repo_rate": 7.75,
+  "as_of": "2007-03-31",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2008-06-12",
+  "repo_rate": 8.0,
+  "as_of": "2008-06-12",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2008-06-25",
+  "repo_rate": 8.5,
+  "as_of": "2008-06-25",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2008-07-30",
+  "repo_rate": 9.0,
+  "as_of": "2008-07-30",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2008-10-20",
+  "repo_rate": 8.0,
+  "as_of": "2008-10-20",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2008-11-03",
+  "repo_rate": 7.5,
+  "as_of": "2008-11-03",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2008-12-08",
+  "repo_rate": 6.5,
+  "as_of": "2008-12-08",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2009-01-05",
+  "repo_rate": 5.5,
+  "as_of": "2009-01-05",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2009-03-05",
+  "repo_rate": 5.0,
+  "as_of": "2009-03-05",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2009-04-21",
+  "repo_rate": 4.75,
+  "as_of": "2009-04-21",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2010-03-19",
+  "repo_rate": 5.0,
+  "as_of": "2010-03-19",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2010-04-20",
+  "repo_rate": 5.25,
+  "as_of": "2010-04-20",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2010-07-02",
+  "repo_rate": 5.5,
+  "as_of": "2010-07-02",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2010-07-27",
+  "repo_rate": 5.75,
+  "as_of": "2010-07-27",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2010-09-16",
+  "repo_rate": 6.0,
+  "as_of": "2010-09-16",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2010-11-02",
+  "repo_rate": 6.25,
+  "as_of": "2010-11-02",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2011-01-25",
+  "repo_rate": 6.5,
+  "as_of": "2011-01-25",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2011-03-17",
+  "repo_rate": 6.75,
+  "as_of": "2011-03-17",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2011-05-03",
+  "repo_rate": 7.25,
+  "as_of": "2011-05-03",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2011-06-16",
+  "repo_rate": 7.5,
+  "as_of": "2011-06-16",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2011-07-26",
+  "repo_rate": 8.0,
+  "as_of": "2011-07-26",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2011-09-16",
+  "repo_rate": 8.25,
+  "as_of": "2011-09-16",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2011-10-25",
+  "repo_rate": 8.5,
+  "as_of": "2011-10-25",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2012-04-17",
+  "repo_rate": 8.0,
+  "as_of": "2012-04-17",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2013-01-29",
+  "repo_rate": 7.75,
+  "as_of": "2013-01-29",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2013-03-19",
+  "repo_rate": 7.5,
+  "as_of": "2013-03-19",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2013-05-03",
+  "repo_rate": 7.25,
+  "as_of": "2013-05-03",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2013-09-20",
+  "repo_rate": 7.5,
+  "as_of": "2013-09-20",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2013-10-29",
+  "repo_rate": 7.75,
+  "as_of": "2013-10-29",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2014-01-28",
+  "repo_rate": 8.0,
+  "as_of": "2014-01-28",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2015-01-15",
+  "repo_rate": 7.75,
+  "as_of": "2015-01-15",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2015-03-04",
+  "repo_rate": 7.5,
+  "as_of": "2015-03-04",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2015-06-02",
+  "repo_rate": 7.25,
+  "as_of": "2015-06-02",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2015-09-29",
+  "repo_rate": 6.75,
+  "as_of": "2015-09-29",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2016-04-05",
+  "repo_rate": 6.5,
+  "as_of": "2016-04-05",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2016-10-04",
+  "repo_rate": 6.25,
+  "as_of": "2016-10-04",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2017-08-02",
+  "repo_rate": 6.0,
+  "as_of": "2017-08-02",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2018-06-06",
+  "repo_rate": 6.25,
+  "as_of": "2018-06-06",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2018-08-01",
+  "repo_rate": 6.5,
+  "as_of": "2018-08-01",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2019-02-08",
+  "repo_rate": 6.25,
+  "as_of": "2019-02-08",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2019-04-04",
+  "repo_rate": 6.0,
+  "as_of": "2019-04-04",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2019-06-07",
+  "repo_rate": 5.75,
+  "as_of": "2019-06-07",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2019-08-08",
+  "repo_rate": 5.4,
+  "as_of": "2019-08-08",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2019-10-05",
+  "repo_rate": 5.15,
+  "as_of": "2019-10-05",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2020-03-27",
+  "repo_rate": 4.4,
+  "as_of": "2020-03-27",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2020-05-22",
+  "repo_rate": 4.0,
+  "as_of": "2020-05-22",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2022-05-04",
+  "repo_rate": 4.4,
+  "as_of": "2022-05-04",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2022-06-08",
+  "repo_rate": 4.9,
+  "as_of": "2022-06-08",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2022-08-05",
+  "repo_rate": 5.4,
+  "as_of": "2022-08-05",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2022-09-30",
+  "repo_rate": 5.9,
+  "as_of": "2022-09-30",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2022-12-07",
+  "repo_rate": 6.25,
+  "as_of": "2022-12-07",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2023-02-08",
+  "repo_rate": 6.5,
+  "as_of": "2023-02-08",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2025-02-07",
+  "repo_rate": 6.25,
+  "as_of": "2025-02-07",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2025-04-09",
+  "repo_rate": 6.0,
+  "as_of": "2025-04-09",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2025-06-06",
+  "repo_rate": 5.5,
+  "as_of": "2025-06-06",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z"
+ },
+ {
+  "date": "2025-12-05",
+  "repo_rate": 5.25,
+  "as_of": "2025-12-05",
+  "source": "BIS central bank policy rates (RBI repo rate)",
+  "source_url": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.IN?format=csv&startPeriod=2000-01-01",
+  "retrieved_at": "2026-10-04T00:29:27Z",
+  "last_observed": "2026-07-23"
+ }
+]
