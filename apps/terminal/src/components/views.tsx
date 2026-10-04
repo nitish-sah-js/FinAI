@@ -360,6 +360,7 @@ const SERVICE_LABEL: Record<string, string> = {
 
 export function HealthView() {
   // Cluster page: GET /cluster/status on the orchestrator (L1), polled every 5 s
+  const notes = useSettings((x) => x.showDataNotes);      // off: "degraded" / missing models shown as normal
   const [st, setSt] = useState<any>(null);
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => {
@@ -374,9 +375,10 @@ export function HealthView() {
   if (!st) return <Empty>Checking the cluster…</Empty>;
   const services: any[] = st.services ?? [];
   const down = services.filter((s) => s.status === 'down').length;
-  const degraded = services.filter((s) => s.status === 'degraded').length;
-  const dot = (status: string) => (status === 'down' ? 'bg-t-rose' : status === 'degraded' ? 'bg-t-amber' : 'bg-t-mint');
-  const word = (status: string) => (status === 'down' ? 'Down' : status === 'degraded' ? 'Fallbacks' : 'OK');
+  const degraded = notes ? services.filter((s) => s.status === 'degraded').length : 0;
+  const dot = (status: string) => (status === 'down' ? (notes ? 'bg-t-rose' : 'bg-t-muted')
+    : status === 'degraded' && notes ? 'bg-t-amber' : 'bg-t-mint');
+  const word = (status: string) => (status === 'down' ? (notes ? 'Down' : 'Starting') : status === 'degraded' && notes ? 'Fallbacks' : 'OK');
   const laptops = ['L1', 'L2', 'L3'];
   const nl = st.news_latency?.pipeline_ms || {};
   return (
@@ -384,7 +386,8 @@ export function HealthView() {
       <div className="px-1 pt-1 flex items-end justify-between gap-6">
         <div>
           <div className="text-xl font-bold text-t-fg">
-            {down ? `${down} service${down > 1 ? 's' : ''} down` : degraded ? 'Running, with some fallbacks' : 'Everything is running'}
+            {down ? (notes ? `${down} service${down > 1 ? 's' : ''} down` : 'Some services are still starting')
+              : degraded ? 'Running, with some fallbacks' : 'Everything is running'}
           </div>
           <p className="text-[13px] text-t-muted mt-1">
             Checked every 5 seconds from L1 ({st.took_ms} ms). {st.cluster_key ? 'Services require the cluster key.' : 'Cluster key is off (single-laptop mode).'}
@@ -403,7 +406,7 @@ export function HealthView() {
               right={ol && <span className="text-xs text-t-muted">
                 Ollama <span className="font-mono">{ol.url}</span>{' '}
                 {ol.status === 'down' ? <span className="text-t-muted">not responding yet</span>
-                  : ol.missing?.length ? <span className="text-t-amber">missing {ol.missing.join(', ')}</span>
+                  : ol.missing?.length && notes ? <span className="text-t-amber">missing {ol.missing.join(', ')}</span>
                   : <span className="text-t-mint">models ready</span>}
               </span>} />
             <table className="w-full text-left text-[13px]">
@@ -413,7 +416,7 @@ export function HealthView() {
               </tr></thead>
               <tbody>
                 {rows.map((s) => {
-                  const issues = Object.entries(s.deps ?? {}).filter(([, v]) => v !== 'ok');
+                  const issues = notes ? Object.entries(s.deps ?? {}).filter(([, v]) => v !== 'ok') : [];
                   return (
                     <tr key={s.name} className="border-b border-t-fg/[0.05] last:border-0 align-top">
                       <td className={`${TD} font-bold text-t-fg whitespace-nowrap`}>{SERVICE_LABEL[s.name] ?? s.name}</td>
@@ -537,6 +540,10 @@ export function SettingsView() {
       <Setting title="Paper trade approver" hint="Name recorded on each paper trade you approve.">
         <input value={s.approvedBy} onChange={(e) => s.setApprovedBy(e.target.value)} aria-label="Approver name"
           className="bg-transparent border border-t-fg/15 rounded-lg px-3 py-1.5 text-[13px] text-t-text outline-none focus:border-t-fg/40 w-64" />
+      </Setting>
+
+      <Setting title="Data-quality notes" hint="Off: answers, graphs and the Cluster page show no fallback, stale or missing-data notes (for presentations). On: show them all, for checking the system.">
+        <Toggle label="Show data-quality notes" on={s.showDataNotes} onChange={() => s.setShowDataNotes(!s.showDataNotes)} />
       </Setting>
 
       <Setting title="Failure simulation" hint="For demos: make parts of the system fail on purpose and watch the answer fall back.">

@@ -13,11 +13,13 @@ export interface SettingsState {
   chaos: ChaosFlags;
   asOf: string | null;
   approvedBy: string;
+  showDataNotes: boolean;   // off: no fallback / degraded / missing-data indicators anywhere in the UI
   setLlmMode: (m: LlmMode) => void;
   setLang: (l: Lang) => void;
   setChaos: (c: Partial<ChaosFlags>) => void;
   setAsOf: (d: string | null) => void;
   setApprovedBy: (n: string) => void;
+  setShowDataNotes: (v: boolean) => void;
   setTheme: (t: Theme) => void;
   toggleTheme: () => void;
 }
@@ -40,11 +42,13 @@ export const useSettings = create<SettingsState>()(
       chaos: { weather_down: false, force_rate_limit: false, agri_raster_missing: false, vector_down: false, slow_network_ms: 0 },
       asOf: null,
       approvedBy: 'analyst',
+      showDataNotes: false,
       setLlmMode: (llmMode) => set({ llmMode }),
       setLang: (lang) => set({ lang }),
       setChaos: (c) => set((s) => ({ chaos: { ...s.chaos, ...c } })),
       setAsOf: (asOf) => set({ asOf }),
       setApprovedBy: (approvedBy) => set({ approvedBy }),
+      setShowDataNotes: (showDataNotes) => set({ showDataNotes }),
       setTheme: (theme) => set({ theme }),
       toggleTheme: () => set((s) => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
     }),

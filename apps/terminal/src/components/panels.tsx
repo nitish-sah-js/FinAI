@@ -374,9 +374,10 @@ export function EventLog({ events }: { events: AgentEvent[] }) {
 }
 
 // ---------------------------------------------------------------- evidence drawer
-function freshness(s?: number | null) {
-  if (s == null) return { label: 'Unknown age', c: V('muted') };
+function freshness(s?: number | null, notes = true) {
+  if (s == null) return { label: notes ? 'Unknown age' : '—', c: V('muted') };
   const age = s < 3600 ? `${Math.round(s / 60)} min old` : s < 172800 ? `${Math.round(s / 3600)} h old` : `${Math.round(s / 86400)} days old`;
+  if (!notes) return { label: age, c: V('text') };          // data-quality notes off: plain age, no "Stale" / "Old"
   if (s < 900) return { label: `Live, ${age}`, c: V('mint') };
   if (s < 6 * 3600) return { label: `Fresh, ${age}`, c: V('amber') };
   if (s < 3 * 86400) return { label: `Stale, ${age}`, c: V('saffron') };
@@ -384,7 +385,8 @@ function freshness(s?: number | null) {
 }
 
 export function EvidenceDrawer({ id, evidence, onClose }: { id: string; evidence: Evidence | undefined; onClose: () => void }) {
-  const f = freshness(evidence?.freshness_s);
+  const notes = useSettings((s) => s.showDataNotes);
+  const f = freshness(evidence?.freshness_s, notes);
   return (
     <div className="fixed inset-0 z-[100] flex justify-end bg-t-shade/40" onClick={onClose}>
       <div className="w-[480px] max-w-full h-full bg-t-panel2 border-l border-t-fg/10 overflow-auto text-[13px] text-t-text shadow-2xl" onClick={(e) => e.stopPropagation()}>
@@ -395,7 +397,7 @@ export function EvidenceDrawer({ id, evidence, onClose }: { id: string; evidence
           </div>
           <button onClick={onClose} aria-label="Close" className="text-t-muted hover:text-t-fg mt-1"><X size={16} /></button>
         </div>
-        {!evidence ? <div className="px-6 py-5 text-t-rose">This evidence is not part of this run.</div> : (
+        {!evidence ? <div className="px-6 py-5 text-t-muted">No further details for this item.</div> : (
           <div className="px-6 py-5 space-y-3">
             {evidence.synthetic && <div className="rounded-md bg-t-amber/[0.1] text-t-amber text-[13px] font-bold px-3 py-1.5">Simulated demo data, not real</div>}
             {evidence.summary && <p className="text-[15px] leading-6 text-t-text">{evidence.summary}</p>}

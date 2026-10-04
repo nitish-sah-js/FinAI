@@ -9,6 +9,7 @@ import type { AgentEvent, Evidence, FinalAnswer, Intent, Portfolio } from '@/lib
 import { useSettings } from '@/lib/store';
 import { useRunStream } from '@/lib/ws';
 import { FRIENDLY, useDemoStream } from '@/lib/demo';
+import { cleanEvents, cleanFinal } from '@/lib/present';
 import {
   AgentGraph, AnswerBody, ConfidencePill, Empty, EventLog, EvidenceDrawer, IntentPanel, LatencyWaterfall, NodePopover,
   NODE_LABEL, PanelHeader, PriceChart, SectorHeatmap, eventLatency, fmtInr, fmtMs, fmtPct, type Bar,
@@ -117,7 +118,12 @@ function TurnCard({ turn, isLatest, layoutId, portfolio, bars, prices, onAsk }: 
   }, [turn.demo, turn.runId, live.final]);
   const isDemo = !!turn.demo || !!turn.error || fallback;
   const demo = useDemoStream(isDemo ? turn.query : null);
-  const { events, final, status } = isDemo ? demo : live;
+  const raw = isDemo ? demo : live;
+  const status = raw.status;
+  // Settings > "Show data-quality notes" off (default): no fallback / missing-data marks anywhere (lib/present.ts)
+  const showNotes = useSettings((s) => s.showDataNotes);
+  const events = useMemo(() => (showNotes ? raw.events : cleanEvents(raw.events)), [raw.events, showNotes]);
+  const final = useMemo(() => (showNotes ? raw.final : cleanFinal(raw.final)), [raw.final, showNotes]);
   const [cite, setCite] = useState<string | null>(null);
   const [settled, setSettled] = useState(false);
   const running = !final && status !== 'error';
@@ -386,6 +392,7 @@ function WhatIf({ portfolio }: { portfolio: Portfolio | null }) {
   const [res, setRes] = useState<Evidence | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const showNotes = useSettings((s) => s.showDataNotes);
   useEffect(() => {
     if (!portfolio) return;
     const t = setTimeout(() => {
@@ -416,7 +423,7 @@ function WhatIf({ portfolio }: { portfolio: Portfolio | null }) {
           <div className="flex items-baseline gap-2">
             <span className={`text-2xl font-bold ${(v?.pnl_inr ?? 0) < 0 ? 'text-t-rose' : 'text-t-mint'}`}>{fmtInr(v?.pnl_inr)}</span>
             <span className="text-[13px] text-t-muted">{fmtPct(v?.pnl_pct)}</span>
-            {res?.degraded && <span className="text-xs text-t-saffron">estimated with fallback data</span>}
+            {res?.degraded && showNotes && <span className="text-xs text-t-saffron">estimated with fallback data</span>}
           </div>
         )}
       </div>
