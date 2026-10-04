@@ -91,7 +91,8 @@ def main() -> int:
         cpi = fetch_cpi(client)
         with open(CFG / "cpi_india.csv", "w", encoding="utf-8", newline="") as f:
             f.write(f"# India CPI inflation, % change on a year earlier. Source: OECD MEI via FRED {FRED_CPI}.\n"
-                    f"# date = when the figure became public (month end + {CPI_RELEASE_LAG_DAYS} days); as_of = month described.\n")
+                    f"# date = when the figure became public (month end + {CPI_RELEASE_LAG_DAYS} days); as_of = month described.\n"
+                    "# NOTE: this OECD index differs from MoSPI headline CPI-combined (May 2021: 5.26 here vs about 6.3).\n")
             cpi.to_csv(f, index=False)
         print(f"CPI: {len(cpi)} months, latest {cpi['cpi_yoy'].iloc[-1]}% for {cpi['as_of'].iloc[-1]}")
         if cpi["as_of"].iloc[-1] < (datetime.now(timezone.utc) - timedelta(days=120)).date().isoformat():
